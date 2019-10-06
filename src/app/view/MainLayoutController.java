@@ -125,6 +125,10 @@ public class MainLayoutController {
                 WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
                 RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
             }
+                else {
+                    WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
+                    RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
+                }
 
         });
     }

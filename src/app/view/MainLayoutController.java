@@ -1,6 +1,7 @@
 package app.view;
 
 import app.CountDown;
+import app.Music;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +14,7 @@ import javafx.scene.text.Text;
 import app.Main;
 import app.model.TomatoTask;
 
+import java.applet.AudioClip;
 import java.io.File;
 import java.time.Duration;
 
@@ -21,6 +23,7 @@ public class MainLayoutController {
     private static final double SIDE_ANCHOR = 10.0;
     public static final String START = "Start";
     public static final String STOP = "Stop";
+    public static final int MUSIC_CYCLE_COUNT = Integer.MAX_VALUE;
 
     private int currentBufferRow = 0;
     private Main main;
@@ -58,6 +61,9 @@ public class MainLayoutController {
     public static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
 
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
+
+
+    private Music workDurationMusic = new Music(new File ("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
 
     @FXML
     private void initialize() {
@@ -216,6 +222,7 @@ public class MainLayoutController {
         WORK_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
+                workDurationMusic.stop();
                 new Thread(this::playWorkFinishMusic).start();
                 Platform.runLater(() -> {
                     getStartOrStopButton().setDisable(true);
@@ -266,14 +273,18 @@ public class MainLayoutController {
     }
 
     private void handleStopButton() {
-        if(WORK_COUNT_DOWN.getFinished())
-          WORK_COUNT_DOWN.cancel();
-        if(RESPITE_COUNT_DOWN.getFinished())
-        RESPITE_COUNT_DOWN.cancel();
+        if(!(WORK_COUNT_DOWN.getFinished())){
+            WORK_COUNT_DOWN.cancel();
+            workDurationMusic.stop();
+        }
+
+        if(!(RESPITE_COUNT_DOWN.getFinished()))
+         RESPITE_COUNT_DOWN.cancel();
     }
 
     private void handleStartButton() {
         new Thread(() -> WORK_COUNT_DOWN.start()).start();
+        workDurationMusic.playInNewThread();
     }
 
     private void initTodoTaskGrid() {

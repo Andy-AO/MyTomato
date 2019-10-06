@@ -8,13 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import app.Main;
 import app.model.TomatoTask;
 
-import java.applet.AudioClip;
 import java.io.File;
 import java.time.Duration;
 
@@ -64,6 +61,19 @@ public class MainLayoutController {
 
 
     private Music workDurationMusic = new Music(new File ("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
+    private Music workFinishedMusic = new Music(new File ("res/sound/work_finished.mp3"));
+    private Music respiteFinishedMusic = new Music(new File ("res/sound/respite_finished.mp3"));
+
+
+    public Music getRespiteFinishedMusic() {
+        return respiteFinishedMusic;
+    }
+
+    public void setRespiteFinishedMusic(Music respiteFinishedMusic) {
+        this.respiteFinishedMusic = respiteFinishedMusic;
+    }
+
+
 
     @FXML
     private void initialize() {
@@ -138,6 +148,22 @@ public class MainLayoutController {
         }
     }
 
+    public Music getWorkDurationMusic() {
+        return workDurationMusic;
+    }
+
+    public void setWorkDurationMusic(Music workDurationMusic) {
+        this.workDurationMusic = workDurationMusic;
+    }
+
+    public Music getWorkFinishedMusic() {
+        return workFinishedMusic;
+    }
+
+    public void setWorkFinishedMusic(Music workFinishedMusic) {
+        this.workFinishedMusic = workFinishedMusic;
+    }
+
     private void setRespiteCountDownListener() {
         RESPITE_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
@@ -160,7 +186,7 @@ public class MainLayoutController {
             boolean finished = newValue;
             if (finished) {
                 Platform.runLater(() -> {
-                    playRespiteFinishMusic();
+                    getRespiteFinishedMusic();
                     Alert respiteFinishedAlert = new Alert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);
@@ -223,7 +249,7 @@ public class MainLayoutController {
             boolean finished = newValue;
             if (finished) {
                 workDurationMusic.stop();
-                new Thread(this::playWorkFinishMusic).start();
+                new Thread(getWorkFinishedMusic()::playInNewThread).start();
                 Platform.runLater(() -> {
                     getStartOrStopButton().setDisable(true);
                     main.startFinishDialogAndWait();
@@ -237,20 +263,6 @@ public class MainLayoutController {
                 });
             }
         });
-    }
-
-    private void playWorkFinishMusic() {
-        File mediaFile = new File("res/sound/work_finished.mp3");
-        Media media = new Media(mediaFile.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
-    }
-
-    private void playRespiteFinishMusic() {
-        File mediaFile = new File("res/sound/respite_finished.mp3");
-        Media media = new Media(mediaFile.toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
     }
 
     private void sizeBind() {

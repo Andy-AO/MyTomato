@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
+   <children>
+      <Text accessibleRole="BUTTON" fill="#e60707" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="已完成的工作" textOrigin="CENTER" wrappingWidth="250.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.56982421875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ProgressBar fx:id="progressBar" layoutX="67.0" layoutY="15.0" prefHeight="21.0" prefWidth="217.0" progress="0.0" AnchorPane.topAnchor="15.0" />
+      <TableView fx:id="TomatoTableView" onKeyPressed="#handleTableDeleteKey" prefHeight="241.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
+        <columns>
+            <TableColumn fx:id="TomatoDateColumn" prefWidth="40.0" text="Date" />
+          <TableColumn fx:id="TomatoStartColumn" prefWidth="40.0" text="Start" />
+            <TableColumn fx:id="TomatoEndColumn" prefWidth="40.0" text="End" />
+          <TableColumn fx:id="TomatoTaskColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="142.0" text="Task" />
+        </columns>
+      </TableView>
+      <Button fx:id="startOrStopButton" layoutX="292.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleStartOrStopButton" prefHeight="23.0" prefWidth="44.0" text="Start" textFill="#006705" />
+      <Text fx:id="progressText" layoutX="6.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test" textAlignment="CENTER" wrappingWidth="58.0000057220459">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="21.0" layoutX="6.0" layoutY="19.0" stroke="#0000004a" strokeType="INSIDE" width="58.0" />
+      <Button fx:id="addButton" disable="true" layoutX="182.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" />
+      <Button fx:id="deleteButton" disable="true" layoutX="237.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" />
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>

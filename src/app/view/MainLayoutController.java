@@ -186,7 +186,7 @@ public class MainLayoutController {
             boolean finished = newValue;
             if (finished) {
                 Platform.runLater(() -> {
-                    getRespiteFinishedMusic();
+                    getRespiteFinishedMusic().playInNewThread();
                     Alert respiteFinishedAlert = new Alert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);

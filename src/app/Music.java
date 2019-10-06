@@ -6,9 +6,9 @@ import javafx.scene.media.MediaPlayer;
 import java.io.File;
 
 public class Music {
-    File musicFile;
-    private final MediaPlayer mediaPlayer;
-    private final Media media;
+    private  File musicFile;
+    private  MediaPlayer mediaPlayer;
+    private  Media media;
 
     public File getMusicFile() {
         return musicFile;
@@ -19,14 +19,13 @@ public class Music {
     }
 
     public void playInNewThread() {
+        mediaPlayer  = new MediaPlayer(media);
         new Thread(() -> getMediaPlayer().play()).start();
     }
 
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
-
-
 
     public Music(File musicFile) {
         this.musicFile = musicFile;
@@ -38,7 +37,6 @@ public class Music {
         this(musicFile);
         mediaPlayer.setCycleCount(cycleCount);
     }
-
 
     public void stop() {
         mediaPlayer.stop();

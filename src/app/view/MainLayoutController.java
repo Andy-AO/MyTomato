@@ -266,7 +266,9 @@ public class MainLayoutController {
     }
 
     private void handleStopButton() {
-        WORK_COUNT_DOWN.cancel();
+        if(WORK_COUNT_DOWN.getFinished())
+          WORK_COUNT_DOWN.cancel();
+        if(RESPITE_COUNT_DOWN.getFinished())
         RESPITE_COUNT_DOWN.cancel();
     }
 

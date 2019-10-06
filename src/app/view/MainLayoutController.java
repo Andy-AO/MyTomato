@@ -73,7 +73,6 @@ public class MainLayoutController {
     }
 
 
-
     @FXML
     private void handleTableDeleteKey(KeyEvent keyEvent) {
         KeyCode keyCode = keyEvent.getCode();
@@ -113,24 +112,24 @@ public class MainLayoutController {
 
     private void setSettingListenerAndSetDuration() {
         boolean checked = main.getSettingDialogController().getDevelopmentCheckBox().isSelected();
-        if (checked){
-            WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-            RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-        }
+        developmentMode(checked);
 
         main.getSettingDialogController().getDevelopmentCheckBox().selectedProperty().addListener((observable,
                                                                                                    oldValue,
                                                                                                    newValue) -> {
-                if (newValue){
-                WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-                RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-            }
-                else {
-                    WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
-                    RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
-                }
+            developmentMode(newValue);
 
         });
+    }
+
+    private void developmentMode(Boolean newValue) {
+        if (newValue) {
+            WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
+            RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
+        } else {
+            WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
+            RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
+        }
     }
 
     private void setRespiteCountDownListener() {
@@ -157,13 +156,13 @@ public class MainLayoutController {
                 Platform.runLater(() -> {
                     playRespiteFinishMusic();
                     Alert respiteFinishedAlert = new Alert(Alert.AlertType.INFORMATION
-                            ,"休息已结束，是否开启下一个番茄？"
-                    ,ButtonType.YES,ButtonType.NO);
+                            , "休息已结束，是否开启下一个番茄？"
+                            , ButtonType.YES, ButtonType.NO);
                     respiteFinishedAlert.initOwner(main.getPrimaryStage());
                     respiteFinishedAlert.setTitle("休息已结束");
                     respiteFinishedAlert.setHeaderText("休息已结束");
-                    ButtonType buttonType =respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
-                    if(buttonType.equals(ButtonType.YES))
+                    ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
+                    if (buttonType.equals(ButtonType.YES))
                         handleStartButton();
                 });
             }
@@ -272,7 +271,7 @@ public class MainLayoutController {
     }
 
     private void handleStartButton() {
-        new Thread(()->WORK_COUNT_DOWN.start()).start();
+        new Thread(() -> WORK_COUNT_DOWN.start()).start();
     }
 
     private void initTodoTaskGrid() {

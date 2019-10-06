@@ -15,7 +15,7 @@ import java.util.function.BiConsumer;
 
 public class TomatoTaskDataJson {
 
-    private final String PATH = "json\\tomatoTaskData.json";
+    private final String PATH = "res\\json\\tomatoTaskData.json";
 
     public TomatoTaskDataJson(ObservableList<TomatoTask> tomatoTaskData) {
         this.tomatoTaskData = tomatoTaskData;
@@ -38,6 +38,7 @@ public class TomatoTaskDataJson {
 
     public String readString() {
         File jsonFile = new File(PATH);
+        System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
         try (FileReader fileReader = new FileReader(PATH)) {
             fileReader.read(json);

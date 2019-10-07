@@ -248,20 +248,24 @@ public class MainLayoutController {
         WORK_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                workDurationMusic.stop();
-                new Thread(getWorkFinishedMusic()::playInNewThread).start();
-                Platform.runLater(() -> {
-                    getStartOrStopButton().setDisable(true);
-                    main.startFinishDialogAndWait();
-                    TomatoTask tomatoTask = new TomatoTask(main.getFinishDialogController().getInputString(),
-                            WORK_COUNT_DOWN);
-                    TomatoTableView.getItems().add(tomatoTask);
-                    main.getFinishDialogController().getTextField().setText("");
-                    RESPITE_COUNT_DOWN.start();
-                    getStartOrStopButton().setDisable(false);
-
-                });
+                handleWorkFinished();
             }
+        });
+    }
+
+    private void handleWorkFinished() {
+        workDurationMusic.stop();
+        new Thread(getWorkFinishedMusic()::playInNewThread).start();
+        Platform.runLater(() -> {
+            getStartOrStopButton().setDisable(true);
+            main.startFinishDialogAndWait();
+            TomatoTask tomatoTask = new TomatoTask(main.getFinishDialogController().getInputString(),
+                    WORK_COUNT_DOWN);
+            TomatoTableView.getItems().add(tomatoTask);
+            main.getFinishDialogController().getTextField().setText("");
+            RESPITE_COUNT_DOWN.start();
+            getStartOrStopButton().setDisable(false);
+
         });
     }
 

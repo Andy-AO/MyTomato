@@ -258,11 +258,6 @@ public class MainLayoutController {
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
-
-            String taskName = main.getFinishDialogController().getInputString();
-
-            addTaskNameAfterFinished(taskName);
-
             getStartOrStopButton().setDisable(false);
 
         });
@@ -355,6 +350,18 @@ public class MainLayoutController {
         initTodoTaskGrid();
         initCountDownText();
         setSettingListenerAndSetDuration();
+        setFinishDialogListener();
+    }
+
+    private void setFinishDialogListener() {
+        main.getFinishDialogController().inputStringProperty().addListener((observable, oldValue, newValue) -> {
+            String taskName = newValue;
+            if((taskName == null)){
+                System.out.println("taskName is null,in FinishDialogListener");
+                return;
+            }
+            addTaskNameAfterFinished(taskName);
+        });
     }
 
     private void initCountDownText() {

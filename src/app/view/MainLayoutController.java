@@ -1,8 +1,6 @@
 package app.view;
 
-import app.CountDown;
-import app.Music;
-import app.Util;
+import app.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,7 +9,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import app.Main;
 import app.model.TomatoTask;
 import javafx.stage.Stage;
 
@@ -103,12 +100,11 @@ public class MainLayoutController {
     void handleDeleteButton() {
         ObservableList<TomatoTask> selectedIndices = tableView.getSelectionModel().getSelectedItems();
         if (selectedIndices.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Task Selected");
             alert.setContentText("Please select a task in the table.");
-            Util.setAlertAlwaysOnTop(alert);
             alert.showAndWait();
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
@@ -185,14 +181,13 @@ public class MainLayoutController {
             if (finished) {
                 Platform.runLater(() -> {
                     getRespiteFinishedMusic().playInNewThread();
-                    Alert respiteFinishedAlert = new Alert(Alert.AlertType.INFORMATION
+                    Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);
 //                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
                     respiteFinishedAlert.setTitle("休息已结束");
                     respiteFinishedAlert.setHeaderText("休息已结束");
 
-                    Util.setAlertAlwaysOnTop(respiteFinishedAlert);
 
                     ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
                     if (buttonType.equals(ButtonType.YES))
@@ -275,8 +270,7 @@ public class MainLayoutController {
         }
 
         if ((taskName.equals(""))) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
-            Util.setAlertAlwaysOnTop(alert);
+            Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
             if (selectButton.equals(ButtonType.NO)) {
                 //!!!这里如果不加 Platform.runLater 那么运行的结果会完全不一样!!! 原因目前不明，待会儿想办法搞懂一下

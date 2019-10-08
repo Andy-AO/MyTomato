@@ -60,9 +60,9 @@ public class MainLayoutController {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Music workDurationMusic = new Music(new File ("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
-    private Music workFinishedMusic = new Music(new File ("res/sound/work_finished.mp3"));
-    private Music respiteFinishedMusic = new Music(new File ("res/sound/respite_finished.mp3"));
+    private Music workDurationMusic = new Music(new File("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
+    private Music workFinishedMusic = new Music(new File("res/sound/work_finished.mp3"));
+    private Music respiteFinishedMusic = new Music(new File("res/sound/respite_finished.mp3"));
 
 
     public Music getRespiteFinishedMusic() {
@@ -72,7 +72,6 @@ public class MainLayoutController {
     public void setRespiteFinishedMusic(Music respiteFinishedMusic) {
         this.respiteFinishedMusic = respiteFinishedMusic;
     }
-
 
 
     @FXML
@@ -272,10 +271,12 @@ public class MainLayoutController {
     }
 
     private boolean askForEmptyTask(String taskName) {
-        while ((taskName.equals(""))|(taskName.equals(null))){
-            Alert alert = new Alert(Alert.AlertType.WARNING,"确定要提交一个空任务吗？", ButtonType.NO,ButtonType.YES);
+        if((taskName == null))
+            return true;
+        while ((taskName.equals("")) ) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
-            if(selectButton.equals(ButtonType.NO))
+            if (selectButton.equals(ButtonType.NO))
                 main.startFinishDialogAndWait();
             else
                 return true;
@@ -303,13 +304,13 @@ public class MainLayoutController {
     }
 
     private void handleStopButton() {
-        if(!(WORK_COUNT_DOWN.getFinished())){
+        if (!(WORK_COUNT_DOWN.getFinished())) {
             WORK_COUNT_DOWN.cancel();
             workDurationMusic.stop();
         }
 
-        if(!(RESPITE_COUNT_DOWN.getFinished()))
-         RESPITE_COUNT_DOWN.cancel();
+        if (!(RESPITE_COUNT_DOWN.getFinished()))
+            RESPITE_COUNT_DOWN.cancel();
     }
 
     private void handleStartButton() {

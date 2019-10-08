@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -168,7 +167,7 @@ public class Main extends Application {
             // prevent window from closing
             evt.consume();
             // execute own shutdown procedure
-            shutdown(primaryStage);
+            onStageShutdown(primaryStage);
         });
     }
 
@@ -203,7 +202,7 @@ public class Main extends Application {
             finishDialogStage.setResizable(false);
             finishDialogStage.setOnCloseRequest(evt -> {
                 evt.consume();
-                shutdown(finishDialogStage);
+                onStageShutdown(finishDialogStage);
             });
         }
         finishDialogStage.showAndWait();
@@ -220,14 +219,17 @@ public class Main extends Application {
         startSettingStage.showAndWait();
     }
 
-    private void shutdown(Stage mainWindow) {
+    private boolean onStageShutdown(Stage mainWindow) {
         // you could also use your logout window / whatever here instead
         Alert alert = new Alert(Alert.AlertType.NONE, "Really close the Windows?", ButtonType.YES, ButtonType.NO);
         alert.initOwner(mainWindow);
         if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
             // you may need to close other windows or replace this with Platform.exit();
             mainWindow.close();
+            return true;
         }
+        else
+            return false;
     }
 
     //Main的构造器,用于初始化对象

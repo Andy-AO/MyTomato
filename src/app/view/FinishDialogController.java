@@ -29,7 +29,7 @@ public class FinishDialogController {
     @FXML
     private TextField textField;
 
-    private SimpleStringProperty inputString = new SimpleStringProperty();
+    private SimpleStringProperty inputString = new SimpleStringProperty("");
     private Main main;
 
     public String getInputString() {
@@ -45,7 +45,6 @@ public class FinishDialogController {
     }
 
     @FXML
-
     private void handleTextField() {
         inputString = new SimpleStringProperty(textField.getCharacters().toString());
         main.getFinishDialogStage().close();

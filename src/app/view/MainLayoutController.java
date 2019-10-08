@@ -271,18 +271,21 @@ public class MainLayoutController {
         });
     }
 
-    private boolean askForEmptyTask(String taskName) {
-        if((taskName == null))
-            return true;
+    private void askForEmptyTask(String taskName) {
+        if((taskName == null)){
+            System.out.println("taskName is null,in askForEmptyTask()");
+            return;
+        }
         while ((taskName.equals("")) ) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
             if (selectButton.equals(ButtonType.NO))
                 main.startFinishDialogAndWait();
             else
-                return true;
+                return;
         }
-        return false;
+        return;
+
     }
 
     private void sizeBind() {

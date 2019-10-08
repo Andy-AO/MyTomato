@@ -24,15 +24,15 @@ public class MainLayoutController {
 
     private Main main;
     @FXML
-    private TableView<TomatoTask> TomatoTableView;
+    private TableView<TomatoTask> tableView;
     @FXML
-    private TableColumn<TomatoTask, String> TomatoStartColumn;
+    private TableColumn<TomatoTask, String> startColumn;
     @FXML
-    private TableColumn<TomatoTask, String> TomatoEndColumn;
+    private TableColumn<TomatoTask, String> endColumn;
     @FXML
-    private TableColumn<TomatoTask, String> TomatoTaskColumn;
+    private TableColumn<TomatoTask, String> nameColumn;
     @FXML
-    private TableColumn<TomatoTask, String> TomatoDateColumn;
+    private TableColumn<TomatoTask, String> dateColumn;
 
     @FXML
     private Button startOrStopButton;
@@ -87,7 +87,7 @@ public class MainLayoutController {
 
 
     private void deleteButtonBind() {
-        TomatoTableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+        tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int selectedIndex = (Integer) newValue;
             boolean disable = selectedIndex < 0;
             deleteButton.setDisable(disable);
@@ -97,9 +97,9 @@ public class MainLayoutController {
 
     @FXML
     void handleDeleteButton() {
-        int selectedIndex = TomatoTableView.getSelectionModel().getSelectedIndex();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            TomatoTableView.getItems().remove(selectedIndex);
+            tableView.getItems().remove(selectedIndex);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
@@ -259,7 +259,7 @@ public class MainLayoutController {
         askForEmptyTask(taskName);
         TomatoTask tomatoTask = new TomatoTask(taskName,
                 WORK_COUNT_DOWN);
-        TomatoTableView.getItems().add(tomatoTask);
+        tableView.getItems().add(tomatoTask);
         RESPITE_COUNT_DOWN.start();
     }
 
@@ -281,11 +281,11 @@ public class MainLayoutController {
     }
 
     private void sizeBind() {
-        TomatoTableView.widthProperty().addListener((observable, oldValue, newValue) -> {
+        tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
             double otherColumnWidth = TomatoDateColumn.getWidth()
-                    + TomatoEndColumn.getWidth()
-                    + TomatoStartColumn.getWidth();
-            TomatoTaskColumn.setPrefWidth((Double) newValue - otherColumnWidth);
+                    + endColumn.getWidth()
+                    + startColumn.getWidth();
+            nameColumn.setPrefWidth((Double) newValue - otherColumnWidth);
         });
     }
 
@@ -346,12 +346,12 @@ public class MainLayoutController {
     }
 
     private void initTable() {
-        TomatoTableView.setItems(main.getTOMATO_TASKS());
-        TomatoStartColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
-        TomatoEndColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
+        tableView.setItems(main.getTOMATO_TASKS());
+        startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
+        endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         TomatoDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
-        TomatoTaskColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        TomatoTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void setFinishDialogListener() {

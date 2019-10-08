@@ -5,10 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.collections.ObservableList;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -43,8 +40,8 @@ public class TomatoTaskDataJson {
         char[] json = new char[(int) jsonFile.length()];
         try (FileReader fileReader = new FileReader(PATH)) {
             fileReader.read(json);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.out.println("Not Found JSON ,set table empty！");
         } finally {
             String jsonString = new String(json);
             return jsonString;

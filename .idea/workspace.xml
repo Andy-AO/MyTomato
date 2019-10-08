@@ -6,13 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTomato/app/view/FinishDialog.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTomato/app/view/FinishDialog.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MyTomato/app/view/FinishDialogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MyTomato/app/view/FinishDialogController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/FinishDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/FinishDialogController.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,6 +301,11 @@
           <url>file://$PROJECT_DIR$/src/model/TomatoTask.java</url>
           <line>20</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/app/view/FinishDialogController.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

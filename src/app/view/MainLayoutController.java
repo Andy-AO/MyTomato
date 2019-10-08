@@ -22,7 +22,6 @@ public class MainLayoutController {
     public static final String STOP = "Stop";
     public static final int MUSIC_CYCLE_COUNT = Integer.MAX_VALUE;
 
-    private int currentBufferRow = 0;
     private Main main;
     @FXML
     private TableView<TomatoTask> TomatoTableView;
@@ -73,18 +72,8 @@ public class MainLayoutController {
         this.respiteFinishedMusic = respiteFinishedMusic;
     }
 
-
     @FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
-        TomatoStartColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
-        TomatoEndColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
-        TomatoDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
-        TomatoTaskColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        setWorkCountDownListener();
-        setRespiteCountDownListener();
-        sizeBind();
-        deleteButtonBind();
     }
 
 
@@ -345,11 +334,24 @@ public class MainLayoutController {
 
     public void setMainAndInit(Main main) {
         this.main = main;
-        TomatoTableView.setItems(main.getTOMATO_TASKS());
+        initTable();
+        setWorkCountDownListener();
+        setRespiteCountDownListener();
+        sizeBind();
+        deleteButtonBind();
         initTodoTaskGrid();
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
+    }
+
+    private void initTable() {
+        TomatoTableView.setItems(main.getTOMATO_TASKS());
+        TomatoStartColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
+        TomatoEndColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
+        TomatoDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
+        TomatoTaskColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        TomatoTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void setFinishDialogListener() {

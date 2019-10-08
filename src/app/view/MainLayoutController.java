@@ -258,6 +258,7 @@ public class MainLayoutController {
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
+
             String taskName = main.getFinishDialogController().getInputString();
             askForEmptyTask(taskName);
             TomatoTask tomatoTask = new TomatoTask(taskName,
@@ -265,6 +266,7 @@ public class MainLayoutController {
             TomatoTableView.getItems().add(tomatoTask);
             main.getFinishDialogController().getTextField().setText("");
             RESPITE_COUNT_DOWN.start();
+            
             getStartOrStopButton().setDisable(false);
 
         });

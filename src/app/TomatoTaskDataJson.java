@@ -38,12 +38,17 @@ public class TomatoTaskDataJson {
         File jsonFile = new File(PATH);
         System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
+        String jsonString = "";
         try (FileReader fileReader = new FileReader(PATH)) {
             fileReader.read(json);
+             jsonString = new String(json);
         } catch (FileNotFoundException e) {
             System.out.println("Not Found JSON ,set table empty！");
-        } finally {
-            String jsonString = new String(json);
+             jsonString = new String("[]");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
             return jsonString;
         }
     }

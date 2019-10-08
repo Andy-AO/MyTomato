@@ -264,7 +264,6 @@ public class MainLayoutController {
             TomatoTask tomatoTask = new TomatoTask(taskName,
                     WORK_COUNT_DOWN);
             TomatoTableView.getItems().add(tomatoTask);
-            main.getFinishDialogController().getTextField().setText("");
             RESPITE_COUNT_DOWN.start();
             
             getStartOrStopButton().setDisable(false);

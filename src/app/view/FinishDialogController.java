@@ -46,8 +46,10 @@ public class FinishDialogController {
 
     @FXML
     private void handleTextField() {
-        inputString = new SimpleStringProperty(textField.getCharacters().toString());
+        inputString.set(textField.getCharacters().toString());
         main.getFinishDialogStage().close();
+                //将用户输入的内容置空
+        getTextField().setText("");
     }
 
     public void setMainAndInit(Main main) {

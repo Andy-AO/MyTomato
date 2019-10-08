@@ -3,6 +3,7 @@ package app.view;
 import app.CountDown;
 import app.Music;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -97,17 +98,23 @@ public class MainLayoutController {
 
     @FXML
     void handleDeleteButton() {
-        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            tableView.getItems().remove(selectedIndex);
-        } else {
+        ObservableList<Integer>  selectedIndices = tableView.getSelectionModel().getSelectedIndices();
+
+
+        if (selectedIndices.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Task Selected");
             alert.setContentText("Please select a task in the table.");
             alert.showAndWait();
+        } else {
+            for (int i : selectedIndices) {
+                tableView.getItems().remove(i);
+            }
+
         }
+
     }
 
     @FXML

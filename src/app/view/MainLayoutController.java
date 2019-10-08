@@ -282,7 +282,7 @@ public class MainLayoutController {
 
     private void sizeBind() {
         tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double otherColumnWidth = TomatoDateColumn.getWidth()
+            double otherColumnWidth = dateColumn.getWidth()
                     + endColumn.getWidth()
                     + startColumn.getWidth();
             nameColumn.setPrefWidth((Double) newValue - otherColumnWidth);
@@ -349,7 +349,7 @@ public class MainLayoutController {
         tableView.setItems(main.getTOMATO_TASKS());
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
-        TomatoDateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
+        dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }

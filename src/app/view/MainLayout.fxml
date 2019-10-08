@@ -20,7 +20,7 @@
       <ProgressBar fx:id="progressBar" layoutX="67.0" layoutY="15.0" prefHeight="21.0" prefWidth="217.0" progress="0.0" AnchorPane.topAnchor="15.0" />
       <TableView fx:id="tableView" onKeyPressed="#handleTableDeleteKey" prefHeight="241.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
         <columns>
-            <TableColumn fx:id="TomatoDateColumn" prefWidth="40.0" text="Date" />
+            <TableColumn fx:id="dateColumn" prefWidth="40.0" text="Date" />
           <TableColumn fx:id="startColumn" prefWidth="40.0" text="Start" />
             <TableColumn fx:id="endColumn" prefWidth="40.0" text="End" />
           <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="142.0" text="Task" />

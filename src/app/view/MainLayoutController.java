@@ -271,12 +271,15 @@ public class MainLayoutController {
             Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
             if (selectButton.equals(ButtonType.NO)){
-                handleWorkFinished(false);
+                main.startFinishDialogAndWait();
+                //!!!这里如果不加 Platform.runLater 那么运行的结果会完全不一样!!! 原因目前不明，待会儿想办法搞懂一下
+                Platform.runLater(() -> {
+                   main.startFinishDialogAndWait();
+                });
                 return;
             }
             else {
             }
-
         }
 
         TomatoTask tomatoTask = new TomatoTask(taskName,

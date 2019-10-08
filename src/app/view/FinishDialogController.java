@@ -46,10 +46,12 @@ public class FinishDialogController {
 
     @FXML
     private void handleTextField() {
-        inputString.set(textField.getCharacters().toString());
+        //按下确定就是窗口关闭的时候
         main.getFinishDialogStage().close();
-                //将用户输入的内容置空
+        //关闭后,将用户在控件中的输入的内容置空
         getTextField().setText("");
+        //设置inputString便于MainLayout读取
+        inputString.set(textField.getCharacters().toString());
     }
 
     public void setMainAndInit(Main main) {

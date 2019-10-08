@@ -14,16 +14,16 @@ public class FinishDialogController {
     @FXML
     private Button okButton;
     @FXML
-    private Label deleteButton;
+    private Button deleteButton;
 
     @FXML
     private void handleOkButton() {
-
+        handleTextField();
     }
 
     @FXML
     private void handleDeleteButton() {
-
+        main.getFinishDialogStage().close();
     }
 
     public Label getLabel() {

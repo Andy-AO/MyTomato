@@ -15,6 +15,7 @@ import app.model.TomatoTask;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class MainLayoutController {
     private static final double TOP_ANCHOR = 60.0;
@@ -98,9 +99,7 @@ public class MainLayoutController {
 
     @FXML
     void handleDeleteButton() {
-        ObservableList<Integer>  selectedIndices = tableView.getSelectionModel().getSelectedIndices();
-
-
+        ObservableList<TomatoTask>  selectedIndices = tableView.getSelectionModel().getSelectedItems();
         if (selectedIndices.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
@@ -108,9 +107,10 @@ public class MainLayoutController {
             alert.setHeaderText("No Task Selected");
             alert.setContentText("Please select a task in the table.");
             alert.showAndWait();
-        } else {
-            for (int i : selectedIndices) {
-                tableView.getItems().remove(i);
+        } else  {
+            ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
+            for (TomatoTask item : itemList) {
+                tableView.getItems().remove(item);
             }
 
         }
@@ -255,7 +255,6 @@ public class MainLayoutController {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
             getStartOrStopButton().setDisable(false);
-
         });
     }
 

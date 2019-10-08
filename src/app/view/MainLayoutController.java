@@ -249,8 +249,12 @@ public class MainLayoutController {
     }
 
     private void handleWorkFinished() {
+       handleWorkFinished(true);
+    }
+    private void handleWorkFinished(boolean ableMusic) {
         workDurationMusic.stop();
-        new Thread(getWorkFinishedMusic()::playInNewThread).start();
+        if(ableMusic)
+            new Thread(getWorkFinishedMusic()::playInNewThread).start();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
@@ -262,16 +266,19 @@ public class MainLayoutController {
         if((taskName == null)){
             System.out.println("taskName is null,in addTaskNameAfterFinished()");
         }
-  /*
+
       if ((taskName.equals("")) ) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
-            if (selectButton.equals(ButtonType.NO))
-                main.startFinishDialogAndWait();
-            else
+            if (selectButton.equals(ButtonType.NO)){
+                handleWorkFinished(false);
                 return;
+            }
+            else {
+            }
+
         }
-*/
+
         TomatoTask tomatoTask = new TomatoTask(taskName,
                 WORK_COUNT_DOWN);
         tableView.getItems().add(tomatoTask);

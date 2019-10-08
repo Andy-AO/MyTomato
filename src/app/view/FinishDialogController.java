@@ -3,12 +3,28 @@ package app.view;
 import app.Main;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class FinishDialogController {
+
     @FXML
     private Label label;
+    @FXML
+    private Button okButton;
+    @FXML
+    private Label deleteButton;
+
+    @FXML
+    private void handleOkButton() {
+
+    }
+
+    @FXML
+    private void handleDeleteButton() {
+
+    }
 
     public Label getLabel() {
         return label;

@@ -267,7 +267,6 @@ public class MainLayoutController {
         if((taskName == null)){
             System.out.println("taskName is null,in askForEmptyTask()");
         }
-
         askForEmptyTask(taskName);
         TomatoTask tomatoTask = new TomatoTask(taskName,
                 WORK_COUNT_DOWN);

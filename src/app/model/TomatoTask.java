@@ -70,6 +70,9 @@ public class TomatoTask {
     public TomatoTask(String name, LocalTime startTime, LocalTime endTime) {
         initTomatoTask(name, startTime, endTime);
     }
+    public TomatoTask(String name, LocalTime startTime, LocalTime endTime,LocalDate date) {
+        initTomatoTask(name, startTime, endTime, date);
+    }
 
     public void initTomatoTask(String name, LocalTime startTime, LocalTime endTime) {
         this.name = new SimpleStringProperty(name);

@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
@@ -73,6 +74,7 @@ public class TomatoTaskDataJson {
         String name = (String) jsonMap.get("name");
         LocalTime endTime = LocalTime.parse(((String) jsonMap.get("endTime")));
         LocalTime startTime = LocalTime.parse(((String) jsonMap.get("startTime")));
-        tomatoTaskData.add(new TomatoTask(name, startTime, endTime));
+        LocalDate date = LocalDate.parse(((String) jsonMap.get("date")));
+        tomatoTaskData.add(new TomatoTask(name, startTime, endTime,date));
     }
 }

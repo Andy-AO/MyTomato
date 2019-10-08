@@ -190,7 +190,7 @@ public class MainLayoutController {
                     Alert respiteFinishedAlert = new Alert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);
-                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
+//                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
                     respiteFinishedAlert.setTitle("休息已结束");
                     respiteFinishedAlert.setHeaderText("休息已结束");
                     ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
@@ -259,7 +259,9 @@ public class MainLayoutController {
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
-            TomatoTask tomatoTask = new TomatoTask(main.getFinishDialogController().getInputString(),
+            String taskName = main.getFinishDialogController().getInputString();
+            askForEmptyTask(taskName);
+            TomatoTask tomatoTask = new TomatoTask(taskName,
                     WORK_COUNT_DOWN);
             TomatoTableView.getItems().add(tomatoTask);
             main.getFinishDialogController().getTextField().setText("");
@@ -267,6 +269,18 @@ public class MainLayoutController {
             getStartOrStopButton().setDisable(false);
 
         });
+    }
+
+    private boolean askForEmptyTask(String taskName) {
+        while ((taskName.equals(""))|(taskName.equals(null))){
+            Alert alert = new Alert(Alert.AlertType.WARNING,"确定要提交一个空任务吗？", ButtonType.NO,ButtonType.YES);
+            ButtonType selectButton = alert.showAndWait().get();
+            if(selectButton.equals(ButtonType.NO))
+                main.startFinishDialogAndWait();
+            else
+                return true;
+        }
+        return false;
     }
 
     private void sizeBind() {

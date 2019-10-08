@@ -260,15 +260,24 @@ public class MainLayoutController {
             main.startFinishDialogAndWait();
 
             String taskName = main.getFinishDialogController().getInputString();
-            askForEmptyTask(taskName);
-            TomatoTask tomatoTask = new TomatoTask(taskName,
-                    WORK_COUNT_DOWN);
-            TomatoTableView.getItems().add(tomatoTask);
-            RESPITE_COUNT_DOWN.start();
-            
+
+            addTaskNameAfterFinished(taskName);
+
             getStartOrStopButton().setDisable(false);
 
         });
+    }
+
+    private void addTaskNameAfterFinished(String taskName) {
+        if((taskName == null)){
+            System.out.println("taskName is null,in askForEmptyTask()");
+        }
+
+        askForEmptyTask(taskName);
+        TomatoTask tomatoTask = new TomatoTask(taskName,
+                WORK_COUNT_DOWN);
+        TomatoTableView.getItems().add(tomatoTask);
+        RESPITE_COUNT_DOWN.start();
     }
 
     private void askForEmptyTask(String taskName) {

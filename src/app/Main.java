@@ -222,6 +222,7 @@ public class Main extends Application {
     private boolean onStageShutdown(Stage mainWindow) {
         // you could also use your logout window / whatever here instead
         Alert alert = new Alert(Alert.AlertType.NONE, "Really close the Windows?", ButtonType.YES, ButtonType.NO);
+        Util.setAlertAlwaysOnTop(alert);
         alert.initOwner(mainWindow);
         if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
             // you may need to close other windows or replace this with Platform.exit();

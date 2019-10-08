@@ -2,6 +2,7 @@ package app.view;
 
 import app.CountDown;
 import app.Music;
+import app.Util;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.Main;
 import app.model.TomatoTask;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.Duration;
@@ -99,15 +101,16 @@ public class MainLayoutController {
 
     @FXML
     void handleDeleteButton() {
-        ObservableList<TomatoTask>  selectedIndices = tableView.getSelectionModel().getSelectedItems();
+        ObservableList<TomatoTask> selectedIndices = tableView.getSelectionModel().getSelectedItems();
         if (selectedIndices.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Task Selected");
             alert.setContentText("Please select a task in the table.");
+            Util.setAlertAlwaysOnTop(alert);
             alert.showAndWait();
-        } else  {
+        } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
             for (TomatoTask item : itemList) {
                 tableView.getItems().remove(item);
@@ -188,6 +191,9 @@ public class MainLayoutController {
 //                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
                     respiteFinishedAlert.setTitle("休息已结束");
                     respiteFinishedAlert.setHeaderText("休息已结束");
+
+                    Util.setAlertAlwaysOnTop(respiteFinishedAlert);
+
                     ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
                     if (buttonType.equals(ButtonType.YES))
                         handleStartButton();
@@ -249,11 +255,12 @@ public class MainLayoutController {
     }
 
     private void handleWorkFinished() {
-       handleWorkFinished(true);
+        handleWorkFinished(true);
     }
+
     private void handleWorkFinished(boolean ableMusic) {
         workDurationMusic.stop();
-        if(ableMusic)
+        if (ableMusic)
             new Thread(getWorkFinishedMusic()::playInNewThread).start();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
@@ -263,22 +270,21 @@ public class MainLayoutController {
     }
 
     private void addTaskNameAfterFinished(String taskName) {
-        if((taskName == null)){
+        if ((taskName == null)) {
             System.out.println("taskName is null,in addTaskNameAfterFinished()");
         }
 
-      if ((taskName.equals("")) ) {
+        if ((taskName.equals(""))) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
+            Util.setAlertAlwaysOnTop(alert);
             ButtonType selectButton = alert.showAndWait().get();
-            if (selectButton.equals(ButtonType.NO)){
-                main.startFinishDialogAndWait();
+            if (selectButton.equals(ButtonType.NO)) {
                 //!!!这里如果不加 Platform.runLater 那么运行的结果会完全不一样!!! 原因目前不明，待会儿想办法搞懂一下
                 Platform.runLater(() -> {
-                   main.startFinishDialogAndWait();
+                    main.startFinishDialogAndWait();
                 });
                 return;
-            }
-            else {
+            } else {
             }
         }
 
@@ -366,7 +372,7 @@ public class MainLayoutController {
     private void setFinishDialogListener() {
         main.getFinishDialogController().inputStringProperty().addListener((observable, oldValue, newValue) -> {
             String taskName = newValue;
-            if((taskName == null)){
+            if ((taskName == null)) {
                 System.out.println("taskName is null,in FinishDialogListener");
                 return;
             }

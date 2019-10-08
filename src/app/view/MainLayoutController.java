@@ -260,21 +260,10 @@ public class MainLayoutController {
 
     private void addTaskNameAfterFinished(String taskName) {
         if((taskName == null)){
-            System.out.println("taskName is null,in askForEmptyTask()");
+            System.out.println("taskName is null,in addTaskNameAfterFinished()");
         }
-        askForEmptyTask(taskName);
-        TomatoTask tomatoTask = new TomatoTask(taskName,
-                WORK_COUNT_DOWN);
-        tableView.getItems().add(tomatoTask);
-        RESPITE_COUNT_DOWN.start();
-    }
-
-    private void askForEmptyTask(String taskName) {
-        if((taskName == null)){
-            System.out.println("taskName is null,in askForEmptyTask()");
-            return;
-        }
-        while ((taskName.equals("")) ) {
+  /*
+      if ((taskName.equals("")) ) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
             if (selectButton.equals(ButtonType.NO))
@@ -282,9 +271,13 @@ public class MainLayoutController {
             else
                 return;
         }
-        return;
-
+*/
+        TomatoTask tomatoTask = new TomatoTask(taskName,
+                WORK_COUNT_DOWN);
+        tableView.getItems().add(tomatoTask);
+        RESPITE_COUNT_DOWN.start();
     }
+
 
     private void sizeBind() {
         tableView.widthProperty().addListener((observable, oldValue, newValue) -> {

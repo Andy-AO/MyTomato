@@ -10,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.time.Duration;
@@ -180,7 +179,7 @@ public class MainLayoutController {
             boolean finished = newValue;
             if (finished) {
                 Platform.runLater(() -> {
-                    getRespiteFinishedMusic().playInNewThread();
+                    getRespiteFinishedMusic().play();
                     Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);
@@ -256,7 +255,7 @@ public class MainLayoutController {
     private void handleWorkFinished(boolean ableMusic) {
         workDurationMusic.stop();
         if (ableMusic)
-            new Thread(getWorkFinishedMusic()::playInNewThread).start();
+            new Thread(getWorkFinishedMusic()::play).start();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
@@ -320,7 +319,7 @@ public class MainLayoutController {
 
     private void handleStartButton() {
         new Thread(() -> WORK_COUNT_DOWN.start()).start();
-        workDurationMusic.playInNewThread();
+        workDurationMusic.play();
     }
 
     private void initTodoTaskGrid() {

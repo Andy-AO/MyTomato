@@ -19,10 +19,10 @@ public class Music {
         this.musicFile = musicFile;
     }
 
-    public void playInNewThread() {
+    public void play() {
         mediaPlayer  = new MediaPlayer(media);
         mediaPlayer.setCycleCount(cycleCount);
-        new Thread(() -> getMediaPlayer().play()).start();
+        getMediaPlayer().play();
     }
 
     public MediaPlayer getMediaPlayer() {

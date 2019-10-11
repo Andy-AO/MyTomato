@@ -12,19 +12,19 @@ import java.util.List;
 public class TomatoTaskDataJson {
 
     private  String jsonPath ;
-    private List<TomatoTask> tomatoTaskData;
+    private List<TomatoTask> data;
 
     public String getJsonPath() {
         return jsonPath;
     }
 
-    public List<TomatoTask> getTomatoTaskData() {
-        return tomatoTaskData;
+    public List<TomatoTask> getData() {
+        return data;
     }
 
-    public TomatoTaskDataJson(List<TomatoTask> tomatoTaskData , String jsonPath) {
+    public TomatoTaskDataJson(List<TomatoTask> data, String jsonPath) {
         this.jsonPath = jsonPath;
-        this.tomatoTaskData = tomatoTaskData;
+        this.data = data;
     }
 
     public String readString() {
@@ -47,7 +47,7 @@ public class TomatoTaskDataJson {
     }
 
     public String write() {
-        ArrayList tomatoTaskList = new ArrayList(tomatoTaskData);
+        ArrayList tomatoTaskList = new ArrayList(data);
         String json = JSON.toJSONString(tomatoTaskList);
         try (FileWriter fileWriter = new FileWriter(jsonPath)) {
             fileWriter.write(json);
@@ -59,7 +59,7 @@ public class TomatoTaskDataJson {
     }
 
     public void read() {
-        this.tomatoTaskData.clear();
+        this.data.clear();
         String jsonString = readString();
         ArrayList jsonList = JSON.parseObject(jsonString, ArrayList.class);
         jsonList.forEach(jsonMap -> mapToTask((JSONObject) jsonMap));
@@ -70,6 +70,6 @@ public class TomatoTaskDataJson {
         LocalTime endTime = LocalTime.parse(((String) jsonMap.get("endTime")));
         LocalTime startTime = LocalTime.parse(((String) jsonMap.get("startTime")));
         LocalDate date = LocalDate.parse(((String) jsonMap.get("date")));
-        tomatoTaskData.add(new TomatoTask(name, startTime, endTime,date));
+        data.add(new TomatoTask(name, startTime, endTime,date));
     }
 }

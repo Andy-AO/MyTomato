@@ -1,47 +1,64 @@
 package app;
 
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class Mp3Player {
-    private  int cycleCount;
-    private  File musicFile;
-    private  MediaPlayer mediaPlayer;
-    private  Media media;
 
-    public File getMusicFile() {
-        return musicFile;
+    private File file;
+    private FileInputStream fileInputStream;
+    private Player player;
+    private boolean repeated = true;
+
+    public Mp3Player(String path) {
+        this(new File(path));
     }
 
-    public void setMusicFile(File musicFile) {
-        this.musicFile = musicFile;
+    public Mp3Player(File file) {
+        this.file = file;
+        try {
+            this.fileInputStream = new FileInputStream(this.file);
+            player = new Player(fileInputStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (JavaLayerException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void play() {
-        mediaPlayer  = new MediaPlayer(media);
-        mediaPlayer.setCycleCount(cycleCount);
-        getMediaPlayer().play();
+    private void repeatPlay() {
+        repeated = true;
+        while (repeated) {
+            play();
+        }
     }
 
-    public MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
+    public void close() {
+        player.close();
+        repeated = false;
     }
 
-    public Mp3Player(File musicFile) {
-        this.musicFile = musicFile;
-        media = new Media(musicFile.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
+    public void playInNewThread() {
+        new Thread(this::play).start();
     }
 
-    public Mp3Player(File musicFile, int cycleCount) {
-        this(musicFile);
-        this.cycleCount = cycleCount;
-        mediaPlayer.setCycleCount(this.cycleCount);
+    private void play() {
+        try {
+            this.fileInputStream = new FileInputStream(this.file);
+            player = new Player(fileInputStream);
+            player.play();
+        } catch (JavaLayerException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void stop() {
-        mediaPlayer.stop();
+    public void repeatPlayInNewThread() {
+        new Thread(this::repeatPlay).start();
     }
 }

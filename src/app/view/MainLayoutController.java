@@ -59,9 +59,9 @@ public class MainLayoutController {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
-    private Mp3ZoomPlayer workFinishedMusic = new Mp3ZoomPlayer(new File("res/sound/work_finished.mp3"));
-    private Mp3ZoomPlayer respiteFinishedMusic = new Mp3ZoomPlayer(new File("res/sound/respite_finished.mp3"));
+    private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"));
+    private Mp3Player workFinishedMusic = new Mp3Player(new File("res/sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
 
 
 
@@ -239,7 +239,7 @@ public class MainLayoutController {
     }
 
     private void handleWorkFinished(boolean ableMusic) {
-        workDurationMp3Player.stop();
+        workDurationMp3Player.close();
         if (ableMusic)
             workFinishedMusic.playInNewThread();
         Platform.runLater(() -> {
@@ -296,7 +296,7 @@ public class MainLayoutController {
     private void handleStopButton() {
         if (!(WORK_COUNT_DOWN.getFinished())) {
             WORK_COUNT_DOWN.cancel();
-            workDurationMp3Player.stop();
+            workDurationMp3Player.close();
         }
 
         if (!(RESPITE_COUNT_DOWN.getFinished()))
@@ -305,7 +305,7 @@ public class MainLayoutController {
 
     private void handleStartButton() {
         new Thread(() -> WORK_COUNT_DOWN.start()).start();
-        workDurationMp3Player.play();
+        workDurationMp3Player.repeatPlayInNewThread();
     }
 
     private void initTodoTaskGrid() {

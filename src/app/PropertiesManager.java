@@ -7,7 +7,7 @@ public class PropertiesManager {
 
 //--------------------------------------- Field
 
-    Properties settings = new Properties();
+    private Properties settings = new Properties();
     private static PropertiesManager propertiesManager = null;
     private File propertiesFile;
     private static final String PROPERTIES_DIR_PATH = "res\\properties";

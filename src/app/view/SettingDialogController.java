@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.prefs.Preferences;
 
 public class SettingDialogController {
-    public static final String PREFERENCES_PATH = "/com/myself/myTomato";
+
     @FXML
     private TabPane tabPane;
 
@@ -29,7 +29,6 @@ public class SettingDialogController {
 
     Properties settings = new Properties();
 
-    public static final boolean DEVELOPMENT_MODE_DEFAULT_VALUE = false;
     private File propertiesFile;
 
     public void setMainAndInit(Main main) {

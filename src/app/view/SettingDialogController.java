@@ -52,12 +52,7 @@ public class SettingDialogController {
 
     private void addPropertyListener() {
         developmentCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            settings.setProperty("developmentMode", newValue ? "true" : "false");
-            try (OutputStream out = new FileOutputStream(propertiesFile)) {
-                settings.store(out, "Program Properties");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            PROPERTIES_MANAGER.setProperty("developmentMode", newValue ? "true" : "false");
         });
     }
 

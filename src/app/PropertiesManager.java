@@ -48,6 +48,7 @@ public class PropertiesManager {
             propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");
         createFileIfNotExist();
+        loadSettings();
     }
 
     private void createFileIfNotExist() {
@@ -64,11 +65,28 @@ public class PropertiesManager {
 
 
     public String getProperty(String key, String defaultValue) {
+        loadSettings();
+        return settings.getProperty(key,defaultValue);
+    }
+
+    private void loadSettings() {
         try (InputStream in = new FileInputStream(propertiesFile)) {
             settings.load(in);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        return settings.getProperty(key,defaultValue);
+    }
+
+    public void setProperty(String key, String newValue) {
+        settings.setProperty(key, newValue);
+        storeSettings();
+    }
+
+    private void storeSettings() {
+        try (OutputStream out = new FileOutputStream(propertiesFile)) {
+            settings.store(out, "Program Properties");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

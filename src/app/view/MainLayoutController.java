@@ -60,17 +60,10 @@ public class MainLayoutController {
 
 
     private Music workDurationMusic = new Music(new File("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
-    private Music workFinishedMusic = new Music(new File("res/sound/work_finished.mp3"));
-    private Music respiteFinishedMusic = new Music(new File("res/sound/respite_finished.mp3"));
+    private Mp3Player workFinishedMusic = new Mp3Player(new File("res/sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
 
 
-    public Music getRespiteFinishedMusic() {
-        return respiteFinishedMusic;
-    }
-
-    public void setRespiteFinishedMusic(Music respiteFinishedMusic) {
-        this.respiteFinishedMusic = respiteFinishedMusic;
-    }
 
     @FXML
     private void initialize() {
@@ -149,14 +142,6 @@ public class MainLayoutController {
         this.workDurationMusic = workDurationMusic;
     }
 
-    public Music getWorkFinishedMusic() {
-        return workFinishedMusic;
-    }
-
-    public void setWorkFinishedMusic(Music workFinishedMusic) {
-        this.workFinishedMusic = workFinishedMusic;
-    }
-
     private void setRespiteCountDownListener() {
         RESPITE_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
@@ -178,8 +163,9 @@ public class MainLayoutController {
         RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                Platform.runLater(() -> {
-                    getRespiteFinishedMusic().play();
+                respiteFinishedMusic.play();
+                Platform.runLater(
+                        () -> {
                     Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
                             , "休息已结束，是否开启下一个番茄？"
                             , ButtonType.YES, ButtonType.NO);
@@ -255,7 +241,7 @@ public class MainLayoutController {
     private void handleWorkFinished(boolean ableMusic) {
         workDurationMusic.stop();
         if (ableMusic)
-            new Thread(getWorkFinishedMusic()::play).start();
+            workFinishedMusic.play();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();

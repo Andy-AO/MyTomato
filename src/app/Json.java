@@ -3,13 +3,14 @@ package app;
 import app.model.TomatoTask;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TomatoTaskDataJson {
+public class Json {
 
     private  String jsonPath ;
 
@@ -21,7 +22,7 @@ public class TomatoTaskDataJson {
         return tomatoTaskData;
     }
 
-    public TomatoTaskDataJson(List<TomatoTask> tomatoTaskData , String jsonPath) {
+    public Json(List<TomatoTask> tomatoTaskData , String jsonPath) {
         this.jsonPath = jsonPath;
         this.tomatoTaskData = tomatoTaskData;
     }

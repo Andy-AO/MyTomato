@@ -36,6 +36,7 @@ public class Main extends Application {
     private TabPane settingDialog;
     private SettingDialogController settingDialogController;
     private Stage startSettingStage = null;
+    private final String  JSON_PATH = "res\\json\\tomatoTaskData.json";
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -238,7 +239,7 @@ public class Main extends Application {
     }
 
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS);
+        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_PATH);
         tomatoTaskDataJson.read();
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
             tomatoTaskDataJson.write();

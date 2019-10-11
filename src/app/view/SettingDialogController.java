@@ -29,22 +29,13 @@ public class SettingDialogController {
 
     private Main main;
 
-    Properties settings = new Properties();
-
-    private File propertiesFile;
-
     public void setMainAndInit(Main main) {
         this.main = main;
-        initProperty();
         loadPropertyFromFile();
         addPropertyListener();
     }
 
-    private void initProperty() {
-        propertiesFile = PROPERTIES_MANAGER.getPropertiesFile();
-    }
-
-    private void loadPropertyFromFile() {
+     private void loadPropertyFromFile() {
         boolean developmentMode;
         developmentMode = Boolean.parseBoolean(PROPERTIES_MANAGER.getProperty("developmentMode", "false"));
         developmentCheckBox.setSelected(developmentMode);
@@ -91,7 +82,6 @@ public class SettingDialogController {
 
     @FXML
     private void handleDevelopmentCheckBox() {
-        System.out.println("handleDevelopmentCheckBox");
         boolean result = developmentCheckBox.isSelected();
         System.out.println(result);
     }

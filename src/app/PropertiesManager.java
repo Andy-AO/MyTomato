@@ -10,20 +10,10 @@ public class PropertiesManager {
     Properties settings = new Properties();
     private static PropertiesManager propertiesManager = null;
     private File propertiesFile;
+    private static final String PROPERTIES_DIR_PATH = "res\\properties";
 
 //--------------------------------------- Setter And Getter
 
-    public static void setPropertiesManager(PropertiesManager propertiesManager) {
-        PropertiesManager.propertiesManager = propertiesManager;
-    }
-
-    public File getPropertiesFile() {
-        return propertiesFile;
-    }
-
-    public void setPropertiesFile(File propertiesFile) {
-        this.propertiesFile = propertiesFile;
-    }
 
 //--------------------------------------- Constructor
 
@@ -42,8 +32,7 @@ public class PropertiesManager {
 
 
     private void initFile() {
-        String propertiesPath = "res\\properties";
-        File propertiesDir = new File(propertiesPath);
+        File propertiesDir = new File(PROPERTIES_DIR_PATH);
         if (!propertiesDir.exists())
             propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");

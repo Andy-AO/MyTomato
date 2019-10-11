@@ -25,6 +25,8 @@ public class MainLayoutController {
     @FXML
     private TableView<TomatoTask> tableView;
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
     private TableColumn<TomatoTask, String> startColumn;
     @FXML
     private TableColumn<TomatoTask, String> endColumn;
@@ -269,12 +271,7 @@ public class MainLayoutController {
     }
 
 
-    private void nameColumnSizeBindAndInit() {
-
-        String widthString = PROPERTIES_MANAGER.getProperty("nameColumnWidth", Double.toString(nameColumn.getPrefWidth()));
-        double width = Double.parseDouble(widthString);
-        System.out.println(width);
-        nameColumn.setPrefWidth(width);
+    private void nameColumnSizeBind() {
 
         tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
             double otherColumnWidth = dateColumn.getWidth()
@@ -282,7 +279,18 @@ public class MainLayoutController {
                     + startColumn.getWidth();
             double nameColumnWidth = (double) newValue - otherColumnWidth;
             nameColumn.setPrefWidth(nameColumnWidth);
-            PROPERTIES_MANAGER.setProperty("nameColumnWidth", Double.toString(nameColumnWidth));
+        });
+    }
+
+    private void anchorSizeBindAndInit() {
+
+        String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
+        double width = Double.parseDouble(widthString);
+        anchorPane.setPrefWidth(width);
+
+        anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double anchorWidth = (Double) newValue;
+            PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
         });
     }
 
@@ -334,7 +342,8 @@ public class MainLayoutController {
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
-        nameColumnSizeBindAndInit();
+        nameColumnSizeBind();
+        anchorSizeBindAndInit();
         deleteButtonBind();
         initTodoTaskGrid();
         initCountDownText();

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
+<AnchorPane fx:id="anchorPane" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
    <children>
       <Text accessibleRole="BUTTON" fill="#e60707" layoutX="20.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="已完成的工作" textOrigin="CENTER" wrappingWidth="250.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="41.56982421875">
          <font>
@@ -23,7 +23,7 @@
             <TableColumn fx:id="dateColumn" prefWidth="40.0" text="Date" />
           <TableColumn fx:id="startColumn" prefWidth="40.0" text="Start" />
             <TableColumn fx:id="endColumn" prefWidth="40.0" text="End" />
-          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="142.0" text="Task" />
+          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="142.0" text="TaskName" />
         </columns>
       </TableView>
       <Button fx:id="startOrStopButton" layoutX="292.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleStartOrStopButton" prefHeight="23.0" prefWidth="44.0" text="Start" textFill="#006705" />

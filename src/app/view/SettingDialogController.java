@@ -40,8 +40,8 @@ public class SettingDialogController {
     }
 
     private void initProperty() {
-        String userDir = System.getProperty("user.home");
-        File propertiesDir = new File(userDir, ".MyTomato");
+        String userDir = "res\\properties";
+        File propertiesDir = new File(userDir);
         if (!propertiesDir.exists()) propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");
     }
@@ -49,12 +49,10 @@ public class SettingDialogController {
     private void addPropertyListener() {
         developmentCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             settings.setProperty("developmentMode", newValue ? "true" : "false");
-            try (OutputStream out = new FileOutputStream(propertiesFile))
-            {
+            try (OutputStream out = new FileOutputStream(propertiesFile)){
                 settings.store(out, "Program Properties");
             }
-            catch (IOException ex)
-            {
+            catch (IOException ex){
                 ex.printStackTrace();
             }
           });

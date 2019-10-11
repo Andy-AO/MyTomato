@@ -1,6 +1,7 @@
 package app.view;
 
 import app.Main;
+import app.PropertiesManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
@@ -13,6 +14,7 @@ import java.util.prefs.Preferences;
 
 public class SettingDialogController {
 
+    public static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     @FXML
     private TabPane tabPane;
 
@@ -39,43 +41,33 @@ public class SettingDialogController {
     }
 
     private void initProperty() {
-        String propertiesPath = "res\\properties";
-        File propertiesDir = new File(propertiesPath);
-        if (!propertiesDir.exists())
-            propertiesDir.mkdir();
-        propertiesFile = new File(propertiesDir, "Settings.properties");
+        propertiesFile = PROPERTIES_MANAGER.getPropertiesFile();
+    }
+
+    private void loadPropertyFromFile() {
+        boolean developmentMode;
+
+        try (InputStream in = new FileInputStream(propertiesFile)) {
+            settings.load(in);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        developmentMode = Boolean.parseBoolean(settings.getProperty("developmentMode", "false"));
+        developmentCheckBox.setSelected(developmentMode);
     }
 
     private void addPropertyListener() {
         developmentCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             settings.setProperty("developmentMode", newValue ? "true" : "false");
-            try (OutputStream out = new FileOutputStream(propertiesFile)){
+            try (OutputStream out = new FileOutputStream(propertiesFile)) {
                 settings.store(out, "Program Properties");
-            }
-            catch (IOException ex){
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
-          });
+        });
     }
 
-    private void loadPropertyFromFile() {
-        boolean developmentMode;
-        if (propertiesFile.exists()){
-            try (InputStream in = new FileInputStream(propertiesFile))
-            {
-                settings.load(in);
-            }
-            catch (IOException ex)
-            {
-                ex.printStackTrace();
-            }
-             developmentMode = Boolean.parseBoolean(settings.getProperty("developmentMode"));
-        }
-        else {
-            developmentMode = false;
-        }
-        developmentCheckBox.setSelected(developmentMode);
-    }
 
     public TabPane getTabPane() {
         return tabPane;

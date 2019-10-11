@@ -12,6 +12,7 @@ import java.util.List;
 public class TomatoTaskDataJson {
 
     private  String jsonPath ;
+    private List<TomatoTask> tomatoTaskData;
 
     public String getJsonPath() {
         return jsonPath;
@@ -25,10 +26,6 @@ public class TomatoTaskDataJson {
         this.jsonPath = jsonPath;
         this.tomatoTaskData = tomatoTaskData;
     }
-
-
-    private List<TomatoTask> tomatoTaskData;
-
 
     public String readString() {
         File jsonFile = new File(jsonPath);

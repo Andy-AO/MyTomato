@@ -163,7 +163,7 @@ public class MainLayoutController {
         RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                respiteFinishedMusic.play();
+                respiteFinishedMusic.playInNewThread();
                 Platform.runLater(
                         () -> {
                     Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
@@ -241,7 +241,7 @@ public class MainLayoutController {
     private void handleWorkFinished(boolean ableMusic) {
         workDurationMp3Player.stop();
         if (ableMusic)
-            workFinishedMusic.play();
+            workFinishedMusic.playInNewThread();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();

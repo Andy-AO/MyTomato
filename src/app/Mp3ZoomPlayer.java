@@ -9,13 +9,14 @@ import java.io.FileNotFoundException;
 
 public class Mp3ZoomPlayer {
 
-    private  File file;
-    private  FileInputStream fileInputStream;
-    private  Player player;
+    private File file;
+    private FileInputStream fileInputStream;
+    private Player player;
+    private boolean repeated = true;
 
     public Mp3ZoomPlayer(String path) {
         this(new File(path));
-     }
+    }
 
     public Mp3ZoomPlayer(File file) {
         this.file = file;
@@ -24,32 +25,40 @@ public class Mp3ZoomPlayer {
             player = new Player(fileInputStream);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-        catch (JavaLayerException e) {
+        } catch (JavaLayerException e) {
             e.printStackTrace();
         }
     }
 
-    public void play() {
-        playTheSound();
+    private void repeatPlay() {
+        repeated = true;
+        while (repeated) {
+            play();
+        }
     }
-    private void playTheSound() {
+
+    public void close() {
+        player.close();
+        repeated = false;
+    }
+
+    public void playInNewThread() {
+        new Thread(this::play).start();
+    }
+
+    private void play() {
         try {
             this.fileInputStream = new FileInputStream(this.file);
             player = new Player(fileInputStream);
-            new Thread(() -> {
-                try {
-                    player.play();
-                } catch (JavaLayerException e) {
-                    e.printStackTrace();
-                }
-            }).start();
-
+            player.play();
         } catch (JavaLayerException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public void repeatPlayInNewThread() {
+        new Thread(this::repeatPlay).start();
     }
 }

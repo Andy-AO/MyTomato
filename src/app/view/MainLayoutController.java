@@ -283,7 +283,22 @@ public class MainLayoutController {
     }
 
     private void anchorSizeBindAndInit() {
+        anchorWidthBindAndInit();
+        anchorHeightBindAndInit();
+    }
 
+    private void anchorHeightBindAndInit() {
+        String heightString = PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
+        double height = Double.parseDouble(heightString);
+        anchorPane.setPrefHeight(height);
+
+        anchorPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+            double anchorHeight = (Double) newValue;
+            PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
+        });
+    }
+
+    private void anchorWidthBindAndInit() {
         String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
         double width = Double.parseDouble(widthString);
         anchorPane.setPrefWidth(width);

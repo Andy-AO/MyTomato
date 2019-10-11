@@ -1,12 +1,13 @@
 package app;
 
 import java.io.*;
+import java.util.Properties;
 
 public class PropertiesManager {
 
 //--------------------------------------- Field
 
-
+    Properties settings = new Properties();
     private static PropertiesManager propertiesManager = null;
     private File propertiesFile;
 
@@ -62,4 +63,12 @@ public class PropertiesManager {
     }
 
 
+    public String getProperty(String key, String defaultValue) {
+        try (InputStream in = new FileInputStream(propertiesFile)) {
+            settings.load(in);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return settings.getProperty(key,defaultValue);
+    }
 }

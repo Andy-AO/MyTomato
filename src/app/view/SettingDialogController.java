@@ -46,14 +46,7 @@ public class SettingDialogController {
 
     private void loadPropertyFromFile() {
         boolean developmentMode;
-
-        try (InputStream in = new FileInputStream(propertiesFile)) {
-            settings.load(in);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        developmentMode = Boolean.parseBoolean(settings.getProperty("developmentMode", "false"));
+        developmentMode = Boolean.parseBoolean(PROPERTIES_MANAGER.getProperty("developmentMode", "false"));
         developmentCheckBox.setSelected(developmentMode);
     }
 

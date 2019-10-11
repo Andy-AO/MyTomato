@@ -20,7 +20,6 @@ public class MainLayoutController {
     private static final double SIDE_ANCHOR = 10.0;
     public static final String START = "Start";
     public static final String STOP = "Stop";
-    public static final int MUSIC_CYCLE_COUNT = Integer.MAX_VALUE;
 
     private Main main;
     @FXML
@@ -62,7 +61,7 @@ public class MainLayoutController {
     private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"));
     private Mp3Player workFinishedMusic = new Mp3Player(new File("res/sound/work_finished.mp3"));
     private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
-
+    private static final  PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
 
     @FXML
     private void initialize() {
@@ -168,11 +167,8 @@ public class MainLayoutController {
                             Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
                                     , "休息已结束，是否开启下一个番茄？"
                                     , ButtonType.YES, ButtonType.NO);
-//                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
                             respiteFinishedAlert.setTitle("休息已结束");
                             respiteFinishedAlert.setHeaderText("休息已结束");
-
-
                             ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
                             if (buttonType.equals(ButtonType.YES))
                                 handleStartButton();
@@ -273,13 +269,20 @@ public class MainLayoutController {
     }
 
 
-    private void sizeBind() {
+    private void nameColumnSizeBindAndInit() {
+
+        String widthString = PROPERTIES_MANAGER.getProperty("nameColumnWidth", Double.toString(nameColumn.getPrefWidth()));
+        double width = Double.parseDouble(widthString);
+        System.out.println(width);
+        nameColumn.setPrefWidth(width);
+
         tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
             double otherColumnWidth = dateColumn.getWidth()
                     + endColumn.getWidth()
                     + startColumn.getWidth();
             double nameColumnWidth = (double) newValue - otherColumnWidth;
             nameColumn.setPrefWidth(nameColumnWidth);
+            PROPERTIES_MANAGER.setProperty("nameColumnWidth", Double.toString(nameColumnWidth));
         });
     }
 
@@ -331,12 +334,13 @@ public class MainLayoutController {
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
-        sizeBind();
+        nameColumnSizeBindAndInit();
         deleteButtonBind();
         initTodoTaskGrid();
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
+
     }
 
     private void initTable() {

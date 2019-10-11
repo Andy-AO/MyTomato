@@ -59,9 +59,9 @@ public class MainLayoutController {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Music workDurationMusic = new Music(new File("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
-    private Mp3Player workFinishedMusic = new Mp3Player(new File("res/sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
+    private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"), MUSIC_CYCLE_COUNT);
+    private Mp3ZoomPlayer workFinishedMusic = new Mp3ZoomPlayer(new File("res/sound/work_finished.mp3"));
+    private Mp3ZoomPlayer respiteFinishedMusic = new Mp3ZoomPlayer(new File("res/sound/respite_finished.mp3"));
 
 
 
@@ -134,12 +134,12 @@ public class MainLayoutController {
         }
     }
 
-    public Music getWorkDurationMusic() {
-        return workDurationMusic;
+    public Mp3Player getWorkDurationMp3Player() {
+        return workDurationMp3Player;
     }
 
-    public void setWorkDurationMusic(Music workDurationMusic) {
-        this.workDurationMusic = workDurationMusic;
+    public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
+        this.workDurationMp3Player = workDurationMp3Player;
     }
 
     private void setRespiteCountDownListener() {
@@ -239,7 +239,7 @@ public class MainLayoutController {
     }
 
     private void handleWorkFinished(boolean ableMusic) {
-        workDurationMusic.stop();
+        workDurationMp3Player.stop();
         if (ableMusic)
             workFinishedMusic.play();
         Platform.runLater(() -> {
@@ -296,7 +296,7 @@ public class MainLayoutController {
     private void handleStopButton() {
         if (!(WORK_COUNT_DOWN.getFinished())) {
             WORK_COUNT_DOWN.cancel();
-            workDurationMusic.stop();
+            workDurationMp3Player.stop();
         }
 
         if (!(RESPITE_COUNT_DOWN.getFinished()))
@@ -305,7 +305,7 @@ public class MainLayoutController {
 
     private void handleStartButton() {
         new Thread(() -> WORK_COUNT_DOWN.start()).start();
-        workDurationMusic.play();
+        workDurationMp3Player.play();
     }
 
     private void initTodoTaskGrid() {

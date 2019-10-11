@@ -40,9 +40,10 @@ public class SettingDialogController {
     }
 
     private void initProperty() {
-        String userDir = "res\\properties";
-        File propertiesDir = new File(userDir);
-        if (!propertiesDir.exists()) propertiesDir.mkdir();
+        String propertiesPath = "res\\properties";
+        File propertiesDir = new File(propertiesPath);
+        if (!propertiesDir.exists())
+            propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");
     }
 

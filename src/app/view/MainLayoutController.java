@@ -64,7 +64,6 @@ public class MainLayoutController {
     private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
 
 
-
     @FXML
     private void initialize() {
     }
@@ -166,18 +165,18 @@ public class MainLayoutController {
                 respiteFinishedMusic.playInNewThread();
                 Platform.runLater(
                         () -> {
-                    Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
-                            , "休息已结束，是否开启下一个番茄？"
-                            , ButtonType.YES, ButtonType.NO);
+                            Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
+                                    , "休息已结束，是否开启下一个番茄？"
+                                    , ButtonType.YES, ButtonType.NO);
 //                    respiteFinishedAlert.initOwner(main.getPrimaryStage());
-                    respiteFinishedAlert.setTitle("休息已结束");
-                    respiteFinishedAlert.setHeaderText("休息已结束");
+                            respiteFinishedAlert.setTitle("休息已结束");
+                            respiteFinishedAlert.setHeaderText("休息已结束");
 
 
-                    ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
-                    if (buttonType.equals(ButtonType.YES))
-                        handleStartButton();
-                });
+                            ButtonType buttonType = respiteFinishedAlert.showAndWait().orElse(ButtonType.YES);
+                            if (buttonType.equals(ButtonType.YES))
+                                handleStartButton();
+                        });
             }
         });
 
@@ -279,7 +278,8 @@ public class MainLayoutController {
             double otherColumnWidth = dateColumn.getWidth()
                     + endColumn.getWidth()
                     + startColumn.getWidth();
-            nameColumn.setPrefWidth((Double) newValue - otherColumnWidth);
+            double nameColumnWidth = (double) newValue - otherColumnWidth;
+            nameColumn.setPrefWidth(nameColumnWidth);
         });
     }
 

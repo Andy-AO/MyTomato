@@ -61,8 +61,13 @@ public class MainLayoutController {
 
 
     private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"));
-    private Mp3Player workFinishedMusic = new Mp3Player(new File("res/sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMusic = new Mp3Player(new File("res/sound/respite_finished.mp3"));
+    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File("res/sound/bgm_WindThroughTrees.mp3"));
+
+    private Mp3Player workFinishedMp3Player = new Mp3Player(new File("res/sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File("res/sound/respite_finished.mp3"));
+
+
+
     private static final  PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
 
     @FXML
@@ -163,7 +168,8 @@ public class MainLayoutController {
         RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                respiteFinishedMusic.playInNewThread();
+                respiteDurationMp3Player.close();
+                respiteFinishedMp3Player.playInNewThread();
                 Platform.runLater(
                         () -> {
                             Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
@@ -238,7 +244,7 @@ public class MainLayoutController {
     private void handleWorkFinished(boolean ableMusic) {
         workDurationMp3Player.close();
         if (ableMusic)
-            workFinishedMusic.playInNewThread();
+            workFinishedMp3Player.playInNewThread();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
@@ -268,6 +274,8 @@ public class MainLayoutController {
                 WORK_COUNT_DOWN);
         tableView.getItems().add(tomatoTask);
         RESPITE_COUNT_DOWN.start();
+        respiteDurationMp3Player.repeatPlayInNewThread();
+
     }
 
 
@@ -325,8 +333,11 @@ public class MainLayoutController {
             workDurationMp3Player.close();
         }
 
-        if (!(RESPITE_COUNT_DOWN.getFinished()))
+        if (!(RESPITE_COUNT_DOWN.getFinished())){
             RESPITE_COUNT_DOWN.cancel();
+            respiteDurationMp3Player.close();
+        }
+
     }
 
     private void handleStartButton() {

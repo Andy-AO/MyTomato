@@ -168,7 +168,9 @@ public class Main extends Application {
             // prevent window from closing
             evt.consume();
             // execute own shutdown procedure
-            onStageShutdown(primaryStage);
+            boolean isClosed = onStageShutdown(primaryStage);
+            if(isClosed)
+                System.exit(0);
         });
     }
 

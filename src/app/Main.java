@@ -26,7 +26,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
-    private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
+
     private Stage finishDialogStage = null;
     private AnchorPane finishDialog;
     private FinishDialogController finishDialogController;
@@ -36,6 +36,8 @@ public class Main extends Application {
     private TabPane settingDialog;
     private SettingDialogController settingDialogController;
     private Stage startSettingStage = null;
+
+    private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
     private final String  JSON_PATH = "res\\json\\tomatoTaskData.json";
 
     public TabPane getSettingDialog() {
@@ -235,7 +237,7 @@ public class Main extends Application {
             return false;
     }
 
-    //Main的构造器,用于初始化对象
+
     public Main() {
         intiTomatoTaskData();
     }

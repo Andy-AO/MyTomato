@@ -11,6 +11,7 @@ import java.util.List;
 
 public class TomatoTaskDataJson {
 
+    private final String EMPTY_MAP_STRING = "[]";
     private  String jsonPath ;
     private List<TomatoTask> data;
 
@@ -36,8 +37,8 @@ public class TomatoTaskDataJson {
             fileReader.read(json);
              jsonString = new String(json);
         } catch (FileNotFoundException e) {
-            System.out.println("Not Found JSON ,set table empty！");
-             jsonString = new String("[]");
+            System.err.println("Not Found JSON ,set table empty！");
+             jsonString = EMPTY_MAP_STRING;
         } catch (IOException e) {
             e.printStackTrace();
         }

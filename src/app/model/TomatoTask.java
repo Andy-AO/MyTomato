@@ -111,6 +111,14 @@ public class TomatoTask {
         });
     }
 
+    @Override
+    public String toString() {
+        return "TomatoTask{" +
+                "name=" + name.get() +
+                ", date=" + date.get() +
+                '}';
+    }
+
     public TomatoTask(String name, LocalTime endTime) {
         LocalTime startTime = LocalTime.now();
         initTomatoTask(name, startTime, endTime);

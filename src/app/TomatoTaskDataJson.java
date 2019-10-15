@@ -3,6 +3,9 @@ package app;
 import app.model.TomatoTask;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,7 +15,7 @@ import java.util.List;
 public class TomatoTaskDataJson {
 
     private final String EMPTY_MAP_STRING = "[]";
-    private  String jsonPath ;
+    private String jsonPath;
     private List<TomatoTask> data;
 
     public String getJsonPath() {
@@ -35,14 +38,13 @@ public class TomatoTaskDataJson {
         String jsonString = "";
         try (FileReader fileReader = new FileReader(jsonPath)) {
             fileReader.read(json);
-             jsonString = new String(json);
+            jsonString = new String(json);
         } catch (FileNotFoundException e) {
             System.err.println("Not Found JSON ,set table empty！");
-             jsonString = EMPTY_MAP_STRING;
+            jsonString = EMPTY_MAP_STRING;
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             return jsonString;
         }
     }
@@ -62,8 +64,16 @@ public class TomatoTaskDataJson {
     public void read() {
         this.data.clear();
         String jsonString = readString();
-        ArrayList jsonList = JSON.parseObject(jsonString, ArrayList.class);
-        jsonList.forEach(jsonMap -> mapToTask((JSONObject) jsonMap));
+        ArrayList jsonList = null;
+        try {
+             jsonList = JSON.parseObject(jsonString, ArrayList.class);
+             jsonList.forEach(jsonMap -> mapToTask((JSONObject) jsonMap));
+        } catch (com.alibaba.fastjson.JSONException ex) {
+            ex.printStackTrace();
+            Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "JSON file parse exception.");
+            alert.showAndWait();
+            System.exit(1);
+        }
     }
 
     private void mapToTask(JSONObject jsonMap) {
@@ -71,6 +81,6 @@ public class TomatoTaskDataJson {
         LocalTime endTime = LocalTime.parse(((String) jsonMap.get("endTime")));
         LocalTime startTime = LocalTime.parse(((String) jsonMap.get("startTime")));
         LocalDate date = LocalDate.parse(((String) jsonMap.get("date")));
-        data.add(new TomatoTask(name, startTime, endTime,date));
+        data.add(new TomatoTask(name, startTime, endTime, date));
     }
 }

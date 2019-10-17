@@ -2,6 +2,7 @@ package app.view;
 
 import app.*;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,8 +15,9 @@ import javafx.util.Callback;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.AbstractCollection;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainLayoutController {
     private static final double TOP_ANCHOR = 60.0;
@@ -60,7 +62,6 @@ public class MainLayoutController {
     private FlowPane buttonFlowPaneBackground;
 
 
-
     private static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);
     public static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
 
@@ -77,8 +78,8 @@ public class MainLayoutController {
     private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File("res/sound/respite_finished.mp3"));
 
 
-
-    private static final  PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
+    private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
+    private int todayTaskAmount = 0;
 
     public ArrayList<Text> getCellTexts() {
         return cellTexts;
@@ -313,8 +314,8 @@ public class MainLayoutController {
 
     private void cellTextsSizeBind() {
         nameColumn.prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-            cellTexts.forEach((text)->{
-                text.setWrappingWidth((Double)nameColumnNewWidth- CELL_TEXT_PAD);
+            cellTexts.forEach((text) -> {
+                text.setWrappingWidth((Double) nameColumnNewWidth - CELL_TEXT_PAD);
             });
         });
     }
@@ -362,7 +363,7 @@ public class MainLayoutController {
             workDurationMp3Player.close();
         }
 
-        if (!(RESPITE_COUNT_DOWN.getFinished())){
+        if (!(RESPITE_COUNT_DOWN.getFinished())) {
             RESPITE_COUNT_DOWN.cancel();
             respiteDurationMp3Player.close();
         }
@@ -380,6 +381,8 @@ public class MainLayoutController {
 
     public void setMainAndInit(Main main) {
         this.main = main;
+        initHeadText();
+        headTextBind();
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
@@ -388,7 +391,37 @@ public class MainLayoutController {
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
+    }
 
+    private void updateHeadText() {
+        headText.setText("今日已完成 " + todayTaskAmount + " 个任务");
+    }
+    private void initHeadText(){
+        todayTaskAmount = getCertainDayTaskAmount(main.getTOMATO_TASKS(), LocalDate.now());
+        updateHeadText();
+    }
+    private void headTextBind() {
+        main.getTOMATO_TASKS().addListener(new ListChangeListener<TomatoTask>() {
+            @Override
+            public void onChanged(Change<? extends TomatoTask> change) {
+                change.next();
+                List addedSubList = change.getAddedSubList();
+                System.out.println(addedSubList);
+                todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(addedSubList), LocalDate.now());
+                updateHeadText();
+            }
+        });
+
+    }
+
+    private int getCertainDayTaskAmount(List<TomatoTask> tomatoTasks, LocalDate date) {
+        int taskAmount = 0;
+        for (TomatoTask tomatoTask : tomatoTasks) {
+            if (tomatoTask.getDate().equals(date)) {
+                ++taskAmount;
+            }
+        }
+        return taskAmount;
     }
 
     private void sizeBind() {
@@ -410,15 +443,16 @@ public class MainLayoutController {
             @Override
             // return a table cell , cell can setGraphic
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
-                return new TableCell<TomatoTask, String>(){
+                return new TableCell<TomatoTask, String>() {
                     private Text text;
+
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         if (!isEmpty()) {
                             text = new Text(item);
                             cellTexts.add(text);
-                            text.setWrappingWidth(nameColumn.getWidth()- CELL_TEXT_PAD);
+                            text.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
                             this.setWrapText(true);
                             //可以在cell中set不同的node
                             setGraphic(text);

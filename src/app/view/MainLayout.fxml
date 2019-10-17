@@ -14,9 +14,9 @@
 
 <AnchorPane fx:id="anchorPane" minWidth="0.0" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
    <children>
-      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="30.0" layoutY="63.43017578125" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个任务" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="154.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="41.56982421875">
+      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="15.0" layoutY="64.525146484375" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个任务" textOrigin="CENTER" wrappingWidth="163.33331298828125" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
          <font>
-            <Font size="17.0" />
+            <Font size="15.0" />
          </font>
       </Text>
       <ProgressBar fx:id="progressBar" layoutX="67.0" layoutY="15.0" prefHeight="21.0" prefWidth="217.0" progress="0.0" AnchorPane.topAnchor="15.0" />
@@ -35,8 +35,8 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="21.0" layoutX="6.0" layoutY="19.0" stroke="#0000004a" strokeType="INSIDE" width="58.0" />
-      <Button fx:id="addButton" disable="true" layoutX="182.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" />
-      <Button fx:id="deleteButton" disable="true" layoutX="237.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" />
+      <Button fx:id="addButton" disable="true" layoutX="182.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" AnchorPane.topAnchor="45.0" />
+      <Button fx:id="deleteButton" disable="true" layoutX="237.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" AnchorPane.topAnchor="45.0" />
       <FlowPane fx:id="buttonFlowPane" alignment="CENTER" layoutX="129.0" layoutY="400.0" prefHeight="30.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <Label text="确定要删除吗？">

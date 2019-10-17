@@ -252,6 +252,14 @@ public class Main extends Application {
         setTomatoTaskDataListener();
     }
 
+    public ObservableList<TomatoTask> getREDO_TOMATO_TASKS() {
+        return REDO_TOMATO_TASKS;
+    }
+
+    public void setREDO_TOMATO_TASKS(ObservableList<TomatoTask> REDO_TOMATO_TASKS) {
+        this.REDO_TOMATO_TASKS = REDO_TOMATO_TASKS;
+    }
+
     private void setTomatoTaskDataListener() {
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
             tomatoTaskDataJson.write();

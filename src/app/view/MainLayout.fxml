@@ -49,7 +49,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Button mnemonicParsing="false" text="撤销" />
+            <Button fx:id="redoDeleteButton" mnemonicParsing="false" onAction="#handleRedoDelete" text="撤销" />
          </children>
       </FlowPane>
    </children>

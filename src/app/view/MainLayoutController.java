@@ -386,11 +386,17 @@ public class MainLayoutController {
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
+        scrollToEnd();
         sizeBind();
         deleteButtonBind();
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
+    }
+
+    private void scrollToEnd() {
+        int index = main.getTOMATO_TASKS().size() - 1;
+        tableView.scrollTo(index);
     }
 
     private void updateHeadText() {

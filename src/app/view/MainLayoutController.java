@@ -126,10 +126,7 @@ public class MainLayoutController {
             alert.showAndWait();
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
-            for (TomatoTask item : itemList) {
-                tableView.getItems().remove(item);
-            }
-
+                tableView.getItems().removeAll(itemList);
         }
 
     }

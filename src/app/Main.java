@@ -20,6 +20,7 @@ import app.model.TomatoTask;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -39,6 +40,7 @@ public class Main extends Application {
     private Stage startSettingStage = null;
 
     private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
+    private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
     private final String  JSON_PATH = "res\\json\\tomatoTaskData.json";
 
     public TabPane getSettingDialog() {
@@ -247,10 +249,21 @@ public class Main extends Application {
     private void intiTomatoTaskData() {
         tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_PATH);
         tomatoTaskDataJson.read();
+        setTomatoTaskDataListener();
+    }
+
+    private void setTomatoTaskDataListener() {
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
             tomatoTaskDataJson.write();
+
+            if(change.next()){
+                List removedItems =  change.getRemoved();
+                REDO_TOMATO_TASKS.clear();
+                REDO_TOMATO_TASKS.addAll(removedItems);
+                System.out.println("removedItems:" + removedItems);
+            }
         });
-    }
+     }
 
     private void loadMainLayout() throws IOException {
         FXMLLoader loader = new FXMLLoader();

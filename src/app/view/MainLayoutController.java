@@ -51,6 +51,9 @@ public class MainLayoutController {
     @FXML
     private ProgressBar progressBar;
 
+    @FXML
+    private FlowPane buttonFlowPane;
+
 
 
     private static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);

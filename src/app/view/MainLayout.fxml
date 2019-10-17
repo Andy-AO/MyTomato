@@ -47,7 +47,7 @@
             <Button mnemonicParsing="false" text="撤销" textFill="RED" />
          </children>
       </FlowPane>
-      <FlowPane fx:id="buttonFlowPane1" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+      <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f38" height="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0" />
          </children>

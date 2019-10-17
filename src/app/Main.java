@@ -250,6 +250,21 @@ public class Main extends Application {
         tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_PATH);
         tomatoTaskDataJson.read();
         setTomatoTaskDataListener();
+        setRedoTomatoTaskDataListener();
+    }
+
+    private void setRedoTomatoTaskDataListener() {
+        REDO_TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
+            if (change.next()) {
+                if (REDO_TOMATO_TASKS.isEmpty()) {
+                    mainLayoutController.hideRedoBar();
+                }
+                else {
+                    mainLayoutController.showRedoBarAndSleep();
+                }
+            }
+
+        });
     }
 
     public ObservableList<TomatoTask> getREDO_TOMATO_TASKS() {

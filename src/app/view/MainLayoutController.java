@@ -82,6 +82,7 @@ public class MainLayoutController {
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
+    private Thread showRedoBarAndSleepTheard;
 
     public ArrayList<Text> getCellTexts() {
         return cellTexts;
@@ -101,7 +102,13 @@ public class MainLayoutController {
     @FXML
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();
-        tableView.getItems().addAll(removedItems);
+        if (!removedItems.isEmpty()){
+            tableView.getItems().addAll(removedItems);
+            removedItems.clear();
+        }
+        else {
+            System.err.println("REDO_TOMATO_TASKS is empty !");
+        }
     }
 
     @FXML
@@ -490,4 +497,41 @@ public class MainLayoutController {
         progressText.setText("");
     }
 
+    public void showRedoBarAndSleep() {
+         showRedoBarAndSleepTheard = new Thread(()->{
+             showRedoBar();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+            }
+            finally {
+                hideRedoBar();
+                showRedoBarAndSleepTheard = null;
+            }
+        });
+        showRedoBarAndSleepTheard.start();
+    }
+
+    public void hideRedoBar() {
+        if(Thread.currentThread().equals(showRedoBarAndSleepTheard)){
+            Platform.runLater(()->{
+            buttonFlowPaneBackground.setVisible(false);
+            buttonFlowPane.setVisible(false);
+            });
+        }
+        else if (showRedoBarAndSleepTheard == null){
+            System.err.println("showRedoBarAndSleep() is not start !");
+        }
+        else {
+            showRedoBarAndSleepTheard.interrupt();
+        }
+    }
+
+    private void showRedoBar() {
+        Platform.runLater(()->{
+            buttonFlowPaneBackground.setVisible(true);
+            buttonFlowPane.setVisible(true);
+        });
+
+    }
 }

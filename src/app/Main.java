@@ -23,6 +23,7 @@ import java.net.URL;
 
 public class Main extends Application {
 
+    public static final int PRIMARY_STAGE_MIN_WIDTH = 360;
     private Stage primaryStage;
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
@@ -165,7 +166,8 @@ public class Main extends Application {
 
     private void initPrimaryStage() {
         primaryStage.setTitle("MyTomato");
-        this.primaryStage.setScene(new Scene(getRootLayout()));
+        primaryStage.setScene(new Scene(getRootLayout()));
+        primaryStage.setMinWidth(PRIMARY_STAGE_MIN_WIDTH);
         primaryStage.setOnCloseRequest(evt -> {
             // prevent window from closing
             evt.consume();

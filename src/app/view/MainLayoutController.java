@@ -52,7 +52,6 @@ public class MainLayoutController {
     private ProgressBar progressBar;
 
 
-    private GridPane todoTaskGrid;
 
     private static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);
     public static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
@@ -367,20 +366,6 @@ public class MainLayoutController {
         workDurationMp3Player.repeatPlayInNewThread();
     }
 
-    private void initTodoTaskGrid() {
-        initTaskGridSize();
-        todoTaskGrid.setGridLinesVisible(true);
-        todoTaskGrid.getColumnConstraints().add(new ColumnConstraints(235));
-    }
-
-    private void initTaskGridSize() {
-        todoTaskGrid = new GridPane();
-        AnchorPane.setLeftAnchor(todoTaskGrid, SIDE_ANCHOR);
-        AnchorPane.setRightAnchor(todoTaskGrid, SIDE_ANCHOR);
-        AnchorPane.setTopAnchor(todoTaskGrid, TOP_ANCHOR);
-        AnchorPane.setBottomAnchor(todoTaskGrid, SIDE_ANCHOR);
-    }
-
 
     public MainLayoutController() {
     }
@@ -390,15 +375,18 @@ public class MainLayoutController {
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
-        nameColumnSizeBind();
-        cellTextsSizeBind();
-        anchorSizeBindAndInit();
+        sizeBind();
         deleteButtonBind();
-        initTodoTaskGrid();
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
 
+    }
+
+    private void sizeBind() {
+        cellTextsSizeBind();
+        nameColumnSizeBind();
+        anchorSizeBindAndInit();//have to be last Init
     }
 
     private void initTable() {

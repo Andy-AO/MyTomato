@@ -414,7 +414,7 @@ public class MainLayoutController {
                 List addedSubList = change.getAddedSubList();
                 System.out.println(addedSubList);
                 todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(addedSubList), LocalDate.now());
-                updateHeadText();
+                Platform.runLater(()->updateHeadText());
             }
         });
 

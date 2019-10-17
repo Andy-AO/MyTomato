@@ -10,9 +10,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 
 public class MainLayoutController {
@@ -20,6 +22,7 @@ public class MainLayoutController {
     private static final double SIDE_ANCHOR = 10.0;
     public static final String START = "Start";
     public static final String STOP = "Stop";
+    public static final int CELL_TEXT_PAD = 20;
 
     private Main main;
     @FXML
@@ -69,6 +72,16 @@ public class MainLayoutController {
 
 
     private static final  PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
+
+    public ArrayList<Text> getCellTexts() {
+        return cellTexts;
+    }
+
+    public void setCellTexts(ArrayList<Text> cellTexts) {
+        this.cellTexts = cellTexts;
+    }
+
+    private ArrayList<Text> cellTexts = new ArrayList<>();
 
     @FXML
     private void initialize() {
@@ -380,10 +393,35 @@ public class MainLayoutController {
 
     private void initTable() {
         tableView.setItems(main.getTOMATO_TASKS());
+        //setCellValueFactory
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+
+        //setCellValueFactory
+        nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
+            @Override
+            // return a table cell , cell can setGraphic
+            public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
+                return new TableCell<TomatoTask, String>(){
+                    private Text text;
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (!isEmpty()) {
+                            text = new Text(item);
+                            cellTexts.add(text);
+                            text.setWrappingWidth(nameColumn.getWidth()- CELL_TEXT_PAD);
+                            this.setWrapText(true);
+                            //可以在cell中set不同的node
+                            setGraphic(text);
+                        }
+                    }
+                };
+            }
+        });
+
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 

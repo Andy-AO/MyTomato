@@ -423,10 +423,12 @@ public class MainLayoutController {
         main.getTOMATO_TASKS().addListener(new ListChangeListener<TomatoTask>() {
             @Override
             public void onChanged(Change<? extends TomatoTask> change) {
-                change.next();
-                List addedSubList = change.getAddedSubList();
-                todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(addedSubList), LocalDate.now());
-                Platform.runLater(()->updateHeadText());
+                if(change.next()){
+                     todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(change.getAddedSubList()), LocalDate.now());
+                     todayTaskAmount -= getCertainDayTaskAmount(new ArrayList<>(change.getRemoved()), LocalDate.now());
+                    Platform.runLater(()->updateHeadText());
+                }
+
             }
         });
 

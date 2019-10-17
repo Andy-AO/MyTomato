@@ -303,6 +303,15 @@ public class MainLayoutController {
         });
     }
 
+
+    private void cellTextsSizeBind() {
+        nameColumn.prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
+            cellTexts.forEach((text)->{
+                text.setWrappingWidth((Double)nameColumnNewWidth- CELL_TEXT_PAD);
+            });
+        });
+    }
+
     private void anchorSizeBindAndInit() {
         anchorWidthBindAndInit();
         anchorHeightBindAndInit();
@@ -382,6 +391,7 @@ public class MainLayoutController {
         setWorkCountDownListener();
         setRespiteCountDownListener();
         nameColumnSizeBind();
+        cellTextsSizeBind();
         anchorSizeBindAndInit();
         deleteButtonBind();
         initTodoTaskGrid();

@@ -37,6 +37,11 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="21.0" layoutX="6.0" layoutY="19.0" stroke="#0000004a" strokeType="INSIDE" width="58.0" />
       <Button fx:id="addButton" disable="true" layoutX="182.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" AnchorPane.topAnchor="45.0" />
       <Button fx:id="deleteButton" disable="true" layoutX="237.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" AnchorPane.topAnchor="45.0" />
+      <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0f0f83" height="30.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
+         </children>
+      </FlowPane>
       <FlowPane fx:id="buttonFlowPane" alignment="CENTER" layoutX="129.0" layoutY="400.0" prefHeight="30.0" prefWidth="215.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <Label text="确定要删除吗？">
@@ -45,11 +50,6 @@
                </padding>
             </Label>
             <Button mnemonicParsing="false" text="撤销" />
-         </children>
-      </FlowPane>
-      <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
          </children>
       </FlowPane>
    </children>

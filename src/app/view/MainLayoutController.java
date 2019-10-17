@@ -25,6 +25,7 @@ public class MainLayoutController {
     public static final String START = "Start";
     public static final String STOP = "Stop";
     public static final int CELL_TEXT_PAD = 20;
+    private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
     private Main main;
     @FXML
@@ -501,7 +502,7 @@ public class MainLayoutController {
          showRedoBarAndSleepTheard = new Thread(()->{
              showRedoBar();
             try {
-                Thread.sleep(3000);
+                Thread.sleep(REDO_DELETE_BAR_SHOW_MILLIS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -503,28 +503,27 @@ public class MainLayoutController {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             finally {
                 hideRedoBar();
-                showRedoBarAndSleepTheard = null;
+//                showRedoBarAndSleepTheard = null;
             }
         });
         showRedoBarAndSleepTheard.start();
     }
 
-    public void hideRedoBar() {
-        if(Thread.currentThread().equals(showRedoBarAndSleepTheard)){
-            Platform.runLater(()->{
+    private void hideRedoBar() {
+        Platform.runLater(()->{
             buttonFlowPaneBackground.setVisible(false);
             buttonFlowPane.setVisible(false);
-            });
-        }
-        else if (showRedoBarAndSleepTheard == null){
-            System.err.println("showRedoBarAndSleep() is not start !");
-        }
-        else {
+        });
+    }
+    public void closeRedoBar() {
+        if (showRedoBarAndSleepTheard != null) {
             showRedoBarAndSleepTheard.interrupt();
         }
+
     }
 
     private void showRedoBar() {

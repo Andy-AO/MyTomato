@@ -257,7 +257,7 @@ public class Main extends Application {
         REDO_TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
             if (change.next()) {
                 if (REDO_TOMATO_TASKS.isEmpty()) {
-                    mainLayoutController.hideRedoBar();
+                    mainLayoutController.closeRedoBar();
                 }
                 else {
                     mainLayoutController.showRedoBarAndSleep();

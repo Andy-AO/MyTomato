@@ -49,6 +49,9 @@ public class MainLayoutController {
     private Text progressText;
 
     @FXML
+    private Text headText;
+
+    @FXML
     private ProgressBar progressBar;
 
     @FXML

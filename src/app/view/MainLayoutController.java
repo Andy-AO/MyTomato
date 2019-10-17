@@ -412,7 +412,6 @@ public class MainLayoutController {
             public void onChanged(Change<? extends TomatoTask> change) {
                 change.next();
                 List addedSubList = change.getAddedSubList();
-                System.out.println(addedSubList);
                 todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(addedSubList), LocalDate.now());
                 Platform.runLater(()->updateHeadText());
             }

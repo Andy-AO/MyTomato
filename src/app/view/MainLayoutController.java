@@ -416,7 +416,7 @@ public class MainLayoutController {
         initTableViewSort();
     }
 
-    public void sort(ListChangeListener.Change<? extends TomatoTask> change) {
+    public void sort() {
        tableView.sort();
     }
 

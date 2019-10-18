@@ -306,7 +306,7 @@ public class Main extends Application {
                 System.out.println("sortAble:"+ sortAble);
                 if(sortAble){
                     System.out.println("resort！");
-                    mainLayoutController.sort(change);
+                    mainLayoutController.sort();
                 }
             }
         });

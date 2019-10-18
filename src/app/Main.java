@@ -9,9 +9,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -22,7 +19,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import app.view.MainLayoutController;
 import app.model.TomatoTask;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -296,16 +292,26 @@ public class Main extends Application {
 
     private void setTomatoTaskDataListener() {
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
+            System.out.println("setTomatoTaskDataListener！");
             tomatoTaskDataJson.write();
-
             if(change.next()){
                 List removedItems =  change.getRemoved();
-                REDO_TOMATO_TASKS.clear();
-                REDO_TOMATO_TASKS.addAll(removedItems);
-                System.out.println("removedItems:" + removedItems);
+                List addedSubList =  change.getAddedSubList();
+                if(!removedItems.isEmpty()){
+                    REDO_TOMATO_TASKS.clear();
+                    REDO_TOMATO_TASKS.addAll(removedItems);
+                    System.out.println("removedItems:" + removedItems);
+                }
+                boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
+                System.out.println("sortAble:"+ sortAble);
+                if(sortAble){
+                    System.out.println("resort！");
+                    mainLayoutController.sort(change);
+                }
             }
         });
      }
+
 
     private void loadMainLayout() throws IOException {
         FXMLLoader loader = new FXMLLoader();

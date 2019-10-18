@@ -100,6 +100,14 @@ public class MainLayoutController {
     }
 
 
+    public TableView<TomatoTask> getTableView() {
+        return tableView;
+    }
+
+    public void setTableView(TableView<TomatoTask> tableView) {
+        this.tableView = tableView;
+    }
+
     @FXML
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();
@@ -405,6 +413,16 @@ public class MainLayoutController {
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
+        initTableViewSort();
+    }
+
+    public void sort(ListChangeListener.Change<? extends TomatoTask> change) {
+       tableView.sort();
+    }
+
+    private void initTableViewSort() {
+        tableView.getSortOrder().add(dateColumn);
+        tableView.getSortOrder().add(startColumn);
     }
 
     private void scrollToEnd() {
@@ -426,7 +444,6 @@ public class MainLayoutController {
                 if(change.next()){
                     initHeadText();
                 }
-
             }
         });
 
@@ -534,4 +551,7 @@ public class MainLayoutController {
         });
 
     }
+
+
+
 }

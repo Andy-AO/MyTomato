@@ -424,9 +424,7 @@ public class MainLayoutController {
             @Override
             public void onChanged(Change<? extends TomatoTask> change) {
                 if(change.next()){
-                     todayTaskAmount += getCertainDayTaskAmount(new ArrayList<>(change.getAddedSubList()), LocalDate.now());
-                     todayTaskAmount -= getCertainDayTaskAmount(new ArrayList<>(change.getRemoved()), LocalDate.now());
-                    Platform.runLater(()->updateHeadText());
+                    initHeadText();
                 }
 
             }

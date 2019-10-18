@@ -4,9 +4,14 @@ import app.view.FinishDialogController;
 import app.view.RootLayoutController;
 import app.view.SettingDialogController;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -17,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import app.view.MainLayoutController;
 import app.model.TomatoTask;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -170,6 +176,20 @@ public class Main extends Application {
         primaryStage.setTitle("MyTomato");
         primaryStage.setScene(new Scene(getRootLayout()));
         primaryStage.setMinWidth(PRIMARY_STAGE_MIN_WIDTH);
+        setPrimaryStageListener();
+    }
+
+    private void setPrimaryStageListener() {
+        primaryStage.focusedProperty().addListener(new ChangeListener<Boolean>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> isFocused, Boolean onHidden, Boolean onShown){
+                if(isFocused.getValue()){
+                    mainLayoutController.initHeadText();
+                }
+            }
+        });
+
         primaryStage.setOnCloseRequest(evt -> {
             // prevent window from closing
             evt.consume();
@@ -179,7 +199,6 @@ public class Main extends Application {
                 System.exit(0);
         });
     }
-
 
     private void loadFinishDialog() {
         try {

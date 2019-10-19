@@ -146,7 +146,7 @@ public class Main extends Application {
         this.rootLayoutController = rootLayoutController;
     }
 
-    public static String getJarPath()
+    public static String getJarDirPath()
     {
         String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         if(System.getProperty("os.name").contains("dows"))
@@ -168,8 +168,8 @@ public class Main extends Application {
         if(resDirIsInWorkDir)
             return resFile;
         else{
-            String path = getJarPath();
-            System.out.println("getJarPath():" + path);
+            String path = getJarDirPath();
+            System.out.println("getJarDirPath():" + path);
             resFile = new File(path,"res");
             boolean resDirIsInJarDir = resFile.exists() & resFile.isDirectory();
             if (resDirIsInJarDir) {

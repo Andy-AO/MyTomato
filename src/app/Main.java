@@ -146,14 +146,31 @@ public class Main extends Application {
         this.rootLayoutController = rootLayoutController;
     }
 
+    public static String getJarPath()
+    {
+        String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        if(System.getProperty("os.name").contains("dows"))
+        {
+            path = path.substring(1,path.length());
+        }
+        if(path.contains("jar"))
+        {
+            path = path.substring(0,path.lastIndexOf("."));
+            return path.substring(0,path.lastIndexOf("/"));
+        }
+        return path.replace("target/classes/", "");
+    }
+
+
     public static File getResFile(){
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() & resFile.isDirectory();
         if(resDirIsInWorkDir)
             return resFile;
         else{
-            String path = Main.class.getResource("/res").getFile();
-            resFile = new File(path);
+            String path = getJarPath();
+            System.out.println("getJarPath():" + path);
+            resFile = new File(path,"res");
             boolean resDirIsInJarDir = resFile.exists() & resFile.isDirectory();
             if (resDirIsInJarDir) {
                 return resFile;

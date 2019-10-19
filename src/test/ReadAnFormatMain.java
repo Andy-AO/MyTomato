@@ -20,11 +20,7 @@ public class ReadAnFormatMain {
     private ObservableMap<LocalDate,ObservableList<TomatoTask>> TOMATO_TASKS_MAP =
         FXCollections.observableMap(new HashMap<>());
 
-    private final String  JSON_PATH = "res\\json\\tomatoTaskData.json";
-
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_PATH);
-        tomatoTaskDataJson.read();
     }
 
     public static void main(String[] args) {

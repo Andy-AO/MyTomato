@@ -74,11 +74,11 @@ public class MainLayoutController {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Mp3Player workDurationMp3Player = new Mp3Player(new File("res/sound/bgm_Ticking.mp3"));
-    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File("res/sound/bgm_WindThroughTrees.mp3"));
+    private Mp3Player workDurationMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/bgm_Ticking.mp3"));
+    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/bgm_WindThroughTrees.mp3"));
 
-    private Mp3Player workFinishedMp3Player = new Mp3Player(new File("res/sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File("res/sound/respite_finished.mp3"));
+    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/respite_finished.mp3"));
 
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();

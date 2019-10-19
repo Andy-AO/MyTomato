@@ -60,6 +60,7 @@ public class Main extends Application {
     private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
     private final String  JSON_PATH = "res\\json\\tomatoTaskData.json";
+    private final File  JSON_FILE = new File(Main.getResFile(),"json\\tomatoTaskData.json");
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -300,7 +301,7 @@ public class Main extends Application {
     }
 
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_PATH);
+        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_FILE);
         tomatoTaskDataJson.read();
         setTomatoTaskDataListener();
         setRedoTomatoTaskDataListener();

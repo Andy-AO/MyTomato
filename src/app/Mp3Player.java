@@ -14,10 +14,6 @@ public class Mp3Player {
     private Player player;
     private boolean repeated = true;
 
-    public Mp3Player(String path) {
-        this(new File(path));
-    }
-
     public Mp3Player(File file) {
         this.file = file;
         try {

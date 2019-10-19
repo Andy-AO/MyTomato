@@ -15,6 +15,7 @@ import java.util.List;
 public class TomatoTaskDataJson {
 
     private final String EMPTY_MAP_STRING = "[]";
+    private final File jsonFile;
     private String jsonPath;
     private List<TomatoTask> data;
 
@@ -26,13 +27,14 @@ public class TomatoTaskDataJson {
         return data;
     }
 
-    public TomatoTaskDataJson(List<TomatoTask> data, String jsonPath) {
-        this.jsonPath = jsonPath;
+    public TomatoTaskDataJson(List<TomatoTask> data, File jsonFile) {
+        System.out.println("jsonFile:" + jsonFile.getAbsolutePath());
+        jsonFile = new File("D:\\MyTomato\\out\\production\\MyTomato\\res\\json\\tomatoTaskData.json");
+        this.jsonFile = jsonFile;
         this.data = data;
     }
 
     public String readString() {
-        File jsonFile = new File(jsonPath);
         System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
         String jsonString = "";

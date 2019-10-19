@@ -37,7 +37,17 @@ public class Main extends Application {
     private Stage finishDialogStage = null;
     private Stage startSettingStage = null;
 
-    private Image tomatoImage = new Image("file:res/image/tomato.png");
+    private Image tomatoImage = new Image(Main.getResURLString() + "image/tomato.png");
+
+    private static String getResURLString() {
+        return Main.getResURIString();
+    }
+    private static String getResURIString() {
+        File file = Main.getResFile();
+        String URIString = file.toURI().toString();
+        System.out.println("URIString:" + URIString);
+        return URIString;
+    }
 
     private AnchorPane finishDialog;
     private FinishDialogController finishDialogController;
@@ -135,13 +145,13 @@ public class Main extends Application {
         this.rootLayoutController = rootLayoutController;
     }
 
-    public static File getResFile() throws Exception {
+    public static File getResFile(){
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() & resFile.isDirectory();
         if(resDirIsInWorkDir)
             return resFile;
         else{
-            String path = Main.class.getResource("/").getFile();
+            String path = Main.class.getResource("/res").getFile();
             resFile = new File(path);
             boolean resDirIsInJarDir = resFile.exists() & resFile.isDirectory();
             if (resDirIsInJarDir) {

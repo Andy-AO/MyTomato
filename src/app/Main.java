@@ -36,6 +36,7 @@ public class Main extends Application {
     private Stage finishDialogStage = null;
     private Stage startSettingStage = null;
 
+    private Image tomatoImage = new Image("file:res/image/tomato.png");
 
     private AnchorPane finishDialog;
     private FinishDialogController finishDialogController;
@@ -176,7 +177,7 @@ public class Main extends Application {
         primaryStage.setTitle("MyTomato");
         primaryStage.setScene(new Scene(getRootLayout()));
         primaryStage.setMinWidth(PRIMARY_STAGE_MIN_WIDTH);
-        primaryStage.getIcons().add(new Image("file:res/image/tomato.png"));
+        primaryStage.getIcons().add(tomatoImage);
         setPrimaryStageListener();
     }
 
@@ -227,7 +228,7 @@ public class Main extends Application {
             finishDialogStage.setAlwaysOnTop(true);
             finishDialogStage.initOwner(primaryStage);
             finishDialogStage.setTitle("请输入刚刚完成的任务");
-            finishDialogStage.getIcons().add(new Image("file:res/image/tomato.png"));
+            finishDialogStage.getIcons().add(tomatoImage);
             finishDialogStage.setScene(new Scene(finishDialog));
             finishDialogStage.setResizable(false);
             finishDialogStage.setOnCloseRequest(evt -> {
@@ -243,7 +244,7 @@ public class Main extends Application {
             startSettingStage = new Stage();
             startSettingStage.setAlwaysOnTop(true);
             startSettingStage.setTitle("SettingDialog");
-            startSettingStage.getIcons().add(new Image("file:res/image/tomato.png"));
+            startSettingStage.getIcons().add(tomatoImage);
             startSettingStage.setScene(new Scene(settingDialog));
             startSettingStage.setResizable(false);
         }

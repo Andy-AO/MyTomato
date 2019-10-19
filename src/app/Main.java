@@ -175,7 +175,7 @@ public class Main extends Application {
             if (resDirIsInJarDir) {
                 return resFile;
             } else {
-                Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "res files is not found !");
+                Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "res files dir is not found !");
                 alert.showAndWait();
                 System.exit(1);
                 return resFile;

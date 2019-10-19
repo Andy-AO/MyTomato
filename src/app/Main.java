@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import app.view.MainLayoutController;
 import app.model.TomatoTask;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -132,6 +133,25 @@ public class Main extends Application {
 
     public void setRootLayoutController(RootLayoutController rootLayoutController) {
         this.rootLayoutController = rootLayoutController;
+    }
+
+    public static File getResFile() throws Exception {
+        File resFile = new File("res");
+        boolean resDirIsInWorkDir = resFile.exists() & resFile.isDirectory();
+        if(resDirIsInWorkDir)
+            return resFile;
+        else{
+            String path = Main.class.getResource("/").getFile();
+            resFile = new File(path);
+            boolean resDirIsInJarDir = resFile.exists() & resFile.isDirectory();
+            if (resDirIsInJarDir) {
+                return resFile;
+            } else {
+                return null;
+//                throw new IOException("res file is not found !");
+            }
+        }
+
     }
 
     @Override

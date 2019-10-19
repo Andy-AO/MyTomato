@@ -162,7 +162,7 @@ public class Main extends Application {
     }
 
 
-    public static File getResFile(){
+    public static File getResFile()  {
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() & resFile.isDirectory();
         if(resDirIsInWorkDir)
@@ -175,9 +175,11 @@ public class Main extends Application {
             if (resDirIsInJarDir) {
                 return resFile;
             } else {
-                return null;
-//                throw new IOException("res file is not found !");
-            }
+                Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "res files is not found !");
+                alert.showAndWait();
+                System.exit(1);
+                return resFile;
+        }
         }
 
     }

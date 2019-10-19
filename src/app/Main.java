@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -27,11 +28,15 @@ import java.util.List;
 public class Main extends Application {
 
     public static final int PRIMARY_STAGE_MIN_WIDTH = 360;
-    private Stage primaryStage;
+
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
 
+    private Stage primaryStage;
     private Stage finishDialogStage = null;
+    private Stage startSettingStage = null;
+
+
     private AnchorPane finishDialog;
     private FinishDialogController finishDialogController;
     private TomatoTaskDataJson tomatoTaskDataJson;
@@ -39,7 +44,6 @@ public class Main extends Application {
     private RootLayoutController rootLayoutController;
     private TabPane settingDialog;
     private SettingDialogController settingDialogController;
-    private Stage startSettingStage = null;
 
     private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
@@ -172,6 +176,7 @@ public class Main extends Application {
         primaryStage.setTitle("MyTomato");
         primaryStage.setScene(new Scene(getRootLayout()));
         primaryStage.setMinWidth(PRIMARY_STAGE_MIN_WIDTH);
+        primaryStage.getIcons().add(new Image("file:res/image/tomato.png"));
         setPrimaryStageListener();
     }
 
@@ -222,6 +227,7 @@ public class Main extends Application {
             finishDialogStage.setAlwaysOnTop(true);
             finishDialogStage.initOwner(primaryStage);
             finishDialogStage.setTitle("请输入刚刚完成的任务");
+            finishDialogStage.getIcons().add(new Image("file:res/image/tomato.png"));
             finishDialogStage.setScene(new Scene(finishDialog));
             finishDialogStage.setResizable(false);
             finishDialogStage.setOnCloseRequest(evt -> {
@@ -237,6 +243,7 @@ public class Main extends Application {
             startSettingStage = new Stage();
             startSettingStage.setAlwaysOnTop(true);
             startSettingStage.setTitle("SettingDialog");
+            startSettingStage.getIcons().add(new Image("file:res/image/tomato.png"));
             startSettingStage.setScene(new Scene(settingDialog));
             startSettingStage.setResizable(false);
         }

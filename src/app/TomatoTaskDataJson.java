@@ -16,12 +16,7 @@ public class TomatoTaskDataJson {
 
     private final String EMPTY_MAP_STRING = "[]";
     private final File jsonFile;
-    private String jsonPath;
     private List<TomatoTask> data;
-
-    public String getJsonPath() {
-        return jsonPath;
-    }
 
     public List<TomatoTask> getData() {
         return data;
@@ -29,7 +24,6 @@ public class TomatoTaskDataJson {
 
     public TomatoTaskDataJson(List<TomatoTask> data, File jsonFile) {
         System.out.println("jsonFile:" + jsonFile.getAbsolutePath());
-        jsonFile = new File("D:\\MyTomato\\out\\production\\MyTomato\\res\\json\\tomatoTaskData.json");
         this.jsonFile = jsonFile;
         this.data = data;
     }
@@ -38,7 +32,7 @@ public class TomatoTaskDataJson {
         System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
         String jsonString = "";
-        try (FileReader fileReader = new FileReader(jsonPath)) {
+        try (FileReader fileReader = new FileReader(jsonFile)) {
             fileReader.read(json);
             jsonString = new String(json);
         } catch (FileNotFoundException e) {
@@ -54,7 +48,7 @@ public class TomatoTaskDataJson {
     public String write() {
         ArrayList tomatoTaskList = new ArrayList(data);
         String json = JSON.toJSONString(tomatoTaskList);
-        try (FileWriter fileWriter = new FileWriter(jsonPath)) {
+        try (FileWriter fileWriter = new FileWriter(jsonFile)) {
             fileWriter.write(json);
         } catch (IOException e) {
             e.printStackTrace();

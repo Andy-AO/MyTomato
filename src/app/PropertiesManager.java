@@ -10,7 +10,7 @@ public class PropertiesManager {
     private Properties settings = new Properties();
     private static PropertiesManager propertiesManager = null;
     private File propertiesFile;
-    private static final String PROPERTIES_DIR_PATH = "res\\properties";
+    private static final String PROPERTIES_DIR_PATH = "properties";
 
 //--------------------------------------- Setter And Getter
 
@@ -32,7 +32,7 @@ public class PropertiesManager {
 
 
     private void initFile() {
-        File propertiesDir = new File(PROPERTIES_DIR_PATH);
+        File propertiesDir = new File(Main.getResFile(),PROPERTIES_DIR_PATH);
         if (!propertiesDir.exists())
             propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");

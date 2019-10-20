@@ -430,7 +430,7 @@ public class MainLayoutController {
     }
 
     private void updateHeadText() {
-        headText.setText("今日已完成 " + todayTaskAmount + " 个任务");
+        headText.setText("今日已完成 " + todayTaskAmount + " 个番茄");
     }
     public void initHeadText(){
         todayTaskAmount = getCertainDayTaskAmount(main.getTOMATO_TASKS(), LocalDate.now());

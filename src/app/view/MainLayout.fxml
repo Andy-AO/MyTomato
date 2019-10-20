@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="anchorPane" minWidth="0.0" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
    <children>
-      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="15.0" layoutY="64.525146484375" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个任务" textOrigin="CENTER" wrappingWidth="163.33331298828125" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
+      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="15.0" layoutY="64.525146484375" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个番茄" textOrigin="CENTER" wrappingWidth="163.33331298828125" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
          <font>
             <Font size="15.0" />
          </font>

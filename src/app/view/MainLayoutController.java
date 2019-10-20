@@ -66,10 +66,10 @@ public class MainLayoutController {
 
 
     private static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);
-    public static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
+    private static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
 
     private static final Duration DEFAULT_RESPITE_DURATION = Duration.ofMinutes(5);
-    public static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
+    private static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
 
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
@@ -83,7 +83,7 @@ public class MainLayoutController {
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
-    private Thread showRedoBarAndSleepTheard;
+    private Thread showRedoBarAndSleepThread;
 
     public ArrayList<Text> getCellTexts() {
         return cellTexts;
@@ -98,7 +98,6 @@ public class MainLayoutController {
     @FXML
     private void initialize() {
     }
-
 
     public TableView<TomatoTask> getTableView() {
         return tableView;
@@ -516,7 +515,7 @@ public class MainLayoutController {
     }
 
     public void showRedoBarAndSleep() {
-         showRedoBarAndSleepTheard = new Thread(()->{
+         showRedoBarAndSleepThread = new Thread(()->{
              showRedoBar();
             try {
                 Thread.sleep(REDO_DELETE_BAR_SHOW_MILLIS);
@@ -525,10 +524,10 @@ public class MainLayoutController {
             }
             finally {
                 hideRedoBar();
-//                showRedoBarAndSleepTheard = null;
+//                showRedoBarAndSleepThread = null;
             }
         });
-        showRedoBarAndSleepTheard.start();
+        showRedoBarAndSleepThread.start();
     }
 
     private void hideRedoBar() {
@@ -538,8 +537,8 @@ public class MainLayoutController {
         });
     }
     public void closeRedoBar() {
-        if (showRedoBarAndSleepTheard != null) {
-            showRedoBarAndSleepTheard.interrupt();
+        if (showRedoBarAndSleepThread != null) {
+            showRedoBarAndSleepThread.interrupt();
         }
 
     }

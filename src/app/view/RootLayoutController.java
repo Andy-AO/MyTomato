@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 
-public class RootLayoutController {
+public class RootLayoutController  extends Controller{
 
     private Main main;
     @FXML
@@ -26,8 +26,9 @@ public class RootLayoutController {
         main.startSettingDialogAndWait();
     }
 
+    @Override
     public void setMainAndInit(Main main) {
-        this.main = main;
+        super.setMainAndInit(main);
         rootLayout.setCenter(main.getMainLayout());
     }
 

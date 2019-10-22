@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class FinishDialogController {
+public class FinishDialogController extends Controller{
 
     @FXML
     private Label label;
@@ -68,7 +68,8 @@ public class FinishDialogController {
         inputString.set(null);
     }
 
+    @Override
     public void setMainAndInit(Main main) {
-        this.main = main;
+        super.setMainAndInit(main);
     }
 }

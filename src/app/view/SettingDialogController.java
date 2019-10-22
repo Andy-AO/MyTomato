@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.Properties;
 import java.util.prefs.Preferences;
 
-public class SettingDialogController {
+public class SettingDialogController  extends Controller {
 
     public static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     @FXML
@@ -29,8 +29,9 @@ public class SettingDialogController {
 
     private Main main;
 
+    @Override
     public void setMainAndInit(Main main) {
-        this.main = main;
+        super.setMainAndInit(main);
         loadPropertyFromFile();
         addPropertyListener();
     }

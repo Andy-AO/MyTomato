@@ -19,15 +19,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainLayoutController {
-    private static final double TOP_ANCHOR = 60.0;
-    private static final double SIDE_ANCHOR = 10.0;
+public class MainLayoutController extends Controller{
+
     public static final String START = "Start";
     public static final String STOP = "Stop";
     public static final int CELL_TEXT_PAD = 20;
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
-    private Main main;
     @FXML
     private TableView<TomatoTask> tableView;
     @FXML
@@ -401,8 +399,9 @@ public class MainLayoutController {
     public MainLayoutController() {
     }
 
+    @Override
     public void setMainAndInit(Main main) {
-        this.main = main;
+        super.setMainAndInit(main);
         initHeadText();
         headTextBind();
         initTable();

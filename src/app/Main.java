@@ -26,7 +26,7 @@ import java.util.List;
 
 public class Main extends Application {
 
-    public static final int PRIMARY_STAGE_MIN_WIDTH = 360;
+    public static final int PRIMARY_STAGE_MIN_WIDTH = 385;
 
     private BorderPane rootLayout;
     private AnchorPane mainLayout;

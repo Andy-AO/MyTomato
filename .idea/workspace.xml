@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="469" column="19" selection-start-line="469" selection-start-column="19" selection-end-line="469" selection-end-column="19" />
+            <state relative-caret-position="236">
+              <caret line="478" column="30" lean-forward="true" selection-start-line="478" selection-start-column="30" selection-end-line="478" selection-end-column="30" />
               <folding>
                 <element signature="e#3119#3120#0" expanded="true" />
                 <element signature="e#3153#3154#0" expanded="true" />
@@ -117,12 +114,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="133" column="32" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
+            <state relative-caret-position="110">
+              <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#4044#4045#0" expanded="true" />
                 <element signature="e#4087#4088#0" expanded="true" />
                 <element signature="e#8866#8867#0" expanded="true" />
@@ -166,6 +164,7 @@
       <find>newCell:</find>
       <find>&amp;</find>
       <find>loadSpecifiedTask</find>
+      <find>stage</find>
     </findStrings>
     <replaceStrings>
       <replace>&amp;&amp;</replace>
@@ -193,9 +192,9 @@
         <option value="$PROJECT_DIR$/src/app/view/SettingDialogController.java" />
         <option value="$PROJECT_DIR$/src/test/RegexTest.java" />
         <option value="$PROJECT_DIR$/src/app/view/FinishDialogController.java" />
-        <option value="$PROJECT_DIR$/src/app/Main.java" />
         <option value="$PROJECT_DIR$/src/app/view/EditDialogControl.java" />
         <option value="$PROJECT_DIR$/src/app/view/MainLayoutController.java" />
+        <option value="$PROJECT_DIR$/src/app/Main.java" />
       </list>
     </option>
   </component>
@@ -301,7 +300,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571729282663" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571729598391" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaLearning" />
@@ -520,7 +519,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25790000" />
+    <option name="totallyTimeSpent" value="26078000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -763,29 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="133" column="32" selection-start-line="133" selection-start-column="32" selection-end-line="133" selection-end-column="32" />
-          <folding>
-            <element signature="e#4044#4045#0" expanded="true" />
-            <element signature="e#4087#4088#0" expanded="true" />
-            <element signature="e#8866#8867#0" expanded="true" />
-            <element signature="e#8906#8907#0" expanded="true" />
-            <element signature="e#9070#9071#0" expanded="true" />
-            <element signature="e#9103#9104#0" expanded="true" />
-            <element signature="e#9159#9160#0" expanded="true" />
-            <element signature="e#9203#9204#0" expanded="true" />
-            <element signature="e#9261#9262#0" expanded="true" />
-            <element signature="e#9304#9305#0" expanded="true" />
-            <element signature="e#9492#9493#0" expanded="true" />
-            <element signature="e#9530#9531#0" expanded="true" />
-            <element signature="e#9591#9592#0" expanded="true" />
-            <element signature="e#9645#9646#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -801,8 +777,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="469" column="19" selection-start-line="469" selection-start-column="19" selection-end-line="469" selection-end-column="19" />
+        <state relative-caret-position="236">
+          <caret line="478" column="30" lean-forward="true" selection-start-line="478" selection-start-column="30" selection-end-line="478" selection-end-column="30" />
           <folding>
             <element signature="e#3119#3120#0" expanded="true" />
             <element signature="e#3153#3154#0" expanded="true" />
@@ -822,6 +798,30 @@
             <element signature="e#3920#3921#0" expanded="true" />
             <element signature="e#3107#3108#0" expanded="true" />
             <element signature="e#3149#3150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4044#4045#0" expanded="true" />
+            <element signature="e#4087#4088#0" expanded="true" />
+            <element signature="e#8866#8867#0" expanded="true" />
+            <element signature="e#8906#8907#0" expanded="true" />
+            <element signature="e#9070#9071#0" expanded="true" />
+            <element signature="e#9103#9104#0" expanded="true" />
+            <element signature="e#9159#9160#0" expanded="true" />
+            <element signature="e#9203#9204#0" expanded="true" />
+            <element signature="e#9261#9262#0" expanded="true" />
+            <element signature="e#9304#9305#0" expanded="true" />
+            <element signature="e#9492#9493#0" expanded="true" />
+            <element signature="e#9530#9531#0" expanded="true" />
+            <element signature="e#9591#9592#0" expanded="true" />
+            <element signature="e#9645#9646#0" expanded="true" />
           </folding>
         </state>
       </provider>

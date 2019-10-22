@@ -61,13 +61,20 @@ public class EditDialogControl extends Controller {
             formatErrorAlert(ex);
             return;
         }
+
+        String taskName = this.taskName.getText();
+        if (taskName.isEmpty()) {
+            Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
+            ButtonType selectButton = alert.showAndWait().get();
+            if (selectButton.equals(ButtonType.NO)) {
+                return;
+            }
+        }
+        getCURRENT_TOMATO_TASK().setName(taskName);
+
         Platform.runLater(() -> {
             main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
         });
-
-        String taskName = this.taskName.getText();
-        getCURRENT_TOMATO_TASK().setName(taskName);
-
         main.getEditDialogStage().close();
     }
 

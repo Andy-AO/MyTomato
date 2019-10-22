@@ -54,8 +54,12 @@ public class EditDialogControl extends Controller {
     //--------------------------------------- Method
     @FXML
     private void handleOkButton() {
+
         getCURRENT_TOMATO_TASK().setDate(datePicker.getValue());
         getCURRENT_TOMATO_TASK().setName(taskName.getText());
+        getCURRENT_TOMATO_TASK().setStartTime(LocalTime.parse(startTime.getText()));
+        getCURRENT_TOMATO_TASK().setEndTime(LocalTime.parse(endTime.getText()));
+
         Platform.runLater(()->{
             main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
         });

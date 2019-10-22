@@ -1,8 +1,6 @@
 package app;
 
-import app.view.FinishDialogController;
-import app.view.RootLayoutController;
-import app.view.SettingDialogController;
+import app.view.*;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import app.view.MainLayoutController;
 import app.model.TomatoTask;
 
 import java.io.File;
@@ -38,6 +35,9 @@ public class Main extends Application {
     private Stage startSettingStage = null;
 
     private Image tomatoImage = new Image(Main.getResURLString() + "image/tomato.png");
+    private AnchorPane editDialog;
+    private EditDialogControl editDialogController;
+    private Stage editDialogStage = null;
 
     private static String getResURLString() {
         return Main.getResURIString();
@@ -198,6 +198,8 @@ public class Main extends Application {
         finishDialogController.setMainAndInit(this);
         rootLayoutController.setMainAndInit(this);
         settingDialogController.setMainAndInit(this);
+        editDialogController.setMainAndInit(this);
+        
     }
 
     private void loadLayout() throws IOException {
@@ -205,6 +207,7 @@ public class Main extends Application {
         loadMainLayout();
         loadFinishDialog();
         loadSettingDialog();
+        loadEditDialog();
     }
 
     public Main(TabPane settingDialog) {
@@ -218,6 +221,18 @@ public class Main extends Application {
             loader.setLocation(name);
             settingDialog = loader.load();
             settingDialogController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadEditDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            URL name = getClass().getResource("view/EditDialog.fxml");
+            loader.setLocation(name);
+            editDialog = loader.load();
+            editDialogController = loader.getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -272,6 +287,45 @@ public class Main extends Application {
         this.finishDialogStage = finishDialogStage;
     }
 
+    public AnchorPane getEditDialog() {
+        return editDialog;
+    }
+
+    public void setEditDialog(AnchorPane editDialog) {
+        this.editDialog = editDialog;
+    }
+
+    public EditDialogControl getEditDialogController() {
+        return editDialogController;
+    }
+
+    public void setEditDialogController(EditDialogControl editDialogController) {
+        this.editDialogController = editDialogController;
+    }
+
+    public Stage getEditDialogStage() {
+        return editDialogStage;
+    }
+
+    public void setEditDialogStage(Stage editDialogStage) {
+        this.editDialogStage = editDialogStage;
+    }
+
+    public void startEditFinishDialogAndWait() {
+        if (editDialogStage == null) {
+            editDialogStage = new Stage();
+            editDialogStage.setAlwaysOnTop(true);
+            editDialogStage.initOwner(primaryStage);
+            editDialogStage.setTitle("任务详情");
+            editDialogStage.getIcons().add(tomatoImage);
+            editDialogStage.setScene(new Scene(editDialog));
+            editDialogStage.setResizable(false);
+            editDialogStage.setOnCloseRequest(evt -> {
+                
+            });
+        }
+        editDialogStage.showAndWait();
+    }
     public void startFinishDialogAndWait() {
         if (finishDialogStage == null) {
             finishDialogStage = new Stage();

@@ -53,6 +53,8 @@ public class MainLayoutController extends Controller{
     private Button deleteButton;
     @FXML
     private Button redoDeleteButton;
+    @FXML
+    private Button editButton;
 
     @FXML
     private Text progressText;
@@ -145,6 +147,10 @@ public class MainLayoutController extends Controller{
         this.tableView = tableView;
     }
 
+    @FXML
+    private void handleEditButton() {
+  
+    }
     @FXML
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();

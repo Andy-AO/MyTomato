@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="anchorPane" minWidth="0.0" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.MainLayoutController">
    <children>
-      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="15.0" layoutY="64.525146484375" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个番茄" textOrigin="CENTER" wrappingWidth="163.33331298828125" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="45.0">
+      <Text fx:id="headText" accessibleRole="BUTTON" fill="#e60707" layoutX="14.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="今日已完成   个番茄" textOrigin="CENTER" wrappingWidth="179.33331298828125">
          <font>
             <Font size="15.0" />
          </font>
@@ -35,8 +35,8 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="21.0" layoutX="6.0" layoutY="19.0" stroke="#0000004a" strokeType="INSIDE" width="58.0" />
-      <Button fx:id="addButton" layoutX="182.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" AnchorPane.topAnchor="45.0" />
-      <Button fx:id="deleteButton" disable="true" layoutX="237.0" layoutY="47.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" AnchorPane.topAnchor="45.0" />
+      <Button fx:id="addButton" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" />
+      <Button fx:id="deleteButton" disable="true" layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" />
       <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0f0f83" height="30.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
@@ -52,6 +52,7 @@
             <Button fx:id="redoDeleteButton" mnemonicParsing="false" onAction="#handleRedoDelete" text="撤销" />
          </children>
       </FlowPane>
+      <Button fx:id="editButton" layoutX="250.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

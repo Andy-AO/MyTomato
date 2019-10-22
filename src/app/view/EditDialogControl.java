@@ -5,12 +5,17 @@ import app.OnTopAlert;
 import app.model.TomatoTask;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javax.swing.*;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EditDialogControl extends Controller {
 
@@ -41,6 +46,7 @@ public class EditDialogControl extends Controller {
     private Button cancelButton;
 
     private final SimpleObjectProperty<TomatoTask> CURRENT_TOMATO_TASK = new SimpleObjectProperty();
+    private boolean isNewTask;
 
 
     //--------------------------------------- Method
@@ -79,10 +85,16 @@ public class EditDialogControl extends Controller {
         }
         getCURRENT_TOMATO_TASK().setName(taskName);
 
-        Platform.runLater(() -> {
-            main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
-        });
+        if(isNewTask){
+            Platform.runLater(() -> {
+                main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
+            });
+        }
         main.getEditDialogStage().close();
+
+        Platform.runLater(()->{
+            main.getMainLayoutController().getAddButton().setDisable(false);
+        });
     }
 
     private void formatErrorAlert(DateTimeParseException ex) {
@@ -97,8 +109,13 @@ public class EditDialogControl extends Controller {
     }
 
     public void loadNewTask() {
+        isNewTask = true;
         LocalTime endTime = LocalTime.now();
         setCURRENT_TOMATO_TASK(new TomatoTask(EMPTY_TASK_NAME, getStartTime(endTime), endTime));
+    }
+    public void loadSpecifiedTask(TomatoTask tomatoTask) {
+        isNewTask = false;
+        setCURRENT_TOMATO_TASK(tomatoTask);
     }
 
     private LocalTime getStartTime(LocalTime endTime) {
@@ -115,27 +132,46 @@ public class EditDialogControl extends Controller {
         textFieldCheck();
     }
 
-    private void textFieldCheck() {
-        startTime.textProperty().addListener((observable, oldText, newText) -> {
+    public class FieldCheckHandler implements ChangeListener<String> {
+
+        private TextField textField;
+
+        public FieldCheckHandler(TextField textField) {
+            this.textField = textField;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends String> observable, String oldText, String newText) {
+
 
             if (newText.contains(CHINESE_COLON)) {
-                startTime.setText(newText.replace(CHINESE_COLON, ENGLISH_COLON));
+                newText = (newText.replace(CHINESE_COLON, ENGLISH_COLON));
             }
 
             boolean notOnlyContainTimeChar = !onlyContainTimeChar(newText);
 
 
             if (notOnlyContainTimeChar) {
-                startTime.setText(oldText);
+                newText = (oldText);
             }
 
-            boolean autoSwap = onlyContainDigit(newText) & (newText.length() == DIGIT_AMOUNT_OF_TIME_STRING);
+            boolean autoSwap = onlyContainDigit(newText) &&
+                    (newText.length() == DIGIT_AMOUNT_OF_TIME_STRING);
             if (autoSwap) {
                 StringBuilder sb = new StringBuilder(newText);
                 sb.insert(ENGLISH_COLON_INSERT_OFFSET, ENGLISH_COLON);
-                startTime.setText(sb.toString());
+                newText = (sb.toString());
             }
-        });
+
+            this.textField.setText(newText);
+
+        }
+    }
+
+
+    private void textFieldCheck() {
+        startTime.textProperty().addListener(new FieldCheckHandler(startTime));
+        endTime.textProperty().addListener(new FieldCheckHandler(endTime));
     }
 
     private boolean onlyContainTimeChar(String newText) {

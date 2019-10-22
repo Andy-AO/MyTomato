@@ -4,10 +4,14 @@ import app.*;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
@@ -155,7 +159,7 @@ public class MainLayoutController extends Controller{
     @FXML
     private void handleAddButton() {
         main.getEditDialogController().loadNewTask();
-        main.startEditDialogAndWait();
+        main.startEditDialogAndWait("添加新任务");
     }
 
     private void setSettingListenerAndSetDuration() {
@@ -462,10 +466,28 @@ public class MainLayoutController extends Controller{
     private void sizeBind() {
         cellTextsSizeBind();
         nameColumnSizeBind();
-        anchorSizeBindAndInit();//have to be last Init
+        anchorSizeBindAndInit();
     }
 
     private void initTable() {
+
+        tableView.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //检测双击事件
+                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                    TomatoTask specifiedTask = tableView.getSelectionModel().getSelectedItem();
+                    main.getEditDialogController().loadSpecifiedTask(specifiedTask);
+                    main.startEditDialogAndWait("修改任务");
+                }
+            }
+        });
+
+        tableView.getFocusModel().focusedCellProperty().addListener((observable, oldCell, newCell) -> {
+            System.out.println("newCell:" + newCell);
+        });
+//---------------------------------------
+
         tableView.setItems(main.getTOMATO_TASKS());
         //setCellValueFactory
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());

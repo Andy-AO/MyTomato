@@ -2,6 +2,7 @@ package app;
 
 import app.view.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -164,14 +165,14 @@ public class Main extends Application {
 
     public static File getResFile()  {
         File resFile = new File("res");
-        boolean resDirIsInWorkDir = resFile.exists() & resFile.isDirectory();
+        boolean resDirIsInWorkDir = resFile.exists() && resFile.isDirectory();
         if(resDirIsInWorkDir)
             return resFile;
         else{
             String path = getJarDirPath();
             System.out.println("getJarDirPath():" + path);
             resFile = new File(path,"res");
-            boolean resDirIsInJarDir = resFile.exists() & resFile.isDirectory();
+            boolean resDirIsInJarDir = resFile.exists() && resFile.isDirectory();
             if (resDirIsInJarDir) {
                 return resFile;
             } else {
@@ -311,18 +312,24 @@ public class Main extends Application {
         this.editDialogStage = editDialogStage;
     }
 
-    public void startEditDialogAndWait() {
+    public void startEditDialogAndWait(String Title) {
         if (editDialogStage == null) {
             editDialogStage = new Stage();
             editDialogStage.initOwner(primaryStage);
-            editDialogStage.setTitle("任务详情");
+            editDialogStage.setTitle(Title);
             editDialogStage.getIcons().add(tomatoImage);
             editDialogStage.setScene(new Scene(editDialog));
             editDialogStage.setResizable(false);
             editDialogStage.setOnCloseRequest(evt -> {
-                
+                Platform.runLater(()->{
+                    getMainLayoutController().getAddButton().setDisable(false);
+                });
             });
         }
+        Platform.runLater(()->{
+            getMainLayoutController().getAddButton().setDisable(true);
+        });
+
         editDialogStage.showAndWait();
     }
     public void startFinishDialogAndWait() {

@@ -114,8 +114,10 @@ public class TomatoTask {
     @Override
     public String toString() {
         return "TomatoTask{" +
-                "name=" + name.get() +
-                ", date=" + date.get() +
+                "name=" + name +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", date=" + date +
                 '}';
     }
 

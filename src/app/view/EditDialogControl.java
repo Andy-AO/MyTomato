@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -72,18 +71,15 @@ public class EditDialogControl extends Controller {
     }
 
     public void loadNewTask() {
-        LocalTime startTime = LocalTime.now();
-        setCURRENT_TOMATO_TASK(new TomatoTask(EMPTY_TASK_NAME, startTime, getEndTime(startTime)));
+        LocalTime endTime = LocalTime.now();
+        setCURRENT_TOMATO_TASK(new TomatoTask(EMPTY_TASK_NAME, getStartTime(endTime), endTime));
     }
 
-    private LocalTime getEndTime(LocalTime startTime) {
-        LocalTime endTime = LocalTime.from(startTime);
-        System.out.println("startTime:" + startTime);
+    private LocalTime getStartTime(LocalTime endTime) {
+        LocalTime startTime = LocalTime.from(endTime);
         Duration duration = Duration.ofMinutes(MINUTES_TO_ADD);
-        System.out.println("duration:" + duration);
-        endTime = endTime.plus(duration);
-        System.out.println("endTime:" + endTime);
-        return endTime;
+        startTime = startTime.plus(duration);
+        return startTime;
     }
 
     @Override
@@ -95,6 +91,7 @@ public class EditDialogControl extends Controller {
     private void currentTomatoTaskBind() {
         CURRENT_TOMATO_TASKProperty().addListener((observable, oldTomatoTask, newTomatoTask) -> {
             if (newTomatoTask != null) {
+                System.out.println("newTomatoTask:" +   newTomatoTask);
                 datePicker.setValue(newTomatoTask.getDate());
                 startTime.setText(newTomatoTask.getStartTimeString());
                 endTime.setText(newTomatoTask.getEndTimeString());

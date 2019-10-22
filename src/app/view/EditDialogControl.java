@@ -17,6 +17,8 @@ public class EditDialogControl extends Controller {
 
     private static final String EMPTY_TASK_NAME = "";
     public static final int MINUTES_TO_ADD = -25;
+    public static final String CHINESE_COLON = "：";
+    public static final String ENGLISH_COLON = ":";
     //--------------------------------------- Field
     @FXML
     private DatePicker datePicker;
@@ -35,7 +37,7 @@ public class EditDialogControl extends Controller {
 
     @FXML
     private Button cancelButton;
-    
+
     private final SimpleObjectProperty<TomatoTask> CURRENT_TOMATO_TASK = new SimpleObjectProperty();
 
 
@@ -108,7 +110,45 @@ public class EditDialogControl extends Controller {
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);
         currentTomatoTaskBind();
+        textFieldCheck();
     }
+
+    private void textFieldCheck() {
+        startTime.textProperty().addListener((observable, oldText, newText) -> {
+
+            if (newText.contains(CHINESE_COLON)) {
+                startTime.setText(newText.replace(CHINESE_COLON, ENGLISH_COLON));
+            }
+
+            System.out.println("newText:" + newText);
+            boolean notOnlyContainTimeChar = !onlyContainTimeChar(newText);
+            System.out.println("notOnlyContainTimeChar:" + notOnlyContainTimeChar);
+
+            if (notOnlyContainTimeChar) {
+                startTime.setText(oldText);
+            }
+
+            
+
+        });
+    }
+
+    private boolean onlyContainTimeChar(String newText) {
+        char[] charArray = newText.toCharArray();
+        for (char c : charArray) {
+            if (!isDigitOrEnglishColon(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isDigitOrEnglishColon(char c) {
+        String letterOrDigital = "0123456789";
+        letterOrDigital += ENGLISH_COLON;
+        return -1 == letterOrDigital.indexOf(c) ? false : true;
+    }
+
 
     private void currentTomatoTaskBind() {
         CURRENT_TOMATO_TASKProperty().addListener((observable, oldTomatoTask, newTomatoTask) -> {

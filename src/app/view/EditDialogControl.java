@@ -35,7 +35,11 @@ public class EditDialogControl extends Controller {
 
     @FXML
     private Button cancelButton;
+    
     private final SimpleObjectProperty<TomatoTask> CURRENT_TOMATO_TASK = new SimpleObjectProperty();
+
+
+    //--------------------------------------- Method
 
     public TomatoTask getCURRENT_TOMATO_TASK() {
         return CURRENT_TOMATO_TASK.get();
@@ -49,7 +53,6 @@ public class EditDialogControl extends Controller {
         this.CURRENT_TOMATO_TASK.set(CURRENT_TOMATO_TASK);
     }
 
-    //--------------------------------------- Method
     @FXML
     private void handleOkButton() {
 

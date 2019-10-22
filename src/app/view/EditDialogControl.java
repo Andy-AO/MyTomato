@@ -19,6 +19,8 @@ public class EditDialogControl extends Controller {
     public static final int MINUTES_TO_ADD = -25;
     public static final String CHINESE_COLON = "：";
     public static final String ENGLISH_COLON = ":";
+    public static final int DIGIT_AMOUNT_OF_TIME_STRING = 4;
+    public static final int ENGLISH_COLON_INSERT_OFFSET = 2;
     //--------------------------------------- Field
     @FXML
     private DatePicker datePicker;
@@ -84,7 +86,7 @@ public class EditDialogControl extends Controller {
     }
 
     private void formatErrorAlert(DateTimeParseException ex) {
-        Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.toString());
+        Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.getMessage());
         alert.initOwner(main.getEditDialogStage());
         alert.showAndWait();
     }
@@ -120,16 +122,19 @@ public class EditDialogControl extends Controller {
                 startTime.setText(newText.replace(CHINESE_COLON, ENGLISH_COLON));
             }
 
-            System.out.println("newText:" + newText);
             boolean notOnlyContainTimeChar = !onlyContainTimeChar(newText);
-            System.out.println("notOnlyContainTimeChar:" + notOnlyContainTimeChar);
+
 
             if (notOnlyContainTimeChar) {
                 startTime.setText(oldText);
             }
 
-            
-
+            boolean autoSwap = onlyContainDigit(newText) & (newText.length() == DIGIT_AMOUNT_OF_TIME_STRING);
+            if (autoSwap) {
+                StringBuilder sb = new StringBuilder(newText);
+                sb.insert(ENGLISH_COLON_INSERT_OFFSET, ENGLISH_COLON);
+                startTime.setText(sb.toString());
+            }
         });
     }
 
@@ -137,6 +142,15 @@ public class EditDialogControl extends Controller {
         char[] charArray = newText.toCharArray();
         for (char c : charArray) {
             if (!isDigitOrEnglishColon(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean onlyContainDigit(String newText) {
+        char[] charArray = newText.toCharArray();
+        for (char c : charArray) {
+            if (!Character.isDigit(c)) {
                 return false;
             }
         }

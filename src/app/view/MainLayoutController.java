@@ -149,7 +149,9 @@ public class MainLayoutController extends Controller{
 
     @FXML
     private void handleEditButton() {
-  
+        TomatoTask specifiedTask = tableView.getSelectionModel().getSelectedItem();
+        main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
+        main.startEditDialogAndWait("修改任务");
     }
     @FXML
     private void handleRedoDelete() {
@@ -460,6 +462,12 @@ public class MainLayoutController extends Controller{
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
         initTableViewSort();
+        addToolTipForButton();
+    }
+
+    private void addToolTipForButton() {
+        editButton.setTooltip(new Tooltip("双击"));
+        deleteButton.setTooltip(new Tooltip("Delete键"));
     }
 
     public void sort() {

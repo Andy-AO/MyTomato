@@ -114,6 +114,8 @@ public class EditDialogControl extends Controller {
         } else if (tableColumn.equals(main.getMainLayoutController().getEndColumn())) {
             endTime.requestFocus();
             endTime.selectAll();
+        } else {
+
         }
     }
 

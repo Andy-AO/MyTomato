@@ -311,10 +311,9 @@ public class Main extends Application {
         this.editDialogStage = editDialogStage;
     }
 
-    public void startEditFinishDialogAndWait() {
+    public void startEditDialogAndWait() {
         if (editDialogStage == null) {
             editDialogStage = new Stage();
-            editDialogStage.setAlwaysOnTop(true);
             editDialogStage.initOwner(primaryStage);
             editDialogStage.setTitle("任务详情");
             editDialogStage.getIcons().add(tomatoImage);

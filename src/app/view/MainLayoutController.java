@@ -157,7 +157,7 @@ public class MainLayoutController {
     @FXML
     private void handleAddButton() {
         main.getEditDialogController().loadNewTask();
-        main.startEditFinishDialogAndWait();
+        main.startEditDialogAndWait();
     }
 
     private void setSettingListenerAndSetDuration() {

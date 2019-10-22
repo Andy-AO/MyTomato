@@ -90,11 +90,31 @@ public class EditDialogControl extends Controller {
                 main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
             });
         }
+
         main.getEditDialogStage().close();
 
         Platform.runLater(()->{
             main.getMainLayoutController().getAddButton().setDisable(false);
         });
+    }
+
+    private void focusControl() {
+        TableColumn tableColumn = main.getMainLayoutController().getTableView().getFocusModel().getFocusedCell().getTableColumn();
+        boolean isDateColumn = tableColumn.equals(main.getMainLayoutController().getDateColumn());
+        System.out.println("isDateColumn:" + isDateColumn);
+        if (isDateColumn) {
+            datePicker.requestFocus();
+            datePicker.getEditor().selectAll();
+        } else if (tableColumn.equals(main.getMainLayoutController().getNameColumn())) {
+            taskName.requestFocus();
+            taskName.selectAll();
+        } else if (tableColumn.equals(main.getMainLayoutController().getStartColumn())) {
+            startTime.requestFocus();
+            startTime.selectAll();
+        } else if (tableColumn.equals(main.getMainLayoutController().getEndColumn())) {
+            endTime.requestFocus();
+            endTime.selectAll();
+        }
     }
 
     private void formatErrorAlert(DateTimeParseException ex) {
@@ -116,6 +136,10 @@ public class EditDialogControl extends Controller {
     public void loadSpecifiedTask(TomatoTask tomatoTask) {
         isNewTask = false;
         setCURRENT_TOMATO_TASK(tomatoTask);
+    }
+    public void loadSpecifiedTaskAndFocus(TomatoTask tomatoTask) {
+        loadSpecifiedTask(tomatoTask);
+        focusControl();
     }
 
     private LocalTime getStartTime(LocalTime endTime) {

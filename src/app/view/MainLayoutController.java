@@ -34,6 +34,8 @@ public class MainLayoutController extends Controller{
     private TableView<TomatoTask> tableView;
     @FXML
     private AnchorPane anchorPane;
+
+
     @FXML
     private TableColumn<TomatoTask, String> startColumn;
     @FXML
@@ -96,6 +98,40 @@ public class MainLayoutController extends Controller{
     }
 
     private ArrayList<Text> cellTexts = new ArrayList<>();
+
+
+
+    public TableColumn<TomatoTask, String> getStartColumn() {
+        return startColumn;
+    }
+
+    public void setStartColumn(TableColumn<TomatoTask, String> startColumn) {
+        this.startColumn = startColumn;
+    }
+
+    public TableColumn<TomatoTask, String> getEndColumn() {
+        return endColumn;
+    }
+
+    public void setEndColumn(TableColumn<TomatoTask, String> endColumn) {
+        this.endColumn = endColumn;
+    }
+
+    public TableColumn<TomatoTask, String> getNameColumn() {
+        return nameColumn;
+    }
+
+    public void setNameColumn(TableColumn<TomatoTask, String> nameColumn) {
+        this.nameColumn = nameColumn;
+    }
+
+    public TableColumn<TomatoTask, String> getDateColumn() {
+        return dateColumn;
+    }
+
+    public void setDateColumn(TableColumn<TomatoTask, String> dateColumn) {
+        this.dateColumn = dateColumn;
+    }
 
     @FXML
     private void initialize() {
@@ -477,16 +513,12 @@ public class MainLayoutController extends Controller{
                 //检测双击事件
                 if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                     TomatoTask specifiedTask = tableView.getSelectionModel().getSelectedItem();
-                    main.getEditDialogController().loadSpecifiedTask(specifiedTask);
+                    main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
                     main.startEditDialogAndWait("修改任务");
                 }
             }
         });
 
-        tableView.getFocusModel().focusedCellProperty().addListener((observable, oldCell, newCell) -> {
-            System.out.println("newCell:" + newCell);
-        });
-//---------------------------------------
 
         tableView.setItems(main.getTOMATO_TASKS());
         //setCellValueFactory

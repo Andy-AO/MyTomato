@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class FinishDialogController extends Controller{
 
@@ -23,7 +24,9 @@ public class FinishDialogController extends Controller{
 
     @FXML
     private void handleDeleteButton() {
-        main.getFinishDialogStage().close();
+        Stage finishDialogStage = main.getFinishDialogStage();
+        System.out.println("finishDialogStage:" +   finishDialogStage);
+        finishDialogStage.close();
     }
 
     public Label getLabel() {
@@ -46,7 +49,6 @@ public class FinishDialogController extends Controller{
     private TextField textField;
 
     private SimpleStringProperty inputString = new SimpleStringProperty(null);
-    private Main main;
 
     public String getInputString() {
         return inputString.get();

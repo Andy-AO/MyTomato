@@ -27,8 +27,6 @@ public class SettingDialogController  extends Controller {
     @FXML
     private CheckBox developmentCheckBox;
 
-    private Main main;
-
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);

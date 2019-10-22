@@ -110,7 +110,6 @@ public class EditDialogControl extends Controller {
     private void currentTomatoTaskBind() {
         CURRENT_TOMATO_TASKProperty().addListener((observable, oldTomatoTask, newTomatoTask) -> {
             if (newTomatoTask != null) {
-                System.out.println("newTomatoTask:" + newTomatoTask);
                 datePicker.setValue(newTomatoTask.getDate());
                 startTime.setText(newTomatoTask.getStartTimeString());
                 endTime.setText(newTomatoTask.getEndTimeString());

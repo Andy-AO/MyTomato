@@ -7,7 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,13 +64,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="166" column="22" lean-forward="true" selection-start-line="166" selection-start-column="22" selection-end-line="166" selection-end-column="22" />
+            <state relative-caret-position="936">
+              <caret line="125" column="51" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3802#3803#0" expanded="true" />
+                <element signature="e#3843#3844#0" expanded="true" />
                 <element signature="e#4044#4045#0" expanded="true" />
                 <element signature="e#4087#4088#0" expanded="true" />
                 <element signature="e#8866#8867#0" expanded="true" />
@@ -83,6 +88,37 @@
                 <element signature="e#9591#9592#0" expanded="true" />
                 <element signature="e#9645#9646#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="391" column="1" selection-start-line="391" selection-start-column="1" selection-end-line="391" selection-end-column="1" />
+              <folding>
+                <element signature="e#4049#4050#0" expanded="true" />
+                <element signature="e#4081#4082#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/TomatoTaskDataJson.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -114,8 +150,8 @@
       <find>stage</find>
     </findStrings>
     <replaceStrings>
-      <replace>&amp;&amp;</replace>
       <replace>editDia</replace>
+      <replace>&amp;&amp;</replace>
     </replaceStrings>
   </component>
   <component name="FindManager">
@@ -139,9 +175,9 @@
         <option value="$PROJECT_DIR$/src/app/view/SettingDialogController.java" />
         <option value="$PROJECT_DIR$/src/test/RegexTest.java" />
         <option value="$PROJECT_DIR$/src/app/view/FinishDialogController.java" />
+        <option value="$PROJECT_DIR$/src/app/Main.java" />
         <option value="$PROJECT_DIR$/src/app/view/EditDialogControl.java" />
         <option value="$PROJECT_DIR$/src/app/view/MainLayoutController.java" />
-        <option value="$PROJECT_DIR$/src/app/Main.java" />
       </list>
     </option>
   </component>
@@ -466,7 +502,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26093000" />
+    <option name="totallyTimeSpent" value="27076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -626,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/TomatoTaskDataJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/PropertiesManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -709,52 +738,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="117" selection-start-line="117" selection-end-line="117" />
-          <folding>
-            <element signature="e#2912#2913#0" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-            <element signature="e#4189#4190#0" expanded="true" />
-            <element signature="e#4239#4240#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="478" column="30" lean-forward="true" selection-start-line="478" selection-start-column="30" selection-end-line="478" selection-end-column="30" />
-          <folding>
-            <element signature="e#3119#3120#0" expanded="true" />
-            <element signature="e#3153#3154#0" expanded="true" />
-            <element signature="e#3232#3233#0" expanded="true" />
-            <element signature="e#3278#3279#0" expanded="true" />
-            <element signature="e#3339#3340#0" expanded="true" />
-            <element signature="e#3371#3372#0" expanded="true" />
-            <element signature="e#3446#3447#0" expanded="true" />
-            <element signature="e#3488#3489#0" expanded="true" />
-            <element signature="e#3550#3551#0" expanded="true" />
-            <element signature="e#3583#3584#0" expanded="true" />
-            <element signature="e#3660#3661#0" expanded="true" />
-            <element signature="e#3704#3705#0" expanded="true" />
-            <element signature="e#3766#3767#0" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="e#3876#3877#0" expanded="true" />
-            <element signature="e#3920#3921#0" expanded="true" />
-            <element signature="e#3107#3108#0" expanded="true" />
-            <element signature="e#3149#3150#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="166" column="22" lean-forward="true" selection-start-line="166" selection-start-column="22" selection-end-line="166" selection-end-column="22" />
+        <state relative-caret-position="936">
+          <caret line="125" column="51" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3802#3803#0" expanded="true" />
+            <element signature="e#3843#3844#0" expanded="true" />
             <element signature="e#4044#4045#0" expanded="true" />
             <element signature="e#4087#4088#0" expanded="true" />
             <element signature="e#8866#8867#0" expanded="true" />
@@ -769,6 +760,31 @@
             <element signature="e#9530#9531#0" expanded="true" />
             <element signature="e#9591#9592#0" expanded="true" />
             <element signature="e#9645#9646#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="95" column="9" lean-forward="true" selection-start-line="95" selection-start-column="9" selection-end-line="95" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/TomatoTaskDataJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="391" column="1" selection-start-line="391" selection-start-column="1" selection-end-line="391" selection-end-column="1" />
+          <folding>
+            <element signature="e#4049#4050#0" expanded="true" />
+            <element signature="e#4081#4082#0" expanded="true" />
           </folding>
         </state>
       </provider>

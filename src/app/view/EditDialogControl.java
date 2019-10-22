@@ -90,6 +90,9 @@ public class EditDialogControl extends Controller {
                 main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
             });
         }
+        else {
+            main.getTomatoTaskDataJson().write();
+        }
 
         main.getEditDialogStage().close();
 

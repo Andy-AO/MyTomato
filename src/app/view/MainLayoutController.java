@@ -382,10 +382,14 @@ public class MainLayoutController extends Controller{
 
     private void cellTextsSizeBind() {
         nameColumn.prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-            cellTexts.forEach((text) -> {
-                text.setWrappingWidth((Double) nameColumnNewWidth - CELL_TEXT_PAD);
-            });
+            textWrapWidthRedress();
         });
+    }
+
+    private void textWrapWidthRedress() {
+        cellTexts.forEach((text) -> {
+            text.setWrappingWidth(nameColumn.getPrefWidth() - CELL_TEXT_PAD);
+         });
     }
 
     private void anchorSizeBindAndInit() {

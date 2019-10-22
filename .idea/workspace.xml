@@ -7,9 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/TomatoTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/TomatoTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="21" column="52" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="52" />
+            <state relative-caret-position="120">
+              <caret line="301" column="30" selection-start-line="301" selection-start-column="30" selection-end-line="301" selection-end-column="30" />
               <folding>
                 <element signature="e#2824#2825#0" expanded="true" />
                 <element signature="e#2856#2857#0" expanded="true" />
@@ -169,8 +168,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="74" column="93" selection-start-line="74" selection-start-column="93" selection-end-line="74" selection-end-column="93" />
+            <state relative-caret-position="265">
+              <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/OnTopAlert.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -187,8 +195,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="315" column="42" selection-start-line="315" selection-start-column="42" selection-end-line="315" selection-end-column="42" />
+            <state relative-caret-position="156">
+              <caret line="358" selection-start-line="358" selection-end-line="366" selection-end-column="25" />
               <folding>
                 <element signature="e#1282#1283#0" expanded="true" />
                 <element signature="e#1327#1328#0" expanded="true" />
@@ -245,15 +253,6 @@
                 <element signature="e#11087#11088#0" expanded="true" />
                 <element signature="e#11127#11128#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/src.zip!/java/lang/Thread.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="747" selection-start-line="747" selection-end-line="747" />
             </state>
           </provider>
         </entry>
@@ -611,14 +610,14 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12136000" />
+    <option name="totallyTimeSpent" value="12656000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.43555555" visible="true" weight="0.30962005" />
-      <window_info id="Structure" order="1" sideWeight="0.5644444" side_tool="true" visible="true" weight="0.30962005" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4347826" visible="true" weight="0.30962005" />
+      <window_info id="Structure" order="1" sideWeight="0.5652174" side_tool="true" visible="true" weight="0.30962005" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -626,7 +625,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21328671" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27622378" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -785,16 +784,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/EditDialog.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162" />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/app/view/RootLayout.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/FinishDialogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <folding>
+            <element signature="e#424#425#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+            <element signature="e#508#509#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+            <element signature="e#590#591#0" expanded="true" />
+            <element signature="e#618#619#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#693#694#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+            <element signature="e#764#765#0" expanded="true" />
+            <element signature="e#817#818#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#1044#1045#0" expanded="true" />
+            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1141#1142#0" expanded="true" />
+            <element signature="e#1175#1176#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1278#1279#0" expanded="true" />
+            <element signature="e#1566#1567#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/model/TomatoTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="114" column="18" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/RootLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="747" selection-start-line="747" selection-end-line="747" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="301" column="30" selection-start-line="301" selection-start-column="30" selection-end-line="301" selection-end-column="30" />
+          <folding>
+            <element signature="e#2824#2825#0" expanded="true" />
+            <element signature="e#2856#2857#0" expanded="true" />
+            <element signature="e#2915#2916#0" expanded="true" />
+            <element signature="e#2957#2958#0" expanded="true" />
+            <element signature="e#3117#3118#0" expanded="true" />
+            <element signature="e#3149#3150#0" expanded="true" />
+            <element signature="e#3214#3215#0" expanded="true" />
+            <element signature="e#3256#3257#0" expanded="true" />
+            <element signature="e#5885#5886#0" expanded="true" />
+            <element signature="e#5929#5930#0" expanded="true" />
+            <element signature="e#7859#7860#0" expanded="true" />
+            <element signature="e#7899#7900#0" expanded="true" />
+            <element signature="e#7965#7966#0" expanded="true" />
+            <element signature="e#8023#8024#0" expanded="true" />
+            <element signature="e#8059#8060#0" expanded="true" />
+            <element signature="e#8091#8092#0" expanded="true" />
+            <element signature="e#8141#8142#0" expanded="true" />
+            <element signature="e#8183#8184#0" expanded="true" />
+            <element signature="e#8222#8223#0" expanded="true" />
+            <element signature="e#8257#8258#0" expanded="true" />
+            <element signature="e#8313#8314#0" expanded="true" />
+            <element signature="e#8361#8362#0" expanded="true" />
+            <element signature="e#9364#9365#0" expanded="true" />
+            <element signature="e#9404#9405#0" expanded="true" />
+            <element signature="e#13861#13862#0" expanded="true" />
+            <element signature="e#13892#13893#0" expanded="true" />
+            <element signature="e#14206#14207#0" expanded="true" />
+            <element signature="e#14275#14276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="315" column="42" selection-start-line="315" selection-start-column="42" selection-end-line="315" selection-end-column="42" />
+        <state relative-caret-position="156">
+          <caret line="358" selection-start-line="358" selection-end-line="366" selection-end-column="25" />
           <folding>
             <element signature="e#1282#1283#0" expanded="true" />
             <element signature="e#1327#1328#0" expanded="true" />
@@ -854,89 +938,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
+    <entry file="file://$PROJECT_DIR$/src/app/view/EditDialog.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="21" column="52" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="52" />
-          <folding>
-            <element signature="e#2824#2825#0" expanded="true" />
-            <element signature="e#2856#2857#0" expanded="true" />
-            <element signature="e#2915#2916#0" expanded="true" />
-            <element signature="e#2957#2958#0" expanded="true" />
-            <element signature="e#3117#3118#0" expanded="true" />
-            <element signature="e#3149#3150#0" expanded="true" />
-            <element signature="e#3214#3215#0" expanded="true" />
-            <element signature="e#3256#3257#0" expanded="true" />
-            <element signature="e#5885#5886#0" expanded="true" />
-            <element signature="e#5929#5930#0" expanded="true" />
-            <element signature="e#7859#7860#0" expanded="true" />
-            <element signature="e#7899#7900#0" expanded="true" />
-            <element signature="e#7965#7966#0" expanded="true" />
-            <element signature="e#8023#8024#0" expanded="true" />
-            <element signature="e#8059#8060#0" expanded="true" />
-            <element signature="e#8091#8092#0" expanded="true" />
-            <element signature="e#8141#8142#0" expanded="true" />
-            <element signature="e#8183#8184#0" expanded="true" />
-            <element signature="e#8222#8223#0" expanded="true" />
-            <element signature="e#8257#8258#0" expanded="true" />
-            <element signature="e#8313#8314#0" expanded="true" />
-            <element signature="e#8361#8362#0" expanded="true" />
-            <element signature="e#9364#9365#0" expanded="true" />
-            <element signature="e#9404#9405#0" expanded="true" />
-            <element signature="e#13861#13862#0" expanded="true" />
-            <element signature="e#13892#13893#0" expanded="true" />
-            <element signature="e#14206#14207#0" expanded="true" />
-            <element signature="e#14275#14276#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-162" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/RootLayout.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/FinishDialogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#590#591#0" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#764#765#0" expanded="true" />
-            <element signature="e#817#818#0" expanded="true" />
-            <element signature="e#859#860#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1084#1085#0" expanded="true" />
-            <element signature="e#1141#1142#0" expanded="true" />
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-            <element signature="e#1278#1279#0" expanded="true" />
-            <element signature="e#1566#1567#0" expanded="true" />
-            <element signature="e#1608#1609#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/model/TomatoTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="114" column="18" selection-start-line="114" selection-start-column="18" selection-end-line="114" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/RootLayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/SettingDialogController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -945,10 +951,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/OnTopAlert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/EditDialogControl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="74" column="93" selection-start-line="74" selection-start-column="93" selection-end-line="74" selection-end-column="93" />
+        <state relative-caret-position="265">
+          <caret line="68" column="41" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
         </state>
       </provider>
     </entry>

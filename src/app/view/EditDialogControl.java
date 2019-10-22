@@ -1,17 +1,16 @@
 package app.view;
 
 import app.Main;
+import app.OnTopAlert;
 import app.model.TomatoTask;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.time.Duration;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 public class EditDialogControl extends Controller {
 
@@ -55,14 +54,27 @@ public class EditDialogControl extends Controller {
     private void handleOkButton() {
 
         getCURRENT_TOMATO_TASK().setDate(datePicker.getValue());
-        getCURRENT_TOMATO_TASK().setName(taskName.getText());
-        getCURRENT_TOMATO_TASK().setStartTime(LocalTime.parse(startTime.getText()));
-        getCURRENT_TOMATO_TASK().setEndTime(LocalTime.parse(endTime.getText()));
-
-        Platform.runLater(()->{
+        try {
+            getCURRENT_TOMATO_TASK().setStartTime(LocalTime.parse(startTime.getText()));
+            getCURRENT_TOMATO_TASK().setEndTime(LocalTime.parse(endTime.getText()));
+        } catch (DateTimeParseException ex) {
+            formatErrorAlert(ex);
+            return;
+        }
+        Platform.runLater(() -> {
             main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
         });
+
+        String taskName = this.taskName.getText();
+        getCURRENT_TOMATO_TASK().setName(taskName);
+
         main.getEditDialogStage().close();
+    }
+
+    private void formatErrorAlert(DateTimeParseException ex) {
+        Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.toString());
+        alert.initOwner(main.getEditDialogStage());
+        alert.showAndWait();
     }
 
     @FXML
@@ -91,7 +103,7 @@ public class EditDialogControl extends Controller {
     private void currentTomatoTaskBind() {
         CURRENT_TOMATO_TASKProperty().addListener((observable, oldTomatoTask, newTomatoTask) -> {
             if (newTomatoTask != null) {
-                System.out.println("newTomatoTask:" +   newTomatoTask);
+                System.out.println("newTomatoTask:" + newTomatoTask);
                 datePicker.setValue(newTomatoTask.getDate());
                 startTime.setText(newTomatoTask.getStartTimeString());
                 endTime.setText(newTomatoTask.getEndTimeString());

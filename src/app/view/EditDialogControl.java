@@ -2,6 +2,7 @@ package app.view;
 
 import app.Main;
 import app.OnTopAlert;
+import app.TimeStringPolisher;
 import app.model.TomatoTask;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
@@ -10,12 +11,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javax.swing.*;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EditDialogControl extends Controller {
 
@@ -122,7 +120,7 @@ public class EditDialogControl extends Controller {
         }
     }
 
-    private void formatErrorAlert(DateTimeParseException ex) {
+    private void formatErrorAlert(Exception ex) {
         Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.getMessage());
         alert.initOwner(main.getEditDialogStage());
         alert.showAndWait();
@@ -161,11 +159,11 @@ public class EditDialogControl extends Controller {
         textFieldCheck();
     }
 
-    public class FieldCheckHandler implements ChangeListener<String> {
+    public class TimeFieldTrueCheck implements ChangeListener<String> {
 
         private TextField textField;
 
-        public FieldCheckHandler(TextField textField) {
+        public TimeFieldTrueCheck(TextField textField) {
             this.textField = textField;
         }
 
@@ -197,10 +195,35 @@ public class EditDialogControl extends Controller {
         }
     }
 
+    public class TimeFieldCheckWhenLoseFocus implements ChangeListener<Boolean> {
+
+        private TextField textField;
+
+        public TimeFieldCheckWhenLoseFocus(TextField textField) {
+            this.textField = textField;
+        }
+
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldIsFocused, Boolean newIsFocused) {
+            if (!newIsFocused) {
+                TimeStringPolisher timeStringPolisher = new TimeStringPolisher(textField.getText());
+                String newText = null;
+                try {
+                    newText = timeStringPolisher.polish();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    formatErrorAlert(ex);
+                }
+                textField.setText(newText);
+            }
+        }
+    }
 
     private void textFieldCheck() {
-        startTime.textProperty().addListener(new FieldCheckHandler(startTime));
-        endTime.textProperty().addListener(new FieldCheckHandler(endTime));
+        startTime.textProperty().addListener(new TimeFieldTrueCheck(startTime));
+        endTime.textProperty().addListener(new TimeFieldTrueCheck(endTime));
+        startTime.focusedProperty().addListener(new TimeFieldCheckWhenLoseFocus(startTime));
+        endTime.focusedProperty().addListener(new TimeFieldCheckWhenLoseFocus(endTime));
     }
 
     private boolean onlyContainTimeChar(String newText) {

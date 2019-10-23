@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Util {
 
-    static String timeFormatterPattern = "kk:mm";
+    static String timeFormatterPattern = "HH:mm";
     static DateTimeFormatter timeFormatter =
             DateTimeFormatter.ofPattern(timeFormatterPattern);
 

@@ -76,6 +76,8 @@ public class StackedPanes extends Application {
     anchorPane.setPadding(new Insets(TABLE_VIEW_PADDING));
 
     TitledPane titledPane = new TitledPane(title, anchorPane);
+    
+    //全部展开
     titledPane.setExpanded(true);
 
     return titledPane;

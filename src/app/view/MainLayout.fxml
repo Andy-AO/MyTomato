@@ -20,7 +20,7 @@
          </font>
       </Text>
       <ProgressBar fx:id="progressBar" layoutX="67.0" layoutY="15.0" prefHeight="21.0" prefWidth="217.0" progress="0.0" AnchorPane.topAnchor="15.0" />
-      <TableView fx:id="tableView" minWidth="0.0" onKeyPressed="#handleTableDeleteKey" prefHeight="241.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
+      <TableView fx:id="tableView" minWidth="0.0" onKeyPressed="#handleTableDeleteKey" prefHeight="241.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
         <columns>
             <TableColumn fx:id="dateColumn" prefWidth="40.0" text="Date" />
           <TableColumn fx:id="startColumn" prefWidth="40.0" text="Start" />

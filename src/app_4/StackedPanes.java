@@ -70,21 +70,21 @@ public class StackedPanes extends Application {
 
 
   public TitledPane createTitledPane(String title) {
-    FlowPane content = new FlowPane();
+    FlowPane flowPane = new FlowPane();
 
     TableView<TomatoTask> tableView = createTableView();
 
-    content.getChildren().add(tableView);
+    flowPane.getChildren().add(tableView);
 
-      FlowPane.setMargin(tableView, new Insets(10));
+    FlowPane.setMargin(tableView, new Insets(10));
 
-    content.setAlignment(Pos.TOP_CENTER);
+    flowPane.setAlignment(Pos.TOP_CENTER);
     
-    TitledPane pane = new TitledPane(title, content);
-    pane.getStyleClass().add("stacked-titled-pane");
-    pane.setExpanded(false);
+    TitledPane titledPane = new TitledPane(title, flowPane);
+    titledPane.getStyleClass().add("stacked-titled-pane");
+    titledPane.setExpanded(false);
 
-    return pane;
+    return titledPane;
   }
   
   private ScrollPane makeScrollable(final VBox node) {

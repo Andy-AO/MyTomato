@@ -102,8 +102,8 @@ public class Main extends Application {
     }
 
     private void setMainAndInitLayout() {
-        mainLayoutController.setMainAndInit(this);
-        rootLayoutController.setMainAndInit(this);
+//        mainLayoutController.setMainAndInit(this);
+//        rootLayoutController.setMainAndInit(this);
     }
 
     private void loadLayout() throws IOException {

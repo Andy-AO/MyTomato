@@ -20,11 +20,6 @@ public class TextWrapCell<T> extends TableCell<T, String> {
     @Override
     public void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);
-        if (empty || item == null){
-            setText(null);
-            setGraphic(null);
-        }
-        else {
             if (!isEmpty()) {
                 if (textControl == null) {
                     this.setWrapText(true);
@@ -38,7 +33,7 @@ public class TextWrapCell<T> extends TableCell<T, String> {
                     textControl.setText(item);
                 }
             }
-        }
+
 
     }
 }

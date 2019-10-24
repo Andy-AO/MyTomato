@@ -198,17 +198,17 @@ public class EditDialogControl extends Controller {
     public class TimeFieldCheckWhenLoseFocus implements ChangeListener<Boolean> {
 
         private TextField textField;
-        private String CorrectFormatString;
+        private String correctFormatString;
 
         public TimeFieldCheckWhenLoseFocus(TextField textField) {
             this.textField = textField;
-            CorrectFormatString = textField.getText();
+            correctFormatString = textField.getText();
         }
 
         @Override
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldIsFocused, Boolean newIsFocused) {
             if (newIsFocused){
-                CorrectFormatString = textField.getText();
+                correctFormatString = textField.getText();
             }
             else  {
                 TimeStringPolisher timeStringPolisher = new TimeStringPolisher(textField.getText());
@@ -217,7 +217,7 @@ public class EditDialogControl extends Controller {
                     newText = timeStringPolisher.polish();
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    newText = CorrectFormatString;
+                    newText = correctFormatString;
                 }
                 finally {
                     textField.setText(newText);

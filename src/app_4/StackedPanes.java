@@ -1,5 +1,6 @@
 package app_4;
 
+import app.model.TomatoTask;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -8,6 +9,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,11 +32,11 @@ public class StackedPanes extends Application {
   
   @Override public void start(Stage stage) {
     VBox stackedTitledPanes = createStackedTitledPanes();
-    
+
     ScrollPane scroll = makeScrollable(stackedTitledPanes);
     scroll.getStyleClass().add("stacked-titled-panes-scroll-pane");
     scroll.setPrefSize(410, 480);
-    
+
     stage.setTitle("Fishy, fishy");
     Scene scene = new Scene(scroll);
     scene.getStylesheets().add(getClass().getResource("fishy-fishy.css").toExternalForm());
@@ -54,6 +57,15 @@ public class StackedPanes extends Application {
 
     return stackedTitledPanes;
   }
+
+
+  private TableView<TomatoTask> createTableView() {
+    TableView tableView = new TableView();
+    TableColumn<TomatoTask,String> firstNameCol = new TableColumn<TomatoTask,String>("First Name");
+    tableView.getColumns().setAll(firstNameCol);
+    return tableView;
+  }
+
 
   public TitledPane createTitledPane(String title, Image... images) {
     FlowPane content = new FlowPane();

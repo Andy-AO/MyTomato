@@ -589,6 +589,11 @@ public class MainLayoutController extends Controller{
                             if(textControl == null){
                                 this.setWrapText(true);
                                 textControl = new Text(item);
+                                textControl.textProperty().addListener((observable, oldText, newText) -> {
+                                    Platform.runLater(()->{
+                                        tableView.refresh();
+                                    });
+                                });
                                 cellTexts.add(textControl);
                                 textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
                                 setGraphic(textControl);
@@ -596,7 +601,6 @@ public class MainLayoutController extends Controller{
                             else{
                                 textControl.setText(item);
                             }
-                            tableView.refresh();
                         }
                     }
                 };

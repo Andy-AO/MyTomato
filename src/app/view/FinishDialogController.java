@@ -24,9 +24,7 @@ public class FinishDialogController extends Controller{
 
     @FXML
     private void handleDeleteButton() {
-        Stage finishDialogStage = main.getFinishDialogStage();
-        System.out.println("finishDialogStage:" +   finishDialogStage);
-        finishDialogStage.close();
+        main.getFinishDialogStage().close();
     }
 
     public Label getLabel() {
@@ -64,10 +62,8 @@ public class FinishDialogController extends Controller{
 
     @FXML
     private void handleTextField() {
-        main.getFinishDialogStage().close();
         inputString.set(textField.getCharacters().toString());
-        getTextField().setText("");
-        inputString.set(null);
+        main.getFinishDialogStage().close();
     }
 
     @Override

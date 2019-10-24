@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import app.model.TomatoTask;
+import javafx.stage.WindowEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -382,6 +384,22 @@ public class Main extends Application {
             finishDialogStage.getIcons().add(tomatoImage);
             finishDialogStage.setScene(new Scene(finishDialog));
             finishDialogStage.setResizable(false);
+
+            finishDialogStage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            getFinishDialogController().getTextField().setText("");
+                            getPlusDialogController().getTextField().setText("");
+                            getFinishDialogController().inputStringProperty().set(null);
+
+                        }
+                    });
+                }
+            });
+
             finishDialogStage.setOnCloseRequest(evt -> {
                 evt.consume();
                 onStageShutdown(finishDialogStage);

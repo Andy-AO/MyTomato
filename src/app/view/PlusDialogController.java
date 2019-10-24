@@ -30,6 +30,14 @@ public class PlusDialogController extends Controller{
         this.label = label;
     }
 
+    public Button getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(Button okButton) {
+        this.okButton = okButton;
+    }
+
     public TextField getTextField() {
         return textField;
     }
@@ -59,6 +67,7 @@ public class PlusDialogController extends Controller{
     private void handleTextField() {
         main.getPlusDialogStage().close();
         inputString.set(textField.getCharacters().toString());
+        main.getFinishDialogController().getTextField().setText(inputString.getValue());
     }
 
     @Override

@@ -310,14 +310,26 @@ public class MainLayoutController extends Controller{
         this.deleteButton = deleteButton;
     }
 
+    public Button getPlusButton() {
+        return plusButton;
+    }
+
+    public void setPlusButton(Button plusButton) {
+        this.plusButton = plusButton;
+    }
+
     private void setWorkCountDownListener() {
         WORK_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 boolean isStarted = newValue;
-                if (isStarted)
+                if (isStarted){
                     startOrStopButton.setText(STOP);
-                else
+                    getPlusButton().setDisable(false);
+                }
+                else{
                     startOrStopButton.setText(START);
+                    getPlusButton().setDisable(true);
+                }
             });
 
         });

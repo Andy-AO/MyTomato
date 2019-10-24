@@ -6,15 +6,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,12 +22,10 @@ import javafx.stage.Stage;
  * which only allows a single pane to be open at a time).
  */
 public class StackedPanes extends Application {
-  // image license: linkware - backlink to http://www.fasticon.com
-  private static final Image BLUE_FISH   = new Image("app_2/Blue-Fish-icon.png");
-  private static final Image RED_FISH    = new Image("app_2/Red-Fish-icon.png");
-  private static final Image YELLOW_FISH = new Image("app_2/Yellow-Fish-icon.png");
-  private static final Image GREEN_FISH  = new Image("app_2/Green-Fish-icon.png");
-  
+
+  public static final double TABLE_VIEW_MARGIN = 0;
+  public static final int TABLE_VIEW_PADDING = 0;
+
   @Override public void start(Stage stage) {
     VBox stackedTitledPanes = createStackedTitledPanes();
 
@@ -70,18 +66,19 @@ public class StackedPanes extends Application {
 
 
   public TitledPane createTitledPane(String title) {
-    FlowPane flowPane = new FlowPane();
+    AnchorPane anchorPane = new AnchorPane();
 
     TableView<TomatoTask> tableView = createTableView();
 
-    flowPane.getChildren().add(tableView);
+    anchorPane.getChildren().add(tableView);
 
-    FlowPane.setMargin(tableView, new Insets(10));
+    AnchorPane.setBottomAnchor(tableView, TABLE_VIEW_MARGIN);
+    AnchorPane.setLeftAnchor(tableView,TABLE_VIEW_MARGIN);
+    AnchorPane.setRightAnchor(tableView,TABLE_VIEW_MARGIN);
+    AnchorPane.setTopAnchor(tableView,TABLE_VIEW_MARGIN);
+    anchorPane.setPadding(new Insets(TABLE_VIEW_PADDING));
 
-    flowPane.setAlignment(Pos.TOP_CENTER);
-    
-    TitledPane titledPane = new TitledPane(title, flowPane);
-    titledPane.getStyleClass().add("stacked-titled-pane");
+    TitledPane titledPane = new TitledPane(title, anchorPane);
     titledPane.setExpanded(false);
 
     return titledPane;

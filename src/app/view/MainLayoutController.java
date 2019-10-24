@@ -590,14 +590,6 @@ public class MainLayoutController extends Controller{
                                 this.setWrapText(true);
                                 textControl = new Text(item);
                                 cellTexts.add(textControl);
-                                textControl.textProperty().addListener((observable, oldText, newText) -> {
-                                    if ((newText == null) || (newText.isEmpty())) {
-                                        updateItem(newText, true);
-                                    }
-                                    else {
-                                        updateItem(newText, false);
-                                    }
-                                });
                                 textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
                                 setGraphic(textControl);
                             }

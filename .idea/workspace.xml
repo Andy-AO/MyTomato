@@ -8,10 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/TextWrapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/TextWrapCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/EditDialogControl.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/TextWrapCell.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="297">
+              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#243#244#0" expanded="true" />
@@ -530,15 +528,16 @@
       <workItem from="1571762197848" duration="9110000" />
       <workItem from="1571873825915" duration="10931000" />
       <workItem from="1571895223868" duration="5198000" />
-      <workItem from="1571907510590" duration="839000" />
+      <workItem from="1571907510590" duration="1380000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54364000" />
+    <option name="totallyTimeSpent" value="54905000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.24878049" visible="true" weight="0.3177041" />
       <window_info id="Structure" order="1" sideWeight="0.7512195" side_tool="true" weight="0.30962005" />
@@ -950,8 +949,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/TextWrapCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        <state relative-caret-position="297">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#243#244#0" expanded="true" />

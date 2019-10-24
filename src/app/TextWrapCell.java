@@ -20,18 +20,25 @@ public class TextWrapCell<T> extends TableCell<T, String> {
     @Override
     public void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);
-        if (!isEmpty()) {
-            if (textControl == null) {
-                this.setWrapText(true);
-                textControl = new Text(item);
-                setGraphic(textControl);
-                wrap();
-                getTableColumn().prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-                wrap();
-                });
-            } else {
-                textControl.setText(item);
+        if (empty || item == null){
+            setText(null);
+            setGraphic(null);
+        }
+        else {
+            if (!isEmpty()) {
+                if (textControl == null) {
+                    this.setWrapText(true);
+                    textControl = new Text(item);
+                    setGraphic(textControl);
+                    wrap();
+                    getTableColumn().prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
+                        wrap();
+                    });
+                } else {
+                    textControl.setText(item);
+                }
             }
         }
+
     }
 }

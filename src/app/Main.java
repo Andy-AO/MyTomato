@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -56,6 +57,7 @@ public class Main extends Application {
     }
 
     private AnchorPane finishDialog;
+    private ScrollPane stackedPanes;
     private FinishDialogController finishDialogController;
     private TomatoTaskDataJson tomatoTaskDataJson;
     private MainLayoutController mainLayoutController;
@@ -216,6 +218,7 @@ public class Main extends Application {
         loadPlusDialog();
         loadSettingDialog();
         loadEditDialog();
+        loadStackedPanes();
     }
 
     public Main(TabPane settingDialog) {
@@ -285,6 +288,9 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void loadStackedPanes() {
+        stackedPanes = new StackedPanesController().getStackedPanes();
     }
 
     public Stage getPlusDialogStage() {

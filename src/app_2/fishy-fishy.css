@@ -1,0 +1,21 @@
+/**
+ * file: fishy-fishy.css
+ *   Place in same directory as StackedPanes.java.
+ *   Have your build system copy this file to your build output directory.
+ **/
+
+.root {
+  -fx-base: cadetblue;
+}
+
+.stacked-titled-panes {
+  -fx-background-color: seagreen; 
+}
+
+.stacked-titled-pane {
+  -fx-color: cadetblue;
+} 
+
+.stacked-titled-panes-scroll-pane {
+  -fx-background: darkseagreen;
+}

@@ -7,6 +7,8 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/fastjson-1.2.61.jar" path-in-jar="/" />
       <element id="library" level="project" name="jl1.0.1" />
       <element id="file-copy" path="$PROJECT_DIR$/lib/fastjson-1.2.61.jar" />
+      <element id="library" level="project" name="bridj-0.7.0" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/bridj-0.7.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

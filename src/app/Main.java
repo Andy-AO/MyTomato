@@ -394,7 +394,6 @@ public class Main extends Application {
                             getFinishDialogController().getTextField().setText("");
                             getPlusDialogController().getTextField().setText("");
                             getFinishDialogController().inputStringProperty().set(null);
-
                         }
                     });
                 }

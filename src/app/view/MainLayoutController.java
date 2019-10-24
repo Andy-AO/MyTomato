@@ -2,6 +2,7 @@ package app.view;
 
 import app.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -21,12 +22,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainLayoutController extends Controller{
+public class MainLayoutController extends Controller {
 
     public static final String START = "Start";
     public static final String STOP = "Stop";
     public static final int CELL_TEXT_PAD = 20;
-    public static final int TASK_PROGRESSBAR_END_VALUE = 100;
+
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
     @FXML
@@ -83,27 +84,26 @@ public class MainLayoutController extends Controller{
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Mp3Player workDurationMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/bgm_Ticking.mp3"));
-    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/bgm_WindThroughTrees.mp3"));
+    private Mp3Player workDurationMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/bgm_Ticking.mp3"));
+    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
 
-    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/respite_finished.mp3"));
+    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/respite_finished.mp3"));
 
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
     private Thread showRedoBarAndSleepThread;
 
-    public ArrayList<Text> getCellTexts() {
+    public ObservableList<Text> getCellTexts() {
         return cellTexts;
     }
 
-    public void setCellTexts(ArrayList<Text> cellTexts) {
+    public void setCellTexts(ObservableList<Text> cellTexts) {
         this.cellTexts = cellTexts;
     }
 
-    private ArrayList<Text> cellTexts = new ArrayList<>();
-
+    private ObservableList<Text> cellTexts = FXCollections.observableArrayList();
 
 
     public TableColumn<TomatoTask, String> getStartColumn() {
@@ -156,14 +156,14 @@ public class MainLayoutController extends Controller{
         main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
         main.startEditDialogAndWait("修改任务");
     }
+
     @FXML
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();
-        if (!removedItems.isEmpty()){
+        if (!removedItems.isEmpty()) {
             tableView.getItems().addAll(removedItems);
             removedItems.clear();
-        }
-        else {
+        } else {
             System.err.println("REDO_TOMATO_TASKS is empty !");
         }
     }
@@ -198,7 +198,7 @@ public class MainLayoutController extends Controller{
             alert.showAndWait();
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
-                tableView.getItems().removeAll(itemList);
+            tableView.getItems().removeAll(itemList);
         }
 
     }
@@ -257,7 +257,7 @@ public class MainLayoutController extends Controller{
         });
         RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.PAUSED);
             });
         });
@@ -322,11 +322,10 @@ public class MainLayoutController extends Controller{
         WORK_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 boolean isStarted = newValue;
-                if (isStarted){
+                if (isStarted) {
                     startOrStopButton.setText(STOP);
                     getPlusButton().setDisable(false);
-                }
-                else{
+                } else {
                     startOrStopButton.setText(START);
                     getPlusButton().setDisable(true);
                 }
@@ -336,7 +335,7 @@ public class MainLayoutController extends Controller{
 
         WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.NORMAL);
             });
 
@@ -416,7 +415,7 @@ public class MainLayoutController extends Controller{
     private void textWrapWidthRedress() {
         cellTexts.forEach((text) -> {
             text.setWrappingWidth(nameColumn.getPrefWidth() - CELL_TEXT_PAD);
-         });
+        });
     }
 
     private void anchorSizeBindAndInit() {
@@ -483,6 +482,7 @@ public class MainLayoutController extends Controller{
         super.setMainAndInit(main);
         initHeadText();
         headTextBind();
+        cellTextsBind();
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
@@ -494,7 +494,22 @@ public class MainLayoutController extends Controller{
         setFinishDialogListener();
         initTableViewSort();
         addToolTipForButton();
-        taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());;
+        taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
+        ;
+    }
+
+    private void cellTextsBind() {
+        cellTexts.addListener(new ListChangeListener<Text>() {
+            @Override
+            public void onChanged(Change<? extends Text> c) {
+                if (c.next()) {
+                    c.getAddedSubList().forEach((textControl)->{
+                        textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
+                    });
+                }
+            }
+        });
+
     }
 
     private void addToolTipForButton() {
@@ -503,7 +518,7 @@ public class MainLayoutController extends Controller{
     }
 
     public void sort() {
-       tableView.sort();
+        tableView.sort();
     }
 
     private void initTableViewSort() {
@@ -519,15 +534,17 @@ public class MainLayoutController extends Controller{
     private void updateHeadText() {
         headText.setText("今日已完成 " + todayTaskAmount + " 个番茄");
     }
-    public void initHeadText(){
+
+    public void initHeadText() {
         todayTaskAmount = getCertainDayTaskAmount(main.getTOMATO_TASKS(), LocalDate.now());
         updateHeadText();
     }
+
     private void headTextBind() {
         main.getTOMATO_TASKS().addListener(new ListChangeListener<TomatoTask>() {
             @Override
             public void onChanged(Change<? extends TomatoTask> change) {
-                if(change.next()){
+                if (change.next()) {
                     initHeadText();
                 }
             }
@@ -580,25 +597,24 @@ public class MainLayoutController extends Controller{
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
                 return new TableCell<TomatoTask, String>() {
                     private Text textControl = null;
+
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         System.out.print("updateItem -> ");
                         System.out.println("item -> " + item);
                         if (!isEmpty()) {
-                            if(textControl == null){
+                            if (textControl == null) {
                                 this.setWrapText(true);
                                 textControl = new Text(item);
                                 textControl.textProperty().addListener((observable, oldText, newText) -> {
-                                    Platform.runLater(()->{
+                                    Platform.runLater(() -> {
                                         tableView.refresh();
                                     });
                                 });
                                 cellTexts.add(textControl);
-                                textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
                                 setGraphic(textControl);
-                            }
-                            else{
+                            } else {
                                 textControl.setText(item);
                             }
                         }
@@ -626,14 +642,13 @@ public class MainLayoutController extends Controller{
     }
 
     public void showRedoBarAndSleep() {
-         showRedoBarAndSleepThread = new Thread(()->{
-             showRedoBar();
+        showRedoBarAndSleepThread = new Thread(() -> {
+            showRedoBar();
             try {
                 Thread.sleep(REDO_DELETE_BAR_SHOW_MILLIS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
-            finally {
+            } finally {
                 hideRedoBar();
 //                showRedoBarAndSleepThread = null;
             }
@@ -642,11 +657,12 @@ public class MainLayoutController extends Controller{
     }
 
     private void hideRedoBar() {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             buttonFlowPaneBackground.setVisible(false);
             buttonFlowPane.setVisible(false);
         });
     }
+
     public void closeRedoBar() {
         if (showRedoBarAndSleepThread != null) {
             showRedoBarAndSleepThread.interrupt();
@@ -655,13 +671,12 @@ public class MainLayoutController extends Controller{
     }
 
     private void showRedoBar() {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             buttonFlowPaneBackground.setVisible(true);
             buttonFlowPane.setVisible(true);
         });
 
     }
-
 
 
 }

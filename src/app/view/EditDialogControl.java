@@ -96,6 +96,7 @@ public class EditDialogControl extends Controller {
 
         Platform.runLater(()->{
             main.getMainLayoutController().getAddButton().setDisable(false);
+            main.getMainLayoutController().getTableView().refresh();
         });
     }
 

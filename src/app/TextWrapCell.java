@@ -5,7 +5,10 @@ import javafx.scene.control.TableCell;
 import javafx.scene.text.Text;
 
 public class TextWrapCell<T> extends TableCell<T, String> {
-
+    public int instanceCounter = 0;
+    public TextWrapCell() {
+        instanceCounter++;
+    }
 
     private Text textControl = null;
     public static final int CELL_TEXT_PAD = 20;
@@ -22,16 +25,9 @@ public class TextWrapCell<T> extends TableCell<T, String> {
                 this.setWrapText(true);
                 textControl = new Text(item);
                 setGraphic(textControl);
-                textControl.textProperty().addListener((observable, oldText, newText) -> {
-                    if(!oldText.equals(newText)){
-                        Platform.runLater(() -> {
-                            getTableView().refresh();
-                        });
-                    }
-                });
                 wrap();
                 getTableColumn().prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-                    wrap();
+                wrap();
                 });
             } else {
                 textControl.setText(item);

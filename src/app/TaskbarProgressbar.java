@@ -123,6 +123,13 @@ public final class TaskbarProgressbar {
         });
     }
 
+    public void showOtherProgress(double value, TaskbarProgressbarType type) {
+        int endValue = 100;
+        value *= 100;
+        int startValue = (int) value;
+        showOtherProgress(startValue, endValue, type);
+    }
+
     public void showErrorProgress() {
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(StageHelper.getStages().indexOf(stage)).getNativeWindow();
         hwnd = Pointer.pointerToAddress(hwndVal);

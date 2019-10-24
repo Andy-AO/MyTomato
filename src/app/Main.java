@@ -45,6 +45,7 @@ public class Main extends Application {
     private Stage editDialogStage = null;
     private AnchorPane plusDialog;
     private PlusDialogController plusDialogController;
+    private StackedPanesController stackedPanesController;
 
     private static String getResURLString() {
         return Main.getResURIString();
@@ -290,7 +291,8 @@ public class Main extends Application {
         }
     }
     private void loadStackedPanes() {
-        stackedPanes = new StackedPanesController().getStackedPanes();
+        stackedPanesController = new StackedPanesController();
+        stackedPanes = stackedPanesController.getStackedPanes();
     }
 
     public Stage getPlusDialogStage() {

@@ -26,7 +26,7 @@ public class MainLayoutController extends Controller {
 
     public static final String START = "Start";
     public static final String STOP = "Stop";
-    public static final int CELL_TEXT_PAD = 20;
+
 
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
@@ -94,17 +94,6 @@ public class MainLayoutController extends Controller {
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
     private Thread showRedoBarAndSleepThread;
-
-    public ObservableList<Text> getCellTexts() {
-        return cellTexts;
-    }
-
-    public void setCellTexts(ObservableList<Text> cellTexts) {
-        this.cellTexts = cellTexts;
-    }
-
-    private ObservableList<Text> cellTexts = FXCollections.observableArrayList();
-
 
     public TableColumn<TomatoTask, String> getStartColumn() {
         return startColumn;
@@ -406,18 +395,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-    private void cellTextsSizeBind() {
-        nameColumn.prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-            textWrapWidthRedress();
-        });
-    }
-
-    private void textWrapWidthRedress() {
-        cellTexts.forEach((text) -> {
-            text.setWrappingWidth(nameColumn.getPrefWidth() - CELL_TEXT_PAD);
-        });
-    }
-
     private void anchorSizeBindAndInit() {
         anchorWidthBindAndInit();
         anchorHeightBindAndInit();
@@ -482,7 +459,6 @@ public class MainLayoutController extends Controller {
         super.setMainAndInit(main);
         initHeadText();
         headTextBind();
-        cellTextsBind();
         initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
@@ -495,22 +471,9 @@ public class MainLayoutController extends Controller {
         initTableViewSort();
         addToolTipForButton();
         taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
-        ;
-    }
-
-    private void cellTextsBind() {
-        cellTexts.addListener(new ListChangeListener<Text>() {
-            @Override
-            public void onChanged(Change<? extends Text> c) {
-                if (c.next()) {
-                    c.getAddedSubList().forEach((textControl)->{
-                        textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
-                    });
-                }
-            }
-        });
 
     }
+
 
     private void addToolTipForButton() {
         editButton.setTooltip(new Tooltip("双击"));
@@ -563,7 +526,6 @@ public class MainLayoutController extends Controller {
     }
 
     private void sizeBind() {
-        cellTextsSizeBind();
         nameColumnSizeBind();
         anchorSizeBindAndInit();
     }
@@ -592,28 +554,36 @@ public class MainLayoutController extends Controller {
 
         //setCellValueFactory
         nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
+
             @Override
             // return a table cell , cell can setGraphic
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
                 return new TableCell<TomatoTask, String>() {
                     private Text textControl = null;
+                    public static final int CELL_TEXT_PAD = 20;
+
+                    private void wrap() {
+                        textControl.setWrappingWidth(getTableColumn().getWidth() - CELL_TEXT_PAD);
+                    }
 
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-                        System.out.print("updateItem -> ");
-                        System.out.println("item -> " + item);
+                        System.out.print("updateItem:item -> ");
                         if (!isEmpty()) {
                             if (textControl == null) {
                                 this.setWrapText(true);
                                 textControl = new Text(item);
+                                setGraphic(textControl);
                                 textControl.textProperty().addListener((observable, oldText, newText) -> {
                                     Platform.runLater(() -> {
-                                        tableView.refresh();
+                                        getTableView().refresh();
                                     });
                                 });
-                                cellTexts.add(textControl);
-                                setGraphic(textControl);
+                                wrap();
+                                getTableColumn().prefWidthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
+                                    wrap();
+                                });
                             } else {
                                 textControl.setText(item);
                             }

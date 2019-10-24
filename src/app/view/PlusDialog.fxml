@@ -9,7 +9,6 @@
    <children>
       <Label fx:id="label" layoutX="25.0" layoutY="14.0" prefHeight="27.0" prefWidth="167.0" text="提前添加任务：" />
       <TextField fx:id="textField" layoutX="25.0" layoutY="50.0" onAction="#handleTextField" prefHeight="23.0" prefWidth="314.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
-      <Button fx:id="okButton" layoutX="219.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleOkButton" text="OK" />
-      <Button fx:id="deleteButton" layoutX="271.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" />
+      <Button fx:id="okButton" layoutX="270.0" layoutY="78.0" mnemonicParsing="false" onAction="#handleOkButton" text="OK" />
    </children>
 </AnchorPane>

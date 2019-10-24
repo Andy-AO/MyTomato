@@ -14,20 +14,13 @@ public class PlusDialogController extends Controller{
     private Label label;
     @FXML
     private Button okButton;
-    @FXML
-    private Button deleteButton;
+
 
     @FXML
     private void handleOkButton() {
         handleTextField();
     }
 
-    @FXML
-    private void handleDeleteButton() {
-        Stage finishDialogStage = main.getFinishDialogStage();
-        System.out.println("finishDialogStage:" +   finishDialogStage);
-        finishDialogStage.close();
-    }
 
     public Label getLabel() {
         return label;
@@ -64,7 +57,7 @@ public class PlusDialogController extends Controller{
 
     @FXML
     private void handleTextField() {
-        main.getFinishDialogStage().close();
+        main.getPlusDialogStage().close();
         inputString.set(textField.getCharacters().toString());
         getTextField().setText("");
         inputString.set(null);

@@ -59,8 +59,6 @@ public class PlusDialogController extends Controller{
     private void handleTextField() {
         main.getPlusDialogStage().close();
         inputString.set(textField.getCharacters().toString());
-        getTextField().setText("");
-        inputString.set(null);
     }
 
     @Override

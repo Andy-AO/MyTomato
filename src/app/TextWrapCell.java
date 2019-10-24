@@ -13,6 +13,7 @@ public class TextWrapCell<T> extends TableCell<T, String> {
     private void wrap() {
         textControl.setWrappingWidth(getTableColumn().getWidth() - CELL_TEXT_PAD);
     }
+
     @Override
     public void updateItem(String item, boolean empty) {
         super.updateItem(item, empty);

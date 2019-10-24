@@ -589,7 +589,6 @@ public class MainLayoutController extends Controller {
                 e.printStackTrace();
             } finally {
                 hideRedoBar();
-//                showRedoBarAndSleepThread = null;
             }
         });
         showRedoBarAndSleepThread.start();

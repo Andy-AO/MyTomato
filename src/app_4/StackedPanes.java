@@ -61,9 +61,10 @@ public class StackedPanes extends Application {
 
   private TableView<TomatoTask> createTableView() {
     TableView tableView = new TableView();
-    TableColumn<TomatoTask,String> firstNameCol = new TableColumn<TomatoTask,String>("First Name");
-    TableColumn<TomatoTask,String> secondNameCol = new TableColumn<TomatoTask,String>("Second Name");
-    tableView.getColumns().setAll(firstNameCol,secondNameCol);
+    TableColumn<TomatoTask,String> startCol = new TableColumn<TomatoTask,String>("Start");
+    TableColumn<TomatoTask,String> endCol = new TableColumn<TomatoTask,String>("End");
+    TableColumn<TomatoTask,String> taskNameCol = new TableColumn<TomatoTask,String>("Task Name");
+    tableView.getColumns().setAll(startCol,endCol,taskNameCol);
     return tableView;
   }
 

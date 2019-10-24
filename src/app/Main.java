@@ -26,19 +26,22 @@ import java.util.List;
 
 public class Main extends Application {
 
-    public static final int PRIMARY_STAGE_MIN_WIDTH = 385;
+    public static final int PRIMARY_STAGE_MIN_WIDTH = 415 ;
 
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
 
     private Stage primaryStage;
     private Stage finishDialogStage = null;
+    private Stage plusDialogStage = null;
     private Stage startSettingStage = null;
 
     private Image tomatoImage = new Image(Main.getResURLString() + "image/tomato.png");
     private AnchorPane editDialog;
     private EditDialogControl editDialogController;
     private Stage editDialogStage = null;
+    private AnchorPane plusDialog;
+    private PlusDialogController plusDialogController;
 
     private static String getResURLString() {
         return Main.getResURIString();
@@ -197,6 +200,7 @@ public class Main extends Application {
     private void setMainAndInitLayout() {
         mainLayoutController.setMainAndInit(this);
         finishDialogController.setMainAndInit(this);
+        plusDialogController.setMainAndInit(this);
         rootLayoutController.setMainAndInit(this);
         settingDialogController.setMainAndInit(this);
         editDialogController.setMainAndInit(this);
@@ -207,6 +211,7 @@ public class Main extends Application {
         loadRootLayout();
         loadMainLayout();
         loadFinishDialog();
+        loadPlusDialog();
         loadSettingDialog();
         loadEditDialog();
     }
@@ -280,6 +285,42 @@ public class Main extends Application {
         }
     }
 
+    public Stage getPlusDialogStage() {
+        return plusDialogStage;
+    }
+
+    public void setPlusDialogStage(Stage plusDialogStage) {
+        this.plusDialogStage = plusDialogStage;
+    }
+
+    public AnchorPane getPlusDialog() {
+        return plusDialog;
+    }
+
+    public void setPlusDialog(AnchorPane plusDialog) {
+        this.plusDialog = plusDialog;
+    }
+
+    public PlusDialogController getPlusDialogController() {
+        return plusDialogController;
+    }
+
+    public void setPlusDialogController(PlusDialogController plusDialogController) {
+        this.plusDialogController = plusDialogController;
+    }
+
+    private void loadPlusDialog() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            URL name = getClass().getResource("view/PlusDialog.fxml");
+            loader.setLocation(name);
+            plusDialog = loader.load();
+            plusDialogController = loader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Stage getFinishDialogStage() {
         return finishDialogStage;
     }
@@ -347,6 +388,18 @@ public class Main extends Application {
             });
         }
         finishDialogStage.showAndWait();
+    }
+    public void startPlusDialogAndWait() {
+        if (plusDialogStage == null) {
+            plusDialogStage = new Stage();
+            plusDialogStage.setAlwaysOnTop(true);
+            plusDialogStage.initOwner(primaryStage);
+            plusDialogStage.setTitle("请输入要提前添加的任务:");
+            plusDialogStage.getIcons().add(tomatoImage);
+            plusDialogStage.setScene(new Scene(plusDialog));
+            plusDialogStage.setResizable(false);
+        }
+        plusDialogStage.showAndWait();
     }
 
     public void startSettingDialogAndWait() {
@@ -453,5 +506,6 @@ public class Main extends Application {
     public ObservableList<TomatoTask> getTOMATO_TASKS() {
         return TOMATO_TASKS;
     }
+
 
 }

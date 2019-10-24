@@ -205,6 +205,7 @@ public class MainLayoutController extends Controller{
 
     @FXML
     private void handlePlusButton() {
+        main.startPlusDialogAndWait();
     }
 
     @FXML

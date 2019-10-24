@@ -39,12 +39,12 @@
       <Button fx:id="deleteButton" disable="true" layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" />
       <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff0f0f83" height="30.0" stroke="RED" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="30.0" stroke="#ff000000" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
          </children>
       </FlowPane>
       <FlowPane fx:id="buttonFlowPane" alignment="CENTER" layoutX="129.0" layoutY="400.0" prefHeight="30.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
-            <Label text="确定要删除吗？">
+            <Label text="确定要删除吗？" textFill="#fbfbfb">
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>

@@ -4,9 +4,7 @@ import app.*;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -28,6 +26,7 @@ public class MainLayoutController extends Controller{
     public static final String START = "Start";
     public static final String STOP = "Stop";
     public static final int CELL_TEXT_PAD = 20;
+    public static final int TASK_PROGRESSBAR_END_VALUE = 100;
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
     @FXML
@@ -64,6 +63,8 @@ public class MainLayoutController extends Controller{
 
     @FXML
     private ProgressBar progressBar;
+
+    TaskbarProgressbar taskProgressbar = null;
 
     @FXML
     private FlowPane buttonFlowPane;
@@ -249,6 +250,7 @@ public class MainLayoutController extends Controller{
         });
         RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
+            taskProgressbar.showOtherProgress(50, TASK_PROGRESSBAR_END_VALUE, TaskbarProgressbar.TaskbarProgressbarType.NORMAL);
         });
 
         RESPITE_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
@@ -313,6 +315,10 @@ public class MainLayoutController extends Controller{
 
         WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
+            Platform.runLater(()->{
+                taskProgressbar.showOtherProgress(50, TASK_PROGRESSBAR_END_VALUE, TaskbarProgressbar.TaskbarProgressbarType.NORMAL);
+            });
+
         });
 
         WORK_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
@@ -467,6 +473,7 @@ public class MainLayoutController extends Controller{
         setFinishDialogListener();
         initTableViewSort();
         addToolTipForButton();
+        taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());;
     }
 
     private void addToolTipForButton() {

@@ -1,6 +1,7 @@
 package app.model;
 
 import app.CountDown;
+import app.TaskbarProgressbar;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,6 +26,7 @@ public class TomatoTask {
     private StringProperty startTimeString;
     private StringProperty endTimeString;
     private StringProperty dateString;
+
 
     public LocalDate getDate() {
         return date.get();

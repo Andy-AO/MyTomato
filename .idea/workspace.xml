@@ -6,15 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java" line="585" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java" line="576" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,14 +83,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="592" column="48" selection-start-line="592" selection-start-column="48" selection-end-line="592" selection-end-column="48" />
+            <state relative-caret-position="266">
+              <caret line="583" column="127" selection-start-line="583" selection-start-column="127" selection-end-line="583" selection-end-column="127" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3029#3030#0" expanded="true" />
-                <element signature="e#3061#3062#0" expanded="true" />
-                <element signature="e#3125#3126#0" expanded="true" />
-                <element signature="e#3167#3168#0" expanded="true" />
                 <element signature="e#3354#3355#0" expanded="true" />
                 <element signature="e#3400#3401#0" expanded="true" />
                 <element signature="e#6163#6164#0" expanded="true" />
@@ -104,6 +95,7 @@
                 <element signature="e#10086#10087#0" expanded="true" />
                 <element signature="e#10138#10139#0" expanded="true" />
                 <element signature="e#10182#10183#0" expanded="true" />
+                <element signature="e#18681#18682#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -519,12 +511,12 @@
       <workItem from="1571563041920" duration="1841000" />
       <workItem from="1571762197848" duration="9110000" />
       <workItem from="1571873825915" duration="10931000" />
-      <workItem from="1571895223868" duration="3889000" />
+      <workItem from="1571895223868" duration="4415000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52216000" />
+    <option name="totallyTimeSpent" value="52742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -939,14 +931,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="592" column="48" selection-start-line="592" selection-start-column="48" selection-end-line="592" selection-end-column="48" />
+        <state relative-caret-position="266">
+          <caret line="583" column="127" selection-start-line="583" selection-start-column="127" selection-end-line="583" selection-end-column="127" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3029#3030#0" expanded="true" />
-            <element signature="e#3061#3062#0" expanded="true" />
-            <element signature="e#3125#3126#0" expanded="true" />
-            <element signature="e#3167#3168#0" expanded="true" />
             <element signature="e#3354#3355#0" expanded="true" />
             <element signature="e#3400#3401#0" expanded="true" />
             <element signature="e#6163#6164#0" expanded="true" />
@@ -955,6 +943,7 @@
             <element signature="e#10086#10087#0" expanded="true" />
             <element signature="e#10138#10139#0" expanded="true" />
             <element signature="e#10182#10183#0" expanded="true" />
+            <element signature="e#18681#18682#0" expanded="true" />
           </folding>
         </state>
       </provider>

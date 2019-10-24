@@ -48,8 +48,6 @@ public class StackedPanes extends Application {
       createTitledPane("Red Fish"),
       createTitledPane("Blue Fish")
     );
-    //展开第1个
-    ((TitledPane) stackedTitledPanes.getChildren().get(0)).setExpanded(true);
     return stackedTitledPanes;
   }
 
@@ -78,7 +76,7 @@ public class StackedPanes extends Application {
     anchorPane.setPadding(new Insets(TABLE_VIEW_PADDING));
 
     TitledPane titledPane = new TitledPane(title, anchorPane);
-    titledPane.setExpanded(false);
+    titledPane.setExpanded(true);
 
     return titledPane;
   }

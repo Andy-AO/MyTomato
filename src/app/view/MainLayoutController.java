@@ -251,7 +251,7 @@ public class MainLayoutController extends Controller{
         RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
             Platform.runLater(()->{
-                taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.NORMAL);
+                taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.PAUSED);
             });
         });
 

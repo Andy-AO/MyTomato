@@ -7,9 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/res/json/tomatoTaskData.json" beforeDir="false" afterPath="$PROJECT_DIR$/res/json/tomatoTaskData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/properties/Settings.properties" beforeDir="false" afterPath="$PROJECT_DIR$/res/properties/Settings.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/CountDown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/CountDown.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/PlusDialog.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/view/PlusDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/view/MainLayoutController.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="155">
-              <caret line="208" column="4" lean-forward="true" selection-start-line="208" selection-start-column="4" selection-end-line="208" selection-end-column="4" />
+              <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2890#2891#0" expanded="true" />
@@ -147,6 +147,55 @@
                 <element signature="e#15470#15471#0" expanded="true" />
                 <element signature="e#15784#15785#0" expanded="true" />
                 <element signature="e#15853#15854#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/view/FinishDialogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-544">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/view/PlusDialog.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="9" column="105" selection-start-line="9" selection-start-column="105" selection-end-line="9" selection-end-column="105" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/view/PlusDialogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#467#468#0" expanded="true" />
+                <element signature="e#500#501#0" expanded="true" />
+                <element signature="e#758#759#0" expanded="true" />
+                <element signature="e#786#787#0" expanded="true" />
+                <element signature="e#827#828#0" expanded="true" />
+                <element signature="e#861#862#0" expanded="true" />
+                <element signature="e#900#901#0" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+                <element signature="e#985#986#0" expanded="true" />
+                <element signature="e#1027#1028#0" expanded="true" />
+                <element signature="e#1189#1190#0" expanded="true" />
+                <element signature="e#1229#1230#0" expanded="true" />
+                <element signature="e#1286#1287#0" expanded="true" />
+                <element signature="e#1320#1321#0" expanded="true" />
+                <element signature="e#1374#1375#0" expanded="true" />
+                <element signature="e#1423#1424#0" expanded="true" />
+                <element signature="e#1711#1712#0" expanded="true" />
+                <element signature="e#1753#1754#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -236,6 +285,8 @@
         <option value="$PROJECT_DIR$/src/app/TaskbarProgressbar.java" />
         <option value="$PROJECT_DIR$/src/app/CountDown.java" />
         <option value="$PROJECT_DIR$/src/app/view/MainLayoutController.java" />
+        <option value="$PROJECT_DIR$/src/app/view/PlusDialog.fxml" />
+        <option value="$PROJECT_DIR$/src/app/view/PlusDialogController.java" />
       </list>
     </option>
   </component>
@@ -341,7 +392,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571880894951" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571881094166" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/bridj-0.7.0.jar!/" />
@@ -360,13 +411,14 @@
       <recent name="PrefsDemo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaProject\MyTomato\src\app\view" />
       <recent name="D:\JavaProject\MyTomato\src\test" />
       <recent name="D:\MyTomato\res\image" />
       <recent name="D:\MyTomato\res\sound" />
       <recent name="D:\MyTomato\src\test" />
-      <recent name="D:\MyTomato\src\sample\View" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app.view" />
       <recent name="test" />
       <recent name="app" />
       <recent name="sample.View" />
@@ -558,18 +610,18 @@
       <workItem from="1571474881934" duration="267000" />
       <workItem from="1571563041920" duration="1841000" />
       <workItem from="1571762197848" duration="9110000" />
-      <workItem from="1571873825915" duration="5896000" />
+      <workItem from="1571873825915" duration="6290000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43292000" />
+    <option name="totallyTimeSpent" value="43686000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.24878049" visible="true" weight="0.31932095" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.24878049" visible="true" weight="0.31932095" />
       <window_info id="Structure" order="1" sideWeight="0.7512195" side_tool="true" weight="0.30962005" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -578,7 +630,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27972028" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27972028" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3986014" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -758,13 +810,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/view/FinishDialogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/TomatoTaskDataJson.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -919,7 +964,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
-          <caret line="208" column="4" lean-forward="true" selection-start-line="208" selection-start-column="4" selection-end-line="208" selection-end-column="4" />
+          <caret line="208" lean-forward="true" selection-start-line="208" selection-end-line="208" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2890#2891#0" expanded="true" />
@@ -966,6 +1011,49 @@
             <element signature="e#15470#15471#0" expanded="true" />
             <element signature="e#15784#15785#0" expanded="true" />
             <element signature="e#15853#15854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/FinishDialogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-544">
+          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/PlusDialog.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="9" column="105" selection-start-line="9" selection-start-column="105" selection-end-line="9" selection-end-column="105" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/view/PlusDialogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#758#759#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#827#828#0" expanded="true" />
+            <element signature="e#861#862#0" expanded="true" />
+            <element signature="e#900#901#0" expanded="true" />
+            <element signature="e#932#933#0" expanded="true" />
+            <element signature="e#985#986#0" expanded="true" />
+            <element signature="e#1027#1028#0" expanded="true" />
+            <element signature="e#1189#1190#0" expanded="true" />
+            <element signature="e#1229#1230#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1320#1321#0" expanded="true" />
+            <element signature="e#1374#1375#0" expanded="true" />
+            <element signature="e#1423#1424#0" expanded="true" />
+            <element signature="e#1711#1712#0" expanded="true" />
+            <element signature="e#1753#1754#0" expanded="true" />
           </folding>
         </state>
       </provider>

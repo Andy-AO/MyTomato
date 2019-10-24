@@ -206,7 +206,7 @@ public class MainLayoutController extends Controller{
     @FXML
     private void handlePlusButton() {
     }
-    
+
     @FXML
     private void handleAddButton() {
         main.getEditDialogController().loadNewTask();

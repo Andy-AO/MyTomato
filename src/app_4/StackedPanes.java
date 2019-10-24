@@ -30,7 +30,6 @@ public class StackedPanes extends Application {
     VBox stackedTitledPanes = createStackedTitledPanes();
 
     ScrollPane scroll = makeScrollable(stackedTitledPanes);
-    scroll.getStyleClass().add("stacked-titled-panes-scroll-pane");
     scroll.setPrefSize(410, 480);
 
     stage.setTitle("Fishy, fishy");
@@ -40,6 +39,7 @@ public class StackedPanes extends Application {
     stage.show();
   }
 
+  // VBox类似TitledPane的Stack
   private VBox createStackedTitledPanes() {
     final VBox stackedTitledPanes = new VBox();
     stackedTitledPanes.getChildren().setAll(
@@ -48,9 +48,8 @@ public class StackedPanes extends Application {
       createTitledPane("Red Fish"),
       createTitledPane("Blue Fish")
     );
+    //展开第1个
     ((TitledPane) stackedTitledPanes.getChildren().get(0)).setExpanded(true);
-    stackedTitledPanes.getStyleClass().add("stacked-titled-panes");
-
     return stackedTitledPanes;
   }
 

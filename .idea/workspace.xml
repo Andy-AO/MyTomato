@@ -65,12 +65,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app_4/StackedPanes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="234">
+              <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
               <folding>
                 <element signature="e#2348#2367#0" expanded="true" />
                 <element signature="e#2555#2574#0" expanded="true" />
                 <element signature="e#2493#2512#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/javafx-src.zip!/javafx/scene/Node.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="134">
+              <caret line="1045" column="40" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
+              <folding>
+                <element signature="e#44628#44629#0" expanded="true" />
+                <element signature="e#44661#44662#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -284,7 +297,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571959556548" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571959717000" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFXLearning" />
@@ -505,12 +518,12 @@
       <workItem from="1571762197848" duration="9110000" />
       <workItem from="1571873825915" duration="10931000" />
       <workItem from="1571895223868" duration="5198000" />
-      <workItem from="1571907510590" duration="8959000" />
+      <workItem from="1571907510590" duration="9277000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62484000" />
+    <option name="totallyTimeSpent" value="62802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -790,13 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="2880" column="22" selection-start-line="2880" selection-start-column="22" selection-end-line="2880" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/view/MainLayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
@@ -928,10 +934,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_221/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="1045" column="40" selection-start-line="1045" selection-start-column="40" selection-end-line="1045" selection-end-column="40" />
+          <folding>
+            <element signature="e#44628#44629#0" expanded="true" />
+            <element signature="e#44661#44662#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app_4/StackedPanes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        <state relative-caret-position="234">
+          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
           <folding>
             <element signature="e#2348#2367#0" expanded="true" />
             <element signature="e#2555#2574#0" expanded="true" />

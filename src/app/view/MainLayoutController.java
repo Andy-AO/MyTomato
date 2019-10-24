@@ -579,28 +579,32 @@ public class MainLayoutController extends Controller{
             // return a table cell , cell can setGraphic
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
                 return new TableCell<TomatoTask, String>() {
-                    private Text textControl;
-
+                    private Text textControl = null;
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
                         System.out.print("updateItem -> ");
                         System.out.println("item -> " + item);
                         if (!isEmpty()) {
-                            textControl = new Text(item);
-                            cellTexts.add(textControl);
-                            textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
-                            this.setWrapText(true);
-                            setGraphic(textControl);
-                            textControl.textProperty().addListener((observable, oldText, newText) -> {
-                                if ((newText == null) || (newText.isEmpty())) {
-                                    updateItem(newText, true);
-                                }
-                                else {
-                                    updateItem(newText, false);
-                                }
-
-                            });
+                            if(textControl == null){
+                                this.setWrapText(true);
+                                textControl = new Text(item);
+                                cellTexts.add(textControl);
+                                textControl.textProperty().addListener((observable, oldText, newText) -> {
+                                    if ((newText == null) || (newText.isEmpty())) {
+                                        updateItem(newText, true);
+                                    }
+                                    else {
+                                        updateItem(newText, false);
+                                    }
+                                });
+                                textControl.setWrappingWidth(nameColumn.getWidth() - CELL_TEXT_PAD);
+                                setGraphic(textControl);
+                            }
+                            else{
+                                textControl.setText(item);
+                            }
+                            tableView.refresh();
                         }
                     }
                 };

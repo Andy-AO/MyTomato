@@ -74,7 +74,9 @@ public class PlusDialogController extends Controller{
         main.getPlusDialogStage().close();
         inputString.set(textField.getCharacters().toString());
         main.getFinishDialogController().getTextField().setText(inputString.getValue());
-        addTasksMp3Player.playInNewThread();
+        if (getTextField().getText() != "") {
+            addTasksMp3Player.playInNewThread();
+        }
     }
 
     @Override

@@ -39,7 +39,7 @@ public class StackedPanes extends Application {
 
     stage.setTitle("Fishy, fishy");
     Scene scene = new Scene(scroll);
-    scene.getStylesheets().add(getClass().getResource("fishy-fishy.css").toExternalForm());
+
     stage.setScene(scene);
     stage.show();
   }
@@ -47,10 +47,10 @@ public class StackedPanes extends Application {
   private VBox createStackedTitledPanes() {
     final VBox stackedTitledPanes = new VBox();
     stackedTitledPanes.getChildren().setAll(
-      createTitledPane("One Fish",  GREEN_FISH),
-      createTitledPane("Two Fish",  YELLOW_FISH, GREEN_FISH),
-      createTitledPane("Red Fish",  RED_FISH),
-      createTitledPane("Blue Fish", BLUE_FISH)
+      createTitledPane("One Fish"),
+      createTitledPane("Two Fish"),
+      createTitledPane("Red Fish"),
+      createTitledPane("Blue Fish")
     );
     ((TitledPane) stackedTitledPanes.getChildren().get(0)).setExpanded(true);
     stackedTitledPanes.getStyleClass().add("stacked-titled-panes");
@@ -62,19 +62,21 @@ public class StackedPanes extends Application {
   private TableView<TomatoTask> createTableView() {
     TableView tableView = new TableView();
     TableColumn<TomatoTask,String> firstNameCol = new TableColumn<TomatoTask,String>("First Name");
-    tableView.getColumns().setAll(firstNameCol);
+    TableColumn<TomatoTask,String> secondNameCol = new TableColumn<TomatoTask,String>("Second Name");
+    tableView.getColumns().setAll(firstNameCol,secondNameCol);
     return tableView;
   }
 
 
-  public TitledPane createTitledPane(String title, Image... images) {
+  public TitledPane createTitledPane(String title) {
     FlowPane content = new FlowPane();
-    for (Image image: images) {
-      ImageView imageView = new ImageView(image);
-      content.getChildren().add(imageView);
 
-      FlowPane.setMargin(imageView, new Insets(10));
-    }
+    TableView<TomatoTask> tableView = createTableView();
+
+    content.getChildren().add(tableView);
+
+      FlowPane.setMargin(tableView, new Insets(10));
+
     content.setAlignment(Pos.TOP_CENTER);
     
     TitledPane pane = new TitledPane(title, content);

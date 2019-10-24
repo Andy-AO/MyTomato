@@ -7,9 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app_4/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app_4/StackedPanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app_4/StackedPanes.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,10 +64,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app_4/StackedPanes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="61" column="47" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="47" />
+            <state relative-caret-position="234">
+              <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
               <folding>
                 <element signature="e#2348#2367#0" expanded="true" />
+                <element signature="e#2555#2574#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -277,7 +275,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571919977032" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571920345362" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFXLearning" />
@@ -498,12 +496,12 @@
       <workItem from="1571762197848" duration="9110000" />
       <workItem from="1571873825915" duration="10931000" />
       <workItem from="1571895223868" duration="5198000" />
-      <workItem from="1571907510590" duration="7628000" />
+      <workItem from="1571907510590" duration="7878000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61153000" />
+    <option name="totallyTimeSpent" value="61403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -923,10 +921,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app_4/StackedPanes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="61" column="47" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="47" />
+        <state relative-caret-position="234">
+          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
           <folding>
             <element signature="e#2348#2367#0" expanded="true" />
+            <element signature="e#2555#2574#0" expanded="true" />
           </folding>
         </state>
       </provider>

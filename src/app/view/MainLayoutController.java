@@ -47,6 +47,8 @@ public class MainLayoutController extends Controller{
     @FXML
     private Button startOrStopButton;
     @FXML
+    private Button plusButton;
+    @FXML
     private Button addButton;
     @FXML
     private Button deleteButton;
@@ -201,6 +203,10 @@ public class MainLayoutController extends Controller{
 
     }
 
+    @FXML
+    private void handlePlusButton() {
+    }
+    
     @FXML
     private void handleAddButton() {
         main.getEditDialogController().loadNewTask();

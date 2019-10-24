@@ -120,7 +120,9 @@ public class CountDown {
         startTime = LocalTime.from(currentTime);
         endTime = LocalTime.from(currentTime).plus(duration);
         sumDuration = Duration.between(startTime, endTime);
+        System.out.println("sumDuration -> " + sumDuration);
         currentDuration = Duration.between(startTime, currentTime);
+        System.out.println("currentDuration -> " + currentDuration);
     }
 
     public static String formatDuration(Duration duration, Boolean alwaysPositive) {

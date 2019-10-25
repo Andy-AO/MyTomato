@@ -68,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="540" selection-start-line="540" selection-end-line="540" />
+            <state relative-caret-position="141">
+              <caret line="535" column="5" lean-forward="true" selection-start-line="535" selection-start-column="5" selection-end-line="535" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,11 +172,11 @@
         <option value="$PROJECT_DIR$/src/app/view/StackedPanes.java" />
         <option value="$PROJECT_DIR$/src/app/view/MainLayoutController.java" />
         <option value="$PROJECT_DIR$/src/app/view/Controller.java" />
-        <option value="$PROJECT_DIR$/src/app/Main.java" />
         <option value="$PROJECT_DIR$/src/app/view/PlusDialogController.java" />
         <option value="$PROJECT_DIR$/src/app/view/StackedPanesController.java" />
         <option value="$PROJECT_DIR$/src/app/node/ScrollPane.java" />
         <option value="$PROJECT_DIR$/src/app/control/ScrollPane.java" />
+        <option value="$PROJECT_DIR$/src/app/Main.java" />
       </list>
     </option>
   </component>
@@ -499,7 +499,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70598000" />
+    <option name="totallyTimeSpent" value="71054000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
@@ -902,8 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="540" selection-start-line="540" selection-end-line="540" />
+        <state relative-caret-position="141">
+          <caret line="535" column="5" lean-forward="true" selection-start-line="535" selection-start-column="5" selection-end-line="535" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

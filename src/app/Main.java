@@ -60,7 +60,7 @@ public class Main extends Application {
     private AnchorPane finishDialog;
     private ScrollPane stackedPanes;
     private FinishDialogController finishDialogController;
-    private TomatoTaskDataJson tomatoTaskDataJson;
+    private ListJson tomatoTaskDataJson;
     private MainLayoutController mainLayoutController;
     private RootLayoutController rootLayoutController;
     private TabPane settingDialog;
@@ -131,11 +131,11 @@ public class Main extends Application {
         this.finishDialog = finishDialog;
     }
 
-    public TomatoTaskDataJson getTomatoTaskDataJson() {
+    public ListJson getTomatoTaskDataJson() {
         return tomatoTaskDataJson;
     }
 
-    public void setTomatoTaskDataJson(TomatoTaskDataJson tomatoTaskDataJson) {
+    public void setTomatoTaskDataJson(ListJson tomatoTaskDataJson) {
         this.tomatoTaskDataJson = tomatoTaskDataJson;
     }
 
@@ -476,7 +476,7 @@ public class Main extends Application {
     }
 
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new TomatoTaskDataJson(TOMATO_TASKS,JSON_FILE);
+        tomatoTaskDataJson = new ListJson(TOMATO_TASKS,JSON_FILE);
         tomatoTaskDataJson.read();
         setTomatoTaskDataListener();
         setRedoTomatoTaskDataListener();

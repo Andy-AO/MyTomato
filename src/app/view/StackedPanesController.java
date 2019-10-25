@@ -58,65 +58,9 @@ public class StackedPanesController extends Controller {
     }
 
     public ScrollPane createScrollPane() {
-        createStackedTitledPanes();
-        scrollPane = makeScrollable(stackedTitledPanes);
-        scrollPane.setPrefSize(410, 480);
+        scrollPane = new ScrollPane();
         return scrollPane;
     }
 
-    // VBox类似TitledPane的Stack
-    private void createStackedTitledPanes() {
-        stackedTitledPanes = new VBox();
-        stackedTitledPanes.getChildren().setAll(
-                createTitledPane("One"),
-                createTitledPane("Two"),
-                createTitledPane("Three"),
-                createTitledPane("Four")
-        );
-    }
-
-
-    private TableView<TomatoTask> createTableView() {
-        TableView tableView = new TableView();
-        TableColumn<TomatoTask, String> startCol = new TableColumn<TomatoTask, String>("Start");
-        TableColumn<TomatoTask, String> endCol = new TableColumn<TomatoTask, String>("End");
-        TableColumn<TomatoTask, String> taskNameCol = new TableColumn<TomatoTask, String>("Task Name");
-        tableView.getColumns().setAll(startCol, endCol, taskNameCol);
-        return tableView;
-    }
-
-
-    public TitledPane createTitledPane(String title) {
-        AnchorPane anchorPane = new AnchorPane();
-
-        TableView<TomatoTask> tableView = createTableView();
-
-        anchorPane.getChildren().add(tableView);
-
-        AnchorPane.setBottomAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setLeftAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setRightAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setTopAnchor(tableView, TABLE_VIEW_MARGIN);
-        anchorPane.setPadding(new Insets(TABLE_VIEW_PADDING));
-
-        TitledPane titledPane = new TitledPane(title, anchorPane);
-
-        //全部展开
-        titledPane.setExpanded(true);
-
-        return titledPane;
-    }
-
-    private ScrollPane makeScrollable(final VBox node) {
-        final ScrollPane scroll = new ScrollPane();
-        scroll.setContent(node);
-        scroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
-                node.setPrefWidth(bounds.getWidth());
-            }
-        });
-        return scroll;
-    }
 
 }

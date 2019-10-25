@@ -15,28 +15,24 @@ import java.util.List;
 public class ListJson implements Json {
 
     private final String EMPTY_MAP_STRING = "[]";
-    private String jsonPath;
+    private final File jsonFile;
     private List<TomatoTask> data;
-
-    public String getJsonPath() {
-        return jsonPath;
-    }
 
     public List<TomatoTask> getData() {
         return data;
     }
 
-    public ListJson(List<TomatoTask> data, String jsonPath) {
-        this.jsonPath = jsonPath;
+    public ListJson(List<TomatoTask> data, File jsonFile) {
+        System.out.println("jsonFile:" + jsonFile.getAbsolutePath());
+        this.jsonFile = jsonFile;
         this.data = data;
     }
 
     public String readString() {
-        File jsonFile = new File(jsonPath);
         System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
         String jsonString = "";
-        try (FileReader fileReader = new FileReader(jsonPath)) {
+        try (FileReader fileReader = new FileReader(jsonFile)) {
             fileReader.read(json);
             jsonString = new String(json);
         } catch (FileNotFoundException e) {
@@ -49,11 +45,10 @@ public class ListJson implements Json {
         }
     }
 
-    @Override
     public String write() {
         ArrayList tomatoTaskList = new ArrayList(data);
         String json = JSON.toJSONString(tomatoTaskList);
-        try (FileWriter fileWriter = new FileWriter(jsonPath)) {
+        try (FileWriter fileWriter = new FileWriter(jsonFile)) {
             fileWriter.write(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +57,6 @@ public class ListJson implements Json {
         }
     }
 
-    @Override
     public void read() {
         this.data.clear();
         String jsonString = readString();

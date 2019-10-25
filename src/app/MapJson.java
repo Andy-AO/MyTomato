@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
+import java.io.File;
 import java.time.LocalDate;
 
 public class MapJson implements Json{
@@ -12,14 +13,14 @@ public class MapJson implements Json{
     private final ObservableList<TomatoTask> listData = FXCollections.observableArrayList();
     private final ObservableMap<LocalDate, ObservableList<TomatoTask>> mapData;
 
-    private final String path;
+    private final File jsonFile;
 
     private final ListJson listJson;
 
-    public MapJson(ObservableMap<LocalDate, ObservableList<TomatoTask>> mapData, String path) {
+    public MapJson(ObservableMap<LocalDate, ObservableList<TomatoTask>> mapData, File jsonFile) {
         this.mapData = mapData;
-        this.path = path;
-        this.listJson = new ListJson(listData, this.path);
+        this.jsonFile = jsonFile;
+        this.listJson = new ListJson(listData, jsonFile);
     }
 
     @Override

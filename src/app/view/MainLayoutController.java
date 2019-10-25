@@ -96,7 +96,7 @@ public class MainLayoutController extends Controller {
 
 
 
-    private static final Double STACKED_PANE_MARGIN = 10.0;
+    private static final Double STACKED_PANE_MARGIN = 5.0;
     private static final Double STACKED_PANE_MARGIN_TOP = 80.0;
 
     public TableColumn<TomatoTask, String> getStartColumn() {

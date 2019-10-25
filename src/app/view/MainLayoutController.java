@@ -24,6 +24,9 @@ import java.util.List;
 
 public class MainLayoutController extends Controller {
 
+
+//--------------------------------------- Field
+
     public static final String START = "Start";
     public static final String STOP = "Stop";
 
@@ -99,6 +102,42 @@ public class MainLayoutController extends Controller {
     private static final Double STACKED_PANE_MARGIN = 5.0;
     private static final Double STACKED_PANE_MARGIN_TOP = 80.0;
 
+//--------------------------------------- Getter Setter
+
+
+    public Button getStartOrStopButton() {
+        return startOrStopButton;
+    }
+
+    public void setStartOrStopButton(Button startOrStopButton) {
+        this.startOrStopButton = startOrStopButton;
+    }
+
+    public Button getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(Button addButton) {
+        this.addButton = addButton;
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public void setDeleteButton(Button deleteButton) {
+        this.deleteButton = deleteButton;
+    }
+
+    public Button getPlusButton() {
+        return plusButton;
+    }
+
+    public void setPlusButton(Button plusButton) {
+        this.plusButton = plusButton;
+    }
+
+
     public TableColumn<TomatoTask, String> getStartColumn() {
         return startColumn;
     }
@@ -131,9 +170,14 @@ public class MainLayoutController extends Controller {
         this.dateColumn = dateColumn;
     }
 
-    @FXML
-    private void initialize() {
+    public Mp3Player getWorkDurationMp3Player() {
+        return workDurationMp3Player;
     }
+
+    public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
+        this.workDurationMp3Player = workDurationMp3Player;
+    }
+
 
     public TableView<TomatoTask> getTableView() {
         return tableView;
@@ -142,6 +186,8 @@ public class MainLayoutController extends Controller {
     public void setTableView(TableView<TomatoTask> tableView) {
         this.tableView = tableView;
     }
+
+//---------------------------------------handle
 
     @FXML
     private void handleEditButton() {
@@ -170,14 +216,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-    private void deleteButtonBind() {
-        tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            int selectedIndex = (Integer) newValue;
-            boolean disable = selectedIndex < 0;
-            deleteButton.setDisable(disable);
-        });
-
-    }
 
     @FXML
     void handleDeleteButton() {
@@ -207,6 +245,80 @@ public class MainLayoutController extends Controller {
         main.startEditDialogAndWait("添加新任务");
     }
 
+
+    @FXML
+    private void handleStartOrStopButton() {
+        if (startOrStopButton.getText().equals(START)) {
+            handleStartButton();
+        } else if (startOrStopButton.getText().equals(STOP)) {
+            handleStopButton();
+        }
+    }
+
+    private void handleStopButton() {
+        if (!(WORK_COUNT_DOWN.getFinished())) {
+            WORK_COUNT_DOWN.cancel();
+            workDurationMp3Player.close();
+        }
+
+        if (!(RESPITE_COUNT_DOWN.getFinished())) {
+            RESPITE_COUNT_DOWN.cancel();
+            respiteDurationMp3Player.close();
+        }
+
+    }
+
+    private void handleStartButton() {
+        new Thread(() -> WORK_COUNT_DOWN.start()).start();
+        workDurationMp3Player.repeatPlayInNewThread();
+    }
+
+
+
+    private void handleWorkFinished() {
+        handleWorkFinished(true);
+    }
+
+    private void handleWorkFinished(boolean ableMusic) {
+        workDurationMp3Player.close();
+        if (ableMusic)
+            workFinishedMp3Player.playInNewThread();
+        Platform.runLater(() -> {
+            getStartOrStopButton().setDisable(true);
+            main.startFinishDialogAndWait();
+            getStartOrStopButton().setDisable(false);
+        });
+    }
+
+
+//--------------------------------------- Bind setSetting
+
+
+    private void setFinishDialogListener() {
+        main.getFinishDialogController().inputStringProperty().addListener((observable, oldValue, newValue) -> {
+            String taskName = newValue;
+            if ((taskName == null)) {
+                System.out.println("taskName is null,in FinishDialogListener");
+                return;
+            }
+            addTaskNameAfterFinished(taskName);
+        });
+    }
+    
+    private void sizeBind() {
+        nameColumnSizeBind();
+        anchorSizeBindAndInit();
+    }
+
+    private void deleteButtonBind() {
+        tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            int selectedIndex = (Integer) newValue;
+            boolean disable = selectedIndex < 0;
+            deleteButton.setDisable(disable);
+        });
+
+    }
+
     private void setSettingListenerAndSetDuration() {
         boolean checked = main.getSettingDialogController().getDevelopmentCheckBox().isSelected();
         developmentMode(checked);
@@ -219,22 +331,44 @@ public class MainLayoutController extends Controller {
         });
     }
 
-    private void developmentMode(Boolean newValue) {
-        if (newValue) {
-            WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-            RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-        } else {
-            WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
-            RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
-        }
+
+    private void nameColumnSizeBind() {
+
+        tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double otherColumnWidth = dateColumn.getWidth()
+                    + endColumn.getWidth()
+                    + startColumn.getWidth();
+            double nameColumnWidth = (double) newValue - otherColumnWidth;
+            nameColumn.setPrefWidth(nameColumnWidth);
+        });
     }
 
-    public Mp3Player getWorkDurationMp3Player() {
-        return workDurationMp3Player;
+
+    private void anchorSizeBindAndInit() {
+        anchorWidthBindAndInit();
+        anchorHeightBindAndInit();
     }
 
-    public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
-        this.workDurationMp3Player = workDurationMp3Player;
+    private void anchorHeightBindAndInit() {
+        String heightString = PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
+        double height = Double.parseDouble(heightString);
+        anchorPane.setPrefHeight(height);
+
+        anchorPane.heightProperty().addListener((observable, oldValue, newValue) -> {
+            double anchorHeight = (Double) newValue;
+            PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
+        });
+    }
+
+    private void anchorWidthBindAndInit() {
+        String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
+        double width = Double.parseDouble(widthString);
+        anchorPane.setPrefWidth(width);
+
+        anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double anchorWidth = (Double) newValue;
+            PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
+        });
     }
 
     private void setRespiteCountDownListener() {
@@ -279,37 +413,6 @@ public class MainLayoutController extends Controller {
 
     }
 
-    public Button getStartOrStopButton() {
-        return startOrStopButton;
-    }
-
-    public void setStartOrStopButton(Button startOrStopButton) {
-        this.startOrStopButton = startOrStopButton;
-    }
-
-    public Button getAddButton() {
-        return addButton;
-    }
-
-    public void setAddButton(Button addButton) {
-        this.addButton = addButton;
-    }
-
-    public Button getDeleteButton() {
-        return deleteButton;
-    }
-
-    public void setDeleteButton(Button deleteButton) {
-        this.deleteButton = deleteButton;
-    }
-
-    public Button getPlusButton() {
-        return plusButton;
-    }
-
-    public void setPlusButton(Button plusButton) {
-        this.plusButton = plusButton;
-    }
 
     private void setWorkCountDownListener() {
         WORK_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
@@ -345,20 +448,20 @@ public class MainLayoutController extends Controller {
         });
     }
 
-    private void handleWorkFinished() {
-        handleWorkFinished(true);
+
+//--------------------------------------- Method
+
+    private void developmentMode(Boolean newValue) {
+        if (newValue) {
+            WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
+            RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
+        } else {
+            WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
+            RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
+        }
     }
 
-    private void handleWorkFinished(boolean ableMusic) {
-        workDurationMp3Player.close();
-        if (ableMusic)
-            workFinishedMp3Player.playInNewThread();
-        Platform.runLater(() -> {
-            getStartOrStopButton().setDisable(true);
-            main.startFinishDialogAndWait();
-            getStartOrStopButton().setDisable(false);
-        });
-    }
+
 
     private void addTaskNameAfterFinished(String taskName) {
         if ((taskName == null)) {
@@ -387,76 +490,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-    private void nameColumnSizeBind() {
-
-        tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double otherColumnWidth = dateColumn.getWidth()
-                    + endColumn.getWidth()
-                    + startColumn.getWidth();
-            double nameColumnWidth = (double) newValue - otherColumnWidth;
-            nameColumn.setPrefWidth(nameColumnWidth);
-        });
-    }
-
-
-    private void anchorSizeBindAndInit() {
-        anchorWidthBindAndInit();
-        anchorHeightBindAndInit();
-    }
-
-    private void anchorHeightBindAndInit() {
-        String heightString = PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
-        double height = Double.parseDouble(heightString);
-        anchorPane.setPrefHeight(height);
-
-        anchorPane.heightProperty().addListener((observable, oldValue, newValue) -> {
-            double anchorHeight = (Double) newValue;
-            PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
-        });
-    }
-
-    private void anchorWidthBindAndInit() {
-        String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
-        double width = Double.parseDouble(widthString);
-        anchorPane.setPrefWidth(width);
-
-        anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double anchorWidth = (Double) newValue;
-            PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
-        });
-    }
-
-
-    @FXML
-    private void handleStartOrStopButton() {
-        if (startOrStopButton.getText().equals(START)) {
-            handleStartButton();
-        } else if (startOrStopButton.getText().equals(STOP)) {
-            handleStopButton();
-        }
-    }
-
-    private void handleStopButton() {
-        if (!(WORK_COUNT_DOWN.getFinished())) {
-            WORK_COUNT_DOWN.cancel();
-            workDurationMp3Player.close();
-        }
-
-        if (!(RESPITE_COUNT_DOWN.getFinished())) {
-            RESPITE_COUNT_DOWN.cancel();
-            respiteDurationMp3Player.close();
-        }
-
-    }
-
-    private void handleStartButton() {
-        new Thread(() -> WORK_COUNT_DOWN.start()).start();
-        workDurationMp3Player.repeatPlayInNewThread();
-    }
-
-
-    public MainLayoutController() {
-    }
 
     @Override
     public void setMainAndInit(Main main) {
@@ -543,10 +576,7 @@ public class MainLayoutController extends Controller {
         return taskAmount;
     }
 
-    private void sizeBind() {
-        nameColumnSizeBind();
-        anchorSizeBindAndInit();
-    }
+
 
     private void initTable() {
 
@@ -583,16 +613,6 @@ public class MainLayoutController extends Controller {
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
-    private void setFinishDialogListener() {
-        main.getFinishDialogController().inputStringProperty().addListener((observable, oldValue, newValue) -> {
-            String taskName = newValue;
-            if ((taskName == null)) {
-                System.out.println("taskName is null,in FinishDialogListener");
-                return;
-            }
-            addTaskNameAfterFinished(taskName);
-        });
-    }
 
     private void initCountDownText() {
         progressText.setText("");

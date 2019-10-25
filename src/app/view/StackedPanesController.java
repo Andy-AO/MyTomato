@@ -2,19 +2,16 @@ package app.view;
 
 import app.Main;
 import app.model.TomatoTask;
-import javafx.application.Application;
+import app.control.ScrollPane;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 /**
  * Demonstrates placing multiple TitledPanes in a VBox so that each pane
@@ -57,6 +54,7 @@ public class StackedPanesController extends Controller {
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);
+        scrollPane.setItems(main.getTOMATO_TASKS());
     }
 
     public ScrollPane createScrollPane() {

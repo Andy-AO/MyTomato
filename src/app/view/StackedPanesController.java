@@ -1,5 +1,6 @@
 package app.view;
 
+import app.Main;
 import app.model.TomatoTask;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
  * can open and close independently of every other pane (unlike an Accordion,
  * which only allows a single pane to be open at a time).
  */
-public class StackedPanesController {
+public class StackedPanesController extends Controller {
 
 
 //--------------------------------------- Field
@@ -51,6 +52,11 @@ public class StackedPanesController {
 //---------------------------------------
 
     public StackedPanesController() {
+    }
+
+    @Override
+    public void setMainAndInit(Main main) {
+        super.setMainAndInit(main);
     }
 
     public ScrollPane createScrollPane() {

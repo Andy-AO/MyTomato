@@ -209,6 +209,7 @@ public class Main extends Application {
         rootLayoutController.setMainAndInit(this);
         settingDialogController.setMainAndInit(this);
         editDialogController.setMainAndInit(this);
+        stackedPanesController.setMainAndInit(this);
         
     }
 

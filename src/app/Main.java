@@ -309,7 +309,7 @@ public class Main extends Application {
 
     private void loadStackedPanes() {
         stackedPanesController = new StackedPanesController();
-        stackedPanes = stackedPanesController.getStackedPanes();
+        stackedPanes = stackedPanesController.createScrollPane();
     }
 
     public Stage getPlusDialogStage() {

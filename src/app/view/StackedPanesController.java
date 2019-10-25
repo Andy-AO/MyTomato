@@ -22,29 +22,53 @@ import javafx.stage.Stage;
  */
 public class StackedPanesController {
 
+
+//--------------------------------------- Field
+
     public static final double TABLE_VIEW_MARGIN = 0;
     public static final int TABLE_VIEW_PADDING = 0;
+    private VBox stackedTitledPanes;
+    private ScrollPane scrollPane;
+
+//--------------------------------------- Getter Setter
+
+    public VBox getStackedTitledPanes() {
+        return stackedTitledPanes;
+    }
+
+    public void setStackedTitledPanes(VBox stackedTitledPanes) {
+        this.stackedTitledPanes = stackedTitledPanes;
+    }
+
+    public ScrollPane getScrollPane() {
+        return scrollPane;
+    }
+
+    public void setScrollPane(ScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
+    }
+
+//---------------------------------------
 
     public StackedPanesController() {
     }
 
-    public ScrollPane getStackedPanes() {
-        VBox stackedTitledPanes = createStackedTitledPanes();
-        ScrollPane scrollPane = makeScrollable(stackedTitledPanes);
+    public ScrollPane createScrollPane() {
+        createStackedTitledPanes();
+        scrollPane = makeScrollable(stackedTitledPanes);
         scrollPane.setPrefSize(410, 480);
         return scrollPane;
     }
 
     // VBox类似TitledPane的Stack
-    private VBox createStackedTitledPanes() {
-        final VBox stackedTitledPanes = new VBox();
+    private void createStackedTitledPanes() {
+        stackedTitledPanes = new VBox();
         stackedTitledPanes.getChildren().setAll(
                 createTitledPane("One Fish"),
                 createTitledPane("Two Fish"),
                 createTitledPane("Red Fish"),
                 createTitledPane("Blue Fish")
         );
-        return stackedTitledPanes;
     }
 
 
@@ -91,7 +115,4 @@ public class StackedPanesController {
         return scroll;
     }
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
 }

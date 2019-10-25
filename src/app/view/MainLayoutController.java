@@ -304,7 +304,7 @@ public class MainLayoutController extends Controller {
             addTaskNameAfterFinished(taskName);
         });
     }
-    
+
     private void sizeBind() {
         nameColumnSizeBind();
         anchorSizeBindAndInit();

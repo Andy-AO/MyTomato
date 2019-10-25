@@ -8,6 +8,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,11 +26,15 @@ import javafx.stage.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main extends Application {
 
     public static final int PRIMARY_STAGE_MIN_WIDTH = 415 ;
+    private static final ObservableMap<LocalDate, ObservableList<TomatoTask>> TOMATO_TASKS_MAP = FXCollections.observableMap(new HashMap());
+
 
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
@@ -46,6 +51,7 @@ public class Main extends Application {
     private AnchorPane plusDialog;
     private PlusDialogController plusDialogController;
     private StackedPanesController stackedPanesController;
+    private MapJson tomatoTaskDataMapJson;
 
     private static String getResURLString() {
         return Main.getResURIString();
@@ -475,9 +481,17 @@ public class Main extends Application {
         intiTomatoTaskData();
     }
 
+    public static ObservableMap<LocalDate, ObservableList<TomatoTask>> getTomatoTasksMap() {
+        return TOMATO_TASKS_MAP;
+    }
+
     private void intiTomatoTaskData() {
         tomatoTaskDataJson = new ListJson(TOMATO_TASKS,JSON_FILE);
         tomatoTaskDataJson.read();
+
+        tomatoTaskDataMapJson = new MapJson(TOMATO_TASKS_MAP,JSON_FILE);
+        tomatoTaskDataMapJson.read();
+
         setTomatoTaskDataListener();
         setRedoTomatoTaskDataListener();
     }

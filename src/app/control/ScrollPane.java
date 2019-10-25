@@ -8,7 +8,11 @@ import java.time.LocalDate;
 
 public class ScrollPane extends  javafx.scene.control.ScrollPane{
 
+//--------------------------------------- Field
+
     private ObservableMap<LocalDate, ObservableList<TomatoTask>> Items = null;
+
+//--------------------------------------- GS
 
     public ObservableMap<LocalDate, ObservableList<TomatoTask>> getItems() {
         return Items;
@@ -17,4 +21,8 @@ public class ScrollPane extends  javafx.scene.control.ScrollPane{
     public void setItems(ObservableMap<LocalDate, ObservableList<TomatoTask>> items) {
         Items = items;
     }
+
+//--------------------------------------- Method
+
+
 }

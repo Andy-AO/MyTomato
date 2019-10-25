@@ -68,10 +68,10 @@ public class StackedPanesController extends Controller {
     private void createStackedTitledPanes() {
         stackedTitledPanes = new VBox();
         stackedTitledPanes.getChildren().setAll(
-                createTitledPane("One Fish"),
-                createTitledPane("Two Fish"),
-                createTitledPane("Red Fish"),
-                createTitledPane("Blue Fish")
+                createTitledPane("One"),
+                createTitledPane("Two"),
+                createTitledPane("Three"),
+                createTitledPane("Four")
         );
     }
 

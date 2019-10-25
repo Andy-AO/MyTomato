@@ -49,7 +49,7 @@ public class StackedPanesController extends Controller {
         this.scrollPane = scrollPane;
     }
 
-//---------------------------------------
+//--------------------------------------- Method
 
     public StackedPanesController() {
     }

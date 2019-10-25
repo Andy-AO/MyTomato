@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="108.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.PlusDialogController">
+<AnchorPane fx:id="anchorPane" prefHeight="108.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.view.PlusDialogController">
    <children>
       <Label fx:id="label" layoutX="25.0" layoutY="14.0" prefHeight="27.0" prefWidth="167.0" text="提前添加任务：" />
       <TextField fx:id="textField" layoutX="25.0" layoutY="50.0" onAction="#handleTextField" prefHeight="23.0" prefWidth="314.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />

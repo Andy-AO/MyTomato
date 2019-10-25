@@ -23,6 +23,7 @@ public class PlusDialogController extends Controller{
 
 
     private Mp3Player addTasksMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/add_tasks_ahead_of_time.mp3"));
+    private String tempFieldText;
 
 
     @FXML
@@ -77,13 +78,22 @@ public class PlusDialogController extends Controller{
         main.getPlusDialogStage().close();
         inputString.set(textField.getCharacters().toString());
         main.getFinishDialogController().getTextField().setText(inputString.getValue());
-        if (getTextField().getText() != "") {
+        if ((getTextField().getText() != "")&&(!getTextField().getText().equals(getTempFieldText()))) {
             addTasksMp3Player.playInNewThread();
         }
+        saveTempFieldText();
     }
 
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);
+    }
+
+    private void saveTempFieldText() {
+        tempFieldText = getTextField().getText();
+    }
+
+    public String getTempFieldText() {
+        return tempFieldText;
     }
 }

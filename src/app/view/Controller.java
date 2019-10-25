@@ -7,4 +7,5 @@ public abstract class  Controller {
     public void setMainAndInit(Main main) {
         this.main = main;
     }
+
 }

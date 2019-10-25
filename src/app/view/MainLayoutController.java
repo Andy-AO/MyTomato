@@ -594,17 +594,14 @@ public class MainLayoutController extends Controller {
 
 
         tableView.setItems(main.getTOMATO_TASKS());
-        //setCellValueFactory
+
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
-        //setCellValueFactory
         nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
-
             @Override
-            // return a table cell , cell can setGraphic
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
                 return new TextWrapCell<>();
             }

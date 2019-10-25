@@ -27,7 +27,6 @@ public class MainLayoutController extends Controller {
     public static final String START = "Start";
     public static final String STOP = "Stop";
 
-
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
     @FXML
@@ -94,6 +93,11 @@ public class MainLayoutController extends Controller {
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
     private Thread showRedoBarAndSleepThread;
+
+
+
+    private static final Double STACKED_PANE_MARGIN = 10.0;
+    private static final Double STACKED_PANE_MARGIN_TOP = 80.0;
 
     public TableColumn<TomatoTask, String> getStartColumn() {
         return startColumn;
@@ -470,8 +474,22 @@ public class MainLayoutController extends Controller {
         setFinishDialogListener();
         initTableViewSort();
         addToolTipForButton();
+        setStackedPanes();
         taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
 
+    }
+
+    private void setStackedPanes() {
+
+        main.getStackedPanes().setPrefHeight(240.0);
+
+        AnchorPane.setTopAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN_TOP);
+
+        AnchorPane.setBottomAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN);
+        AnchorPane.setLeftAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN);
+        AnchorPane.setRightAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN);
+
+        anchorPane.getChildren().add(main.getStackedPanes());
     }
 
 

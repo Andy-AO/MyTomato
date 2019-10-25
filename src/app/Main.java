@@ -290,6 +290,23 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+
+    public StackedPanesController getStackedPanesController() {
+        return stackedPanesController;
+    }
+
+    public void setStackedPanesController(StackedPanesController stackedPanesController) {
+        this.stackedPanesController = stackedPanesController;
+    }
+
+    public ScrollPane getStackedPanes() {
+        return stackedPanes;
+    }
+
+    public void setStackedPanes(ScrollPane stackedPanes) {
+        this.stackedPanes = stackedPanes;
+    }
+
     private void loadStackedPanes() {
         stackedPanesController = new StackedPanesController();
         stackedPanes = stackedPanesController.getStackedPanes();

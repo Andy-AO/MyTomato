@@ -1,14 +1,14 @@
 package app.view;
 
 import app.Main;
-import app.control.ScrollPane;
+import app.control.mytomato.StackedPanes;
 
 public class StackedPanesController extends Controller {
 
 
 //--------------------------------------- Field
 
-    private ScrollPane scrollPane;
+    private StackedPanes scrollPane;
 
 //--------------------------------------- Getter Setter
 //--------------------------------------- Method
@@ -22,8 +22,8 @@ public class StackedPanesController extends Controller {
         scrollPane.setItems(main.getTomatoTasksMap());
     }
 
-    public ScrollPane createScrollPane() {
-        scrollPane = new ScrollPane();
+    public StackedPanes createScrollPane() {
+        scrollPane = new StackedPanes();
         return scrollPane;
     }
 

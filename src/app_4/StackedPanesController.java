@@ -1,7 +1,7 @@
 package app_4;
 
 import app.Main;
-import app.control.ScrollPane;
+import app.control.StackedPanes;
 import app.model.TomatoTask;
 import app.view.Controller;
 import javafx.beans.value.ChangeListener;
@@ -27,7 +27,7 @@ public class StackedPanesController extends Controller {
     public static final double TABLE_VIEW_MARGIN = 0;
     public static final int TABLE_VIEW_PADDING = 0;
     private VBox stackedTitledPanes;
-    private ScrollPane scrollPane;
+    private StackedPanes scrollPane;
 
 //--------------------------------------- Getter Setter
 
@@ -39,11 +39,11 @@ public class StackedPanesController extends Controller {
         this.stackedTitledPanes = stackedTitledPanes;
     }
 
-    public ScrollPane getScrollPane() {
+    public StackedPanes getScrollPane() {
         return scrollPane;
     }
 
-    public void setScrollPane(ScrollPane scrollPane) {
+    public void setScrollPane(StackedPanes scrollPane) {
         this.scrollPane = scrollPane;
     }
 
@@ -58,7 +58,7 @@ public class StackedPanesController extends Controller {
         scrollPane.setItems(main.getTomatoTasksMap());
     }
 
-    public ScrollPane createScrollPane() {
+    public StackedPanes createScrollPane() {
         createStackedTitledPanes();
         scrollPane = makeScrollable(stackedTitledPanes);
         scrollPane.setPrefSize(410, 480);
@@ -108,8 +108,8 @@ public class StackedPanesController extends Controller {
         return titledPane;
     }
 
-    private ScrollPane makeScrollable(final VBox node) {
-        final ScrollPane scroll = new ScrollPane();
+    private StackedPanes makeScrollable(final VBox node) {
+        final StackedPanes scroll = new StackedPanes();
         scroll.setContent(node);
         scroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
             @Override

@@ -1,4 +1,4 @@
-package app.control;
+package app.control.mytomato;
 
 import app.TextWrapCell;
 import app.model.TomatoTask;
@@ -7,7 +7,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
@@ -24,7 +23,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     public static final int TABLE_VIEW_PADDING = 0;
 
     private AnchorPane anchorPane;
-    private TableView<TomatoTask> tableView;
+    private TableView tableView;
     private TableColumn<TomatoTask, String> nameColumn;
     private TableColumn<TomatoTask, String> endColumn;
     private TableColumn<TomatoTask, String> startColumn;
@@ -74,7 +73,6 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-
         nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
             @Override
             public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {

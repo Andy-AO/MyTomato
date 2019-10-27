@@ -1,6 +1,5 @@
 package app.control.mytomato;
 
-import app.control.TitledPane;
 import app.model.TomatoTask;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;

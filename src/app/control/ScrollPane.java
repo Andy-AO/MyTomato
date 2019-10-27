@@ -29,10 +29,6 @@ public class ScrollPane extends  javafx.scene.control.ScrollPane{
         });
     }
 
-    public ObservableMap<LocalDate, ObservableList<TomatoTask>> getItems() {
-        return items;
-    }
-
     public void setItems(ObservableMap<LocalDate, ObservableList<TomatoTask>> items) {
         this.items = items;
         this.items.forEach((localDate,list)->{

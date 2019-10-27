@@ -14,15 +14,25 @@ import javafx.util.Callback;
 import java.time.LocalDate;
 
 public class TitledPane extends javafx.scene.control.TitledPane {
+
+
+    //--------------------------------------- Field
+
     private final LocalDate LOCAL_DATE;
-    private ObservableList<TomatoTask> list = null;
-    private AnchorPane anchorPane;
+
     public static final double TABLE_VIEW_MARGIN = 0;
     public static final int TABLE_VIEW_PADDING = 0;
+
+    private AnchorPane anchorPane;
     private TableView<TomatoTask> tableView;
     private TableColumn<TomatoTask, String> nameColumn;
     private TableColumn<TomatoTask, String> endColumn;
     private TableColumn<TomatoTask, String> startColumn;
+
+    private ObservableList<TomatoTask> list = null;
+    //--------------------------------------- GS
+
+    //--------------------------------------- Method
 
     public TitledPane(LocalDate localDate) {
         this.LOCAL_DATE = localDate;
@@ -80,11 +90,8 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         nameColumn = new TableColumn<>("Task Name");
         tableView.getColumns().setAll(startColumn, endColumn, nameColumn);
     }
-//--------------------------------------- Field
 
-//--------------------------------------- GS
 
-//--------------------------------------- Method
 
 
 }

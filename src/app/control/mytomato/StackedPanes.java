@@ -112,7 +112,6 @@ public class StackedPanes extends app.control.StackedPanes {
     }
 
 
-
     private void showItemsList() {
         this.itemsList.forEach((list) -> {
             if (!list.isEmpty()) {
@@ -125,28 +124,41 @@ public class StackedPanes extends app.control.StackedPanes {
     private TitledPane creatTitledPane(ObservableList<TomatoTask> list) {
         TitledPane titledPane = new TitledPane(list.get(0).getDate());
         titledPane.setItems(list);
+        titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getStartColumn());
+        titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getEndColumn());
         list.addListener(new ListChangeListener<TomatoTask>() {
             @Override
-            public void onChanged(Change<? extends TomatoTask> c) {
+            public void onChanged(Change<? extends TomatoTask> change) {
                 if (list.isEmpty()) {
                     removeTitledPane(titledPane);
                 }
-                setTitledPaneChange(c);
+                setTitledPaneChange(change);
+
+                if (change.next()) {
+                    List removedItems = change.getRemoved();
+                    List addedSubList = change.getAddedSubList();
+                    boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
+                    if(sortAble){
+                        titledPane.getTableView().sort();
+                    }
+                }
+
             }
         });
+
         titledPane.getTableView().focusedProperty().addListener((observable, oldFocused, newFocused) -> {
-            if(newFocused)
+            if (newFocused)
                 setFocusedTableView(titledPane.getTableView());
         });
 
-         titledPane.getTableView().setOnMousePressed((event -> {
-             //检测双击事件
-             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                 TomatoTask specifiedTask = titledPane.getTableView().getSelectionModel().getSelectedItem();
-                 stackedPanesController.main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
-                 stackedPanesController.main.startEditDialogAndWait("修改任务");
-             }
-         }));
+        titledPane.getTableView().setOnMousePressed((event -> {
+            //检测双击事件
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                TomatoTask specifiedTask = titledPane.getTableView().getSelectionModel().getSelectedItem();
+                stackedPanesController.main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
+                stackedPanesController.main.startEditDialogAndWait("修改任务");
+            }
+        }));
 
         return titledPane;
     }

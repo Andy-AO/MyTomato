@@ -10,11 +10,23 @@ import javafx.util.Callback;
 
 public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
-    public static final int START_AND_END_COLUMN_MIN_WIDTH = 38;
+    public static final int START_AND_END_COLUMN_MIN_WIDTH = 48;
     public static final int SCROLL_WIDTH = 2;
     private TableColumn<TomatoTask, String> nameColumn;
     private TableColumn<TomatoTask, String> endColumn;
     private TableColumn<TomatoTask, String> startColumn;
+
+    public TableColumn<TomatoTask, String> getNameColumn() {
+        return nameColumn;
+    }
+
+    public TableColumn<TomatoTask, String> getEndColumn() {
+        return endColumn;
+    }
+
+    public TableColumn<TomatoTask, String> getStartColumn() {
+        return startColumn;
+    }
 
     public TableView() {
         createTableColumn();
@@ -23,6 +35,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
         this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         setTableViewCell();
     }
+
 
     private void setColumn() {
         startColumn.setMinWidth(START_AND_END_COLUMN_MIN_WIDTH);

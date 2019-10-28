@@ -520,7 +520,6 @@ public class MainLayoutController extends Controller {
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
-        initTableViewSort();
         addToolTipForButton();
         setStackedPanes();
         taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
@@ -553,11 +552,6 @@ public class MainLayoutController extends Controller {
 
     public void sort() {
         tableView.sort();
-    }
-
-    private void initTableViewSort() {
-        tableView.getSortOrder().add(dateColumn);
-        tableView.getSortOrder().add(startColumn);
     }
 
     private void scrollToEnd() {

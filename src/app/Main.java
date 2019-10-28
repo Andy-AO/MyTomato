@@ -521,20 +521,20 @@ public class Main extends Application {
 
     private void setTomatoTaskDataListener() {
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
-            System.out.println("setTomatoTaskDataListener！");
+
             tomatoTaskDataJson.write();
             if(change.next()){
                 List removedItems =  change.getRemoved();
                 List addedSubList =  change.getAddedSubList();
                 if(!removedItems.isEmpty()){
-                    REDO_TOMATO_TASKS.clear();
+                    REDO_TOMATO_TASKS.clear(); 
                     REDO_TOMATO_TASKS.addAll(removedItems);
                     System.out.println("removedItems:" + removedItems);
                 }
+
+
                 boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
-                System.out.println("sortAble:"+ sortAble);
                 if(sortAble){
-                    System.out.println("resort！");
                     mainLayoutController.sort();
                 }
             }

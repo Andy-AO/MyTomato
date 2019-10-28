@@ -68,7 +68,8 @@ public class StackedPanes extends app.control.StackedPanes {
     private void addItem(TomatoTask tomatoTask) {
         ObservableList<TomatoTask> list = itemsMap.get(tomatoTask.getDate());
         if (list == null) {
-            FXCollections.observableArrayList(tomatoTask);
+            ObservableList<TomatoTask> newList = FXCollections.observableArrayList(tomatoTask);
+            itemsMap.put(tomatoTask.getDate(), newList);
         }
         else {
             list.add(tomatoTask);

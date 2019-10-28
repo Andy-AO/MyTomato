@@ -507,6 +507,7 @@ public class Main extends Application {
                 if (REDO_TOMATO_TASKS.isEmpty()) {
                     mainLayoutController.closeRedoBar();
                 } else {
+                    System.out.println("showRedoBarAndSleep！");
                     mainLayoutController.showRedoBarAndSleep();
                 }
             }
@@ -535,6 +536,7 @@ public class Main extends Application {
                         System.out.println("！！REDO_TOMATO_TASKS -> " + REDO_TOMATO_TASKS);
                     }
 
+                    newChange.reset();
                 }
             }
 
@@ -555,11 +557,7 @@ public class Main extends Application {
                     System.out.println("removedItems:" + removedItems);
                 }
 
-
-                boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
-                if (sortAble) {
-                    mainLayoutController.sort();
-                }
+                mainLayoutController.sort();
             }
         });
     }

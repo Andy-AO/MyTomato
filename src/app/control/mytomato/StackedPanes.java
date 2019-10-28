@@ -5,6 +5,7 @@ import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.scene.Node;
+import org.bridj.TimeT;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -127,10 +128,6 @@ public class StackedPanes extends app.control.StackedPanes {
         list.addListener(new ListChangeListener<TomatoTask>() {
             @Override
             public void onChanged(Change<? extends TomatoTask> change) {
-                if (list.isEmpty()) {
-                    removeTitledPane(titledPane);
-                }
-                setTitledPaneItemsChange(change);
 
                 if (change.next()) {
                     List removedItems = change.getRemoved();
@@ -139,7 +136,13 @@ public class StackedPanes extends app.control.StackedPanes {
                     if(sortAble){
                         titledPane.getTableView().sort();
                     }
+                    change.reset();
                 }
+                if (list.isEmpty()) {
+                    removeTitledPane(titledPane);
+                }
+
+                setTitledPaneItemsChange(change);
 
             }
         });
@@ -187,6 +190,11 @@ public class StackedPanes extends app.control.StackedPanes {
     public void addItems(TomatoTask... tomatoTasks) {
         for (int i = 0; i < tomatoTasks.length; i++) {
             addItem(tomatoTasks[i]);
+        }
+    }
+    public void addItems(List<TomatoTask> items) {
+        for (int i = 0; i < items.size(); i++) {
+            addItem(items.get(i));
         }
     }
 

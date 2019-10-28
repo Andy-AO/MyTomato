@@ -8,6 +8,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -30,6 +31,7 @@ public class MainLayoutController extends Controller {
 
     public static final String START = "Start";
     public static final String STOP = "Stop";
+    public static final int FIRST_INDEX = 0;
 
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
@@ -200,7 +202,7 @@ public class MainLayoutController extends Controller {
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();
         if (!removedItems.isEmpty()) {
-            tableView.getItems().addAll(removedItems);
+            main.getStackedPanes().addItems(removedItems);
             removedItems.clear();
         } else {
             System.err.println("REDO_TOMATO_TASKS is empty !");
@@ -541,7 +543,10 @@ public class MainLayoutController extends Controller {
         AnchorPane.setLeftAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN);
         AnchorPane.setRightAnchor(main.getStackedPanes(), STACKED_PANE_MARGIN);
 
-        anchorPane.getChildren().add(main.getStackedPanes());
+
+        Node temp = anchorPane.getChildren().get(FIRST_INDEX);
+        anchorPane.getChildren().set(FIRST_INDEX,main.getStackedPanes());
+        anchorPane.getChildren().add(temp);
     }
 
 

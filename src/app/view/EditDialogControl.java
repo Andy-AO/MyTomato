@@ -89,14 +89,13 @@ public class EditDialogControl extends Controller {
             });
         }
         else {
-            main.getTomatoTaskDataJson().write();
+            main.getTomatoTaskDataMapJson().write();
         }
 
         main.getEditDialogStage().close();
 
         Platform.runLater(()->{
             main.getMainLayoutController().getAddButton().setDisable(false);
-            main.getMainLayoutController().getTableView().refresh();
         });
     }
 

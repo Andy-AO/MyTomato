@@ -68,13 +68,12 @@ public class Main extends Application {
     private AnchorPane finishDialog;
     private StackedPanes stackedPanes;
     private FinishDialogController finishDialogController;
-    private ListJson tomatoTaskDataJson;
+
     private MainLayoutController mainLayoutController;
     private RootLayoutController rootLayoutController;
     private TabPane settingDialog;
     private SettingDialogController settingDialogController;
 
-    private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
 
     private final File JSON_FILE = new File(Main.getResFile(), "json\\tomatoTaskData.json");
@@ -127,9 +126,6 @@ public class Main extends Application {
         this.mainLayout = mainLayout;
     }
 
-    public void setTOMATO_TASKS(ObservableList<TomatoTask> TOMATO_TASKS) {
-        this.TOMATO_TASKS = TOMATO_TASKS;
-    }
 
     public AnchorPane getFinishDialog() {
         return finishDialog;
@@ -145,14 +141,6 @@ public class Main extends Application {
 
     public MapJson getTomatoTaskDataMapJson() {
         return tomatoTaskDataMapJson;
-    }
-
-    public ListJson getTomatoTaskDataJson() {
-        return tomatoTaskDataJson;
-    }
-
-    public void setTomatoTaskDataJson(ListJson tomatoTaskDataJson) {
-        this.tomatoTaskDataJson = tomatoTaskDataJson;
     }
 
     public MainLayoutController getMainLayoutController() {
@@ -491,9 +479,6 @@ public class Main extends Application {
 
 
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new ListJson(TOMATO_TASKS, JSON_FILE);
-        tomatoTaskDataJson.read();
-
         tomatoTaskDataMapJson = new MapJson(TOMATO_TASKS_MAP, JSON_FILE);
         tomatoTaskDataMapJson.read();
 
@@ -542,24 +527,6 @@ public class Main extends Application {
 
         });
 
-//---------------------------------------
-
-        TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
-
-            tomatoTaskDataJson.write();
-
-            if (change.next()) {
-                List removedItems = change.getRemoved();
-                List addedSubList = change.getAddedSubList();
-                if (!removedItems.isEmpty()) {
-                    REDO_TOMATO_TASKS.clear();
-                    REDO_TOMATO_TASKS.addAll(removedItems);
-                    System.out.println("removedItems:" + removedItems);
-                }
-
-                mainLayoutController.sort();
-            }
-        });
     }
 
 
@@ -580,10 +547,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    public ObservableList<TomatoTask> getTOMATO_TASKS() {
-        return TOMATO_TASKS;
     }
 
 

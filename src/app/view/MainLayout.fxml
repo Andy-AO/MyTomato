@@ -4,8 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -20,14 +18,6 @@
          </font>
       </Text>
       <ProgressBar fx:id="progressBar" layoutX="67.0" layoutY="15.0" prefHeight="21.0" prefWidth="217.0" progress="0.0" AnchorPane.topAnchor="15.0" />
-      <TableView fx:id="tableView" minWidth="0.0" prefHeight="241.0" visible="false" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="80.0">
-        <columns>
-            <TableColumn fx:id="dateColumn" prefWidth="40.0" text="Date" />
-          <TableColumn fx:id="startColumn" prefWidth="40.0" text="Start" />
-            <TableColumn fx:id="endColumn" prefWidth="40.0" text="End" />
-          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="142.0" text="TaskName" />
-        </columns>
-      </TableView>
       <Button fx:id="startOrStopButton" layoutX="292.0" layoutY="19.0" mnemonicParsing="false" onAction="#handleStartOrStopButton" prefHeight="23.0" prefWidth="44.0" text="Start" textFill="#006705" />
       <Text fx:id="progressText" layoutX="6.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test" textAlignment="CENTER" wrappingWidth="58.0000057220459">
          <font>

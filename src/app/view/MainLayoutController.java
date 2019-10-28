@@ -3,25 +3,21 @@ package app.view;
 import app.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
-import javafx.util.Callback;
 
 import java.io.File;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 
 public class MainLayoutController extends Controller {
 
@@ -34,8 +30,6 @@ public class MainLayoutController extends Controller {
 
     private final int REDO_DELETE_BAR_SHOW_MILLIS = 5000;
 
-    @FXML
-    private TableView<TomatoTask> tableView;
     @FXML
     private AnchorPane anchorPane;
 
@@ -180,14 +174,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-    public TableView<TomatoTask> getTableView() {
-        return tableView;
-    }
-
-    public void setTableView(TableView<TomatoTask> tableView) {
-        this.tableView = tableView;
-    }
-
 //---------------------------------------handle
 
     @FXML
@@ -304,7 +290,6 @@ public class MainLayoutController extends Controller {
     }
 
     private void sizeBind() {
-        nameColumnSizeBind();
         anchorSizeBindAndInit();
     }
 
@@ -346,18 +331,6 @@ public class MainLayoutController extends Controller {
                                                                                                    newValue) -> {
             developmentMode(newValue);
 
-        });
-    }
-
-
-    private void nameColumnSizeBind() {
-
-        tableView.widthProperty().addListener((observable, oldValue, newValue) -> {
-            double otherColumnWidth = dateColumn.getWidth()
-                    + endColumn.getWidth()
-                    + startColumn.getWidth();
-            double nameColumnWidth = (double) newValue - otherColumnWidth;
-            nameColumn.setPrefWidth(nameColumnWidth);
         });
     }
 
@@ -500,7 +473,6 @@ public class MainLayoutController extends Controller {
 
         TomatoTask tomatoTask = new TomatoTask(taskName,
                 WORK_COUNT_DOWN);
-        tableView.getItems().add(tomatoTask);
         main.getStackedPanes().addItems(tomatoTask);
         RESPITE_COUNT_DOWN.start();
         respiteDurationMp3Player.repeatPlayInNewThread();
@@ -512,10 +484,8 @@ public class MainLayoutController extends Controller {
         super.setMainAndInit(main);
         initHeadText();
         headTextBind();
-        initTable();
         setWorkCountDownListener();
         setRespiteCountDownListener();
-        scrollToEnd();
         sizeBind();
         deleteButtonBind();
         deleteButtonAndEditButtonDisableBind();
@@ -555,14 +525,6 @@ public class MainLayoutController extends Controller {
         deleteButton.setTooltip(new Tooltip("Delete键"));
     }
 
-    public void sort() {
-        tableView.sort();
-    }
-
-    private void scrollToEnd() {
-        int index = main.getTOMATO_TASKS().size() - 1;
-        tableView.scrollTo(index);
-    }
 
     private void updateHeadText() {
         headText.setText("今日已完成 " + todayTaskAmount + " 个番茄");
@@ -587,48 +549,7 @@ public class MainLayoutController extends Controller {
             return CertainDayTaskList.size();
     }
 
-    private int getCertainDayTaskAmount(List<TomatoTask> tomatoTasks, LocalDate date) {
-        int taskAmount = 0;
-        for (TomatoTask tomatoTask : tomatoTasks) {
-            if (tomatoTask.getDate().equals(date)) {
-                ++taskAmount;
-            }
-        }
-        return taskAmount;
-    }
 
-
-    private void initTable() {
-
-        tableView.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                //检测双击事件
-                if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-                    TomatoTask specifiedTask = tableView.getSelectionModel().getSelectedItem();
-                    main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
-                    main.startEditDialogAndWait("修改任务");
-                }
-            }
-        });
-
-
-        tableView.setItems(main.getTOMATO_TASKS());
-
-        startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
-        endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
-        dateColumn.setCellValueFactory(cellData -> cellData.getValue().dateStringProperty());
-        nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-
-        nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
-            @Override
-            public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
-                return new TextWrapCell<>();
-            }
-        });
-
-        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
 
 
     private void initCountDownText() {

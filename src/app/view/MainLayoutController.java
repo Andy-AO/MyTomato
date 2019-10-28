@@ -191,7 +191,7 @@ public class MainLayoutController extends Controller {
 
     @FXML
     private void handleEditButton() {
-        TomatoTask specifiedTask = tableView.getSelectionModel().getSelectedItem();
+        TomatoTask specifiedTask = main.getStackedPanes().getFocusedTableView().getSelectionModel().getSelectedItem();
         main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
         main.startEditDialogAndWait("修改任务");
     }
@@ -516,6 +516,7 @@ public class MainLayoutController extends Controller {
         scrollToEnd();
         sizeBind();
         deleteButtonBind();
+        deleteButtonAndEditButtonDisableBind();
         initCountDownText();
         setSettingListenerAndSetDuration();
         setFinishDialogListener();
@@ -523,6 +524,11 @@ public class MainLayoutController extends Controller {
         addToolTipForButton();
         setStackedPanes();
         taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
+
+    }
+
+    private void deleteButtonAndEditButtonDisableBind() {
+        editButton.disableProperty().bind(deleteButton.disableProperty());
 
     }
 

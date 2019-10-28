@@ -101,23 +101,21 @@ public class EditDialogControl extends Controller {
     }
 
     private void focusControl() {
-        TableColumn tableColumn = main.getMainLayoutController().getTableView().getFocusModel().getFocusedCell().getTableColumn();
-        boolean isDateColumn = tableColumn.equals(main.getMainLayoutController().getDateColumn());
-        System.out.println("isDateColumn:" + isDateColumn);
-        if (isDateColumn) {
-            datePicker.requestFocus();
-            datePicker.getEditor().selectAll();
-        } else if (tableColumn.equals(main.getMainLayoutController().getNameColumn())) {
+        TableColumn tableColumn = main.getStackedPanes().getFocusedTableView().getFocusModel().getFocusedCell().getTableColumn();
+        String tableColumnText = tableColumn.getText();
+
+        if (tableColumnText.equals("Task Name")) {
             taskName.requestFocus();
             taskName.selectAll();
-        } else if (tableColumn.equals(main.getMainLayoutController().getStartColumn())) {
+        } else if (tableColumnText.equals("Start")) {
             startTime.requestFocus();
             startTime.selectAll();
-        } else if (tableColumn.equals(main.getMainLayoutController().getEndColumn())) {
+        } else if (tableColumnText.equals("End"))  {
             endTime.requestFocus();
             endTime.selectAll();
         } else {
-
+            datePicker.getEditor().requestFocus();
+            datePicker.getEditor().selectAll();
         }
     }
 

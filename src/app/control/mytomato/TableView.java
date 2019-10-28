@@ -43,6 +43,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
     }
 
     private void setTableViewCell() {
+
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());

@@ -2,6 +2,7 @@ package app.view;
 
 import app.*;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -96,7 +97,6 @@ public class MainLayoutController extends Controller {
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
     private Thread showRedoBarAndSleepThread;
-
 
 
     private static final Double STACKED_PANE_MARGIN = 5.0;
@@ -207,20 +207,16 @@ public class MainLayoutController extends Controller {
         }
     }
 
-    @FXML
-    private void handleTableDeleteKey(KeyEvent keyEvent) {
-        KeyCode keyCode = keyEvent.getCode();
-        String keyName = keyCode.getName();
-        if ("Delete" == keyName)
-            handleDeleteButton();
-    }
-
-
 
     @FXML
     void handleDeleteButton() {
-        ObservableList<TomatoTask> selectedIndices = tableView.getSelectionModel().getSelectedItems();
-        if (selectedIndices.isEmpty()) {
+
+        TableView<TomatoTask> tableView = main.getStackedPanes().getFocusedTableView();
+        ObservableList<TomatoTask> selectedIndices = null;
+        if(tableView != null)
+            selectedIndices = tableView.getSelectionModel().getSelectedItems();
+
+        if ((tableView == null)|| (selectedIndices ==null) || (selectedIndices.isEmpty())) {
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
@@ -230,6 +226,7 @@ public class MainLayoutController extends Controller {
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
             tableView.getItems().removeAll(itemList);
+            tableView.refresh();
         }
 
     }
@@ -274,7 +271,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-
     private void handleWorkFinished() {
         handleWorkFinished(true);
     }
@@ -310,13 +306,33 @@ public class MainLayoutController extends Controller {
         anchorSizeBindAndInit();
     }
 
-    private void deleteButtonBind() {
-        tableView.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            int selectedIndex = (Integer) newValue;
-            boolean disable = selectedIndex < 0;
-            deleteButton.setDisable(disable);
-        });
+    ChangeListener<? super Number> selectedIndexListener = (observable, oldSelectedIndex, newSelectedIndex) -> {
+        int selectedIndex = (Integer) newSelectedIndex;
+        boolean disable = selectedIndex < 0;
+        deleteButton.setDisable(disable);
+    };
 
+    private void deleteButtonBind() {
+
+        main.getStackedPanes().focusedTableViewProperty().addListener((observable, oldFocusedTable, newFocusedTable) -> {
+
+            if (oldFocusedTable != null) {
+                oldFocusedTable.getSelectionModel().selectedIndexProperty().removeListener(selectedIndexListener);
+            }
+
+            if (newFocusedTable == null) {
+                Platform.runLater(() -> {
+                    deleteButton.setDisable(true);
+                });
+
+            } else {
+                int selectedIndex = newFocusedTable.getSelectionModel().getSelectedIndex();
+                boolean disable = selectedIndex < 0;
+                deleteButton.setDisable(disable);
+                newFocusedTable.getSelectionModel().selectedIndexProperty().addListener(selectedIndexListener);
+            }
+
+        });
     }
 
     private void setSettingListenerAndSetDuration() {
@@ -462,7 +478,6 @@ public class MainLayoutController extends Controller {
     }
 
 
-
     private void addTaskNameAfterFinished(String taskName) {
         if ((taskName == null)) {
             System.out.println("taskName is null,in addTaskNameAfterFinished()");
@@ -489,8 +504,6 @@ public class MainLayoutController extends Controller {
         respiteDurationMp3Player.repeatPlayInNewThread();
 
     }
-
-
 
     @Override
     public void setMainAndInit(Main main) {
@@ -576,7 +589,6 @@ public class MainLayoutController extends Controller {
         }
         return taskAmount;
     }
-
 
 
     private void initTable() {

@@ -1,9 +1,12 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
+import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +16,14 @@ import java.util.List;
 
 public class StackedPanes extends app.control.StackedPanes {
 
-    //--------------------------------------- Field
+
+    //--------------------------------------- Field+
+    StackedPanesController stackedPanesController;
+
+    public void setStackedPanesController(StackedPanesController stackedPanesController) {
+        this.stackedPanesController = stackedPanesController;
+    }
+
     private SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneChange = new SimpleObjectProperty();
 
     protected ObservableMap<LocalDate, ObservableList<TomatoTask>> itemsMap = null;
@@ -45,8 +55,8 @@ public class StackedPanes extends app.control.StackedPanes {
         }
     };
 
-
 //--------------------------------------- GS
+
 
     public ListChangeListener.Change<? extends TomatoTask> getTitledPaneChange() {
         return titledPaneChange.get();
@@ -84,17 +94,15 @@ public class StackedPanes extends app.control.StackedPanes {
     private void addTitledPane(ObservableList<TomatoTask> addList) {
         if (!addList.isEmpty()) {
 
-            TitledPane titledPane = new TitledPane(addList.get(0).getDate());
-            titledPane.setItems(addList);
-
-            vBox.getChildren().add(titledPane);
+            TitledPane titledPane = creatTitledPane(addList);
 
             List list = new ArrayList(vBox.getChildren());
-
+            list.add(titledPane);
             list.sort(comparatorTitledPane);
             Collections.reverse(list);
             vBox.getChildren().clear();
             vBox.getChildren().addAll(list);
+
         }
     }
 
@@ -103,40 +111,59 @@ public class StackedPanes extends app.control.StackedPanes {
         vBox.getChildren().remove(titledPane);
     }
 
-/*
-    private void addTitledPane(ObservableList<TomatoTask> addList) {
-        if (!addList.isEmpty()) {
 
-            TitledPane titledPane = new TitledPane(addList.get(0).getDate());
-            titledPane.setItems(addList);
-
-            vBox.getChildren().add(titledPane);
-            vBox.getChildren().sort(comparatorTitledPane);
-            Collections.reverse(vBox.getChildren());
-        }
-    }
-*/
 
     private void showItemsList() {
         this.itemsList.forEach((list) -> {
             if (!list.isEmpty()) {
-                TitledPane titledPane = new TitledPane(list.get(0).getDate());
-                titledPane.setItems(list);
-
-                list.addListener(new ListChangeListener<TomatoTask>() {
-                    @Override
-                    public void onChanged(Change<? extends TomatoTask> c) {
-                        if (list.isEmpty()) {
-                            removeTitledPane(titledPane);
-                        }
-                        setTitledPaneChange(c);
-                    }
-                });
+                TitledPane titledPane = creatTitledPane(list);
                 vBox.getChildren().add(titledPane);
             }
         });
     }
 
+    private TitledPane creatTitledPane(ObservableList<TomatoTask> list) {
+        TitledPane titledPane = new TitledPane(list.get(0).getDate());
+        titledPane.setItems(list);
+        list.addListener(new ListChangeListener<TomatoTask>() {
+            @Override
+            public void onChanged(Change<? extends TomatoTask> c) {
+                if (list.isEmpty()) {
+                    removeTitledPane(titledPane);
+                }
+                setTitledPaneChange(c);
+            }
+        });
+        titledPane.getTableView().focusedProperty().addListener((observable, oldFocused, newFocused) -> {
+            if(newFocused)
+                setFocusedTableView(titledPane.getTableView());
+        });
+
+         titledPane.getTableView().setOnMousePressed((event -> {
+             //检测双击事件
+             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                 TomatoTask specifiedTask = titledPane.getTableView().getSelectionModel().getSelectedItem();
+                 stackedPanesController.main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
+                 stackedPanesController.main.startEditDialogAndWait("修改任务");
+             }
+         }));
+
+        return titledPane;
+    }
+
+    private SimpleObjectProperty<TableView> focusedTableView = new SimpleObjectProperty<>();
+
+    public TableView getFocusedTableView() {
+        return focusedTableView.get();
+    }
+
+    public SimpleObjectProperty<TableView> focusedTableViewProperty() {
+        return focusedTableView;
+    }
+
+    private void setFocusedTableView(TableView tableView) {
+        focusedTableView.set(tableView);
+    }
 
     private void convertItemsMapToSortedList() {
         this.itemsMap.forEach((localDate, list) -> {

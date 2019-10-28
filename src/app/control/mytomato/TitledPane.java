@@ -31,8 +31,13 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     public void setItems(ObservableList<TomatoTask> list) {
         this.items = list;
         tableView.setItems(list);
+
         setAnchorPane();
         this.setContent(anchorPane);
+    }
+
+    public TableView getTableView() {
+        return tableView;
     }
 
     public LocalDate getLOCAL_DATE() {

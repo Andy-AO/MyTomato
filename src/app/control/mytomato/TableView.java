@@ -11,7 +11,7 @@ import javafx.util.Callback;
 public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     public static final int START_AND_END_COLUMN_MIN_WIDTH = 48;
-    public static final int SCROLL_WIDTH = 3;
+    public static final int SCROLL_WIDTH = 2;
     private TableColumn<TomatoTask, String> nameColumn;
     private TableColumn<TomatoTask, String> endColumn;
     private TableColumn<TomatoTask, String> startColumn;

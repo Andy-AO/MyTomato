@@ -484,6 +484,7 @@ public class MainLayoutController extends Controller {
         TomatoTask tomatoTask = new TomatoTask(taskName,
                 WORK_COUNT_DOWN);
         tableView.getItems().add(tomatoTask);
+        main.getStackedPanes().addItems(tomatoTask);
         RESPITE_COUNT_DOWN.start();
         respiteDurationMp3Player.repeatPlayInNewThread();
 

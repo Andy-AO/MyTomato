@@ -3,7 +3,6 @@ package app.control.mytomato;
 import app.model.TomatoTask;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -21,9 +20,22 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     private AnchorPane anchorPane = new AnchorPane();;
     private TableView tableView = new TableView();
 
-
-    private ObservableList<TomatoTask> list = null;
+    private ObservableList<TomatoTask> items = null;
     //--------------------------------------- GS
+
+    public ObservableList<TomatoTask> getItems() {
+        return items;
+    }
+    public void setItems(ObservableList<TomatoTask> list) {
+        this.items = list;
+        tableView.setItems(list);
+        setAnchorPane();
+        this.setContent(anchorPane);
+    }
+
+    public LocalDate getLOCAL_DATE() {
+        return LOCAL_DATE;
+    }
 
     //--------------------------------------- Method
 
@@ -37,12 +49,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
 
     }
 
-    public void setItems(ObservableList<TomatoTask> list) {
-        this.list = list;
-        tableView.setItems(list);
-        setAnchorPane();
-        this.setContent(anchorPane);
-    }
+
 
     private void setAnchorPane() {
         setTableView();

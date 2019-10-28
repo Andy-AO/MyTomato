@@ -3,15 +3,13 @@ package app.view;
 import app.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -23,6 +21,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MainLayoutController extends Controller {
 
@@ -203,6 +202,7 @@ public class MainLayoutController extends Controller {
         List removedItems = main.getREDO_TOMATO_TASKS();
         if (!removedItems.isEmpty()) {
             main.getStackedPanes().addItems(removedItems);
+            System.out.println("Redo|removedItems -> " + removedItems);
             removedItems.clear();
         } else {
             System.err.println("REDO_TOMATO_TASKS is empty !");
@@ -569,20 +569,22 @@ public class MainLayoutController extends Controller {
     }
 
     public void initHeadText() {
-        todayTaskAmount = getCertainDayTaskAmount(main.getTOMATO_TASKS(), LocalDate.now());
+        todayTaskAmount = getCertainDayTaskAmount(main.getTomatoTasksMap(), LocalDate.now());
         updateHeadText();
     }
 
     private void headTextBind() {
-        main.getTOMATO_TASKS().addListener(new ListChangeListener<TomatoTask>() {
-            @Override
-            public void onChanged(Change<? extends TomatoTask> change) {
-                if (change.next()) {
-                    initHeadText();
-                }
-            }
+        main.getStackedPanes().titledPaneItemsChangeProperty().addListener((observable, oldValue, newValue) -> {
+            initHeadText();
         });
+    }
 
+    private int getCertainDayTaskAmount(ObservableMap<LocalDate, ObservableList<TomatoTask>> map, LocalDate date) {
+        ObservableList<TomatoTask> CertainDayTaskList = map.get(date);
+        if(CertainDayTaskList == null)
+            return 0;
+        else
+            return CertainDayTaskList.size();
     }
 
     private int getCertainDayTaskAmount(List<TomatoTask> tomatoTasks, LocalDate date) {

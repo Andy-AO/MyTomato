@@ -5,7 +5,7 @@ import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.scene.Node;
-import org.bridj.TimeT;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -137,6 +137,7 @@ public class StackedPanes extends app.control.StackedPanes {
                         titledPane.getTableView().sort();
                     }
                     change.reset();
+                    titledPane.getTableView().refresh();
                 }
                 if (list.isEmpty()) {
                     removeTitledPane(titledPane);
@@ -200,7 +201,7 @@ public class StackedPanes extends app.control.StackedPanes {
 
     private void addItem(TomatoTask tomatoTask) {
         ObservableList<TomatoTask> list = itemsMap.get(tomatoTask.getDate());
-        if (list == null) {
+        if (list == null||list.isEmpty()) {
             ObservableList<TomatoTask> newList = FXCollections.observableArrayList(tomatoTask);
             itemsMap.put(tomatoTask.getDate(), newList);
         } else {

@@ -30,21 +30,6 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     }
     public void setItems(ObservableList<TomatoTask> list) {
         this.items = list;
-
-
-        list.addListener(new ListChangeListener<TomatoTask>() {
-            @Override
-            public void onChanged(Change<? extends TomatoTask> c) {
- /*
-               if (TitledPane.this.items.isEmpty()) {
-                    ().removeTitledPane(TitledPane.this);
-                }
-                    ().setTitledPaneChange(c);
-*/
-            }
-        });
-
-
         tableView.setItems(list);
         setAnchorPane();
         this.setContent(anchorPane);

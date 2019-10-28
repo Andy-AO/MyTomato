@@ -122,6 +122,16 @@ public class StackedPanes extends app.control.StackedPanes {
             if (!list.isEmpty()) {
                 TitledPane titledPane = new TitledPane(list.get(0).getDate());
                 titledPane.setItems(list);
+
+                list.addListener(new ListChangeListener<TomatoTask>() {
+                    @Override
+                    public void onChanged(Change<? extends TomatoTask> c) {
+                        if (list.isEmpty()) {
+                            removeTitledPane(titledPane);
+                        }
+                        setTitledPaneChange(c);
+                    }
+                });
                 vBox.getChildren().add(titledPane);
             }
         });

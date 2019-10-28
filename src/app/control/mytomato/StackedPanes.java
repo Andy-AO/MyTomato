@@ -1,10 +1,8 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.*;
 import javafx.scene.Node;
 
 import java.time.LocalDate;
@@ -15,7 +13,8 @@ import java.util.List;
 
 public class StackedPanes extends app.control.StackedPanes {
 
-//--------------------------------------- Field
+    //--------------------------------------- Field
+    private SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneChange = new SimpleObjectProperty();
 
     protected ObservableMap<LocalDate, ObservableList<TomatoTask>> itemsMap = null;
     protected ObservableList<ObservableList<TomatoTask>> itemsList = FXCollections.observableArrayList();
@@ -46,7 +45,20 @@ public class StackedPanes extends app.control.StackedPanes {
         }
     };
 
+
 //--------------------------------------- GS
+
+    public ListChangeListener.Change<? extends TomatoTask> getTitledPaneChange() {
+        return titledPaneChange.get();
+    }
+
+    public SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneChangeProperty() {
+        return titledPaneChange;
+    }
+
+    public void setTitledPaneChange(ListChangeListener.Change<? extends TomatoTask> titledPaneChange) {
+        this.titledPaneChange.set(titledPaneChange);
+    }
 
     public ObservableMap<LocalDate, ObservableList<TomatoTask>> getItemsMap() {
         return itemsMap;
@@ -75,16 +87,22 @@ public class StackedPanes extends app.control.StackedPanes {
             TitledPane titledPane = new TitledPane(addList.get(0).getDate());
             titledPane.setItems(addList);
 
-            stackedTitledPanes.getChildren().add(titledPane);
+            vBox.getChildren().add(titledPane);
 
-            List list = new ArrayList(stackedTitledPanes.getChildren());
+            List list = new ArrayList(vBox.getChildren());
 
             list.sort(comparatorTitledPane);
             Collections.reverse(list);
-            stackedTitledPanes.getChildren().clear();
-            stackedTitledPanes.getChildren().addAll(list);
+            vBox.getChildren().clear();
+            vBox.getChildren().addAll(list);
         }
     }
+
+
+    public void removeTitledPane(TitledPane titledPane) {
+        vBox.getChildren().remove(titledPane);
+    }
+
 /*
     private void addTitledPane(ObservableList<TomatoTask> addList) {
         if (!addList.isEmpty()) {
@@ -92,9 +110,9 @@ public class StackedPanes extends app.control.StackedPanes {
             TitledPane titledPane = new TitledPane(addList.get(0).getDate());
             titledPane.setItems(addList);
 
-            stackedTitledPanes.getChildren().add(titledPane);
-            stackedTitledPanes.getChildren().sort(comparatorTitledPane);
-            Collections.reverse(stackedTitledPanes.getChildren());
+            vBox.getChildren().add(titledPane);
+            vBox.getChildren().sort(comparatorTitledPane);
+            Collections.reverse(vBox.getChildren());
         }
     }
 */
@@ -104,7 +122,7 @@ public class StackedPanes extends app.control.StackedPanes {
             if (!list.isEmpty()) {
                 TitledPane titledPane = new TitledPane(list.get(0).getDate());
                 titledPane.setItems(list);
-                stackedTitledPanes.getChildren().add(titledPane);
+                vBox.getChildren().add(titledPane);
             }
         });
     }
@@ -134,4 +152,5 @@ public class StackedPanes extends app.control.StackedPanes {
             list.add(tomatoTask);
         }
     }
+
 }

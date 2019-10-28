@@ -35,6 +35,9 @@ public class StackedPanesController extends Controller {
                 main.getTomatoTaskDataMapJson().write();
             }
         });
+        scrollPane.titledPaneChangeProperty().addListener((observable, oldChange, newChange) -> {
+            main.getTomatoTaskDataMapJson().write();
+        });
     }
 
     public StackedPanes createScrollPane() {

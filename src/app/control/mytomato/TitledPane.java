@@ -1,8 +1,10 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -28,6 +30,21 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     }
     public void setItems(ObservableList<TomatoTask> list) {
         this.items = list;
+
+
+        list.addListener(new ListChangeListener<TomatoTask>() {
+            @Override
+            public void onChanged(Change<? extends TomatoTask> c) {
+ /*
+               if (TitledPane.this.items.isEmpty()) {
+                    ().removeTitledPane(TitledPane.this);
+                }
+                    ().setTitledPaneChange(c);
+*/
+            }
+        });
+
+
         tableView.setItems(list);
         setAnchorPane();
         this.setContent(anchorPane);

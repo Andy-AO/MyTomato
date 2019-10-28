@@ -19,7 +19,7 @@ public class StackedPanesController extends Controller {
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);
-        scrollPane.setItems(main.getTomatoTasksMap());
+        scrollPane.setItemsMap(main.getTomatoTasksMap());
     }
 
     public StackedPanes createScrollPane() {

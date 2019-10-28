@@ -1,5 +1,6 @@
 package app;
 
+import app.control.mytomato.StackedPanes;
 import app.view.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -64,7 +65,7 @@ public class Main extends Application {
     }
 
     private AnchorPane finishDialog;
-    private ScrollPane stackedPanes;
+    private StackedPanes stackedPanes;
     private FinishDialogController finishDialogController;
     private ListJson tomatoTaskDataJson;
     private MainLayoutController mainLayoutController;
@@ -306,12 +307,8 @@ public class Main extends Application {
         this.stackedPanesController = stackedPanesController;
     }
 
-    public ScrollPane getStackedPanes() {
+    public StackedPanes getStackedPanes() {
         return stackedPanes;
-    }
-
-    public void setStackedPanes(ScrollPane stackedPanes) {
-        this.stackedPanes = stackedPanes;
     }
 
     private void loadStackedPanes() {

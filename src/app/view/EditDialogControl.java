@@ -85,7 +85,7 @@ public class EditDialogControl extends Controller {
 
         if(isNewTask){
             Platform.runLater(() -> {
-                main.getMainLayoutController().getTableView().getItems().add(getCURRENT_TOMATO_TASK());
+                main.getStackedPanes().addItems(getCURRENT_TOMATO_TASK());
             });
         }
         else {

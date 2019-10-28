@@ -4,9 +4,7 @@ import app.model.TomatoTask;
 import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +22,7 @@ public class StackedPanes extends app.control.StackedPanes {
         this.stackedPanesController = stackedPanesController;
     }
 
-    private SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneChange = new SimpleObjectProperty();
+    private SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneItemsChange = new SimpleObjectProperty();
 
     protected ObservableMap<LocalDate, ObservableList<TomatoTask>> itemsMap = null;
     protected ObservableList<ObservableList<TomatoTask>> itemsList = FXCollections.observableArrayList();
@@ -58,16 +56,16 @@ public class StackedPanes extends app.control.StackedPanes {
 //--------------------------------------- GS
 
 
-    public ListChangeListener.Change<? extends TomatoTask> getTitledPaneChange() {
-        return titledPaneChange.get();
+    public ListChangeListener.Change<? extends TomatoTask> getTitledPaneItemsChange() {
+        return titledPaneItemsChange.get();
     }
 
-    public SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneChangeProperty() {
-        return titledPaneChange;
+    public SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneItemsChangeProperty() {
+        return titledPaneItemsChange;
     }
 
-    public void setTitledPaneChange(ListChangeListener.Change<? extends TomatoTask> titledPaneChange) {
-        this.titledPaneChange.set(titledPaneChange);
+    public void setTitledPaneItemsChange(ListChangeListener.Change<? extends TomatoTask> titledPaneItemsChange) {
+        this.titledPaneItemsChange.set(titledPaneItemsChange);
     }
 
     public ObservableMap<LocalDate, ObservableList<TomatoTask>> getItemsMap() {
@@ -132,7 +130,7 @@ public class StackedPanes extends app.control.StackedPanes {
                 if (list.isEmpty()) {
                     removeTitledPane(titledPane);
                 }
-                setTitledPaneChange(change);
+                setTitledPaneItemsChange(change);
 
                 if (change.next()) {
                     List removedItems = change.getRemoved();

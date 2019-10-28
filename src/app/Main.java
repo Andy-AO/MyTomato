@@ -33,7 +33,7 @@ import java.util.List;
 
 public class Main extends Application {
 
-    public static final int PRIMARY_STAGE_MIN_WIDTH = 415 ;
+    public static final int PRIMARY_STAGE_MIN_WIDTH = 415;
     private static final ObservableMap<LocalDate, ObservableList<TomatoTask>> TOMATO_TASKS_MAP = FXCollections.observableMap(new HashMap());
 
 
@@ -57,6 +57,7 @@ public class Main extends Application {
     private static String getResURLString() {
         return Main.getResURIString();
     }
+
     private static String getResURIString() {
         File file = Main.getResFile();
         String URIString = file.toURI().toString();
@@ -76,7 +77,7 @@ public class Main extends Application {
     private ObservableList<TomatoTask> TOMATO_TASKS = FXCollections.observableArrayList();
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
 
-    private final File  JSON_FILE = new File(Main.getResFile(),"json\\tomatoTaskData.json");
+    private final File JSON_FILE = new File(Main.getResFile(), "json\\tomatoTaskData.json");
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -137,6 +138,7 @@ public class Main extends Application {
     public void setFinishDialog(AnchorPane finishDialog) {
         this.finishDialog = finishDialog;
     }
+
     public static ObservableMap<LocalDate, ObservableList<TomatoTask>> getTomatoTasksMap() {
         return TOMATO_TASKS_MAP;
     }
@@ -144,6 +146,7 @@ public class Main extends Application {
     public MapJson getTomatoTaskDataMapJson() {
         return tomatoTaskDataMapJson;
     }
+
     public ListJson getTomatoTaskDataJson() {
         return tomatoTaskDataJson;
     }
@@ -168,31 +171,28 @@ public class Main extends Application {
         this.rootLayoutController = rootLayoutController;
     }
 
-    public static String getJarDirPath()
-    {
+    public static String getJarDirPath() {
         String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        if(System.getProperty("os.name").contains("dows"))
-        {
-            path = path.substring(1,path.length());
+        if (System.getProperty("os.name").contains("dows")) {
+            path = path.substring(1, path.length());
         }
-        if(path.contains("jar"))
-        {
-            path = path.substring(0,path.lastIndexOf("."));
-            return path.substring(0,path.lastIndexOf("/"));
+        if (path.contains("jar")) {
+            path = path.substring(0, path.lastIndexOf("."));
+            return path.substring(0, path.lastIndexOf("/"));
         }
         return path.replace("target/classes/", "");
     }
 
 
-    public static File getResFile()  {
+    public static File getResFile() {
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() && resFile.isDirectory();
-        if(resDirIsInWorkDir)
+        if (resDirIsInWorkDir)
             return resFile;
-        else{
+        else {
             String path = getJarDirPath();
             System.out.println("getJarDirPath():" + path);
-            resFile = new File(path,"res");
+            resFile = new File(path, "res");
             boolean resDirIsInJarDir = resFile.exists() && resFile.isDirectory();
             if (resDirIsInJarDir) {
                 return resFile;
@@ -201,7 +201,7 @@ public class Main extends Application {
                 alert.showAndWait();
                 System.exit(1);
                 return resFile;
-        }
+            }
         }
 
     }
@@ -210,6 +210,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         loadLayout();
+        intiTomatoTaskData();
         setMainAndInitLayout();
         initPrimaryStage();
         this.primaryStage.show();
@@ -223,10 +224,12 @@ public class Main extends Application {
         settingDialogController.setMainAndInit(this);
         editDialogController.setMainAndInit(this);
         stackedPanesController.setMainAndInit(this);
-        
+
     }
 
     private void loadLayout() throws IOException {
+
+
         loadRootLayout();
         loadMainLayout();
         loadFinishDialog();
@@ -234,6 +237,8 @@ public class Main extends Application {
         loadSettingDialog();
         loadEditDialog();
         loadStackedPanes();
+
+
     }
 
     public Main(TabPane settingDialog) {
@@ -273,11 +278,10 @@ public class Main extends Application {
     }
 
     private void setPrimaryStageListener() {
-        primaryStage.focusedProperty().addListener(new ChangeListener<Boolean>()
-        {
+        primaryStage.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
-            public void changed(ObservableValue<? extends Boolean> isFocused, Boolean onHidden, Boolean onShown){
-                if(isFocused.getValue()){
+            public void changed(ObservableValue<? extends Boolean> isFocused, Boolean onHidden, Boolean onShown) {
+                if (isFocused.getValue()) {
                     mainLayoutController.initHeadText();
                 }
             }
@@ -288,7 +292,7 @@ public class Main extends Application {
             evt.consume();
             // execute own shutdown procedure
             boolean isClosed = onStageShutdown(primaryStage);
-            if(isClosed)
+            if (isClosed)
                 System.exit(0);
         });
     }
@@ -399,17 +403,18 @@ public class Main extends Application {
             editDialogStage.setScene(new Scene(editDialog));
             editDialogStage.setResizable(false);
             editDialogStage.setOnCloseRequest(evt -> {
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                     getMainLayoutController().getAddButton().setDisable(false);
                 });
             });
         }
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             getMainLayoutController().getAddButton().setDisable(true);
         });
 
         editDialogStage.showAndWait();
     }
+
     public void startFinishDialogAndWait() {
         if (finishDialogStage == null) {
             finishDialogStage = new Stage();
@@ -441,6 +446,7 @@ public class Main extends Application {
         }
         finishDialogStage.showAndWait();
     }
+
     public void startPlusDialogAndWait() {
         if (plusDialogStage == null) {
             plusDialogStage = new Stage();
@@ -474,23 +480,21 @@ public class Main extends Application {
             // you may need to close other windows or replace this with Platform.exit();
             mainWindow.close();
             return true;
-        }
-        else
+        } else
             return false;
     }
 
 
     public Main() {
-        intiTomatoTaskData();
+
     }
 
 
-
     private void intiTomatoTaskData() {
-        tomatoTaskDataJson = new ListJson(TOMATO_TASKS,JSON_FILE);
+        tomatoTaskDataJson = new ListJson(TOMATO_TASKS, JSON_FILE);
         tomatoTaskDataJson.read();
 
-        tomatoTaskDataMapJson = new MapJson(TOMATO_TASKS_MAP,JSON_FILE);
+        tomatoTaskDataMapJson = new MapJson(TOMATO_TASKS_MAP, JSON_FILE);
         tomatoTaskDataMapJson.read();
 
         setTomatoTaskDataListener();
@@ -502,8 +506,7 @@ public class Main extends Application {
             if (change.next()) {
                 if (REDO_TOMATO_TASKS.isEmpty()) {
                     mainLayoutController.closeRedoBar();
-                }
-                else {
+                } else {
                     mainLayoutController.showRedoBarAndSleep();
                 }
             }
@@ -520,26 +523,46 @@ public class Main extends Application {
     }
 
     private void setTomatoTaskDataListener() {
+         getStackedPanes().titledPaneItemsChangeProperty().addListener((observable, oldChange, newChange) -> {
+
+            if (newChange != null) {
+                if (newChange.next()) {
+                    List removedItems = newChange.getRemoved();
+                    List addedSubList = newChange.getAddedSubList();
+                    if (!removedItems.isEmpty()) {
+                        REDO_TOMATO_TASKS.clear();
+                        REDO_TOMATO_TASKS.addAll(removedItems);
+                        System.out.println("！！REDO_TOMATO_TASKS -> " + REDO_TOMATO_TASKS);
+                    }
+
+                }
+            }
+
+        });
+
+//---------------------------------------
+
         TOMATO_TASKS.addListener((ListChangeListener.Change<? extends TomatoTask> change) -> {
 
             tomatoTaskDataJson.write();
-            if(change.next()){
-                List removedItems =  change.getRemoved();
-                List addedSubList =  change.getAddedSubList();
-                if(!removedItems.isEmpty()){
-                    REDO_TOMATO_TASKS.clear(); 
+
+            if (change.next()) {
+                List removedItems = change.getRemoved();
+                List addedSubList = change.getAddedSubList();
+                if (!removedItems.isEmpty()) {
+                    REDO_TOMATO_TASKS.clear();
                     REDO_TOMATO_TASKS.addAll(removedItems);
                     System.out.println("removedItems:" + removedItems);
                 }
 
 
                 boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
-                if(sortAble){
+                if (sortAble) {
                     mainLayoutController.sort();
                 }
             }
         });
-     }
+    }
 
 
     private void loadMainLayout() throws IOException {

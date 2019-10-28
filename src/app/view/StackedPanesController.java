@@ -2,7 +2,6 @@ package app.view;
 
 import app.Main;
 import app.control.mytomato.StackedPanes;
-import app.control.mytomato.TableView;
 import app.model.TomatoTask;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
@@ -51,7 +50,7 @@ public class StackedPanesController extends Controller {
                 main.getTomatoTaskDataMapJson().write();
             }
         });
-        stackedPanes.titledPaneChangeProperty().addListener((observable, oldChange, newChange) -> {
+        stackedPanes.titledPaneItemsChangeProperty().addListener((observable, oldChange, newChange) -> {
             main.getTomatoTaskDataMapJson().write();
         });
     }

@@ -48,6 +48,10 @@ public class StackedPanes extends app.control.StackedPanes {
 
 //--------------------------------------- GS
 
+    public ObservableMap<LocalDate, ObservableList<TomatoTask>> getItemsMap() {
+        return itemsMap;
+    }
+
 //--------------------------------------- Method
 
     public void setItemsMap(ObservableMap<LocalDate, ObservableList<TomatoTask>> itemsMap) {

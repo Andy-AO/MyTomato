@@ -137,7 +137,13 @@ public class Main extends Application {
     public void setFinishDialog(AnchorPane finishDialog) {
         this.finishDialog = finishDialog;
     }
+    public static ObservableMap<LocalDate, ObservableList<TomatoTask>> getTomatoTasksMap() {
+        return TOMATO_TASKS_MAP;
+    }
 
+    public MapJson getTomatoTaskDataMapJson() {
+        return tomatoTaskDataMapJson;
+    }
     public ListJson getTomatoTaskDataJson() {
         return tomatoTaskDataJson;
     }
@@ -478,9 +484,7 @@ public class Main extends Application {
         intiTomatoTaskData();
     }
 
-    public static ObservableMap<LocalDate, ObservableList<TomatoTask>> getTomatoTasksMap() {
-        return TOMATO_TASKS_MAP;
-    }
+
 
     private void intiTomatoTaskData() {
         tomatoTaskDataJson = new ListJson(TOMATO_TASKS,JSON_FILE);

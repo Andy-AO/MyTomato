@@ -52,7 +52,7 @@ public class Main extends Application {
     private AnchorPane plusDialog;
     private PlusDialogController plusDialogController;
     private StackedPanesController stackedPanesController;
-    private MapJson tomatoTaskDataMapJson;
+    private DataManager tomatoTaskDataMapJson;
 
     private static String getResURLString() {
         return Main.getResURIString();

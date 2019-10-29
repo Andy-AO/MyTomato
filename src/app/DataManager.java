@@ -1,6 +1,6 @@
 package app;
 
-public interface Json {
+public interface DataManager {
     public String write();
     public void read();
 }

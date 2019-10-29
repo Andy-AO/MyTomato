@@ -8,7 +8,7 @@ import javafx.collections.ObservableMap;
 import java.io.File;
 import java.time.LocalDate;
 
-public class MapJson implements Json{
+public class MapJson implements DataManager {
 
     private final ObservableList<TomatoTask> listData = FXCollections.observableArrayList();
     private final ObservableMap<LocalDate, ObservableList<TomatoTask>> mapData;

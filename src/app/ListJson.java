@@ -4,7 +4,6 @@ import app.model.TomatoTask;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -12,7 +11,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListJson implements Json {
+public class ListJson implements DataManager {
 
     private final String EMPTY_MAP_STRING = "[]";
     private final File jsonFile;

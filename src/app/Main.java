@@ -139,7 +139,7 @@ public class Main extends Application {
         return TOMATO_TASKS_MAP;
     }
 
-    public MapJson getTomatoTaskDataMapJson() {
+    public DataManager getTomatoTaskDataMapJson() {
         return tomatoTaskDataMapJson;
     }
 

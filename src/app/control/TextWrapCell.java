@@ -1,4 +1,4 @@
-package app;
+package app.control;
 
 import javafx.application.Platform;
 import javafx.scene.control.TableCell;

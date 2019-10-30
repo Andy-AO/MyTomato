@@ -1,6 +1,6 @@
 package app.control.mytomato;
 
-import app.TextWrapCell;
+import app.control.TextWrapCell;
 import app.model.TomatoTask;
 import javafx.application.Platform;
 import javafx.scene.control.SelectionMode;

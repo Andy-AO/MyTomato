@@ -1,8 +1,8 @@
 package app.view;
 
 import app.Main;
-import app.OnTopAlert;
-import app.TimeStringPolisher;
+import app.control.OnTopAlert;
+import app.util.TimeStringPolisher;
 import app.model.TomatoTask;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;

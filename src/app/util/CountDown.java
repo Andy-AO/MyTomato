@@ -1,4 +1,4 @@
-package app;
+package app.util;
 
 import javafx.beans.property.*;
 import javafx.fxml.FXML;
@@ -9,6 +9,27 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CountDown {
+    public  Duration duration;
+    LocalTime startTime;
+    LocalTime endTime;
+    LocalTime currentTime;
+    Duration sumDuration;
+    Duration zeroDuration = Duration.ofSeconds(0);
+    Duration currentDuration;
+
+    volatile SimpleBooleanProperty started = new SimpleBooleanProperty(false);
+    volatile SimpleBooleanProperty finished = new SimpleBooleanProperty(false);
+
+
+    public static final int PERIOD_MSEC = 100;
+    private StringProperty textProgress = new SimpleStringProperty("");
+    private DoubleProperty barProgress = new SimpleDoubleProperty(0);
+    public static Timer time;
+
+
+
+//---------------------------------------
+
     public Duration getDuration() {
         return duration;
     }
@@ -29,11 +50,6 @@ public class CountDown {
         this.started.set(started);
     }
 
-    SimpleBooleanProperty started = new SimpleBooleanProperty(false);
-    SimpleBooleanProperty finished = new SimpleBooleanProperty(false);
-    public  Duration duration;
-    LocalTime startTime;
-    LocalTime endTime;
 
     public void setDuration(Duration duration) {
         this.duration = duration;
@@ -67,14 +83,6 @@ public class CountDown {
         this.endTime = endTime;
     }
 
-    LocalTime currentTime;
-    Duration sumDuration;
-    Duration zeroDuration = Duration.ofSeconds(0);
-    Duration currentDuration;
-    public static final int PERIOD_MSEC = 100;
-    private StringProperty textProgress = new SimpleStringProperty("");
-    private DoubleProperty barProgress = new SimpleDoubleProperty(0);
-    public static Timer time;
 
     public void start() {
         setStarted(true);
@@ -204,7 +212,7 @@ public class CountDown {
         this.textProgress.set(textProgress);
     }
 
-    private void updateProgressText() { //拆
+    private void updateProgressText() {
         currentTime = LocalTime.now();
         currentDuration = Duration.between(endTime, currentTime);
         setTextProgress(CountDown.formatDuration(currentDuration, true));

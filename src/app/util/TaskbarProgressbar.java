@@ -1,4 +1,4 @@
-package app;
+package app.util;
 
 import com.sun.javafx.stage.StageHelper;
 import java.util.concurrent.ExecutorService;

@@ -1,20 +1,16 @@
 package app.model;
 
-import app.CountDown;
-import app.TaskbarProgressbar;
+import app.util.CountDown;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-import static app.Util.localDateToString;
-import static app.Util.localTimeToString;
+import static app.util.Util.localDateToString;
+import static app.util.Util.localTimeToString;
 
 public class TomatoTask {
 

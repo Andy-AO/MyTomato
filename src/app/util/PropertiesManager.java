@@ -1,4 +1,6 @@
-package app;
+package app.util;
+
+import app.Main;
 
 import java.io.*;
 import java.util.Properties;

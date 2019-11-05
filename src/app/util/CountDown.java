@@ -76,10 +76,13 @@ public class CountDown {
     }
 
     public synchronized void start() {
+        if(started.get()){
+            throw new RuntimeException("Already started. Cannot be started again.");
+        }
         setStarted(true);
-        setFinished(false);
         initProgressData();
         startTimer();
+        setFinished(false);
     }
 
     private void startTimer() {
@@ -94,6 +97,30 @@ public class CountDown {
         }, TIMER_DELAY, PERIOD_MSEC);
     }
 
+    public void cancel() {
+        stop(false);
+    }
+
+
+    public void finish() {
+        stop(true);
+    }
+
+    public synchronized void stop(boolean finished) {
+        if(!started.get()){
+            throw new RuntimeException("Already stopped. Cannot be stopped again.");
+        }
+        setStarted(false);
+        progressReturnToZero();
+        time.cancel();
+        setFinished(finished);
+    }
+
+    private void checkProgress() {
+        if (currentDuration.compareTo(zeroDuration) >= 0) {
+            finish();
+        }
+    }
 
     public static Timer getTime() {
         return time;
@@ -126,28 +153,6 @@ public class CountDown {
         return startTime;
     }
 
-
-    private void checkProgress() {
-        if (currentDuration.compareTo(zeroDuration) >= 0) {
-            finish();
-        }
-    }
-
-    public void cancel() {
-        stop(false);
-    }
-
-
-    public void finish() {
-        stop(true);
-    }
-
-    public synchronized void stop(boolean finished) {
-        setStarted(false);
-        progressReturnToZero();
-        time.cancel();
-        setFinished(finished);
-    }
 
     private void progressReturnToZero() {
         setTextProgress("");

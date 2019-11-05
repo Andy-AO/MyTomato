@@ -25,6 +25,35 @@ public class CountDown {
     volatile private DoubleProperty barProgress = new SimpleDoubleProperty(0);
     volatile private static Timer time;
 
+    public static final long TIMER_DELAY = 0;
+
+    public boolean getFinished() {
+        return finished.get();
+    }
+
+    public SimpleBooleanProperty finishedProperty() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished.set(finished);
+    }
+
+    public StringProperty textProgressProperty() {
+        return textProgress;
+    }
+
+    public void setTextProgress(String textProgress) {
+        this.textProgress.set(textProgress);
+    }
+
+    public DoubleProperty barProgressProperty() {
+        return barProgress;
+    }
+
+    public void setBarProgress(double barProgress) {
+        this.barProgress.set(barProgress);
+    }
 
     public CountDown(Duration duration) {
         this.duration = duration;
@@ -46,7 +75,7 @@ public class CountDown {
         return endTime;
     }
 
-    public void start() {
+    public synchronized void start() {
         setStarted(true);
         setFinished(false);
         initProgressData();
@@ -55,7 +84,6 @@ public class CountDown {
 
     private void startTimer() {
         time = new Timer();
-        long delayMsec = 0;
         time.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -63,7 +91,7 @@ public class CountDown {
                 updateProgressBar();
                 checkProgress();
             }
-        }, delayMsec, PERIOD_MSEC);
+        }, TIMER_DELAY, PERIOD_MSEC);
     }
 
 
@@ -114,37 +142,16 @@ public class CountDown {
         stop(true);
     }
 
-    public void stop(boolean finished) {
+    public synchronized void stop(boolean finished) {
         setStarted(false);
         progressReturnToZero();
         time.cancel();
         setFinished(finished);
     }
 
-    public boolean getFinished() {
-        return finished.get();
-    }
-
-    public SimpleBooleanProperty finishedProperty() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished.set(finished);
-    }
-
-
     private void progressReturnToZero() {
         setTextProgress("");
         setBarProgress(0);
-    }
-
-    public StringProperty textProgressProperty() {
-        return textProgress;
-    }
-
-    public void setTextProgress(String textProgress) {
-        this.textProgress.set(textProgress);
     }
 
     private void updateProgressText() {
@@ -153,13 +160,6 @@ public class CountDown {
         setTextProgress(CountDown.formatDuration(currentDuration, true));
     }
 
-    public DoubleProperty barProgressProperty() {
-        return barProgress;
-    }
-
-    public void setBarProgress(double barProgress) {
-        this.barProgress.set(barProgress);
-    }
 
     private void updateProgressBar() {
         long currentSec = Math.abs(currentDuration.toMillis());
@@ -167,4 +167,6 @@ public class CountDown {
         double progress = (double) currentSec / (double) sumSec;
         setBarProgress(progress);
     }
+
+
 }

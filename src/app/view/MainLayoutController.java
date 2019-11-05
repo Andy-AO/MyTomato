@@ -246,12 +246,12 @@ public class MainLayoutController extends Controller {
     }
 
     private void handleStopButton() {
-        if (!(WORK_COUNT_DOWN.getFinished())) {
+        if (WORK_COUNT_DOWN.isStarted()) {
             WORK_COUNT_DOWN.cancel();
             workDurationMp3Player.close();
         }
 
-        if (!(RESPITE_COUNT_DOWN.getFinished())) {
+        if (RESPITE_COUNT_DOWN.isStarted()) {
             RESPITE_COUNT_DOWN.cancel();
             respiteDurationMp3Player.close();
         }

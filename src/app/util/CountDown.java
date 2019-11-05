@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class CountDown {
 
@@ -26,6 +27,7 @@ public class CountDown {
     volatile private static Timer time;
 
     public static final long TIMER_DELAY = 0;
+    private ReentrantLock lock = new ReentrantLock();
 
     public boolean getFinished() {
         return finished.get();
@@ -75,14 +77,24 @@ public class CountDown {
         return endTime;
     }
 
-    public synchronized void start() {
-        if(started.get()){
-            throw new RuntimeException("Already started. Cannot be started again.");
+    public boolean isStarted() {
+        return started.get();
+    }
+
+    public void start() {
+        lock.lock();
+        try {
+            if (started.get()) {
+                throw new RuntimeException("Already started. Cannot be started again.");
+            }
+            setStarted(true);
+            initProgressData();
+            startTimer();
+            setFinished(false);
         }
-        setStarted(true);
-        initProgressData();
-        startTimer();
-        setFinished(false);
+        finally {
+            lock.unlock();
+        }
     }
 
     private void startTimer() {
@@ -106,14 +118,19 @@ public class CountDown {
         stop(true);
     }
 
-    public synchronized void stop(boolean finished) {
-        if(!started.get()){
-            throw new RuntimeException("Already stopped. Cannot be stopped again.");
+    public void stop(boolean finished) {
+        lock.lock();
+        try {
+            if (!started.get()) {
+                throw new RuntimeException("Already stopped. Cannot be stopped again.");
+            }
+            setStarted(false);
+            progressReturnToZero();
+            time.cancel();
+            setFinished(finished);
+        } finally {
+            lock.unlock();
         }
-        setStarted(false);
-        progressReturnToZero();
-        time.cancel();
-        setFinished(finished);
     }
 
     private void checkProgress() {

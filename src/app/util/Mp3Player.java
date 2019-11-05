@@ -15,7 +15,6 @@ public class Mp3Player {
     private FileInputStream fileInputStream;
     private Player player;
     private AtomicBoolean repeated = new AtomicBoolean(false);
-    private ReentrantLock lock = new ReentrantLock();
 
     public Mp3Player(File file) {
         this.file = file;

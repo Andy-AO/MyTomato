@@ -23,6 +23,11 @@ public class SettingDialogController  extends Controller {
     @FXML
     private CheckBox developmentCheckBox;
 
+    @FXML
+    private void throwException() throws Exception {
+        throw new Exception("Exception Throw Test！");
+    }
+
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);

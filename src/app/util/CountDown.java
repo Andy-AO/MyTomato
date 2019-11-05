@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class CountDown {
 
@@ -27,19 +28,9 @@ public class CountDown {
     volatile private static Timer time;
 
     public static final long TIMER_DELAY = 0;
-    private ReentrantLock lock = new ReentrantLock();
-
-    public boolean getFinished() {
-        return finished.get();
-    }
-
-    public SimpleBooleanProperty finishedProperty() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished.set(finished);
-    }
+    private ReentrantLock startOrStopLock = new ReentrantLock();
+    private ReentrantLock startedLock = new ReentrantLock();
+    private ReentrantLock finishedLock = new ReentrantLock();
 
     public StringProperty textProgressProperty() {
         return textProgress;
@@ -61,12 +52,51 @@ public class CountDown {
         this.duration = duration;
     }
 
+
+    public SimpleBooleanProperty finishedProperty() {
+        finishedLock.lock();
+        try {
+            return finished;
+        } finally {
+            finishedLock.unlock();
+        }
+    }
+
+    public boolean getFinished() {
+        finishedLock.lock();
+        try {
+            return finished.get();
+        } finally {
+            finishedLock.unlock();
+        }
+    }
+
+    public void setFinished(boolean finished) {
+        finishedLock.lock();
+        try {
+            this.finished.set(finished);
+        }
+        finally {
+            finishedLock.unlock();
+        }
+    }
+
     public SimpleBooleanProperty startedProperty() {
-        return started;
+        finishedLock.lock();
+        try {
+            return started;
+        } finally {
+            finishedLock.unlock();
+        }
     }
 
     public void setStarted(boolean started) {
-        this.started.set(started);
+        startedLock.lock();
+        try {
+            this.started.set(started);
+        } finally {
+            startedLock.unlock();
+        }
     }
 
     public void setDuration(Duration duration) {
@@ -78,22 +108,26 @@ public class CountDown {
     }
 
     public boolean isStarted() {
-        return started.get();
+        startedLock.lock();
+        try {
+            return started.get();
+        } finally {
+            startedLock.unlock();
+        }
     }
 
     public void start() {
-        lock.lock();
+        startOrStopLock.lock();
         try {
-            if (started.get()) {
+            if (isStarted()) {
                 throw new RuntimeException("Already started. Cannot be started again.");
             }
             setStarted(true);
             initProgressData();
             startTimer();
             setFinished(false);
-        }
-        finally {
-            lock.unlock();
+        } finally {
+            startOrStopLock.unlock();
         }
     }
 
@@ -119,9 +153,9 @@ public class CountDown {
     }
 
     public void stop(boolean finished) {
-        lock.lock();
+        startOrStopLock.lock();
         try {
-            if (!started.get()) {
+            if (!isStarted()) {
                 throw new RuntimeException("Already stopped. Cannot be stopped again.");
             }
             setStarted(false);
@@ -129,7 +163,7 @@ public class CountDown {
             time.cancel();
             setFinished(finished);
         } finally {
-            lock.unlock();
+            startOrStopLock.unlock();
         }
     }
 

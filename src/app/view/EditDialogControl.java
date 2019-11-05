@@ -4,6 +4,7 @@ import app.Main;
 import app.control.OnTopAlert;
 import app.util.TimeStringPolisher;
 import app.model.TomatoTask;
+import app.util.Util;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -65,13 +66,9 @@ public class EditDialogControl extends Controller {
     private void handleOkButton() {
 
         getCURRENT_TOMATO_TASK().setDate(datePicker.getValue());
-        try {
+
             getCURRENT_TOMATO_TASK().setStartTime(LocalTime.parse(startTime.getText()));
             getCURRENT_TOMATO_TASK().setEndTime(LocalTime.parse(endTime.getText()));
-        } catch (DateTimeParseException ex) {
-            formatErrorAlert(ex);
-            return;
-        }
 
         String taskName = this.taskName.getText();
         if (taskName.isEmpty()) {
@@ -117,12 +114,6 @@ public class EditDialogControl extends Controller {
             datePicker.getEditor().requestFocus();
             datePicker.getEditor().selectAll();
         }
-    }
-
-    private void formatErrorAlert(Exception ex) {
-        Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.getMessage());
-        alert.initOwner(main.getEditDialogStage());
-        alert.showAndWait();
     }
 
     @FXML

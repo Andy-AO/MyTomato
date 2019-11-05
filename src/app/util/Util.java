@@ -1,5 +1,6 @@
 package app.util;
 
+import app.control.OnTopAlert;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
@@ -33,5 +34,11 @@ public class Util {
         Util.getAlertStage(alert).setAlwaysOnTop(true);
         Util.getAlertStage(alert).toFront();
     }
+
+    public static void formatErrorAlert(Throwable ex) {
+        Alert alert = new OnTopAlert(Alert.AlertType.WARNING, ex.getMessage());
+        alert.showAndWait();
+    }
+
 
 }

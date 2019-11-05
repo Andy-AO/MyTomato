@@ -4,6 +4,7 @@ import app.control.OnTopAlert;
 import app.control.mytomato.StackedPanes;
 import app.util.DataManager;
 import app.util.MapJson;
+import app.util.Util;
 import app.view.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -548,6 +549,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e)->{
+            e.printStackTrace();
+            Util.formatErrorAlert(e);
+        });
         launch(args);
     }
 

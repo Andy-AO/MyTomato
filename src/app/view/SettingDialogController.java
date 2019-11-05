@@ -25,7 +25,7 @@ public class SettingDialogController  extends Controller {
 
     @FXML
     private void throwException() throws Exception {
-        throw new Exception("Exception Throw Test！");
+        throw new RuntimeException("Exception Throw Test！");
     }
 
     @Override

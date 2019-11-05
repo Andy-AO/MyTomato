@@ -28,7 +28,7 @@ public class TimeStringPolisher {
 
     }
 
-    public String polish() throws Exception {
+    public String polish(){
         preCheck();
         splitString();
         parseToInt();
@@ -37,17 +37,17 @@ public class TimeStringPolisher {
         return polishedText;
     }
 
-    private void numberRangeCheck() throws Exception {
+    private void numberRangeCheck() {
         boolean isHourMatched = (hour >= 0) && (hour <= 23) ;
         if(!isHourMatched){
             String hourFormat = "Text '%s' could not be parsed:valid values is 0-23.";
-            throw new Exception(String.format(hourFormat, hourString));
+            throw new RuntimeException(String.format(hourFormat, hourString));
         }
 
         boolean isMinuteMatched = (minute >= 0) && (minute <= 59);
         if(!isMinuteMatched){
             String minuteFormat = "Text '%s' could not be parsed:valid values is 0-59.";
-            throw new Exception(String.format(minuteFormat, minuteString));
+            throw new RuntimeException(String.format(minuteFormat, minuteString));
         }
     }
 
@@ -67,11 +67,11 @@ public class TimeStringPolisher {
         System.out.println("minuteString -> " + minuteString);
     }
 
-    private void preCheck() throws Exception {
+    private void preCheck(){
         boolean isMatched = Pattern.matches(CHECK_REGEX, srcText);
         if (!isMatched) {
             String mes = String.format("Text'%s' could not be parsed:valid values is \\d+:\\d+(RegEx).", srcText);
-            throw new Exception(mes);
+            throw new RuntimeException(mes);
         }
     }
 }

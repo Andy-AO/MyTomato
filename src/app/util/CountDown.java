@@ -1,7 +1,6 @@
 package app.util;
 
 import javafx.beans.property.*;
-import javafx.fxml.FXML;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -10,8 +9,7 @@ import java.util.TimerTask;
 
 public class CountDown {
 
-    volatile private  Duration duration;
-
+    volatile private Duration duration;
     volatile private LocalTime startTime;
     volatile private LocalTime endTime;
     volatile private LocalTime currentTime;
@@ -22,11 +20,10 @@ public class CountDown {
     volatile private SimpleBooleanProperty started = new SimpleBooleanProperty(false);
     volatile private SimpleBooleanProperty finished = new SimpleBooleanProperty(false);
 
-
     public static final int PERIOD_MSEC = 100;
     volatile private StringProperty textProgress = new SimpleStringProperty("");
     volatile private DoubleProperty barProgress = new SimpleDoubleProperty(0);
-    volatile private  static Timer time;
+    volatile private static Timer time;
 
 
     public CountDown(Duration duration) {
@@ -56,6 +53,19 @@ public class CountDown {
         startTimer();
     }
 
+    private void startTimer() {
+        time = new Timer();
+        long delayMsec = 0;
+        time.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                updateProgressText();
+                updateProgressBar();
+                checkProgress();
+            }
+        }, delayMsec, PERIOD_MSEC);
+    }
+
 
     public static Timer getTime() {
         return time;
@@ -70,9 +80,7 @@ public class CountDown {
         startTime = LocalTime.from(currentTime);
         endTime = LocalTime.from(currentTime).plus(duration);
         sumDuration = Duration.between(startTime, endTime);
-        System.out.println("sumDuration -> " + sumDuration);
         currentDuration = Duration.between(startTime, currentTime);
-        System.out.println("currentDuration -> " + currentDuration);
     }
 
     public static String formatDuration(Duration duration, Boolean alwaysPositive) {
@@ -90,31 +98,23 @@ public class CountDown {
         return startTime;
     }
 
-    @FXML
-    private void startTimer() {
-        time = new Timer();
-        long delayMsec = 0;
-        time.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                updateProgressText();
-                updateProgressBar();
-                checkProgress();
-            }
-        }, delayMsec, PERIOD_MSEC);
-    }
 
     private void checkProgress() {
         if (currentDuration.compareTo(zeroDuration) >= 0) {
-            cancel(true);
+            finish();
         }
     }
 
     public void cancel() {
-        cancel(false);
+        stop(false);
     }
 
-    public void cancel(boolean finished) {
+
+    public void finish() {
+        stop(true);
+    }
+
+    public void stop(boolean finished) {
         setStarted(false);
         progressReturnToZero();
         time.cancel();

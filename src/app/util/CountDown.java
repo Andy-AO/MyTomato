@@ -9,37 +9,28 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class CountDown {
-    public  Duration duration;
-    LocalTime startTime;
-    LocalTime endTime;
-    LocalTime currentTime;
-    Duration sumDuration;
-    Duration zeroDuration = Duration.ofSeconds(0);
-    Duration currentDuration;
 
-    volatile SimpleBooleanProperty started = new SimpleBooleanProperty(false);
-    volatile SimpleBooleanProperty finished = new SimpleBooleanProperty(false);
+    volatile private  Duration duration;
+
+    volatile private LocalTime startTime;
+    volatile private LocalTime endTime;
+    volatile private LocalTime currentTime;
+    volatile private Duration sumDuration;
+    volatile private Duration zeroDuration = Duration.ofSeconds(0);
+    volatile private Duration currentDuration;
+
+    volatile private SimpleBooleanProperty started = new SimpleBooleanProperty(false);
+    volatile private SimpleBooleanProperty finished = new SimpleBooleanProperty(false);
 
 
     public static final int PERIOD_MSEC = 100;
-    private StringProperty textProgress = new SimpleStringProperty("");
-    private DoubleProperty barProgress = new SimpleDoubleProperty(0);
-    public static Timer time;
+    volatile private StringProperty textProgress = new SimpleStringProperty("");
+    volatile private DoubleProperty barProgress = new SimpleDoubleProperty(0);
+    volatile private  static Timer time;
 
-
-
-//---------------------------------------
-
-    public Duration getDuration() {
-        return duration;
-    }
 
     public CountDown(Duration duration) {
         this.duration = duration;
-    }
-
-    public boolean getStarted() {
-        return started.get();
     }
 
     public SimpleBooleanProperty startedProperty() {
@@ -50,39 +41,13 @@ public class CountDown {
         this.started.set(started);
     }
 
-
     public void setDuration(Duration duration) {
         this.duration = duration;
-    }
-
-    public Duration getSumDuration() {
-        return sumDuration;
-    }
-
-    public void setSumDuration(Duration sumDuration) {
-        this.sumDuration = sumDuration;
-    }
-
-    public Duration getZeroDuration() {
-        return zeroDuration;
-    }
-
-    public void setZeroDuration(Duration zeroDuration) {
-        this.zeroDuration = zeroDuration;
-    }
-
-    public boolean isFinished() {
-        return finished.get();
     }
 
     public LocalTime getEndTime() {
         return endTime;
     }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
 
     public void start() {
         setStarted(true);
@@ -91,29 +56,6 @@ public class CountDown {
         startTimer();
     }
 
-    public boolean isStarted() {
-        return started.get();
-    }
-
-    public LocalTime getCurrentTime() {
-        return currentTime;
-    }
-
-    public void setCurrentTime(LocalTime currentTime) {
-        this.currentTime = currentTime;
-    }
-
-    public Duration getCurrentDuration() {
-        return currentDuration;
-    }
-
-    public void setCurrentDuration(Duration currentDuration) {
-        this.currentDuration = currentDuration;
-    }
-
-    public static int getPeriodMsec() {
-        return PERIOD_MSEC;
-    }
 
     public static Timer getTime() {
         return time;
@@ -148,10 +90,6 @@ public class CountDown {
         return startTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
-    }
-
     @FXML
     private void startTimer() {
         time = new Timer();
@@ -182,6 +120,7 @@ public class CountDown {
         time.cancel();
         setFinished(finished);
     }
+
     public boolean getFinished() {
         return finished.get();
     }
@@ -200,10 +139,6 @@ public class CountDown {
         setBarProgress(0);
     }
 
-    public String getTextProgress() {
-        return textProgress.get();
-    }
-
     public StringProperty textProgressProperty() {
         return textProgress;
     }
@@ -216,11 +151,6 @@ public class CountDown {
         currentTime = LocalTime.now();
         currentDuration = Duration.between(endTime, currentTime);
         setTextProgress(CountDown.formatDuration(currentDuration, true));
-    }
-
-
-    public double getBarProgress() {
-        return barProgress.get();
     }
 
     public DoubleProperty barProgressProperty() {

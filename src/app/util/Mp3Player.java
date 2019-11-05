@@ -12,7 +12,7 @@ public class Mp3Player {
     private File file;
     private FileInputStream fileInputStream;
     private Player player;
-    private boolean repeated = true;
+    private volatile boolean repeated = true;
 
     public Mp3Player(File file) {
         this.file = file;

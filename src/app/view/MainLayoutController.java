@@ -22,6 +22,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 public class MainLayoutController extends Controller {
@@ -101,6 +102,7 @@ public class MainLayoutController extends Controller {
 
     private static final Double STACKED_PANE_MARGIN = 5.0;
     private static final Double STACKED_PANE_MARGIN_TOP = 80.0;
+    private ReentrantLock startOrStopLock = new ReentrantLock();
 
 //--------------------------------------- Getter Setter
 
@@ -206,10 +208,10 @@ public class MainLayoutController extends Controller {
 
         TableView<TomatoTask> tableView = main.getStackedPanes().getFocusedTableView();
         ObservableList<TomatoTask> selectedIndices = null;
-        if(tableView != null)
+        if (tableView != null)
             selectedIndices = tableView.getSelectionModel().getSelectedItems();
 
-        if ((tableView == null)|| (selectedIndices ==null) || (selectedIndices.isEmpty())) {
+        if ((tableView == null) || (selectedIndices == null) || (selectedIndices.isEmpty())) {
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
@@ -246,21 +248,30 @@ public class MainLayoutController extends Controller {
     }
 
     private void handleStopButton() {
-        if (WORK_COUNT_DOWN.isStarted()) {
-            WORK_COUNT_DOWN.cancel();
-            workDurationMp3Player.close();
-        }
+        startOrStopLock.lock();
+        try {
+            if (WORK_COUNT_DOWN.isStarted()) {
+                WORK_COUNT_DOWN.cancel();
+                workDurationMp3Player.close();
+            }
 
-        if (RESPITE_COUNT_DOWN.isStarted()) {
-            RESPITE_COUNT_DOWN.cancel();
-            respiteDurationMp3Player.close();
+            if (RESPITE_COUNT_DOWN.isStarted()) {
+                RESPITE_COUNT_DOWN.cancel();
+                respiteDurationMp3Player.close();
+            }
+        } finally {
+            startOrStopLock.unlock();
         }
-
     }
 
     private void handleStartButton() {
-        new Thread(() -> WORK_COUNT_DOWN.start()).start();
-        workDurationMp3Player.repeatPlayInNewThread();
+        startOrStopLock.lock();
+        try {
+            new Thread(() -> WORK_COUNT_DOWN.start()).start();
+            workDurationMp3Player.repeatPlayInNewThread();
+        } finally {
+            startOrStopLock.unlock();
+        }
     }
 
 
@@ -520,7 +531,7 @@ public class MainLayoutController extends Controller {
 
 
         Node temp = anchorPane.getChildren().get(FIRST_INDEX);
-        anchorPane.getChildren().set(FIRST_INDEX,main.getStackedPanes());
+        anchorPane.getChildren().set(FIRST_INDEX, main.getStackedPanes());
         anchorPane.getChildren().add(temp);
     }
 
@@ -548,13 +559,11 @@ public class MainLayoutController extends Controller {
 
     private int getCertainDayTaskAmount(ObservableMap<LocalDate, ObservableList<TomatoTask>> map, LocalDate date) {
         ObservableList<TomatoTask> CertainDayTaskList = map.get(date);
-        if(CertainDayTaskList == null)
+        if (CertainDayTaskList == null)
             return 0;
         else
             return CertainDayTaskList.size();
     }
-
-
 
 
     private void initCountDownText() {

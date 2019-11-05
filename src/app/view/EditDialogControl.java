@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EditDialogControl extends Controller {
 
@@ -45,7 +46,7 @@ public class EditDialogControl extends Controller {
     private Button cancelButton;
 
     private final SimpleObjectProperty<TomatoTask> CURRENT_TOMATO_TASK = new SimpleObjectProperty();
-    private boolean isNewTask;
+    private AtomicBoolean isNewTask = new AtomicBoolean();
 
 
     //--------------------------------------- Method
@@ -80,7 +81,7 @@ public class EditDialogControl extends Controller {
         }
         getCURRENT_TOMATO_TASK().setName(taskName);
 
-        if(isNewTask){
+        if(isNewTask.get()){
             Platform.runLater(() -> {
                 main.getStackedPanes().addItems(getCURRENT_TOMATO_TASK());
             });
@@ -122,12 +123,12 @@ public class EditDialogControl extends Controller {
     }
 
     public void loadNewTask() {
-        isNewTask = true;
+        isNewTask.set(true);
         LocalTime endTime = LocalTime.now();
         setCURRENT_TOMATO_TASK(new TomatoTask(EMPTY_TASK_NAME, getStartTime(endTime), endTime));
     }
     public void loadSpecifiedTask(TomatoTask tomatoTask) {
-        isNewTask = false;
+        isNewTask.set(false);
         setCURRENT_TOMATO_TASK(tomatoTask);
     }
     public void loadSpecifiedTaskAndFocus(TomatoTask tomatoTask) {

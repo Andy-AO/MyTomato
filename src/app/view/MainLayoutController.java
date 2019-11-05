@@ -5,7 +5,7 @@ import app.control.OnTopAlert;
 import app.util.CountDown;
 import app.util.Mp3Player;
 import app.util.PropertiesManager;
-import app.util.TaskbarProgressbar;
+import app.util.TaskBarProgressbar;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
@@ -71,7 +71,7 @@ public class MainLayoutController extends Controller {
     @FXML
     private ProgressBar progressBar;
 
-    TaskbarProgressbar taskProgressbar = null;
+    TaskBarProgressbar taskProgressbar = null;
 
     @FXML
     private FlowPane buttonFlowPane;
@@ -392,7 +392,7 @@ public class MainLayoutController extends Controller {
         RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
             Platform.runLater(() -> {
-                taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.PAUSED);
+                taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.PAUSED);
             });
         });
 
@@ -439,7 +439,7 @@ public class MainLayoutController extends Controller {
         WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             progressBar.setProgress((Double) newValue);
             Platform.runLater(() -> {
-                taskProgressbar.showOtherProgress((Double) newValue, TaskbarProgressbar.TaskbarProgressbarType.NORMAL);
+                taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.NORMAL);
             });
 
         });
@@ -510,7 +510,7 @@ public class MainLayoutController extends Controller {
         setFinishDialogListener();
         addToolTipForButton();
         setStackedPanes();
-        taskProgressbar = new TaskbarProgressbar(main.getPrimaryStage());
+        taskProgressbar = new TaskBarProgressbar(main.getPrimaryStage());
 
     }
 

@@ -1,7 +1,7 @@
 
 package test;
 
-import app.util.TaskbarProgressbar;
+import app.util.TaskBarProgressbar;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,12 +18,12 @@ public class Demo extends Application{
         launch(args);
     }
     
-    private TaskbarProgressbar.TaskbarProgressbarType actualSelectedType;
+    private TaskBarProgressbar.TaskBarProgressbarType actualSelectedType;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        TaskbarProgressbar taskProgressbar = new TaskbarProgressbar(primaryStage);
+        TaskBarProgressbar taskProgressbar = new TaskBarProgressbar(primaryStage);
         
         Button btn = new Button("Stop");
         btn.setOnAction((event) -> {
@@ -38,7 +38,7 @@ public class Demo extends Application{
         
         Stage stage = new Stage();
         
-        TaskbarProgressbar taskbarProgressbar2 = new TaskbarProgressbar(stage);
+        TaskBarProgressbar taskbarProgressbar2 = new TaskBarProgressbar(stage);
         
         Slider slider = new Slider(0, 100, 0);
         
@@ -48,17 +48,17 @@ public class Demo extends Application{
         
         paused.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue)
-                actualSelectedType = TaskbarProgressbar.TaskbarProgressbarType.PAUSED;
+                actualSelectedType = TaskBarProgressbar.TaskBarProgressbarType.PAUSED;
         });
         
         normal.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue)
-                actualSelectedType = TaskbarProgressbar.TaskbarProgressbarType.NORMAL;
+                actualSelectedType = TaskBarProgressbar.TaskBarProgressbarType.NORMAL;
         });
         
         error.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue)
-                actualSelectedType = TaskbarProgressbar.TaskbarProgressbarType.ERROR;
+                actualSelectedType = TaskBarProgressbar.TaskBarProgressbarType.ERROR;
         });
         
         normal.setSelected(true);

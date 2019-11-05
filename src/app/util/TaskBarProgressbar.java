@@ -8,7 +8,7 @@ import org.bridj.Pointer;
 import org.bridj.cpp.com.COMRuntime;
 import org.bridj.cpp.com.shell.ITaskbarList3;
 
-public final class TaskbarProgressbar {
+public final class TaskBarProgressbar {
 
     private final Stage stage;
 
@@ -16,7 +16,7 @@ public final class TaskbarProgressbar {
     private ITaskbarList3 list;
     private Pointer<?> hwnd;
 
-    private TaskbarProgressbar() {
+    private TaskBarProgressbar() {
         stage = null;
 
         es = Executors.newSingleThreadExecutor(r -> {
@@ -36,7 +36,7 @@ public final class TaskbarProgressbar {
         });
     }
 
-    public TaskbarProgressbar(Stage stage) {
+    public TaskBarProgressbar(Stage stage) {
         this.stage = stage;
 
         es = Executors.newSingleThreadExecutor(r -> {
@@ -60,7 +60,7 @@ public final class TaskbarProgressbar {
         es.submit(() -> list.Release());
     }
 
-    public enum TaskbarProgressbarType {
+    public enum TaskBarProgressbarType {
         ERROR {
             @Override
             ITaskbarList3.TbpFlag getPair() {
@@ -100,7 +100,7 @@ public final class TaskbarProgressbar {
         hwnd = Pointer.pointerToAddress(hwndVal);
 
         es.execute(() -> {
-            list.SetProgressState((Pointer) hwnd, TaskbarProgressbarType.NOPROGRESS.getPair());
+            list.SetProgressState((Pointer) hwnd, TaskBarProgressbarType.NOPROGRESS.getPair());
         });
     }
 
@@ -109,11 +109,11 @@ public final class TaskbarProgressbar {
         hwnd = Pointer.pointerToAddress(hwndVal);
 
         es.execute(() -> {
-            list.SetProgressState((Pointer) hwnd, TaskbarProgressbarType.INDETERMINATE.getPair());
+            list.SetProgressState((Pointer) hwnd, TaskBarProgressbarType.INDETERMINATE.getPair());
         });
     }
 
-    public void showOtherProgress(long startValue, long endValue, TaskbarProgressbarType type) {
+    public void showOtherProgress(long startValue, long endValue, TaskBarProgressbarType type) {
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(StageHelper.getStages().indexOf(stage)).getNativeWindow();
         hwnd = Pointer.pointerToAddress(hwndVal);
 
@@ -123,7 +123,7 @@ public final class TaskbarProgressbar {
         });
     }
 
-    public void showOtherProgress(double value, TaskbarProgressbarType type) {
+    public void showOtherProgress(double value, TaskBarProgressbarType type) {
         int endValue = 100;
         value *= 100;
         int startValue = (int) value;
@@ -136,34 +136,34 @@ public final class TaskbarProgressbar {
 
         es.execute(() -> {
             list.SetProgressValue((Pointer) hwnd, 100, 100);
-            list.SetProgressState((Pointer) hwnd, TaskbarProgressbarType.ERROR.getPair());
+            list.SetProgressState((Pointer) hwnd, TaskBarProgressbarType.ERROR.getPair());
         });
     }
 
     public static void stopProgress(int windowIndex) {
-        TaskbarProgressbar progressbar = new TaskbarProgressbar();
+        TaskBarProgressbar progressbar = new TaskBarProgressbar();
 
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(windowIndex).getNativeWindow();
         progressbar.hwnd = Pointer.pointerToAddress(hwndVal);
 
         progressbar.es.execute(() -> {
-            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskbarProgressbarType.NOPROGRESS.getPair());
+            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskBarProgressbarType.NOPROGRESS.getPair());
         });
     }
 
     public static void showIndeterminateProgress(int windowIndex) {
-        TaskbarProgressbar progressbar = new TaskbarProgressbar();
+        TaskBarProgressbar progressbar = new TaskBarProgressbar();
 
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(windowIndex).getNativeWindow();
         progressbar.hwnd = Pointer.pointerToAddress(hwndVal);
 
         progressbar.es.execute(() -> {
-            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskbarProgressbarType.INDETERMINATE.getPair());
+            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskBarProgressbarType.INDETERMINATE.getPair());
         });
     }
 
-    public static void showOtherProgress(int windowIndex, long startValue, long endValue, TaskbarProgressbarType type) {
-        TaskbarProgressbar progressbar = new TaskbarProgressbar();
+    public static void showOtherProgress(int windowIndex, long startValue, long endValue, TaskBarProgressbarType type) {
+        TaskBarProgressbar progressbar = new TaskBarProgressbar();
 
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(windowIndex).getNativeWindow();
         progressbar.hwnd = Pointer.pointerToAddress(hwndVal);
@@ -175,14 +175,14 @@ public final class TaskbarProgressbar {
     }
     
     public static void showErrorProgress(int windowIndex) {
-        TaskbarProgressbar progressbar = new TaskbarProgressbar();
+        TaskBarProgressbar progressbar = new TaskBarProgressbar();
 
         long hwndVal = com.sun.glass.ui.Window.getWindows().get(windowIndex).getNativeWindow();
         progressbar.hwnd = Pointer.pointerToAddress(hwndVal);
 
         progressbar.es.execute(() -> {
             progressbar.list.SetProgressValue((Pointer) progressbar.hwnd, 100, 100);
-            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskbarProgressbarType.ERROR.getPair());
+            progressbar.list.SetProgressState((Pointer) progressbar.hwnd, TaskBarProgressbarType.ERROR.getPair());
         });
     }
 

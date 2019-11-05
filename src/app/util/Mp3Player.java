@@ -6,13 +6,15 @@ import javazoom.jl.player.Player;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Mp3Player {
 
     private File file;
     private FileInputStream fileInputStream;
     private Player player;
-    private volatile boolean repeated = true;
+    private AtomicBoolean repeated = new AtomicBoolean(false);
 
     public Mp3Player(File file) {
         this.file = file;
@@ -27,15 +29,15 @@ public class Mp3Player {
     }
 
     private void repeatPlay() {
-        repeated = true;
-        while (repeated) {
+        repeated.set(true);
+        while (repeated.get()) {
             play();
         }
     }
 
     public void close() {
         player.close();
-        repeated = false;
+        repeated.set(false);
     }
 
     public void playInNewThread() {

@@ -360,7 +360,6 @@ public class MainLayoutController extends Controller {
         String heightString = PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
         double height = Double.parseDouble(heightString);
         anchorPane.setPrefHeight(height);
-
         anchorPane.heightProperty().addListener((observable, oldValue, newValue) -> {
             double anchorHeight = (Double) newValue;
             PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
@@ -371,7 +370,6 @@ public class MainLayoutController extends Controller {
         String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
         double width = Double.parseDouble(widthString);
         anchorPane.setPrefWidth(width);
-
         anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             double anchorWidth = (Double) newValue;
             PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
@@ -392,14 +390,16 @@ public class MainLayoutController extends Controller {
 
         });
         RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
-            progressBar.setProgress((Double) newValue);
             Platform.runLater(() -> {
+                progressBar.setProgress((Double) newValue);
                 taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.PAUSED);
             });
         });
 
         RESPITE_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
-            progressText.setText(newValue);
+            Platform.runLater(() -> {
+                progressText.setText(newValue);
+            });
         });
         RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
@@ -440,15 +440,17 @@ public class MainLayoutController extends Controller {
         });
 
         WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
-            progressBar.setProgress((Double) newValue);
             Platform.runLater(() -> {
+                progressBar.setProgress((Double) newValue);
                 taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.NORMAL);
             });
 
         });
 
         WORK_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
-            progressText.setText(newValue);
+            Platform.runLater(() -> {
+                progressText.setText(newValue);
+            });
         });
         WORK_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;

@@ -41,7 +41,7 @@ public class Mp3Player {
     }
 
     public void playInNewThread() {
-        new Thread(this::play).start();
+        new Thread(this::play,"playInNewThread").start();
     }
 
     private void play() {
@@ -57,6 +57,6 @@ public class Mp3Player {
     }
 
     public void repeatPlayInNewThread() {
-        new Thread(this::repeatPlay).start();
+        new Thread(this::repeatPlay,"repeatPlayInNewThread").start();
     }
 }

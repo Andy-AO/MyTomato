@@ -267,7 +267,7 @@ public class MainLayoutController extends Controller {
     private void handleStartButton() {
         startOrStopLock.lock();
         try {
-            new Thread(() -> WORK_COUNT_DOWN.start()).start();
+            WORK_COUNT_DOWN.start();
             workDurationMp3Player.repeatPlayInNewThread();
         } finally {
             startOrStopLock.unlock();
@@ -585,7 +585,7 @@ public class MainLayoutController extends Controller {
             } finally {
                 hideRedoBar();
             }
-        });
+        },"showRedoBar");
         showRedoBarAndSleepThread.start();
     }
 

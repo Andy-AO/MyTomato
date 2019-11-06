@@ -382,8 +382,10 @@ public class MainLayoutController extends Controller {
         RESPITE_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 boolean isStarted = newValue;
-                if (isStarted)
+                if (isStarted){
                     startOrStopButton.setText(STOP);
+                    progressBar.setStyle("-fx-accent: #ffc800");
+                }
                 else
                     startOrStopButton.setText(START);
             });
@@ -428,6 +430,7 @@ public class MainLayoutController extends Controller {
                 if (isStarted) {
                     startOrStopButton.setText(STOP);
                     getPlusButton().setDisable(false);
+                    progressBar.setStyle("-fx-accent: #328e2e");
                 } else {
                     startOrStopButton.setText(START);
                     getPlusButton().setDisable(true);

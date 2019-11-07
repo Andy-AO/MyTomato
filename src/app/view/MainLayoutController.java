@@ -192,10 +192,10 @@ public class MainLayoutController extends Controller {
         List removedItems = main.getREDO_TOMATO_TASKS();
         if (!removedItems.isEmpty()) {
             main.getStackedPanes().addItems(removedItems);
-            System.out.println("Redo|removedItems -> " + removedItems);
+            GlobalLogger.logger.info("Redo|removedItems -> " + removedItems);
             removedItems.clear();
         } else {
-            System.err.println("REDO_TOMATO_TASKS is empty !");
+            GlobalLogger.logger.debug("REDO_TOMATO_TASKS is empty!");
         }
     }
 
@@ -292,13 +292,8 @@ public class MainLayoutController extends Controller {
 
 
     private void setFinishDialogListener() {
-        main.getFinishDialogController().inputStringProperty().addListener((observable, oldValue, newValue) -> {
-            String taskName = newValue;
-            if ((taskName == null)) {
-                System.out.println("taskName is null,in FinishDialogListener");
-                return;
-            }
-            addTaskNameAfterFinished(taskName);
+        main.getFinishDialogController().inputStringProperty().addListener((observable, oldTaskName, newTaskName) -> {
+            addTaskNameAfterFinished(newTaskName);
         });
     }
 
@@ -472,15 +467,12 @@ public class MainLayoutController extends Controller {
 
 
     private void addTaskNameAfterFinished(String taskName) {
-        if ((taskName == null)) {
-            System.out.println("taskName is null,in addTaskNameAfterFinished()");
-        }
 
-        if ((taskName.equals(""))) {
+        if ((taskName == null)||(taskName.isEmpty())) {
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
             ButtonType selectButton = alert.showAndWait().get();
             if (selectButton.equals(ButtonType.NO)) {
-                //!!!这里如果不加 Platform.runLater 那么运行的结果会完全不一样!!! 原因目前不明，待会儿想办法搞懂一下
+                //Platform.runLater 在这里是必不可少的
                 Platform.runLater(() -> {
                     main.startFinishDialogAndWait();
                 });

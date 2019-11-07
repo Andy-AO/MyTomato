@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class GlobalLogger {
 
-    static Logger logger = Logger.getLogger(GlobalLogger.class);
+    static public Logger logger = Logger.getLogger(GlobalLogger.class);
 
     //log
     static {

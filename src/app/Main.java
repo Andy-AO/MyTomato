@@ -450,7 +450,6 @@ public class Main extends Application {
                 if (REDO_TOMATO_TASKS.isEmpty()) {
                     mainLayoutController.closeRedoBar();
                 } else {
-                    System.out.println("showRedoBarAndSleep！");
                     mainLayoutController.showRedoBarAndSleep();
                 }
             }
@@ -476,7 +475,6 @@ public class Main extends Application {
                     if (!removedItems.isEmpty()) {
                         REDO_TOMATO_TASKS.clear();
                         REDO_TOMATO_TASKS.addAll(removedItems);
-                        System.out.println("！！REDO_TOMATO_TASKS -> " + REDO_TOMATO_TASKS);
                     }
 
                     newChange.reset();

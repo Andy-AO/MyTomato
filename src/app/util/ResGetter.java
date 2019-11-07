@@ -14,11 +14,10 @@ public class ResGetter {
     public static String getResURIString() {
         File file = getResFile();
         String URIString = file.toURI().toString();
-        System.out.println("URIString:" + URIString);
         return URIString;
     }
 
-    public static String getJarDirPath() {
+    private static String getJarDirPath() {
         String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         if (System.getProperty("os.name").contains("dows")) {
             path = path.substring(1, path.length());
@@ -31,13 +30,18 @@ public class ResGetter {
     }
 
     public static File getResFile() {
+        File file = getResFile_base();
+        GlobalLogger.logger.info("ResFile:" + file.getAbsolutePath());
+        return file;
+    }
+
+    private static File getResFile_base() {
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() && resFile.isDirectory();
         if (resDirIsInWorkDir)
             return resFile;
         else {
             String path = getJarDirPath();
-            System.out.println("getJarDirPath():" + path);
             resFile = new File(path, "res");
             boolean resDirIsInJarDir = resFile.exists() && resFile.isDirectory();
             if (resDirIsInJarDir) {
@@ -49,6 +53,7 @@ public class ResGetter {
                 return resFile;
             }
         }
-
     }
+
+
 }

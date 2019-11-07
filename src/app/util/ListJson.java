@@ -23,13 +23,12 @@ public class ListJson implements DataManager {
     }
 
     public ListJson(List<TomatoTask> data, File jsonFile) {
-        System.out.println("jsonFile:" + jsonFile.getAbsolutePath());
+        GlobalLogger.logger.info("JsonFile:" + jsonFile.getAbsolutePath());
         this.jsonFile = jsonFile;
         this.data = data;
     }
 
     public String readString() {
-        System.out.println(jsonFile.getAbsolutePath());
         char[] json = new char[(int) jsonFile.length()];
         String jsonString = "";
         try (FileReader fileReader = new FileReader(jsonFile)) {

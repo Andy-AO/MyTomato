@@ -3,6 +3,7 @@ package app.view;
 import app.Main;
 import app.control.mytomato.StackedPanes;
 import app.model.TomatoTask;
+import app.util.GlobalLogger;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
@@ -36,7 +37,6 @@ public class StackedPanesController extends Controller {
     private void handleTableDeleteKey(KeyEvent keyEvent) {
         KeyCode keyCode = keyEvent.getCode();
         String keyName = keyCode.getName();
-        System.out.println("keyName -> " + keyName);
         if ("Delete" == keyName){
             main.getMainLayoutController().handleDeleteButton();
         }

@@ -19,15 +19,6 @@ public class TimeStringPolisher {
         this.srcText = srcText;
     }
 
-    public static void main(String[] args) throws Exception {
-
-        String text = "2:3";
-        TimeStringPolisher timeStringPolisher = new TimeStringPolisher(text);
-        String newText = timeStringPolisher.polish();
-        System.out.println("newText -> " + newText);
-
-    }
-
     public String polish(){
         preCheck();
         splitString();
@@ -61,10 +52,8 @@ public class TimeStringPolisher {
         Matcher matcher = pattern.matcher(srcText);
         matcher.find();
         hourString = matcher.group();
-        System.out.println("hourString -> " + hourString);
         matcher.find();
         minuteString = matcher.group();
-        System.out.println("minuteString -> " + minuteString);
     }
 
     private void preCheck(){

@@ -83,7 +83,6 @@ public class SettingDialogController  extends Controller {
     @FXML
     private void handleDevelopmentCheckBox() {
         boolean result = developmentCheckBox.isSelected();
-        System.out.println(result);
     }
 
 

@@ -2,6 +2,7 @@ package app.view;
 
 import app.Main;
 import app.util.Mp3Player;
+import app.util.ResGetter;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,7 +22,7 @@ public class PlusDialogController extends Controller{
     private Button okButton;
 
 
-    private Mp3Player addTasksMp3Player = new Mp3Player(new File(Main.getResFile(),"sound/add_tasks_ahead_of_time.mp3"));
+    private Mp3Player addTasksMp3Player = new Mp3Player(new File(ResGetter.getResFile(),"sound/add_tasks_ahead_of_time.mp3"));
     private String tempFieldText;
 
 

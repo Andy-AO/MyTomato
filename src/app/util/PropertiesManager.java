@@ -1,7 +1,5 @@
 package app.util;
 
-import app.Main;
-
 import java.io.*;
 import java.util.Properties;
 
@@ -34,7 +32,7 @@ public class PropertiesManager {
 
 
     private void initFile() {
-        File propertiesDir = new File(Main.getResFile(),PROPERTIES_DIR_PATH);
+        File propertiesDir = new File(ResGetter.getResFile(),PROPERTIES_DIR_PATH);
         if (!propertiesDir.exists())
             propertiesDir.mkdir();
         propertiesFile = new File(propertiesDir, "Settings.properties");

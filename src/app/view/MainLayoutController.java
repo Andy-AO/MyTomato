@@ -2,10 +2,7 @@ package app.view;
 
 import app.*;
 import app.control.OnTopAlert;
-import app.util.CountDown;
-import app.util.Mp3Player;
-import app.util.PropertiesManager;
-import app.util.TaskBarProgressbar;
+import app.util.*;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
@@ -88,11 +85,11 @@ public class MainLayoutController extends Controller {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Mp3Player workDurationMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/bgm_Ticking.mp3"));
-    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
+    private Mp3Player workDurationMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
+    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
 
-    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(Main.getResFile(), "sound/respite_finished.mp3"));
+    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
+    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
 
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();

@@ -2,3 +2,4 @@
 /.idea/workspace.xml
 /srcText/app/view/FinishDialog.fxml
 /res/properties/Settings.properties
+/res/log4j.properties

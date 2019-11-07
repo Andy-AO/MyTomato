@@ -9,8 +9,8 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static app.util.Util.localDateToString;
-import static app.util.Util.localTimeToString;
+import static app.util.DateAndTime.localDateToString;
+import static app.util.DateAndTime.localTimeToString;
 
 public class TomatoTask {
 

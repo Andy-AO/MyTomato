@@ -4,7 +4,6 @@ import app.Main;
 import app.control.OnTopAlert;
 import app.util.TimeStringPolisher;
 import app.model.TomatoTask;
-import app.util.Util;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -14,7 +13,6 @@ import javafx.scene.control.*;
 
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EditDialogControl extends Controller {

@@ -4,7 +4,7 @@ import app.control.OnTopAlert;
 import app.control.mytomato.StackedPanes;
 import app.util.DataManager;
 import app.util.MapJson;
-import app.util.Util;
+import app.util.ResGetter;
 import app.view.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -48,7 +48,7 @@ public class Main extends Application {
     private Stage plusDialogStage = null;
     private Stage startSettingStage = null;
 
-    private Image tomatoImage = new Image(Main.getResURLString() + "image/tomato.png");
+    private Image tomatoImage = new Image(ResGetter.getResURLString() + "image/tomato.png");
     private AnchorPane editDialog;
     private EditDialogControl editDialogController;
     private Stage editDialogStage = null;
@@ -56,17 +56,6 @@ public class Main extends Application {
     private PlusDialogController plusDialogController;
     private StackedPanesController stackedPanesController;
     private DataManager tomatoTaskDataMapJson;
-
-    private static String getResURLString() {
-        return Main.getResURIString();
-    }
-
-    private static String getResURIString() {
-        File file = Main.getResFile();
-        String URIString = file.toURI().toString();
-        System.out.println("URIString:" + URIString);
-        return URIString;
-    }
 
     private AnchorPane finishDialog;
     private StackedPanes stackedPanes;
@@ -79,7 +68,7 @@ public class Main extends Application {
 
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
 
-    private final File JSON_FILE = new File(Main.getResFile(), "json\\tomatoTaskData.json");
+    private final File JSON_FILE = new File(ResGetter.getResFile(), "json\\tomatoTaskData.json");
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -162,40 +151,6 @@ public class Main extends Application {
         this.rootLayoutController = rootLayoutController;
     }
 
-    public static String getJarDirPath() {
-        String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        if (System.getProperty("os.name").contains("dows")) {
-            path = path.substring(1, path.length());
-        }
-        if (path.contains("jar")) {
-            path = path.substring(0, path.lastIndexOf("."));
-            return path.substring(0, path.lastIndexOf("/"));
-        }
-        return path.replace("target/classes/", "");
-    }
-
-
-    public static File getResFile() {
-        File resFile = new File("res");
-        boolean resDirIsInWorkDir = resFile.exists() && resFile.isDirectory();
-        if (resDirIsInWorkDir)
-            return resFile;
-        else {
-            String path = getJarDirPath();
-            System.out.println("getJarDirPath():" + path);
-            resFile = new File(path, "res");
-            boolean resDirIsInJarDir = resFile.exists() && resFile.isDirectory();
-            if (resDirIsInJarDir) {
-                return resFile;
-            } else {
-                Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "res files dir is not found !");
-                alert.showAndWait();
-                System.exit(1);
-                return resFile;
-            }
-        }
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -549,11 +504,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e)->{
-            e.printStackTrace();
-            Util.formatErrorAlert(e);
-        });
-        launch(args);
+          launch(args);
     }
 
 

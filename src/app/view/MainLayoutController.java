@@ -4,6 +4,7 @@ import app.*;
 import app.control.OnTopAlert;
 import app.util.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -601,4 +602,50 @@ public class MainLayoutController extends Controller {
     }
 
 
+    public static class FinishDialogController extends Controller{
+
+        @FXML
+        private Label label;
+        @FXML
+        private Button okButton;
+        @FXML
+        private Button deleteButton;
+
+        @FXML
+        private TextField textField;
+
+
+        @FXML
+        private void handleOkButton() {
+            handleTextField();
+        }
+
+        @FXML
+        private void handleDeleteButton() {
+            main.getFinishDialogStage().close();
+        }
+
+        public TextField getTextField() {
+            return textField;
+        }
+
+
+
+        private SimpleStringProperty inputString = new SimpleStringProperty(null);
+
+          public SimpleStringProperty inputStringProperty() {
+            return inputString;
+        }
+
+        @FXML
+        private void handleTextField() {
+            inputString.set(textField.getCharacters().toString());
+            main.getFinishDialogStage().close();
+        }
+
+        @Override
+        public void setMainAndInit(Main main) {
+            super.setMainAndInit(main);
+        }
+    }
 }

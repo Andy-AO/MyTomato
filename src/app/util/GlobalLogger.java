@@ -1,5 +1,6 @@
 package app.util;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -14,8 +15,10 @@ public class GlobalLogger {
 
     //log
     static {
-        PropertyConfigurator.configure(ResGetter.getResFile().getAbsolutePath() + "\\log4j.properties");
-        logger.debug("Util Static initialize !");
+        String resFileAbsolutePath = ResGetter.getResFile().getAbsolutePath();
+        PropertyConfigurator.configure(resFileAbsolutePath + "\\log4j.properties");
+        logger.info("Util Static initialize !");
+        GlobalLogger.logger.info("ResFile:" + resFileAbsolutePath);
     }
 
 

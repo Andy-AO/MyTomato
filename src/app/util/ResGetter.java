@@ -30,12 +30,6 @@ public class ResGetter {
     }
 
     public static File getResFile() {
-        File file = getResFile_base();
-        GlobalLogger.logger.info("ResFile:" + file.getAbsolutePath());
-        return file;
-    }
-
-    private static File getResFile_base() {
         File resFile = new File("res");
         boolean resDirIsInWorkDir = resFile.exists() && resFile.isDirectory();
         if (resDirIsInWorkDir)

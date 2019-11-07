@@ -3,7 +3,6 @@ package app.view;
 import app.Main;
 import app.control.mytomato.StackedPanes;
 import app.model.TomatoTask;
-import app.util.GlobalLogger;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;

@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class SettingDialogController  extends Controller {
 
-    public static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
+
     @FXML
     private TabPane tabPane;
 
@@ -37,13 +37,13 @@ public class SettingDialogController  extends Controller {
 
      private void loadPropertyFromFile() {
         boolean developmentMode;
-        developmentMode = Boolean.parseBoolean(PROPERTIES_MANAGER.getProperty("developmentMode", "false"));
+        developmentMode = Boolean.parseBoolean(Main.PROPERTIES_MANAGER.getProperty("developmentMode", "false"));
         developmentCheckBox.setSelected(developmentMode);
     }
 
     private void addPropertyListener() {
         developmentCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            PROPERTIES_MANAGER.setProperty("developmentMode", newValue ? "true" : "false");
+            Main.PROPERTIES_MANAGER.setProperty("developmentMode", newValue ? "true" : "false");
         });
     }
 

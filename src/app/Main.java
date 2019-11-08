@@ -50,7 +50,6 @@ public class Main extends Application {
 
     public static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
 
-
     private BorderPane rootLayout;
     private AnchorPane mainLayout;
 

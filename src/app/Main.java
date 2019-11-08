@@ -2,10 +2,7 @@ package app;
 
 import app.control.OnTopAlert;
 import app.control.mytomato.StackedPanes;
-import app.util.CountDown;
-import app.util.DataManager;
-import app.util.MapJson;
-import app.util.ResGetter;
+import app.util.*;
 import app.view.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -45,6 +42,10 @@ public class Main extends Application {
     public static final Duration DEFAULT_RESPITE_DURATION = Duration.ofMinutes(5);
     public static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
     public static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
+    public static final Mp3Player WORK_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
+    public static final Mp3Player RESPITE_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
+    public static Mp3Player WORK_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
+    public static Mp3Player RESPITE_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
 
 
     private BorderPane rootLayout;

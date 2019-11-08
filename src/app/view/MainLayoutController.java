@@ -15,7 +15,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,13 +73,6 @@ public class MainLayoutController extends Controller {
     private FlowPane buttonFlowPane;
     @FXML
     private FlowPane buttonFlowPaneBackground;
-
-
-    private static Mp3Player WORK_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
-    private static Mp3Player RESPITE_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
-
-    private  static Mp3Player WORK_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
-    private static Mp3Player RESPITE_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
 
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
@@ -161,11 +153,11 @@ public class MainLayoutController extends Controller {
     }
 
     public Mp3Player getWorkDurationMp3Player() {
-        return WORK_DURATION_MP3_PLAYER;
+        return Main.WORK_DURATION_MP3_PLAYER;
     }
 
     public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
-        this.WORK_DURATION_MP3_PLAYER = workDurationMp3Player;
+        Main.WORK_DURATION_MP3_PLAYER = workDurationMp3Player;
     }
 
 
@@ -240,12 +232,12 @@ public class MainLayoutController extends Controller {
         try {
             if (Main.WORK_COUNT_DOWN.isStarted()) {
                 Main.WORK_COUNT_DOWN.cancel();
-                WORK_DURATION_MP3_PLAYER.close();
+                Main.WORK_DURATION_MP3_PLAYER.close();
             }
 
             if (Main.RESPITE_COUNT_DOWN.isStarted()) {
                 Main.RESPITE_COUNT_DOWN.cancel();
-                RESPITE_DURATION_MP3_PLAYER.close();
+                Main.RESPITE_DURATION_MP3_PLAYER.close();
             }
         } finally {
             startOrStopLock.unlock();
@@ -256,7 +248,7 @@ public class MainLayoutController extends Controller {
         startOrStopLock.lock();
         try {
             Main.WORK_COUNT_DOWN.start();
-            WORK_DURATION_MP3_PLAYER.repeatPlayInNewThread();
+            Main.WORK_DURATION_MP3_PLAYER.repeatPlayInNewThread();
         } finally {
             startOrStopLock.unlock();
         }
@@ -268,9 +260,9 @@ public class MainLayoutController extends Controller {
     }
 
     private void handleWorkFinished(boolean ableMusic) {
-        WORK_DURATION_MP3_PLAYER.close();
+        Main.WORK_DURATION_MP3_PLAYER.close();
         if (ableMusic)
-            WORK_FINISHED_MP3_PLAYER.playInNewThread();
+            Main.WORK_FINISHED_MP3_PLAYER.playInNewThread();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
@@ -383,8 +375,8 @@ public class MainLayoutController extends Controller {
         Main.RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                RESPITE_DURATION_MP3_PLAYER.close();
-                RESPITE_FINISHED_MP3_PLAYER.playInNewThread();
+                Main.RESPITE_DURATION_MP3_PLAYER.close();
+                Main.RESPITE_FINISHED_MP3_PLAYER.playInNewThread();
                 Platform.runLater(
                         () -> {
                             Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
@@ -472,7 +464,7 @@ public class MainLayoutController extends Controller {
                 Main.WORK_COUNT_DOWN);
         main.getStackedPanes().addItems(tomatoTask);
         Main.RESPITE_COUNT_DOWN.start();
-        RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
+        Main.RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
 
     }
 
@@ -632,7 +624,7 @@ public class MainLayoutController extends Controller {
                     Main.WORK_COUNT_DOWN);
             main.getStackedPanes().addItems(tomatoTask);
             Main.RESPITE_COUNT_DOWN.start();
-            RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
+            Main.RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
 
 
             main.getFinishDialogStage().close();

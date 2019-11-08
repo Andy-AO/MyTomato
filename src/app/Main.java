@@ -44,8 +44,11 @@ public class Main extends Application {
     public static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
     public static final Mp3Player WORK_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
     public static final Mp3Player RESPITE_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
-    public static Mp3Player WORK_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
-    public static Mp3Player RESPITE_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
+
+    public static final Mp3Player WORK_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
+    public static final Mp3Player RESPITE_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
+
+    public static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
 
 
     private BorderPane rootLayout;

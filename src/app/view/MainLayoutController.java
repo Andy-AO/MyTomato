@@ -75,7 +75,6 @@ public class MainLayoutController extends Controller {
     private FlowPane buttonFlowPaneBackground;
 
 
-    private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
     private int todayTaskAmount = 0;
     private Thread showRedoBarAndSleepThread;
 
@@ -154,10 +153,6 @@ public class MainLayoutController extends Controller {
 
     public Mp3Player getWorkDurationMp3Player() {
         return Main.WORK_DURATION_MP3_PLAYER;
-    }
-
-    public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
-        Main.WORK_DURATION_MP3_PLAYER = workDurationMp3Player;
     }
 
 
@@ -328,22 +323,22 @@ public class MainLayoutController extends Controller {
     }
 
     private void anchorHeightBindAndInit() {
-        String heightString = PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
+        String heightString = Main.PROPERTIES_MANAGER.getProperty("anchorHeight", Double.toString(anchorPane.getPrefHeight()));
         double height = Double.parseDouble(heightString);
         anchorPane.setPrefHeight(height);
         anchorPane.heightProperty().addListener((observable, oldValue, newValue) -> {
             double anchorHeight = (Double) newValue;
-            PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
+            Main.PROPERTIES_MANAGER.setProperty("anchorHeight", Double.toString(anchorHeight));
         });
     }
 
     private void anchorWidthBindAndInit() {
-        String widthString = PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
+        String widthString = Main.PROPERTIES_MANAGER.getProperty("anchorWidth", Double.toString(anchorPane.getPrefWidth()));
         double width = Double.parseDouble(widthString);
         anchorPane.setPrefWidth(width);
         anchorPane.widthProperty().addListener((observable, oldValue, newValue) -> {
             double anchorWidth = (Double) newValue;
-            PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
+            Main.PROPERTIES_MANAGER.setProperty("anchorWidth", Double.toString(anchorWidth));
         });
     }
 

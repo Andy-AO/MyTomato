@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 import app.model.TomatoTask;
 
 import java.io.File;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -75,15 +74,6 @@ public class MainLayoutController extends Controller {
     private FlowPane buttonFlowPane;
     @FXML
     private FlowPane buttonFlowPaneBackground;
-
-
-    private static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);
-    private static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
-
-    private static final Duration DEFAULT_RESPITE_DURATION = Duration.ofMinutes(5);
-    private static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
-
-    private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
     private static Mp3Player WORK_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
@@ -248,13 +238,13 @@ public class MainLayoutController extends Controller {
     private void handleStopButton() {
         startOrStopLock.lock();
         try {
-            if (WORK_COUNT_DOWN.isStarted()) {
-                WORK_COUNT_DOWN.cancel();
+            if (Main.WORK_COUNT_DOWN.isStarted()) {
+                Main.WORK_COUNT_DOWN.cancel();
                 WORK_DURATION_MP3_PLAYER.close();
             }
 
-            if (RESPITE_COUNT_DOWN.isStarted()) {
-                RESPITE_COUNT_DOWN.cancel();
+            if (Main.RESPITE_COUNT_DOWN.isStarted()) {
+                Main.RESPITE_COUNT_DOWN.cancel();
                 RESPITE_DURATION_MP3_PLAYER.close();
             }
         } finally {
@@ -265,7 +255,7 @@ public class MainLayoutController extends Controller {
     private void handleStartButton() {
         startOrStopLock.lock();
         try {
-            WORK_COUNT_DOWN.start();
+            Main.WORK_COUNT_DOWN.start();
             WORK_DURATION_MP3_PLAYER.repeatPlayInNewThread();
         } finally {
             startOrStopLock.unlock();
@@ -366,7 +356,7 @@ public class MainLayoutController extends Controller {
     }
 
     private void setRespiteCountDownListener() {
-        RESPITE_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
+        Main.RESPITE_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 boolean isStarted = newValue;
                 if (isStarted){
@@ -378,19 +368,19 @@ public class MainLayoutController extends Controller {
             });
 
         });
-        RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
+        Main.RESPITE_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 progressBar.setProgress((Double) newValue);
                 taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.PAUSED);
             });
         });
 
-        RESPITE_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
+        Main.RESPITE_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 progressText.setText(newValue);
             });
         });
-        RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
+        Main.RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
                 RESPITE_DURATION_MP3_PLAYER.close();
@@ -413,7 +403,7 @@ public class MainLayoutController extends Controller {
 
 
     private void setWorkCountDownListener() {
-        WORK_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
+        Main.WORK_COUNT_DOWN.startedProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 boolean isStarted = newValue;
                 if (isStarted) {
@@ -428,7 +418,7 @@ public class MainLayoutController extends Controller {
 
         });
 
-        WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
+        Main.WORK_COUNT_DOWN.barProgressProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 progressBar.setProgress((Double) newValue);
                 taskProgressbar.showOtherProgress((Double) newValue, TaskBarProgressbar.TaskBarProgressbarType.NORMAL);
@@ -436,12 +426,12 @@ public class MainLayoutController extends Controller {
 
         });
 
-        WORK_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
+        Main.WORK_COUNT_DOWN.textProgressProperty().addListener((observable, oldValue, newValue) -> {
             Platform.runLater(() -> {
                 progressText.setText(newValue);
             });
         });
-        WORK_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
+        Main.WORK_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
                 handleWorkFinished();
@@ -454,11 +444,11 @@ public class MainLayoutController extends Controller {
 
     private void developmentMode(Boolean newValue) {
         if (newValue) {
-            WORK_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
-            RESPITE_COUNT_DOWN.setDuration(DEVELOPMENT_DURATION);
+            Main.WORK_COUNT_DOWN.setDuration(Main.DEVELOPMENT_DURATION);
+            Main.RESPITE_COUNT_DOWN.setDuration(Main.DEVELOPMENT_DURATION);
         } else {
-            WORK_COUNT_DOWN.setDuration(DEFAULT_WORK_DURATION);
-            RESPITE_COUNT_DOWN.setDuration(DEFAULT_RESPITE_DURATION);
+            Main.WORK_COUNT_DOWN.setDuration(Main.DEFAULT_WORK_DURATION);
+            Main.RESPITE_COUNT_DOWN.setDuration(Main.DEFAULT_RESPITE_DURATION);
         }
     }
 
@@ -479,9 +469,9 @@ public class MainLayoutController extends Controller {
         }
 
         TomatoTask tomatoTask = new TomatoTask(taskName,
-                WORK_COUNT_DOWN);
+                Main.WORK_COUNT_DOWN);
         main.getStackedPanes().addItems(tomatoTask);
-        RESPITE_COUNT_DOWN.start();
+        Main.RESPITE_COUNT_DOWN.start();
         RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
 
     }
@@ -639,9 +629,9 @@ public class MainLayoutController extends Controller {
                 }
             }
             TomatoTask tomatoTask = new TomatoTask(taskName,
-                    WORK_COUNT_DOWN);
+                    Main.WORK_COUNT_DOWN);
             main.getStackedPanes().addItems(tomatoTask);
-            RESPITE_COUNT_DOWN.start();
+            Main.RESPITE_COUNT_DOWN.start();
             RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
 
 

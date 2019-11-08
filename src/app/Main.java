@@ -2,6 +2,7 @@ package app;
 
 import app.control.OnTopAlert;
 import app.control.mytomato.StackedPanes;
+import app.util.CountDown;
 import app.util.DataManager;
 import app.util.MapJson;
 import app.util.ResGetter;
@@ -30,6 +31,7 @@ import javafx.stage.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,11 @@ public class Main extends Application {
 
     public static final int PRIMARY_STAGE_MIN_WIDTH = 415;
     private static final ObservableMap<LocalDate, ObservableList<TomatoTask>> TOMATO_TASKS_MAP = FXCollections.observableMap(new HashMap());
+    public static final Duration DEFAULT_WORK_DURATION = Duration.ofMinutes(25);
+    public static final CountDown WORK_COUNT_DOWN = new CountDown(DEFAULT_WORK_DURATION);
+    public static final Duration DEFAULT_RESPITE_DURATION = Duration.ofMinutes(5);
+    public static final CountDown RESPITE_COUNT_DOWN = new CountDown(DEFAULT_RESPITE_DURATION);
+    public static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
     private BorderPane rootLayout;

@@ -379,7 +379,7 @@ public class Main extends Application {
                         public void run() {
                             getFinishDialogController().getTextField().setText("");
                             getPlusDialogController().getTextField().setText("");
-                            getFinishDialogController().inputStringProperty().set(null);
+
                         }
                     });
                 }

@@ -4,10 +4,10 @@ import app.*;
 import app.control.OnTopAlert;
 import app.util.*;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -86,11 +86,11 @@ public class MainLayoutController extends Controller {
     private static final Duration DEVELOPMENT_DURATION = Duration.ofSeconds(3);
 
 
-    private Mp3Player workDurationMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
-    private Mp3Player respiteDurationMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
+    private static Mp3Player WORK_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_Ticking.mp3"));
+    private static Mp3Player RESPITE_DURATION_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/bgm_WindThroughTrees.mp3"));
 
-    private Mp3Player workFinishedMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
-    private Mp3Player respiteFinishedMp3Player = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
+    private  static Mp3Player WORK_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/work_finished.mp3"));
+    private static Mp3Player RESPITE_FINISHED_MP3_PLAYER = new Mp3Player(new File(ResGetter.getResFile(), "sound/respite_finished.mp3"));
 
 
     private static final PropertiesManager PROPERTIES_MANAGER = PropertiesManager.getPropertiesManager();
@@ -171,11 +171,11 @@ public class MainLayoutController extends Controller {
     }
 
     public Mp3Player getWorkDurationMp3Player() {
-        return workDurationMp3Player;
+        return WORK_DURATION_MP3_PLAYER;
     }
 
     public void setWorkDurationMp3Player(Mp3Player workDurationMp3Player) {
-        this.workDurationMp3Player = workDurationMp3Player;
+        this.WORK_DURATION_MP3_PLAYER = workDurationMp3Player;
     }
 
 
@@ -250,12 +250,12 @@ public class MainLayoutController extends Controller {
         try {
             if (WORK_COUNT_DOWN.isStarted()) {
                 WORK_COUNT_DOWN.cancel();
-                workDurationMp3Player.close();
+                WORK_DURATION_MP3_PLAYER.close();
             }
 
             if (RESPITE_COUNT_DOWN.isStarted()) {
                 RESPITE_COUNT_DOWN.cancel();
-                respiteDurationMp3Player.close();
+                RESPITE_DURATION_MP3_PLAYER.close();
             }
         } finally {
             startOrStopLock.unlock();
@@ -266,7 +266,7 @@ public class MainLayoutController extends Controller {
         startOrStopLock.lock();
         try {
             WORK_COUNT_DOWN.start();
-            workDurationMp3Player.repeatPlayInNewThread();
+            WORK_DURATION_MP3_PLAYER.repeatPlayInNewThread();
         } finally {
             startOrStopLock.unlock();
         }
@@ -278,9 +278,9 @@ public class MainLayoutController extends Controller {
     }
 
     private void handleWorkFinished(boolean ableMusic) {
-        workDurationMp3Player.close();
+        WORK_DURATION_MP3_PLAYER.close();
         if (ableMusic)
-            workFinishedMp3Player.playInNewThread();
+            WORK_FINISHED_MP3_PLAYER.playInNewThread();
         Platform.runLater(() -> {
             getStartOrStopButton().setDisable(true);
             main.startFinishDialogAndWait();
@@ -292,11 +292,7 @@ public class MainLayoutController extends Controller {
 //--------------------------------------- Bind setSetting
 
 
-    private void setFinishDialogListener() {
-        main.getFinishDialogController().inputStringProperty().addListener((observable, oldTaskName, newTaskName) -> {
-            addTaskNameAfterFinished(newTaskName);
-        });
-    }
+
 
     private void sizeBind() {
         anchorSizeBindAndInit();
@@ -397,8 +393,8 @@ public class MainLayoutController extends Controller {
         RESPITE_COUNT_DOWN.finishedProperty().addListener((observable, oldValue, newValue) -> {
             boolean finished = newValue;
             if (finished) {
-                respiteDurationMp3Player.close();
-                respiteFinishedMp3Player.playInNewThread();
+                RESPITE_DURATION_MP3_PLAYER.close();
+                RESPITE_FINISHED_MP3_PLAYER.playInNewThread();
                 Platform.runLater(
                         () -> {
                             Alert respiteFinishedAlert = new OnTopAlert(Alert.AlertType.INFORMATION
@@ -486,7 +482,7 @@ public class MainLayoutController extends Controller {
                 WORK_COUNT_DOWN);
         main.getStackedPanes().addItems(tomatoTask);
         RESPITE_COUNT_DOWN.start();
-        respiteDurationMp3Player.repeatPlayInNewThread();
+        RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
 
     }
 
@@ -502,7 +498,6 @@ public class MainLayoutController extends Controller {
         deleteButtonAndEditButtonDisableBind();
         initCountDownText();
         setSettingListenerAndSetDuration();
-        setFinishDialogListener();
         addToolTipForButton();
         setStackedPanes();
         taskProgressbar = new TaskBarProgressbar(main.getPrimaryStage());
@@ -616,12 +611,7 @@ public class MainLayoutController extends Controller {
 
 
         @FXML
-        private void handleOkButton() {
-            handleTextField();
-        }
-
-        @FXML
-        private void handleDeleteButton() {
+        private void handleDeleteButton(ActionEvent event) {
             main.getFinishDialogStage().close();
         }
 
@@ -629,20 +619,34 @@ public class MainLayoutController extends Controller {
             return textField;
         }
 
-
-
-        private SimpleStringProperty inputString = new SimpleStringProperty(null);
-
-          public SimpleStringProperty inputStringProperty() {
-            return inputString;
+        @FXML
+        private void initialize() {
+            deleteButton.setOnAction(this::handleDeleteButton);
+            textField.setOnAction(this::handleTextField);
+            okButton.setOnAction(this::handleTextField);
         }
 
         @FXML
-        private void handleTextField() {
-            inputString.set(textField.getCharacters().toString());
+        private void handleTextField(ActionEvent event) {
+
+            String taskName = this.textField.getText();
+
+            if ((taskName==null)||(taskName.isEmpty())) {
+                Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "确定要提交一个空任务吗？", ButtonType.NO, ButtonType.YES);
+                ButtonType selectButton = alert.showAndWait().get();
+                if (selectButton.equals(ButtonType.NO)) {
+                    return;
+                }
+            }
+            TomatoTask tomatoTask = new TomatoTask(taskName,
+                    WORK_COUNT_DOWN);
+            main.getStackedPanes().addItems(tomatoTask);
+            RESPITE_COUNT_DOWN.start();
+            RESPITE_DURATION_MP3_PLAYER.repeatPlayInNewThread();
+
+
             main.getFinishDialogStage().close();
         }
-
         @Override
         public void setMainAndInit(Main main) {
             super.setMainAndInit(main);

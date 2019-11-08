@@ -69,7 +69,7 @@ public class Main extends Application {
 
     private AnchorPane finishDialog;
     private StackedPanes stackedPanes;
-    private MainLayoutController.FinishDialogController finishDialogController;
+    private FinishDialogController finishDialogController;
 
     private MainLayoutController mainLayoutController;
     private RootLayoutController rootLayoutController;
@@ -96,11 +96,12 @@ public class Main extends Application {
         this.settingDialogController = settingDialogController;
     }
 
-    public MainLayoutController.FinishDialogController getFinishDialogController() {
+
+    public FinishDialogController getFinishDialogController() {
         return finishDialogController;
     }
 
-    public void setFinishDialogController(MainLayoutController.FinishDialogController finishDialogController) {
+    public void setFinishDialogController(FinishDialogController finishDialogController) {
         this.finishDialogController = finishDialogController;
     }
 

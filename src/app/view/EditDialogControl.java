@@ -205,7 +205,7 @@ public class EditDialogControl extends Controller {
                 try {
                     newText = timeStringPolisher.polish();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    GlobalLogger.logger.warn(getClass().getSimpleName(),e);
                     newText = correctFormatString;
                 }
                 finally {

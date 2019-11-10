@@ -22,9 +22,9 @@ public class Mp3Player {
             this.fileInputStream = new FileInputStream(this.file);
             player = new Player(fileInputStream);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         } catch (JavaLayerException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -50,9 +50,9 @@ public class Mp3Player {
             player = new Player(fileInputStream);
             player.play();
         } catch (JavaLayerException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         }
     }
 

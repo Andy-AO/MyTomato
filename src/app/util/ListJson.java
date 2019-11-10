@@ -38,7 +38,7 @@ public class ListJson implements DataManager {
             System.err.println("Not Found JSON ,set table empty！");
             jsonString = EMPTY_MAP_STRING;
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         } finally {
             return jsonString;
         }
@@ -50,7 +50,7 @@ public class ListJson implements DataManager {
         try (FileWriter fileWriter = new FileWriter(jsonFile)) {
             fileWriter.write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         } finally {
             return json;
         }
@@ -64,7 +64,7 @@ public class ListJson implements DataManager {
             jsonList = JSON.parseObject(jsonString, ArrayList.class);
             jsonList.forEach(jsonMap -> mapToTask((JSONObject) jsonMap));
         } catch (com.alibaba.fastjson.JSONException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "JSON file parse exception.");
             alert.showAndWait();
             System.exit(1);

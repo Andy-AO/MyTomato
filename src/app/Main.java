@@ -222,7 +222,7 @@ public class Main extends Application {
             editDialog = loader.load();
             editDialogController = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -262,7 +262,7 @@ public class Main extends Application {
             finishDialog = loader.load();
             finishDialogController = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -315,7 +315,7 @@ public class Main extends Application {
             plusDialog = loader.load();
             plusDialogController = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
         }
     }
 

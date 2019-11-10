@@ -7,15 +7,7 @@ import java.util.ArrayList;
 
 public class BriefReport {
 
-    //setDefaultUncaughtExceptionHandler
-    static {
-        Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
-            e.printStackTrace();
-            BriefReport.formatErrorAlert(e);
-        });
-    }
-
-    public static void formatErrorAlert(Throwable ex) {
+     public static void formatErrorAlert(Throwable ex) {
         String contentText = getBriefReport(ex);
         Alert alert = new OnTopAlert(Alert.AlertType.WARNING, contentText);
         alert.showAndWait();

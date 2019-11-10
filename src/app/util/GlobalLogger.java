@@ -13,13 +13,10 @@ public class GlobalLogger {
 
     static public Logger logger = Logger.getLogger(GlobalLogger.class);
 
-    //log
     static {
         String resFileAbsolutePath = ResGetter.getResFile().getAbsolutePath();
         PropertyConfigurator.configure(resFileAbsolutePath + "\\log4j.properties");
-        logger.info("Util Static initialize !");
         GlobalLogger.logger.info("ResFile:" + resFileAbsolutePath);
     }
-
 
 }

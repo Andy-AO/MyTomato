@@ -210,7 +210,7 @@ public class Main extends Application {
             settingDialog = loader.load();
             settingDialogController = loader.getController();
         } catch (IOException e) {
-            e.printStackTrace();
+            GlobalLogger.logger.debug("load SettingDialog fail.",e);
         }
     }
 
@@ -513,6 +513,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        GlobalLogger.logger.info("setDefaultUncaughtExceptionHandler!");
+        Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
+            GlobalLogger.logger.warn("UncaughtException",e);
+            BriefReport.formatErrorAlert(e);
+        });
           launch(args);
     }
 

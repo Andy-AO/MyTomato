@@ -543,7 +543,6 @@ public class MainLayoutController extends Controller {
             try {
                 Thread.sleep(REDO_DELETE_BAR_SHOW_MILLIS);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             } finally {
                 hideRedoBar();
             }

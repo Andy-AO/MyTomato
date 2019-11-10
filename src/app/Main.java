@@ -513,12 +513,16 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        setDefaultUncaughtExceptionHandler();
+        launch(args);
+    }
+
+    private static void setDefaultUncaughtExceptionHandler() {
         GlobalLogger.logger.info("setDefaultUncaughtExceptionHandler!");
         Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
             GlobalLogger.logger.warn("UncaughtException",e);
             BriefReport.formatErrorAlert(e);
         });
-          launch(args);
     }
 
 

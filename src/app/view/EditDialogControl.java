@@ -2,6 +2,7 @@ package app.view;
 
 import app.Main;
 import app.control.OnTopAlert;
+import app.util.GlobalLogger;
 import app.util.TimeStringPolisher;
 import app.model.TomatoTask;
 import javafx.application.Platform;

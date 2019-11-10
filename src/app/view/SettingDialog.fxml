@@ -13,22 +13,14 @@
         <AnchorPane fx:id="genericAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
       </content>
     </Tab>
-    <Tab text="高级">
+    <Tab text="开发模式">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <CheckBox fx:id="developmentCheckBox" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDevelopmentCheckBox" prefHeight="16.0" prefWidth="118.0" text="开发模式" />
+                  <CheckBox fx:id="developmentCheckBox" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDevelopmentCheckBox" prefHeight="16.0" prefWidth="118.0" text="3 秒间隔模式" />
+                  <Button layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#throwException" text="throw RunTimeException" />
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab fx:id="genericTab1" text="开发模式">
-         <content>
-            <AnchorPane fx:id="genericAnchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#throwException" text="throw Exception" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
   </tabs>
 </TabPane>

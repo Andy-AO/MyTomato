@@ -204,8 +204,8 @@ public class EditDialogControl extends Controller {
                 String newText = null;
                 try {
                     newText = timeStringPolisher.polish();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                     newText = correctFormatString;
                 }
                 finally {

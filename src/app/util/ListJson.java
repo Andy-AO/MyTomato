@@ -63,8 +63,8 @@ public class ListJson implements DataManager {
         try {
             jsonList = JSON.parseObject(jsonString, ArrayList.class);
             jsonList.forEach(jsonMap -> mapToTask((JSONObject) jsonMap));
-        } catch (com.alibaba.fastjson.JSONException ex) {
-            ex.printStackTrace();
+        } catch (com.alibaba.fastjson.JSONException e) {
+            e.printStackTrace();
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING, "JSON file parse exception.");
             alert.showAndWait();
             System.exit(1);

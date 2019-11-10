@@ -61,8 +61,8 @@ public class PropertiesManager {
     private void loadSettings() {
         try (InputStream in = new FileInputStream(propertiesFile)) {
             settings.load(in);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -74,8 +74,8 @@ public class PropertiesManager {
     private void storeSettings() {
         try (OutputStream out = new FileOutputStream(propertiesFile)) {
             settings.store(out, "Program Properties");
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

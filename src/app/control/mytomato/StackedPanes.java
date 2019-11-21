@@ -165,7 +165,7 @@ public class StackedPanes extends app.control.StackedPanes {
 
     private SimpleObjectProperty<TableView> focusedTableView = new SimpleObjectProperty<>();
 
-    public TableView getFocusedTableView() {
+    public TableView getSelectionTableView() {
         return focusedTableView.get();
     }
 

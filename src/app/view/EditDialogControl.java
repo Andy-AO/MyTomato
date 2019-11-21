@@ -87,7 +87,7 @@ public class EditDialogControl extends Controller {
         }
         else {
             main.getTomatoTaskDataMapJson().write();
-            main.getStackedPanes().getFocusedTableView().refreshAndResize();
+            main.getStackedPanes().getSelectionTableView().refreshAndResize();
         }
 
         main.getEditDialogStage().close();
@@ -98,7 +98,7 @@ public class EditDialogControl extends Controller {
     }
 
     private void focusControl() {
-        TableColumn tableColumn = main.getStackedPanes().getFocusedTableView().getFocusModel().getFocusedCell().getTableColumn();
+        TableColumn tableColumn = main.getStackedPanes().getSelectionTableView().getFocusModel().getFocusedCell().getTableColumn();
         String tableColumnText = tableColumn.getText();
 
         if (tableColumnText.equals("Task Name")) {

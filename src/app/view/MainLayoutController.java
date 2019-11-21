@@ -159,7 +159,7 @@ public class MainLayoutController extends Controller {
 
     @FXML
     private void handleEditButton() {
-        TomatoTask specifiedTask = main.getStackedPanes().getFocusedTableView().getSelectionModel().getSelectedItem();
+        TomatoTask specifiedTask = getSelectionTableView().getSelectionModel().getSelectedItem();
         main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
         main.startEditDialogAndWait("修改任务");
     }
@@ -176,15 +176,9 @@ public class MainLayoutController extends Controller {
         }
     }
 
-
     @FXML
     void handleDeleteButton() {
-        TableView tableView = main.getStackedPanes().getFocusedTableView();
-        ObservableList<TomatoTask> selectedIndices = null;
-        if (tableView != null)
-            selectedIndices = tableView.getSelectionModel().getSelectedItems();
-
-        if ((tableView == null) || (selectedIndices == null) || (selectedIndices.isEmpty())) {
+        if ((getSelectionTableView() == null) || (getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");
@@ -192,11 +186,20 @@ public class MainLayoutController extends Controller {
             alert.setContentText("Please select a task in the table.");
             alert.showAndWait();
         } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
-            tableView.getItems().removeAll(itemList);
-            tableView.refreshAndResize();
+            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedIndices());
+            getSelectionTableView().getItems().removeAll(itemList);
+            getSelectionTableView().refreshAndResize();
         }
+    }
 
+    private ObservableList<TomatoTask> getSelectedIndices() {
+        if (getSelectionTableView()==null)
+            return null;
+        return getSelectionTableView().getSelectionModel().getSelectedItems();
+    }
+
+    private TableView getSelectionTableView() {
+        return main.getStackedPanes().getSelectionTableView();
     }
 
     @FXML

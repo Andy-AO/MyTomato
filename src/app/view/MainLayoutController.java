@@ -178,7 +178,7 @@ public class MainLayoutController extends Controller {
 
     @FXML
     void handleDeleteButton() {
-        if ((getSelectionTableView() == null) || (getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
+        if ((getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
             Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
             alert.initOwner(main.getPrimaryStage());
             alert.setTitle("No Selection");

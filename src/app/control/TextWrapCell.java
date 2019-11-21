@@ -26,9 +26,7 @@ public class TextWrapCell<T> extends TableCell<T, String> {
                     textControl = new Text(item);
                     setGraphic(textControl);
                     wrap();
-                    getTableColumn().widthProperty().addListener((observable, oldValue, nameColumnNewWidth) -> {
-                        wrap();
-                    });
+                    getTableColumn().widthProperty().addListener((observable, oldValue, newValue) -> wrap());
                 } else {
                     textControl.setText(item);
                 }

@@ -2,6 +2,7 @@ package app.control.mytomato;
 
 import app.control.TextWrapCell;
 import app.model.TomatoTask;
+import app.util.GL;
 import javafx.application.Platform;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
@@ -73,5 +74,9 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     public void refreshAndResize() {
         this.refresh();
+        GL.logger.debug("this.heightProperty() -> " + this.heightProperty());
+        GL.logger.debug("this.getPrefHeight() -> " + this.getPrefHeight());
+        GL.logger.debug("this.maxHeightProperty() -> " + this.maxHeightProperty());
+        GL.logger.debug("this.maxHeightProperty() -> " + this.maxHeightProperty());
     }
 }

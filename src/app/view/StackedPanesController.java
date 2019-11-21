@@ -36,8 +36,10 @@ public class StackedPanesController extends Controller {
     private void handleTableDeleteKey(KeyEvent keyEvent) {
         KeyCode keyCode = keyEvent.getCode();
         String keyName = keyCode.getName();
-        if ("Delete" == keyName){
-            main.getMainLayoutController().handleDeleteButton();
+        switch (keyName) {
+            case "Delete":
+                main.getMainLayoutController().handleDeleteButton();
+                break;
         }
 
     }

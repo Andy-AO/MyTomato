@@ -178,16 +178,16 @@ public class MainLayoutController extends Controller {
 
     @FXML
     void handleDeleteButton() {
-        if ((getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
+        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
             noSelectionAlert();
         } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedIndices());
+            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
             getSelectionTableView().getItems().removeAll(itemList);
             getSelectionTableView().refreshAndResize();
         }
     }
 
-    private ObservableList<TomatoTask> getSelectedIndices() {
+    private ObservableList<TomatoTask> getSelectedItems() {
         if (getSelectionTableView()==null)
             return null;
         return getSelectionTableView().getSelectionModel().getSelectedItems();
@@ -573,10 +573,10 @@ public class MainLayoutController extends Controller {
     }
 
     public void showCellHeight() {
-        if ((getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
+        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
             noSelectionAlert();
         } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedIndices());
+            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
             getSelectionTableView().getItems().removeAll(itemList);
             getSelectionTableView().refreshAndResize();
         }

@@ -9,16 +9,16 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import app.control.mytomato.TableView;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 import app.model.TomatoTask;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
-
 
 public class MainLayoutController extends Controller {
 
@@ -179,8 +179,7 @@ public class MainLayoutController extends Controller {
 
     @FXML
     void handleDeleteButton() {
-
-        TableView<TomatoTask> tableView = main.getStackedPanes().getFocusedTableView();
+        TableView tableView = main.getStackedPanes().getFocusedTableView();
         ObservableList<TomatoTask> selectedIndices = null;
         if (tableView != null)
             selectedIndices = tableView.getSelectionModel().getSelectedItems();
@@ -195,7 +194,7 @@ public class MainLayoutController extends Controller {
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(selectedIndices);
             tableView.getItems().removeAll(itemList);
-            tableView.refresh();
+            tableView.refreshAndResize();
         }
 
     }

@@ -5,8 +5,6 @@ import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.scene.Node;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -137,7 +135,7 @@ public class StackedPanes extends app.control.StackedPanes {
                         titledPane.getTableView().sort();
                     }
                     change.reset();
-                    titledPane.getTableView().refresh();
+                    titledPane.getTableView().refreshAndResize();
                 }
                 if (list.isEmpty()) {
                     removeTitledPane(titledPane);

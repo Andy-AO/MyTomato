@@ -71,4 +71,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
         nameColumn = new TableColumn<>("Task Name");
     }
 
+    public void refreshAndResize() {
+        this.refresh();
+    }
 }

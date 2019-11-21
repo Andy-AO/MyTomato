@@ -573,4 +573,12 @@ public class MainLayoutController extends Controller {
 
     }
 
+    public double computeCellHeight() {
+        return 0;
+    }
+
+    public void showCellHeight() {
+        double height = computeCellHeight();
+
+    }
 }

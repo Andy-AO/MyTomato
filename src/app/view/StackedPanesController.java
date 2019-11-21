@@ -38,8 +38,9 @@ public class StackedPanesController extends Controller {
         String keyName = keyCode.getName();
         switch (keyName) {
             case "Delete":
-                main.getMainLayoutController().handleDeleteButton();
-                break;
+                main.getMainLayoutController().handleDeleteButton();break;
+            case "R":
+                main.getMainLayoutController().showCellHeight();
         }
 
     }

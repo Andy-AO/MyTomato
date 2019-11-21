@@ -13,6 +13,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     public static final int START_AND_END_COLUMN_MIN_WIDTH = 48;
     public static final int SCROLL_WIDTH = 2;
+    public static final int DEFAULT_PREHEIGHT = 400;
     private TableColumn<TomatoTask, String> nameColumn;
     private TableColumn<TomatoTask, String> endColumn;
     private TableColumn<TomatoTask, String> startColumn;
@@ -36,6 +37,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
         this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         setCellValueFactory();
         setCellFactory();
+        this.setPrefHeight(DEFAULT_PREHEIGHT);
     }
 
     private void setColumn() {

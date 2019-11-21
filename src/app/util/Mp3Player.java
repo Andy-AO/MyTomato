@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Mp3Player {
 
@@ -22,9 +21,9 @@ public class Mp3Player {
             this.fileInputStream = new FileInputStream(this.file);
             player = new Player(fileInputStream);
         } catch (FileNotFoundException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         } catch (JavaLayerException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -50,9 +49,9 @@ public class Mp3Player {
             player = new Player(fileInputStream);
             player.play();
         } catch (JavaLayerException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         } catch (FileNotFoundException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 

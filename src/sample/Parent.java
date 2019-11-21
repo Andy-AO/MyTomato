@@ -1,6 +1,6 @@
 package sample;
 
-import app.util.GlobalLogger;
+import app.util.GL;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,7 +24,7 @@ public class Parent {
 
         @FXML
         private void handleOkButton(){
-            GlobalLogger.logger.debug("handleOkButton");
+            GL.logger.debug("handleOkButton");
         }
     }
 }

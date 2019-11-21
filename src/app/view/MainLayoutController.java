@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -170,10 +169,10 @@ public class MainLayoutController extends Controller {
         List removedItems = main.getREDO_TOMATO_TASKS();
         if (!removedItems.isEmpty()) {
             main.getStackedPanes().addItems(removedItems);
-            GlobalLogger.logger.info("Redo|removedItems -> " + removedItems);
+            GL.logger.info("Redo|removedItems -> " + removedItems);
             removedItems.clear();
         } else {
-            GlobalLogger.logger.debug("REDO_TOMATO_TASKS is empty!");
+            GL.logger.debug("REDO_TOMATO_TASKS is empty!");
         }
     }
 

@@ -210,7 +210,7 @@ public class Main extends Application {
             settingDialog = loader.load();
             settingDialogController = loader.getController();
         } catch (IOException e) {
-            GlobalLogger.logger.debug("load SettingDialog fail.",e);
+            GL.logger.debug("load SettingDialog fail.",e);
         }
     }
 
@@ -222,7 +222,7 @@ public class Main extends Application {
             editDialog = loader.load();
             editDialogController = loader.getController();
         } catch (IOException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -262,7 +262,7 @@ public class Main extends Application {
             finishDialog = loader.load();
             finishDialogController = loader.getController();
         } catch (IOException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -315,7 +315,7 @@ public class Main extends Application {
             plusDialog = loader.load();
             plusDialogController = loader.getController();
         } catch (IOException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -518,9 +518,9 @@ public class Main extends Application {
     }
 
     private static void setDefaultUncaughtExceptionHandler() {
-        GlobalLogger.logger.info("setDefaultUncaughtExceptionHandler!");
+        GL.logger.info("setDefaultUncaughtExceptionHandler!");
         Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
-            GlobalLogger.logger.warn("UncaughtException",e);
+            GL.logger.warn("UncaughtException",e);
             BriefReport.formatErrorAlert(e);
         });
     }

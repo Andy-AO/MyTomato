@@ -31,7 +31,7 @@ public final class TaskBarProgressbar {
             try {
                 list = COMRuntime.newInstance(ITaskbarList3.class);
             } catch (ClassNotFoundException e) {
-                GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+                GL.logger.warn(getClass().getSimpleName(),e);
             }
         });
     }
@@ -51,7 +51,7 @@ public final class TaskBarProgressbar {
             try {
                 list = COMRuntime.newInstance(ITaskbarList3.class);
             } catch (ClassNotFoundException e) {
-                GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+                GL.logger.warn(getClass().getSimpleName(),e);
             }
         });
     }

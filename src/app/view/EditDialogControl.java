@@ -2,7 +2,7 @@ package app.view;
 
 import app.Main;
 import app.control.OnTopAlert;
-import app.util.GlobalLogger;
+import app.util.GL;
 import app.util.TimeStringPolisher;
 import app.model.TomatoTask;
 import javafx.application.Platform;
@@ -206,7 +206,7 @@ public class EditDialogControl extends Controller {
                 try {
                     newText = timeStringPolisher.polish();
                 } catch (Exception e) {
-                    GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+                    GL.logger.warn(getClass().getSimpleName(),e);
                     newText = correctFormatString;
                 }
                 finally {

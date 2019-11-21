@@ -33,9 +33,9 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
         this.getColumns().setAll(startColumn, endColumn, nameColumn);
         setColumn();
         this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        setTableViewCell();
+        setCellValueFactory();
+        setCellFactory();
     }
-
 
     private void setColumn() {
         startColumn.setMinWidth(START_AND_END_COLUMN_MIN_WIDTH);
@@ -47,7 +47,7 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     private void bindNameColumnWidthToTableViewColumnWidth() {
         this.widthProperty().addListener((observable, oldWidth, newWidth) -> {
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 double otherColumnWidth = startColumn.getWidth() + endColumn.getWidth();
                 double nameColumnWidth = (Double) newWidth - otherColumnWidth;
                 this.nameColumn.setPrefWidth(nameColumnWidth - SCROLL_WIDTH);
@@ -55,18 +55,14 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
         });
     }
 
-    private void setTableViewCell() {
-
+    private void setCellValueFactory() {
         startColumn.setCellValueFactory(cellData -> cellData.getValue().startTimeStringProperty());
         endColumn.setCellValueFactory(cellData -> cellData.getValue().endTimeStringProperty());
         nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        nameColumn.setCellFactory(new Callback<TableColumn<TomatoTask, String>, TableCell<TomatoTask, String>>() {
-            @Override
-            public TableCell<TomatoTask, String> call(TableColumn<TomatoTask, String> param) {
-                return new TextWrapCell<>();
-            }
-        });
+    }
 
+    private void setCellFactory() {
+        nameColumn.setCellFactory(param -> new TextWrapCell<>());
     }
 
     private void createTableColumn() {

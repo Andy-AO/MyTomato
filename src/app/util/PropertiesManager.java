@@ -45,9 +45,9 @@ public class PropertiesManager {
             try (OutputStream out = new FileOutputStream(propertiesFile)) {
 
             } catch (FileNotFoundException e) {
-                GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+                GL.logger.warn(getClass().getSimpleName(),e);
             } catch (IOException e) {
-                GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+                GL.logger.warn(getClass().getSimpleName(),e);
             }
         }
     }
@@ -62,7 +62,7 @@ public class PropertiesManager {
         try (InputStream in = new FileInputStream(propertiesFile)) {
             settings.load(in);
         } catch (IOException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 
@@ -75,7 +75,7 @@ public class PropertiesManager {
         try (OutputStream out = new FileOutputStream(propertiesFile)) {
             settings.store(out, "Program Properties");
         } catch (IOException e) {
-            GlobalLogger.logger.warn(getClass().getSimpleName(),e);
+            GL.logger.warn(getClass().getSimpleName(),e);
         }
     }
 }

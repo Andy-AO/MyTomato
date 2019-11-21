@@ -179,12 +179,7 @@ public class MainLayoutController extends Controller {
     @FXML
     void handleDeleteButton() {
         if ((getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
-            Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
-            alert.initOwner(main.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Task Selected");
-            alert.setContentText("Please select a task in the table.");
-            alert.showAndWait();
+            noSelectionAlert();
         } else {
             ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedIndices());
             getSelectionTableView().getItems().removeAll(itemList);
@@ -578,7 +573,21 @@ public class MainLayoutController extends Controller {
     }
 
     public void showCellHeight() {
-        double height = computeCellHeight();
+        if ((getSelectedIndices() == null) || (getSelectedIndices().isEmpty())) {
+            noSelectionAlert();
+        } else {
+            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedIndices());
+            getSelectionTableView().getItems().removeAll(itemList);
+            getSelectionTableView().refreshAndResize();
+        }
+    }
 
+    private void noSelectionAlert() {
+        Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
+        alert.initOwner(main.getPrimaryStage());
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No Task Selected");
+        alert.setContentText("Please select a task in the table.");
+        alert.showAndWait();
     }
 }

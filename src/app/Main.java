@@ -240,7 +240,9 @@ public class Main extends Application {
 
     private void initPrimaryStage() {
         primaryStage.setTitle("MyTomato");
-        primaryStage.setScene(new Scene(getRootLayout()));
+        Scene primaryStageScene = new Scene(getRootLayout());
+        primaryStageScene.getStylesheets().add(getClass().getResource("view/stylesheet.css").toExternalForm());
+        primaryStage.setScene(primaryStageScene);
         primaryStage.setMinWidth(PRIMARY_STAGE_MIN_WIDTH);
         primaryStage.getIcons().add(tomatoImage);
         setPrimaryStageListener();

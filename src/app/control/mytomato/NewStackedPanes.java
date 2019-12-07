@@ -74,9 +74,13 @@ public class NewStackedPanes extends app.control.StackedPanes {
 //--------------------------------------- Method
 
     public void setItemsMap(ObservableMap<LocalDate, ObservableList<TomatoTask>> itemsMap) {
+        //TODO:这里是数据输入的地方
         this.itemsMap = itemsMap;
+        //TODO:这里对数据进行排序
         convertItemsMapToSortedList();
+        //TODO:这里将数据显示在VBox上面(这是重点入口)
         showItemsList();
+        //TODO:这里显示TitlePane的监听器
         itemsMap.addListener((MapChangeListener<LocalDate, ObservableList<TomatoTask>>) change -> {
             ObservableList<TomatoTask> addList = change.getValueAdded();
             if (!addList.isEmpty()) {
@@ -109,6 +113,7 @@ public class NewStackedPanes extends app.control.StackedPanes {
     private void showItemsList() {
         this.itemsList.forEach((list) -> {
             if (!list.isEmpty()) {
+                //TODO:这里就是生成TitledPane并显示的地方,是修改的前线
                 TitledPane titledPane = creatTitledPane(list);
                 vBox.getChildren().add(titledPane);
             }

@@ -32,12 +32,12 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     public TableView() {
         createTableColumn();
-        this.getColumns().setAll(startColumn, endColumn, nameColumn);
+        getColumns().setAll(startColumn, endColumn, nameColumn);
         setColumn();
-        this.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         setCellValueFactory();
         setCellFactory();
-        this.setPrefHeight(DEFAULT_PREHEIGHT);
+        setPrefHeight(DEFAULT_PREHEIGHT);
     }
 
     private void setColumn() {

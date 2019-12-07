@@ -1,6 +1,7 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
+import app.view.NewStackedPanesController;
 import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
@@ -16,9 +17,9 @@ public class NewStackedPanes extends app.control.StackedPanes {
 
 
     //--------------------------------------- Field+
-    StackedPanesController stackedPanesController;
+    NewStackedPanesController stackedPanesController;
 
-    public void setStackedPanesController(StackedPanesController stackedPanesController) {
+    public void setStackedPanesController(NewStackedPanesController stackedPanesController) {
         this.stackedPanesController = stackedPanesController;
     }
 

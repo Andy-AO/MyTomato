@@ -1,6 +1,7 @@
 package app;
 
 import app.control.OnTopAlert;
+import app.control.mytomato.NewStackedPanes;
 import app.control.mytomato.StackedPanes;
 import app.util.*;
 import app.view.*;
@@ -79,6 +80,12 @@ public class Main extends Application {
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
 
     private final File JSON_FILE = new File(ResGetter.getResFile(), "json\\tomatoTaskData.json");
+    private NewStackedPanesController newStackedPanesController;
+    private NewStackedPanes newStackedPanes;
+
+    public NewStackedPanes getNewStackedPanes() {
+        return newStackedPanes;
+    }
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -194,8 +201,12 @@ public class Main extends Application {
         loadSettingDialog();
         loadEditDialog();
         loadStackedPanes();
+        loadNewStackedPanes();
+    }
 
-
+    private void loadNewStackedPanes() {
+        newStackedPanesController = new NewStackedPanesController();
+        newStackedPanes = newStackedPanesController.createScrollPane();
     }
 
     public Main(TabPane settingDialog) {

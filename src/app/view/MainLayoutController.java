@@ -473,6 +473,7 @@ public class MainLayoutController extends Controller {
         setSettingListenerAndSetDuration();
         addToolTipForButton();
         setStackedPanes();
+        setNewStackedPanes();
         taskProgressbar = new TaskBarProgressbar(main.getPrimaryStage());
 
     }
@@ -495,6 +496,20 @@ public class MainLayoutController extends Controller {
 
         Node temp = anchorPane.getChildren().get(FIRST_INDEX);
         anchorPane.getChildren().set(FIRST_INDEX, main.getStackedPanes());
+        anchorPane.getChildren().add(temp);
+    }
+    private void setNewStackedPanes() {
+
+        main.getNewStackedPanes().setPrefHeight(240.0);
+
+        AnchorPane.setTopAnchor(main.getNewStackedPanes(), STACKED_PANE_MARGIN_TOP);
+        AnchorPane.setBottomAnchor(main.getNewStackedPanes(), STACKED_PANE_MARGIN);
+        AnchorPane.setLeftAnchor(main.getNewStackedPanes(), STACKED_PANE_MARGIN);
+        AnchorPane.setRightAnchor(main.getNewStackedPanes(), STACKED_PANE_MARGIN);
+
+
+        Node temp = anchorPane.getChildren().get(FIRST_INDEX);
+        anchorPane.getChildren().set(FIRST_INDEX, main.getNewStackedPanes());
         anchorPane.getChildren().add(temp);
     }
 

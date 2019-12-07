@@ -15,8 +15,6 @@ import java.util.List;
 
 public class NewStackedPanes extends app.control.StackedPanes {
 
-
-    //--------------------------------------- Field+
     NewStackedPanesController stackedPanesController;
 
     public void setStackedPanesController(NewStackedPanesController stackedPanesController) {
@@ -79,13 +77,10 @@ public class NewStackedPanes extends app.control.StackedPanes {
         this.itemsMap = itemsMap;
         convertItemsMapToSortedList();
         showItemsList();
-        itemsMap.addListener(new MapChangeListener<LocalDate, ObservableList<TomatoTask>>() {
-            @Override
-            public void onChanged(Change<? extends LocalDate, ? extends ObservableList<TomatoTask>> change) {
-                ObservableList<TomatoTask> addList = change.getValueAdded();
-                if (!addList.isEmpty()) {
-                    addTitledPane(addList);
-                }
+        itemsMap.addListener((MapChangeListener<LocalDate, ObservableList<TomatoTask>>) change -> {
+            ObservableList<TomatoTask> addList = change.getValueAdded();
+            if (!addList.isEmpty()) {
+                addTitledPane(addList);
             }
         });
     }
@@ -125,27 +120,24 @@ public class NewStackedPanes extends app.control.StackedPanes {
         titledPane.setItems(list);
         titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getStartColumn());
         titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getEndColumn());
-        list.addListener(new ListChangeListener<TomatoTask>() {
-            @Override
-            public void onChanged(Change<? extends TomatoTask> change) {
+        list.addListener((ListChangeListener<TomatoTask>) change -> {
 
-                if (change.next()) {
-                    List removedItems = change.getRemoved();
-                    List addedSubList = change.getAddedSubList();
-                    boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
-                    if(sortAble){
-                        titledPane.getTableView().sort();
-                    }
-                    change.reset();
-                    titledPane.getTableView().refreshAndResize();
+            if (change.next()) {
+                List removedItems = change.getRemoved();
+                List addedSubList = change.getAddedSubList();
+                boolean sortAble = (!addedSubList.isEmpty()) | (!removedItems.isEmpty());
+                if(sortAble){
+                    titledPane.getTableView().sort();
                 }
-                if (list.isEmpty()) {
-                    removeTitledPane(titledPane);
-                }
-
-                setTitledPaneItemsChange(change);
-
+                change.reset();
+                titledPane.getTableView().refreshAndResize();
             }
+            if (list.isEmpty()) {
+                removeTitledPane(titledPane);
+            }
+
+            setTitledPaneItemsChange(change);
+
         });
 
         titledPane.getTableView().focusedProperty().addListener((observable, oldFocused, newFocused) -> {

@@ -13,12 +13,7 @@ public abstract class StackedPanes extends  javafx.scene.control.ScrollPane{
 
     public StackedPanes() {
         this.setContent(vBox);
-        this.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
-                vBox.setPrefWidth(bounds.getWidth());
-            }
-        });
+        this.viewportBoundsProperty().addListener((ov, oldBounds, bounds) -> vBox.setPrefWidth(bounds.getWidth()));
     }
 
 

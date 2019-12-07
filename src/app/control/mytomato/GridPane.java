@@ -10,17 +10,18 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 public class GridPane extends app.control.GridPane<TomatoTask,Text> {
-    private ObservableList<TomatoTask> items;
+
     private ArrayList<Text> startTextList = new ArrayList<>();
     private ArrayList<Text> endTextList = new ArrayList<>();
     private GirdColumn<TomatoTask, Text> nameColumn;
 
     public void setItems(ObservableList<TomatoTask> items) {
-        this.items = items;
 
         nameColumn = new GirdColumn<>("name");
         nameColumn.setNodeFactory(data -> new Text(data.getName()));
         this.getColumns().add(nameColumn);
+
+        super.setItems(items);
 
         createText();
     }
@@ -63,10 +64,5 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
         return items;
     }
 
-    public GridPane(ObservableList<TomatoTask> items) {
-        setItems(items);
-    }
 
-    public GridPane() {
-    }
 }

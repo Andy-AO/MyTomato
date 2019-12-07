@@ -20,6 +20,6 @@ public class GirdColumn<DataType,NodeType extends Node> {
 }
 
 @FunctionalInterface
-interface GirdColumnFactory{
-   public Node generateNode();
+interface GirdColumnFactory<DataType,NodeType extends Node>{
+   public NodeType generateNode(DataType data);
 }

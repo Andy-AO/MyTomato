@@ -20,7 +20,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     private AnchorPane anchorPane = new AnchorPane();
     //TODO:在初始化的时候,直接建立tableView,gridPane应该在此替换TableView
     private TableView tableView = new TableView();
-    private GridPane gridPane = new GridPane();
+    private GridPane gridPane = new GridPane(this);
 
     private ObservableList<TomatoTask> items = null;
     //--------------------------------------- GS

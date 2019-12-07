@@ -1,15 +1,21 @@
 package app.control.mytomato;
 
 import app.control.GirdColumn;
-import app.control.GirdColumnFactory;
 import app.model.TomatoTask;
+import app.util.GL;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
 public class GridPane extends app.control.GridPane<TomatoTask,Text> {
+
+    public TitledPane container;
+
+    public GridPane(TitledPane container) {
+        this.container = container;
+    }
 
     private GirdColumn<TomatoTask, Text> nameColumn;
     private GirdColumn<TomatoTask, Text> startColumn;
@@ -28,7 +34,6 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
         nameColumn = new GirdColumn<>("name");
         nameColumn.setNodeFactory(data -> {
             Text text = new Text(data.getName());
-            text.setWrappingWidth(60);
             return text;
         });
         this.getColumns().add(nameColumn);

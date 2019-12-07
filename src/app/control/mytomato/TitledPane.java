@@ -1,10 +1,8 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.time.LocalDate;
@@ -19,15 +17,13 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     public static final double TABLE_VIEW_MARGIN = 0;
     public static final int TABLE_VIEW_PADDING = 0;
 
-    private AnchorPane anchorPane = new AnchorPane();;
+    private AnchorPane anchorPane = new AnchorPane();
+    //TODO:在初始化的时候,直接建立tableView,gridPane应该在此替换TableView
     private TableView tableView = new TableView();
 
     private ObservableList<TomatoTask> items = null;
     //--------------------------------------- GS
 
-    public ObservableList<TomatoTask> getItems() {
-        return items;
-    }
     public void setItems(ObservableList<TomatoTask> list) {
         this.items = list;
         tableView.setItems(list);

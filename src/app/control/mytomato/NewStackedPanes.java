@@ -123,8 +123,7 @@ public class NewStackedPanes extends app.control.StackedPanes {
     private TitledPane creatTitledPane(ObservableList<TomatoTask> list) {
         TitledPane titledPane = new TitledPane(list.get(0).getDate());
         titledPane.setItems(list);
-        titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getStartColumn());
-        titledPane.getTableView().getSortOrder().add(titledPane.getTableView().getEndColumn());
+
         list.addListener((ListChangeListener<TomatoTask>) change -> {
 
             if (change.next()) {

@@ -36,7 +36,7 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
         createStartTextList();
         int rowIndex = 0;
         for (Text text : startTextList) {
-            this.add(text,0,rowIndex++);
+            this.add(text,1,rowIndex++);
         }
     }
 

@@ -14,6 +14,10 @@ import java.util.Comparator;
 import java.util.List;
 
 public class NewStackedPanes extends app.control.StackedPanes {
+    public NewStackedPanes() {
+        super();
+        getStyleClass().add("hbox");
+    }
 
     NewStackedPanesController stackedPanesController;
 

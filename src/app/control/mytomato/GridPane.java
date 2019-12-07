@@ -3,19 +3,11 @@ package app.control.mytomato;
 import app.control.GirdColumn;
 import app.model.TomatoTask;
 import app.util.GL;
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 
 public class GridPane extends app.control.GridPane<TomatoTask,Text> {
-
-    public TitledPane container;
-
-    public GridPane(TitledPane container) {
-        this.container = container;
-    }
 
     private GirdColumn<TomatoTask, Text> nameColumn;
     private GirdColumn<TomatoTask, Text> startColumn;

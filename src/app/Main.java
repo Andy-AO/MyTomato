@@ -281,6 +281,7 @@ public class Main extends Application {
     private void loadStackedPanes() {
         stackedPanesController = new StackedPanesController();
         stackedPanes = stackedPanesController.createScrollPane();
+        stackedPanes.setVisible(false);
     }
 
     public Stage getPlusDialogStage() {

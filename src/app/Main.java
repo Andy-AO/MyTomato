@@ -188,6 +188,7 @@ public class Main extends Application {
         settingDialogController.setMainAndInit(this);
         editDialogController.setMainAndInit(this);
         stackedPanesController.setMainAndInit(this);
+        newStackedPanesController.setMainAndInit(this);
 
     }
 

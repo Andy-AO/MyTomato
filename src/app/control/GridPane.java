@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
 public class GridPane<DataType,NodeType extends Node> extends javafx.scene.layout.GridPane {
-    private ObservableList<DataType> items;
+    protected ObservableList<DataType> items;
 
     private ObservableList<GirdColumn<DataType,NodeType>> columns;
 

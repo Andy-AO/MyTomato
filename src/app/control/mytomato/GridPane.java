@@ -26,7 +26,11 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
         this.getColumns().add(endColumn);
 
         nameColumn = new GirdColumn<>("name");
-        nameColumn.setNodeFactory(data -> new Text(data.getName()));
+        nameColumn.setNodeFactory(data -> {
+            Text text = new Text(data.getName());
+            text.setWrappingWidth(60);
+            return text;
+        });
         this.getColumns().add(nameColumn);
         
         super.setItems(items);

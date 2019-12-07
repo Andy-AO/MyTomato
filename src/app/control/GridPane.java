@@ -11,6 +11,20 @@ public class GridPane<DataType,NodeType extends Node> extends javafx.scene.layou
 
     public void setItems(ObservableList<DataType> items) {
         this.items = items;
+        generateColumns();
+    }
+
+    private void generateColumns() {
+        int columnIndex = 0;
+        for (GirdColumn girdColumn : columns) {
+            int itemIndex = 0;
+            for (DataType item : items) {
+                Node node = girdColumn.getNodeFactory().generateNode(item);
+                this.add(node,columnIndex,itemIndex);
+                itemIndex++;
+            }
+            columnIndex++;
+        }
     }
 
     public GridPane() {

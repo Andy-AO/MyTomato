@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-public class GridPane extends javafx.scene.layout.GridPane {
+public class GridPane extends app.control.GridPane<TomatoTask,Text> {
     private ObservableList<TomatoTask> items;
     private ArrayList<Text> nameTextList = new ArrayList<>();
     private ArrayList<Text> startTextList = new ArrayList<>();

@@ -123,6 +123,7 @@ public class NewStackedPanes extends app.control.StackedPanes {
     private TitledPane creatTitledPane(ObservableList<TomatoTask> list) {
         //TODO:这里是对TableView修改的入口
         TitledPane titledPane = new TitledPane(list.get(0).getDate());
+        heightAccommodate(titledPane);
         titledPane.setItems(list);
 
         list.addListener((ListChangeListener<TomatoTask>) change -> {
@@ -160,6 +161,10 @@ public class NewStackedPanes extends app.control.StackedPanes {
         }));
 
         return titledPane;
+    }
+
+    private void heightAccommodate(TitledPane titledPane) {
+        titledPane.setPrefHeight(0);
     }
 
     private SimpleObjectProperty<TableView> focusedTableView = new SimpleObjectProperty<>();

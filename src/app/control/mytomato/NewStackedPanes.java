@@ -16,7 +16,7 @@ import java.util.List;
 public class NewStackedPanes extends app.control.StackedPanes {
     public NewStackedPanes() {
         super();
-        getStyleClass().add("hbox");
+        vBox.getStyleClass().add("v-box");
     }
 
     NewStackedPanesController stackedPanesController;

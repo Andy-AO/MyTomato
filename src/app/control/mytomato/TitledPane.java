@@ -31,6 +31,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         //GridPane也可以用类似的方法布置吗?
         tableView.setItems(list);
         gridPane.setItems(list);
+        gridPane.getStyleClass().add("grid-pane");
         setAnchorPane();
         this.setContent(anchorPane);
         tableView.setVisible(false);

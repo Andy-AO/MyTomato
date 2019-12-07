@@ -11,14 +11,13 @@ import java.util.ArrayList;
 
 public class GridPane extends app.control.GridPane<TomatoTask,Text> {
     private ObservableList<TomatoTask> items;
-    private ArrayList<Text> nameTextList = new ArrayList<>();
     private ArrayList<Text> startTextList = new ArrayList<>();
     private ArrayList<Text> endTextList = new ArrayList<>();
     private GirdColumn<TomatoTask, Text> nameColumn;
 
     public void setItems(ObservableList<TomatoTask> items) {
         this.items = items;
-        
+
         nameColumn = new GirdColumn<>("name");
         nameColumn.setNodeFactory(data -> new Text(data.getName()));
         this.getColumns().add(nameColumn);
@@ -30,15 +29,6 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
     private void createText() {
         createStartText();
         createEndText();
-        createNameText();
-    }
-
-    private void createNameText() {
-        createNameTextList();
-        int rowIndex = 0;
-        for (Text text : nameTextList) {
-            this.add(text,3,rowIndex++);
-        }
     }
 
     private void createStartText() {
@@ -66,12 +56,6 @@ public class GridPane extends app.control.GridPane<TomatoTask,Text> {
     private void createEndTextList() {
         for (TomatoTask tomatoTask : items) {
             endTextList.add(new Text(tomatoTask.getEndTimeString()));
-        }
-    }
-
-    private void createNameTextList() {
-        for (TomatoTask tomatoTask : items) {
-            nameTextList.add(new Text(tomatoTask.getName()));
         }
     }
 

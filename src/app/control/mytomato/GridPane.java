@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class GridPane extends javafx.scene.layout.GridPane {
     private ObservableList<TomatoTask> items;
     private ArrayList<Text> nameTextList = new ArrayList<>();
+    private ArrayList<Text> startTextList = new ArrayList<>();
+    private ArrayList<Text> endTextList = new ArrayList<>();
 
     public void setItems(ObservableList<TomatoTask> items) {
         this.items = items;
@@ -16,14 +18,44 @@ public class GridPane extends javafx.scene.layout.GridPane {
     }
 
     private void createText() {
+        createStartText();
+        createEndText();
         createNameText();
     }
 
     private void createNameText() {
-        createNameTextList();   
+        createNameTextList();
         int rowIndex = 0;
         for (Text text : nameTextList) {
+            this.add(text,3,rowIndex++);
+        }
+    }
+
+    private void createStartText() {
+        createStartTextList();
+        int rowIndex = 0;
+        for (Text text : startTextList) {
             this.add(text,0,rowIndex++);
+        }
+    }
+
+    private void createEndText() {
+        createEndTextList();
+        int rowIndex = 0;
+        for (Text text : endTextList) {
+            this.add(text,2,rowIndex++);
+        }
+    }
+
+    private void createStartTextList() {
+        for (TomatoTask tomatoTask : items) {
+            startTextList.add(new Text(tomatoTask.getStartTimeString()));
+        }
+    }
+
+    private void createEndTextList() {
+        for (TomatoTask tomatoTask : items) {
+            endTextList.add(new Text(tomatoTask.getEndTimeString()));
         }
     }
 

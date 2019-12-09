@@ -52,8 +52,6 @@ public class MainLayoutController extends Controller {
     private Button addButton;
     @FXML
     private Button redoDeleteButton;
-    @FXML
-    private Button editButton;
 
     @FXML
     private Text progressText;
@@ -147,12 +145,14 @@ public class MainLayoutController extends Controller {
 
 //---------------------------------------handle
 
+/*
     @FXML
     private void handleEditButton() {
         TomatoTask specifiedTask = getSelectionTableView().getSelectionModel().getSelectedItem();
         main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
         main.startEditDialogAndWait("修改任务");
     }
+*/
 
     @FXML
     private void handleRedoDelete() {
@@ -426,7 +426,6 @@ public class MainLayoutController extends Controller {
         sizeBind();
         initCountDownText();
         setSettingListenerAndSetDuration();
-        addToolTipForButton();
         setStackedPanes();
         taskProgressbar = new TaskBarProgressbar(main.getPrimaryStage());
 
@@ -447,10 +446,6 @@ public class MainLayoutController extends Controller {
         Node temp = anchorPane.getChildren().get(FIRST_INDEX);
         anchorPane.getChildren().set(FIRST_INDEX, main.getStackedPanes());
         anchorPane.getChildren().add(temp);
-    }
-
-    private void addToolTipForButton() {
-        editButton.setTooltip(new Tooltip("双击"));
     }
 
 

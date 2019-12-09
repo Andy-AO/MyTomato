@@ -1,11 +1,14 @@
 package app.control.mytomato;
 
+import app.Main;
 import app.control.GirdColumn;
 import app.model.TomatoTask;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 
@@ -37,8 +40,16 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
 
         deleteColumn = new GirdColumn<>("delete");
         deleteColumn.setNodeFactory(data -> {
-            Button deleteButton = new Button("D");
-            deleteButton.setOnAction(event -> items.remove(data));
+            Button deleteButton = new Button();
+            deleteButton.getStyleClass().add("delete-button");
+
+   /*         Image imageOk = new Image(Main.class.getResource("view/Close.png").toExternalForm());
+            ImageView img = new ImageView(imageOk);
+            img.setPreserveRatio(true);
+            img.resize(50,50);
+            deleteButton.setGraphic(img);*/
+
+             deleteButton.setOnAction(event -> items.remove(data));
             return deleteButton;
         });
         this.getColumns().add(deleteColumn);

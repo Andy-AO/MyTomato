@@ -16,3 +16,9 @@
     -fx-pref-height: 0;
 
 }
+
+.delete-button {
+    -fx-graphic: url(../view/Close_16x16.png);
+    -fx-max-height: 50;
+    -fx-max-width: 50;
+}

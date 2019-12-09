@@ -42,21 +42,15 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         deleteColumn.setNodeFactory(data -> {
             Button deleteButton = new Button();
             deleteButton.getStyleClass().add("delete-button");
-
-   /*         Image imageOk = new Image(Main.class.getResource("view/Close.png").toExternalForm());
-            ImageView img = new ImageView(imageOk);
-            img.setPreserveRatio(true);
-            img.resize(50,50);
-            deleteButton.setGraphic(img);*/
-
-             deleteButton.setOnAction(event -> items.remove(data));
+            deleteButton.setOnAction(event -> items.remove(data));
             return deleteButton;
         });
         this.getColumns().add(deleteColumn);
         
         editColumn = new GirdColumn<>("edit");
         editColumn.setNodeFactory(data -> {
-            Button editButton = new Button("E");
+            Button editButton = new Button();
+            editButton.getStyleClass().add("edit-button");
             editButton.setOnAction(event -> {
                 getStackedPanes().setEditingGridPane(this);
                 getStackedPanes().getStackedPanesController().main.getEditDialogController().loadSpecifiedTask(data);

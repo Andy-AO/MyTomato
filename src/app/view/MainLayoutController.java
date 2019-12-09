@@ -145,14 +145,23 @@ public class MainLayoutController extends Controller {
 
 //---------------------------------------handle
 
-/*
     @FXML
     private void handleEditButton() {
         TomatoTask specifiedTask = getSelectionTableView().getSelectionModel().getSelectedItem();
         main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
         main.startEditDialogAndWait("修改任务");
     }
-*/
+
+        @FXML
+    void handleDeleteButton() {
+        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
+            noSelectionAlert();
+        } else {
+            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
+            getSelectionTableView().getItems().removeAll(itemList);
+            getSelectionTableView().refreshAndResize();
+        }
+    }
 
     @FXML
     private void handleRedoDelete() {

@@ -16,10 +16,7 @@ public class RootLayoutController  extends Controller{
     @FXML
     private MenuItem settingsMenuItem;
 
-    @FXML
-    private void handleDeleteButton() {
-        main.getMainLayoutController().handleDeleteButton();
-    }
+
     @FXML
     private void handleSettingsMenuItem() {
         main.startSettingDialogAndWait();

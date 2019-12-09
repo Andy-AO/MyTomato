@@ -51,8 +51,6 @@ public class MainLayoutController extends Controller {
     @FXML
     private Button addButton;
     @FXML
-    private Button deleteButton;
-    @FXML
     private Button redoDeleteButton;
     @FXML
     private Button editButton;
@@ -99,14 +97,6 @@ public class MainLayoutController extends Controller {
 
     public void setAddButton(Button addButton) {
         this.addButton = addButton;
-    }
-
-    public Button getDeleteButton() {
-        return deleteButton;
-    }
-
-    public void setDeleteButton(Button deleteButton) {
-        this.deleteButton = deleteButton;
     }
 
     public Button getPlusButton() {
@@ -176,16 +166,6 @@ public class MainLayoutController extends Controller {
         }
     }
 
-    @FXML
-    void handleDeleteButton() {
-        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
-            noSelectionAlert();
-        } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
-            getSelectionTableView().getItems().removeAll(itemList);
-            getSelectionTableView().refreshAndResize();
-        }
-    }
 
     private ObservableList<TomatoTask> getSelectedItems() {
         if (getSelectionTableView()==null)
@@ -274,31 +254,8 @@ public class MainLayoutController extends Controller {
     ChangeListener<? super Number> selectedIndexListener = (observable, oldSelectedIndex, newSelectedIndex) -> {
         int selectedIndex = (Integer) newSelectedIndex;
         boolean disable = selectedIndex < 0;
-        deleteButton.setDisable(disable);
     };
 
-    private void deleteButtonBind() {
-
-        main.getStackedPanes().focusedTableViewProperty().addListener((observable, oldFocusedTable, newFocusedTable) -> {
-
-            if (oldFocusedTable != null) {
-                oldFocusedTable.getSelectionModel().selectedIndexProperty().removeListener(selectedIndexListener);
-            }
-
-            if (newFocusedTable == null) {
-                Platform.runLater(() -> {
-                    deleteButton.setDisable(true);
-                });
-
-            } else {
-                int selectedIndex = newFocusedTable.getSelectionModel().getSelectedIndex();
-                boolean disable = selectedIndex < 0;
-                deleteButton.setDisable(disable);
-                newFocusedTable.getSelectionModel().selectedIndexProperty().addListener(selectedIndexListener);
-            }
-
-        });
-    }
 
     private void setSettingListenerAndSetDuration() {
         boolean checked = main.getSettingDialogController().getDevelopmentCheckBox().isSelected();
@@ -467,8 +424,6 @@ public class MainLayoutController extends Controller {
         setWorkCountDownListener();
         setRespiteCountDownListener();
         sizeBind();
-        deleteButtonBind();
-        deleteButtonAndEditButtonDisableBind();
         initCountDownText();
         setSettingListenerAndSetDuration();
         addToolTipForButton();
@@ -477,10 +432,6 @@ public class MainLayoutController extends Controller {
 
     }
 
-    private void deleteButtonAndEditButtonDisableBind() {
-        editButton.disableProperty().bind(deleteButton.disableProperty());
-
-    }
 
     private void setStackedPanes() {
 
@@ -500,7 +451,6 @@ public class MainLayoutController extends Controller {
 
     private void addToolTipForButton() {
         editButton.setTooltip(new Tooltip("双击"));
-        deleteButton.setTooltip(new Tooltip("Delete键"));
     }
 
 

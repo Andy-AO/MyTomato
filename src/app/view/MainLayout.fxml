@@ -25,8 +25,7 @@
          </font>
       </Text>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="21.0" layoutX="6.0" layoutY="19.0" stroke="#0000004a" strokeType="INSIDE" width="58.0" />
-      <Button fx:id="addButton" layoutX="200.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" />
-      <Button fx:id="deleteButton" disable="true" layoutX="300.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textAlignment="CENTER" textFill="#8d0404" />
+      <Button fx:id="addButton" layoutX="214.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleAddButton" text="Add" textAlignment="CENTER" />
       <FlowPane fx:id="buttonFlowPaneBackground" alignment="CENTER" layoutX="139.0" layoutY="410.0" prefHeight="30.0" prefWidth="215.0" visible="false" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="30.0" stroke="#ff000000" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
@@ -42,8 +41,8 @@
             <Button fx:id="redoDeleteButton" mnemonicParsing="false" onAction="#handleRedoDelete" text="撤销" />
          </children>
       </FlowPane>
-      <Button fx:id="editButton" layoutX="250.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
-      <Button fx:id="plusButton" disable="true" layoutX="360.0" layoutY="50.0" mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
+      <Button fx:id="editButton" layoutX="266.0" layoutY="50.0" mnemonicParsing="false" onAction="#handleEditButton" text="Edit" />
+      <Button fx:id="plusButton" disable="true" layoutX="324.0" layoutY="50.0" mnemonicParsing="false" onAction="#handlePlusButton" text="+" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

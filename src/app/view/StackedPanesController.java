@@ -29,24 +29,7 @@ public class StackedPanesController extends Controller {
         super.setMainAndInit(main);
         stackedPanes.setItemsMap(main.getTomatoTasksMap());
         writeWhenItemsChange();
-        stackedPanes.setOnKeyPressed(this::handleTableDeleteKey);
         stackedPanes.setStackedPanesController(this);
-    }
-
-    private void handleTableDeleteKey(KeyEvent keyEvent) {
-        KeyCode keyCode = keyEvent.getCode();
-        String keyName = keyCode.getName();
-        switch (keyName) {
-            case "Delete":
-                main.getMainLayoutController().handleDeleteButton();
-                break;
-            case "R":
-                main.getMainLayoutController().showCellHeight();
-                break;
-            default:
-                break;
-        }
-
     }
 
     private void writeWhenItemsChange() {

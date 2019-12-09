@@ -85,41 +85,12 @@ public class MainLayoutController extends Controller {
         return startOrStopButton;
     }
 
-    public void setStartOrStopButton(Button startOrStopButton) {
-        this.startOrStopButton = startOrStopButton;
-    }
-
     public Button getAddButton() {
         return addButton;
     }
 
-    public void setAddButton(Button addButton) {
-        this.addButton = addButton;
-    }
-
     public Button getPlusButton() {
         return plusButton;
-    }
-
-    public void setPlusButton(Button plusButton) {
-        this.plusButton = plusButton;
-    }
-
-
-    public TableColumn<TomatoTask, String> getStartColumn() {
-        return startColumn;
-    }
-
-    public void setStartColumn(TableColumn<TomatoTask, String> startColumn) {
-        this.startColumn = startColumn;
-    }
-
-    public TableColumn<TomatoTask, String> getEndColumn() {
-        return endColumn;
-    }
-
-    public void setEndColumn(TableColumn<TomatoTask, String> endColumn) {
-        this.endColumn = endColumn;
     }
 
     public TableColumn<TomatoTask, String> getNameColumn() {
@@ -130,49 +101,17 @@ public class MainLayoutController extends Controller {
         this.nameColumn = nameColumn;
     }
 
-    public TableColumn<TomatoTask, String> getDateColumn() {
-        return dateColumn;
-    }
-
-    public void setDateColumn(TableColumn<TomatoTask, String> dateColumn) {
-        this.dateColumn = dateColumn;
-    }
-
-    public Mp3Player getWorkDurationMp3Player() {
-        return Main.WORK_DURATION_MP3_PLAYER;
-    }
-
 
 //---------------------------------------handle
-
-    @FXML
-    private void handleEditButton() {
-        TomatoTask specifiedTask = getSelectionTableView().getSelectionModel().getSelectedItem();
-        main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
-        main.startEditDialogAndWait("修改任务");
-    }
-
-        @FXML
-    void handleDeleteButton() {
-        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
-            noSelectionAlert();
-        } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
-            getSelectionTableView().getItems().removeAll(itemList);
-            getSelectionTableView().refreshAndResize();
-        }
-    }
 
     @FXML
     private void handleRedoDelete() {
         List removedItems = main.getREDO_TOMATO_TASKS();
         if (!removedItems.isEmpty()) {
             main.getStackedPanes().addItems(removedItems);
-            GL.logger.info("Redo|removedItems -> " + removedItems);
             removedItems.clear();
         } else {
-            GL.logger.debug("REDO_TOMATO_TASKS is empty!");
-        }
+         }
     }
 
 

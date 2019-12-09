@@ -13,6 +13,8 @@ import java.util.List;
 
 public class StackedPanes extends app.control.StackedPanes {
 
+    private GridPane focusedGridPane;
+
     public StackedPanes() {
         super();
         vBox.getStyleClass().add("v-box");
@@ -20,6 +22,10 @@ public class StackedPanes extends app.control.StackedPanes {
 
     //--------------------------------------- Field+
     StackedPanesController stackedPanesController;
+
+    public StackedPanesController getStackedPanesController() {
+        return stackedPanesController;
+    }
 
     public void setStackedPanesController(StackedPanesController stackedPanesController) {
         this.stackedPanesController = stackedPanesController;
@@ -211,4 +217,11 @@ public class StackedPanes extends app.control.StackedPanes {
         }
     }
 
+    public GridPane getFocusedGridPane() {
+        return focusedGridPane;
+    }
+
+    public void setEditingGridPane(GridPane focusedGridPane) {
+        this.focusedGridPane = focusedGridPane;
+    }
 }

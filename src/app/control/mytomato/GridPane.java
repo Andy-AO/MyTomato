@@ -1,12 +1,10 @@
 package app.control.mytomato;
 
 import app.control.GirdColumn;
-import app.control.GirdColumnFactory;
 import app.model.TomatoTask;
-import app.util.GL;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
@@ -17,6 +15,7 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
     private GirdColumn<TomatoTask> startColumn;
     private GirdColumn<TomatoTask> endColumn;
     private GirdColumn<TomatoTask> deleteColumn;
+    private GirdColumn<TomatoTask> editColumn;
 
     public void setItems(ObservableList<TomatoTask> items) {
 
@@ -36,18 +35,26 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         });
         this.getColumns().add(nameColumn);
 
-        deleteColumn = new GirdColumn<>("name");
-        deleteColumn.setNodeFactory(new GirdColumnFactory<TomatoTask>() {
-            @Override
-            public Node generateNode(TomatoTask data) {
-                Button deleteButton = new Button("D");
-                deleteButton.setOnAction(event -> {
-                    items.remove(data);
-                });
-                return deleteButton;
-            }
+        deleteColumn = new GirdColumn<>("delete");
+        deleteColumn.setNodeFactory(data -> {
+            Button deleteButton = new Button("D");
+            deleteButton.setOnAction(event -> items.remove(data));
+            return deleteButton;
         });
         this.getColumns().add(deleteColumn);
+        
+        editColumn = new GirdColumn<>("edit");
+        editColumn.setNodeFactory(data -> {
+            Button editButton = new Button("E");
+            editButton.setOnAction(event -> {
+                getStackedPanes().setEditingGridPane(this);
+                getStackedPanes().getStackedPanesController().main.getEditDialogController().loadSpecifiedTask(data);
+                getStackedPanes().getStackedPanesController().main.startEditDialogAndWait("修改任务");
+            });
+            return editButton;
+        });
+
+        this.getColumns().add(editColumn);
 
         super.setItems(items);
 
@@ -55,10 +62,26 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
 
     }
 
+    private StackedPanes getStackedPanes() {
+        Parent parent = this.getParent();
+        for (int i = 0;i<Integer.MAX_VALUE; i++) {
+            if(parent instanceof StackedPanes)
+                break;
+            else
+                parent = parent.getParent();
+        }
+        return (StackedPanes)parent;
+    }
+
+
     private void addListenerToItems() {
         this.items.addListener((ListChangeListener<TomatoTask>) c -> {
             c.next();
             generateColumns();
         });
+    }
+
+    public void refresh() {
+        generateColumns();
     }
 }

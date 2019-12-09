@@ -87,7 +87,7 @@ public class EditDialogControl extends Controller {
         }
         else {
             main.getTomatoTaskDataMapJson().write();
-            main.getStackedPanes().getSelectionTableView().refreshAndResize();
+            main.getStackedPanes().getFocusedGridPane().refresh();
         }
 
         main.getEditDialogStage().close();

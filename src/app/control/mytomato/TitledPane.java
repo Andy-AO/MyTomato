@@ -48,6 +48,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     //--------------------------------------- Method
 
     public TitledPane(LocalDate localDate) {
+        this.getStyleClass().add("title-pane");
         this.LOCAL_DATE = localDate;
         setTitle();
     }

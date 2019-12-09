@@ -2,15 +2,15 @@ package app.control;
 
 import javafx.scene.Node;
 
-public class GirdColumn<DataType,NodeType extends Node> {
+public class GirdColumn<DataType> {
     private final String name;
-    private GirdColumnFactory<DataType,NodeType> nodeFactory;
+    private GirdColumnFactory<DataType> nodeFactory;
 
     public GirdColumnFactory getNodeFactory() {
         return nodeFactory;
     }
 
-    public void setNodeFactory(GirdColumnFactory<DataType,NodeType> nodeFactory) {
+    public void setNodeFactory(GirdColumnFactory<DataType> nodeFactory) {
         this.nodeFactory = nodeFactory;
     }
 

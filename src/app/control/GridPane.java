@@ -4,10 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-public class GridPane<DataType,NodeType extends Node> extends javafx.scene.layout.GridPane {
+public class GridPane<DataType> extends javafx.scene.layout.GridPane {
     protected ObservableList<DataType> items;
 
-    private ObservableList<GirdColumn<DataType,NodeType>> columns = FXCollections.observableArrayList();
+    private ObservableList<GirdColumn<DataType>> columns = FXCollections.observableArrayList();
 
     public void setItems(ObservableList<DataType> items) {
         this.items = items;
@@ -30,7 +30,7 @@ public class GridPane<DataType,NodeType extends Node> extends javafx.scene.layou
     public GridPane() {
     }
 
-    public ObservableList<GirdColumn<DataType, NodeType>> getColumns() {
+    public ObservableList<GirdColumn<DataType>> getColumns() {
         return columns;
     }
 

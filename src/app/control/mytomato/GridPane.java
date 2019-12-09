@@ -7,11 +7,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.text.Text;
 
 
-public class GridPane extends app.control.GridPane<TomatoTask,Text> {
+public class GridPane extends app.control.GridPane<TomatoTask> {
 
-    private GirdColumn<TomatoTask, Text> nameColumn;
-    private GirdColumn<TomatoTask, Text> startColumn;
-    private GirdColumn<TomatoTask, Text> endColumn;
+    private GirdColumn<TomatoTask> nameColumn;
+    private GirdColumn<TomatoTask> startColumn;
+    private GirdColumn<TomatoTask> endColumn;
 
     public void setItems(ObservableList<TomatoTask> items) {
 

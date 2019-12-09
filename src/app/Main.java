@@ -1,7 +1,6 @@
 package app;
 
 import app.control.OnTopAlert;
-import app.control.mytomato.NewStackedPanes;
 import app.control.mytomato.StackedPanes;
 import app.util.*;
 import app.view.*;

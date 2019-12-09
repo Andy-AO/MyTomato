@@ -1,10 +1,13 @@
 package app.control.mytomato;
 
 import app.control.GirdColumn;
+import app.control.GirdColumnFactory;
 import app.model.TomatoTask;
 import app.util.GL;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 
@@ -13,6 +16,7 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
     private GirdColumn<TomatoTask> nameColumn;
     private GirdColumn<TomatoTask> startColumn;
     private GirdColumn<TomatoTask> endColumn;
+    private GirdColumn<TomatoTask> deleteColumn;
 
     public void setItems(ObservableList<TomatoTask> items) {
 
@@ -31,7 +35,20 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
             return text;
         });
         this.getColumns().add(nameColumn);
-        
+
+        deleteColumn = new GirdColumn<>("name");
+        deleteColumn.setNodeFactory(new GirdColumnFactory<TomatoTask>() {
+            @Override
+            public Node generateNode(TomatoTask data) {
+                Button deleteButton = new Button("D");
+                deleteButton.setOnAction(event -> {
+                    items.remove(data);
+                });
+                return deleteButton;
+            }
+        });
+        this.getColumns().add(deleteColumn);
+
         super.setItems(items);
 
         addListenerToItems();
@@ -41,10 +58,7 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
     private void addListenerToItems() {
         this.items.addListener((ListChangeListener<TomatoTask>) c -> {
             c.next();
-            if(c.wasAdded()){
-                GL.logger.debug("c.wasAdded() -> " + c.wasAdded());
-                generateColumns();
-            }
+            generateColumns();
         });
     }
 }

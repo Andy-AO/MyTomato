@@ -13,6 +13,10 @@ import java.util.List;
 
 public class StackedPanes extends app.control.StackedPanes {
 
+    public StackedPanes() {
+        super();
+        vBox.getStyleClass().add("v-box");
+    }
 
     //--------------------------------------- Field+
     StackedPanesController stackedPanesController;

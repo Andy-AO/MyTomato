@@ -1,8 +1,6 @@
 package app.control.mytomato;
 
 import app.model.TomatoTask;
-import app.view.NewStackedPanesController;
-import app.view.StackedPanesController;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.*;
 import javafx.scene.Node;
@@ -17,12 +15,6 @@ public class NewStackedPanes extends app.control.StackedPanes {
     public NewStackedPanes() {
         super();
         vBox.getStyleClass().add("v-box");
-    }
-
-    NewStackedPanesController stackedPanesController;
-
-    public void setStackedPanesController(NewStackedPanesController stackedPanesController) {
-        this.stackedPanesController = stackedPanesController;
     }
 
     private SimpleObjectProperty<ListChangeListener.Change<? extends TomatoTask>> titledPaneItemsChange = new SimpleObjectProperty();
@@ -159,8 +151,6 @@ public class NewStackedPanes extends app.control.StackedPanes {
             //检测双击事件
             if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
                 TomatoTask specifiedTask = titledPane.getTableView().getSelectionModel().getSelectedItem();
-                stackedPanesController.main.getEditDialogController().loadSpecifiedTaskAndFocus(specifiedTask);
-                stackedPanesController.main.startEditDialogAndWait("修改任务");
             }
         }));
 

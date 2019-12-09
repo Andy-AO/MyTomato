@@ -80,12 +80,6 @@ public class Main extends Application {
     private ObservableList<TomatoTask> REDO_TOMATO_TASKS = FXCollections.observableArrayList();
 
     private final File JSON_FILE = new File(ResGetter.getResFile(), "json\\tomatoTaskData.json");
-    private NewStackedPanesController newStackedPanesController;
-    private NewStackedPanes newStackedPanes;
-
-    public NewStackedPanes getNewStackedPanes() {
-        return newStackedPanes;
-    }
 
     public TabPane getSettingDialog() {
         return settingDialog;
@@ -188,7 +182,6 @@ public class Main extends Application {
         settingDialogController.setMainAndInit(this);
         editDialogController.setMainAndInit(this);
         stackedPanesController.setMainAndInit(this);
-        newStackedPanesController.setMainAndInit(this);
 
     }
 
@@ -202,13 +195,8 @@ public class Main extends Application {
         loadSettingDialog();
         loadEditDialog();
         loadStackedPanes();
-        loadNewStackedPanes();
     }
 
-    private void loadNewStackedPanes() {
-        newStackedPanesController = new NewStackedPanesController();
-        newStackedPanes = newStackedPanesController.createScrollPane();
-    }
 
     public Main(TabPane settingDialog) {
         this.settingDialog = settingDialog;
@@ -295,7 +283,6 @@ public class Main extends Application {
     private void loadStackedPanes() {
         stackedPanesController = new StackedPanesController();
         stackedPanes = stackedPanesController.createScrollPane();
-        stackedPanes.setVisible(false);
     }
 
     public Stage getPlusDialogStage() {

@@ -76,9 +76,5 @@ public class TableView extends javafx.scene.control.TableView<TomatoTask> {
 
     public void refreshAndResize() {
         this.refresh();
-        GL.logger.debug("this.heightProperty() -> " + this.heightProperty());
-        GL.logger.debug("this.getPrefHeight() -> " + this.getPrefHeight());
-        GL.logger.debug("this.maxHeightProperty() -> " + this.maxHeightProperty());
-        GL.logger.debug("this.maxHeightProperty() -> " + this.maxHeightProperty());
     }
 }

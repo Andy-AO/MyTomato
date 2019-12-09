@@ -3,6 +3,7 @@ package app.control.mytomato;
 import app.control.GirdColumn;
 import app.model.TomatoTask;
 import app.util.GL;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.text.Text;
 
@@ -33,5 +34,17 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         
         super.setItems(items);
 
+        addListenerToItems();
+
+    }
+
+    private void addListenerToItems() {
+        this.items.addListener((ListChangeListener<TomatoTask>) c -> {
+            c.next();
+            if(c.wasAdded()){
+                GL.logger.debug("c.wasAdded() -> " + c.wasAdded());
+                generateColumns();
+            }
+        });
     }
 }

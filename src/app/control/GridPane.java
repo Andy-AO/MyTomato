@@ -14,7 +14,8 @@ public class GridPane<DataType> extends javafx.scene.layout.GridPane {
         generateColumns();
     }
 
-    private void generateColumns() {
+    protected void generateColumns() {
+        clearGrid();
         int columnIndex = 0;
         for (GirdColumn girdColumn : columns) {
             int itemIndex = 0;
@@ -25,6 +26,10 @@ public class GridPane<DataType> extends javafx.scene.layout.GridPane {
             }
             columnIndex++;
         }
+    }
+
+    private void clearGrid() {
+        this.getChildren().clear();
     }
 
     public GridPane() {

@@ -22,3 +22,9 @@
     -fx-max-height: 50;
     -fx-max-width: 50;
 }
+.delete-button-background {
+    -fx-background-image: url(../view/Close_512x512.png);
+    -fx-background-size: 16px 16px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}

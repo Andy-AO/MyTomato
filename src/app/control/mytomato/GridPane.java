@@ -41,7 +41,7 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         deleteColumn = new GirdColumn<>("delete");
         deleteColumn.setNodeFactory(data -> {
             Button deleteButton = new Button();
-            deleteButton.getStyleClass().add("delete-button-background");
+            deleteButton.getStyleClass().add("delete-button");
 
    /*         Image imageOk = new Image(Main.class.getResource("view/Close.png").toExternalForm());
             ImageView img = new ImageView(imageOk);

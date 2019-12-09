@@ -17,14 +17,16 @@
 
 }
 
-.delete-button {
-    -fx-graphic: url(../view/Close_16x16.png);
-    -fx-max-height: 50;
-    -fx-max-width: 50;
-}
-.delete-button-background {
+.delete-button{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
     -fx-background-image: url(../view/Close_512x512.png);
     -fx-background-size: 16px 16px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+    -fx-pref-width: 25;
+    -fx-pref-height: 25;
 }
+

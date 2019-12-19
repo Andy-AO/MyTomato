@@ -18,8 +18,6 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     public static final int TABLE_VIEW_PADDING = 0;
 
     private AnchorPane anchorPane = new AnchorPane();
-    //TODO:在初始化的时候,直接建立tableView,gridPane应该在此替换TableView
-    private TableView tableView = new TableView();
     private GridPane gridPane = new GridPane();
 
     private ObservableList<TomatoTask> items = null;
@@ -29,16 +27,10 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         this.items = list;
         //在这里tableView布置了内容,并且显示了
         //GridPane也可以用类似的方法布置吗?
-        tableView.setItems(list);
         gridPane.setItems(list);
         gridPane.getStyleClass().add("grid-pane");
         setAnchorPane();
         this.setContent(anchorPane);
-        tableView.setVisible(false);
-    }
-
-    public TableView getTableView() {
-        return tableView;
     }
 
     public LocalDate getLOCAL_DATE() {
@@ -59,11 +51,8 @@ public class TitledPane extends javafx.scene.control.TitledPane {
     }
 
 
-
     private void setAnchorPane() {
-        setTableView();
         setGridView();
-        anchorPane.getChildren().add(tableView);
         anchorPane.getChildren().add(gridPane);
         anchorPane.setPadding(new Insets(TABLE_VIEW_PADDING));
     }
@@ -73,13 +62,6 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         AnchorPane.setLeftAnchor(gridPane, TABLE_VIEW_MARGIN);
         AnchorPane.setRightAnchor(gridPane, TABLE_VIEW_MARGIN);
         AnchorPane.setTopAnchor(gridPane, TABLE_VIEW_MARGIN);
-    }
-
-    private void setTableView() {
-        AnchorPane.setBottomAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setLeftAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setRightAnchor(tableView, TABLE_VIEW_MARGIN);
-        AnchorPane.setTopAnchor(tableView, TABLE_VIEW_MARGIN);
     }
 
 

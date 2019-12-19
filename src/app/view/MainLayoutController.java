@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import app.control.mytomato.TableView;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -114,16 +113,6 @@ public class MainLayoutController extends Controller {
          }
     }
 
-
-    private ObservableList<TomatoTask> getSelectedItems() {
-        if (getSelectionTableView()==null)
-            return null;
-        return getSelectionTableView().getSelectionModel().getSelectedItems();
-    }
-
-    private TableView getSelectionTableView() {
-        return main.getStackedPanes().getSelectionTableView();
-    }
 
     @FXML
     private void handlePlusButton() {
@@ -402,7 +391,7 @@ public class MainLayoutController extends Controller {
     }
 
     public void initHeadText() {
-        todayTaskAmount = getCertainDayTaskAmount(main.getTomatoTasksMap(), LocalDate.now());
+        todayTaskAmount = getCertainDayTaskAmount(Main.getTomatoTasksMap(), LocalDate.now());
         updateHeadText();
     }
 
@@ -458,28 +447,5 @@ public class MainLayoutController extends Controller {
             buttonFlowPane.setVisible(true);
         });
 
-    }
-
-    public double computeCellHeight() {
-        return 0;
-    }
-
-    public void showCellHeight() {
-        if ((getSelectedItems() == null) || (getSelectedItems().isEmpty())) {
-            noSelectionAlert();
-        } else {
-            ArrayList<TomatoTask> itemList = new ArrayList<>(getSelectedItems());
-            getSelectionTableView().getItems().removeAll(itemList);
-            getSelectionTableView().refreshAndResize();
-        }
-    }
-
-    private void noSelectionAlert() {
-        Alert alert = new OnTopAlert(Alert.AlertType.WARNING);
-        alert.initOwner(main.getPrimaryStage());
-        alert.setTitle("No Selection");
-        alert.setHeaderText("No Task Selected");
-        alert.setContentText("Please select a task in the table.");
-        alert.showAndWait();
     }
 }

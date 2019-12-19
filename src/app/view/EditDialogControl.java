@@ -81,9 +81,7 @@ public class EditDialogControl extends Controller {
         getCURRENT_TOMATO_TASK().setName(taskName);
 
         if(isNewTask.get()){
-            Platform.runLater(() -> {
-                main.getStackedPanes().addItems(getCURRENT_TOMATO_TASK());
-            });
+            Platform.runLater(() -> main.getStackedPanes().addItems(getCURRENT_TOMATO_TASK()));
         }
         else {
             main.getTomatoTaskDataMapJson().write();
@@ -95,25 +93,6 @@ public class EditDialogControl extends Controller {
         Platform.runLater(()->{
             main.getMainLayoutController().getAddButton().setDisable(false);
         });
-    }
-
-    private void focusControl() {
-        TableColumn tableColumn = main.getStackedPanes().getSelectionTableView().getFocusModel().getFocusedCell().getTableColumn();
-        String tableColumnText = tableColumn.getText();
-
-        if (tableColumnText.equals("Task Name")) {
-            taskName.requestFocus();
-            taskName.selectAll();
-        } else if (tableColumnText.equals("Start")) {
-            startTime.requestFocus();
-            startTime.selectAll();
-        } else if (tableColumnText.equals("End"))  {
-            endTime.requestFocus();
-            endTime.selectAll();
-        } else {
-            datePicker.getEditor().requestFocus();
-            datePicker.getEditor().selectAll();
-        }
     }
 
     @FXML
@@ -129,10 +108,6 @@ public class EditDialogControl extends Controller {
     public void loadSpecifiedTask(TomatoTask tomatoTask) {
         isNewTask.set(false);
         setCURRENT_TOMATO_TASK(tomatoTask);
-    }
-    public void loadSpecifiedTaskAndFocus(TomatoTask tomatoTask) {
-        loadSpecifiedTask(tomatoTask);
-        focusControl();
     }
 
     private LocalTime getStartTime(LocalTime endTime) {
@@ -245,7 +220,7 @@ public class EditDialogControl extends Controller {
     private boolean isDigitOrEnglishColon(char c) {
         String letterOrDigital = "0123456789";
         letterOrDigital += ENGLISH_COLON;
-        return -1 == letterOrDigital.indexOf(c) ? false : true;
+        return -1 != letterOrDigital.indexOf(c);
     }
 
 

@@ -27,7 +27,7 @@ public class StackedPanesController extends Controller {
     @Override
     public void setMainAndInit(Main main) {
         super.setMainAndInit(main);
-        stackedPanes.setItemsMap(main.getTomatoTasksMap());
+        stackedPanes.setItemsMap(Main.getTomatoTasksMap());
         writeWhenItemsChange();
         stackedPanes.setStackedPanesController(this);
     }

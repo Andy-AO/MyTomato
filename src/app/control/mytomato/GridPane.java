@@ -3,6 +3,7 @@ package app.control.mytomato;
 import app.Main;
 import app.control.GirdColumn;
 import app.model.TomatoTask;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import javafx.scene.text.Text;
 
 public class GridPane extends app.control.GridPane<TomatoTask> {
 
+    public static final int OTHER_CONSTRAINT_WIDTH = 170;
     private GirdColumn<TomatoTask> nameColumn;
     private GirdColumn<TomatoTask> startColumn;
     private GirdColumn<TomatoTask> endColumn;
@@ -33,7 +35,8 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         nameColumn = new GirdColumn<>("name");
         nameColumn.setNodeFactory(data -> {
             Text text = new Text(data.getName());
-            text.setWrappingWidth(220);
+            text.setWrappingWidth(getWidth() - OTHER_CONSTRAINT_WIDTH);
+            widthProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(() -> text.setWrappingWidth((Double) newValue - OTHER_CONSTRAINT_WIDTH)));
             return text;
         });
         this.getColumns().add(nameColumn);

@@ -25,11 +25,9 @@ public class TitledPane extends javafx.scene.control.TitledPane {
 
     public void setItems(ObservableList<TomatoTask> list) {
         this.items = list;
-        //在这里tableView布置了内容,并且显示了
-        //GridPane也可以用类似的方法布置吗?
+        setAnchorPane();
         gridPane.setItems(list);
         gridPane.getStyleClass().add("grid-pane");
-        setAnchorPane();
         this.setContent(anchorPane);
     }
 

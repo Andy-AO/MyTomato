@@ -46,20 +46,17 @@ public class StackedPanes extends app.control.StackedPanes {
     };
 
 
-    private Comparator<ObservableList<TomatoTask>> comparatorTomatoTaskList = new Comparator<ObservableList<TomatoTask>>() {
-        @Override
-        public int compare(ObservableList<TomatoTask> o1, ObservableList<TomatoTask> o2) {
-            boolean o1IsEmpty = o1.isEmpty();
-            boolean o2IsEmpty = o2.isEmpty();
-            if ((o1IsEmpty) && (o2IsEmpty)) {
-                return 0;
-            } else if (o1IsEmpty) {
-                return -1;
-            } else if (o2IsEmpty) {
-                return 1;
-            }
-            return (o1.get(0).getDate().compareTo(o2.get(0).getDate()));
+    private Comparator<ObservableList<TomatoTask>> comparatorTomatoTaskList = (o1, o2) -> {
+        boolean o1IsEmpty = o1.isEmpty();
+        boolean o2IsEmpty = o2.isEmpty();
+        if ((o1IsEmpty) && (o2IsEmpty)) {
+            return 0;
+        } else if (o1IsEmpty) {
+            return -1;
+        } else if (o2IsEmpty) {
+            return 1;
         }
+        return (o1.get(0).getDate().compareTo(o2.get(0).getDate()));
     };
 
 //--------------------------------------- GS

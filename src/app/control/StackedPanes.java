@@ -1,5 +1,6 @@
 package app.control;
 
+import app.util.GL;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
@@ -15,8 +16,6 @@ public abstract class StackedPanes extends  javafx.scene.control.ScrollPane{
         this.setContent(vBox);
         this.viewportBoundsProperty().addListener((ov, oldBounds, bounds) -> vBox.setPrefWidth(bounds.getWidth()));
     }
-
-
 
 //--------------------------------------- Method
 

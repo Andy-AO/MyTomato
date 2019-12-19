@@ -8,9 +8,9 @@
     -fx-hgap: 10;
     -fx-vgap: 10;
     -fx-background-color: rgb(250, 250, 250);
-    -fx-alignment: center;
+    -fx-alignment: top-left;
     -fx-pref-height: 0;
-
+    -fx-padding: 1 1 1 15;
 }
 .title-pane {
     -fx-pref-height: 0;

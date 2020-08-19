@@ -10,7 +10,9 @@
 
 [我的软件“wnr”上架了 Product Hunt！ - V2EX](https://www.v2ex.com/t/698913#reply22)
 
-![](README.assets/1.jpg)
+<img width="336" height="470" src="README.assets/1.jpg"/>
+
+
 
 # 下载
 

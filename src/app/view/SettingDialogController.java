@@ -1,7 +1,6 @@
 package app.view;
 
 import app.Main;
-import app.util.PropertiesManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
@@ -21,7 +20,7 @@ public class SettingDialogController  extends Controller {
     private AnchorPane genericAnchorPane;
 
     @FXML
-    private CheckBox developmentCheckBox;
+    private CheckBox threeSecondMode;
 
     @FXML
     private void throwException() throws Exception {
@@ -38,11 +37,11 @@ public class SettingDialogController  extends Controller {
      private void loadPropertyFromFile() {
         boolean developmentMode;
         developmentMode = Boolean.parseBoolean(Main.PROPERTIES_MANAGER.getProperty("developmentMode", "false"));
-        developmentCheckBox.setSelected(developmentMode);
+        threeSecondMode.setSelected(developmentMode);
     }
 
     private void addPropertyListener() {
-        developmentCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+        threeSecondMode.selectedProperty().addListener((observable, oldValue, newValue) -> {
             Main.PROPERTIES_MANAGER.setProperty("developmentMode", newValue ? "true" : "false");
         });
     }
@@ -73,16 +72,16 @@ public class SettingDialogController  extends Controller {
     }
 
     public CheckBox getDevelopmentCheckBox() {
-        return developmentCheckBox;
+        return threeSecondMode;
     }
 
     public void setDevelopmentCheckBox(CheckBox developmentCheckBox) {
-        this.developmentCheckBox = developmentCheckBox;
+        this.threeSecondMode = developmentCheckBox;
     }
 
     @FXML
     private void handleDevelopmentCheckBox() {
-        boolean result = developmentCheckBox.isSelected();
+        boolean result = threeSecondMode.isSelected();
     }
 
 

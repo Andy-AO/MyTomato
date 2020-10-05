@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class TitledPane extends javafx.scene.control.TitledPane {
 
-
     //--------------------------------------- Field
 
     private final LocalDate LOCAL_DATE;
@@ -45,9 +44,7 @@ public class TitledPane extends javafx.scene.control.TitledPane {
 
     private void setTitle() {
         setText(LOCAL_DATE.toString());
-
     }
-
 
     private void setAnchorPane() {
         setGridView();
@@ -61,6 +58,5 @@ public class TitledPane extends javafx.scene.control.TitledPane {
         AnchorPane.setRightAnchor(gridPane, TABLE_VIEW_MARGIN);
         AnchorPane.setTopAnchor(gridPane, TABLE_VIEW_MARGIN);
     }
-
 
 }

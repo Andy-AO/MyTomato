@@ -17,7 +17,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <CheckBox fx:id="developmentCheckBox" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDevelopmentCheckBox" prefHeight="16.0" prefWidth="118.0" text="3 秒间隔模式" />
+                  <CheckBox fx:id="threeSecondMode" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleDevelopmentCheckBox" prefHeight="16.0" prefWidth="118.0" text="3 秒间隔模式" />
                   <Button layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#throwException" text="throw RunTimeException" />
                </children></AnchorPane>
       </content>

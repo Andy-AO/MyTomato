@@ -71,16 +71,16 @@ public class SettingDialogController  extends Controller {
         this.genericAnchorPane = genericAnchorPane;
     }
 
-    public CheckBox getDevelopmentCheckBox() {
+    public CheckBox getThreeSecondModeBox() {
         return threeSecondMode;
     }
 
-    public void setDevelopmentCheckBox(CheckBox developmentCheckBox) {
-        this.threeSecondMode = developmentCheckBox;
+    public void setThreeSecondModeBox(CheckBox ThreeSecondModeBox) {
+        this.threeSecondMode = ThreeSecondModeBox;
     }
 
     @FXML
-    private void handleDevelopmentCheckBox() {
+    private void handleThreeSecondModeBox() {
         boolean result = threeSecondMode.isSelected();
     }
 

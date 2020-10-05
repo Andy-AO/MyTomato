@@ -195,10 +195,10 @@ public class MainLayoutController extends Controller {
 
 
     private void setSettingListenerAndSetDuration() {
-        boolean checked = main.getSettingDialogController().getDevelopmentCheckBox().isSelected();
+        boolean checked = main.getSettingDialogController().getThreeSecondModeBox().isSelected();
         developmentMode(checked);
 
-        main.getSettingDialogController().getDevelopmentCheckBox().selectedProperty().addListener((observable,
+        main.getSettingDialogController().getThreeSecondModeBox().selectedProperty().addListener((observable,
                                                                                                    oldValue,
                                                                                                    newValue) -> {
             developmentMode(newValue);

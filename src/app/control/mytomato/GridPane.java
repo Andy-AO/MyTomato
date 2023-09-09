@@ -35,8 +35,12 @@ public class GridPane extends app.control.GridPane<TomatoTask> {
         nameColumn = new GirdColumn<>("name");
         nameColumn.setNodeFactory(data -> {
             Text text = new Text(data.getName());
-            text.setWrappingWidth(getWidth() - OTHER_CONSTRAINT_WIDTH);
-            widthProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(() -> text.setWrappingWidth((Double) newValue - OTHER_CONSTRAINT_WIDTH)));
+            text.setWrappingWidth(450);
+//            System.out.println("getWidth():" + this.getWidth());
+//            可以发现出现很多的 getWidth():0.0，这个意味着该getWidth()的功能已经失效？不管怎么样，设置固定宽度吧，还可能继续用一阵
+//            text.setWrappingWidth(getWidth() - OTHER_CONSTRAINT_WIDTH);
+//            widthProperty().addListener((observable, oldValue, newValue) -> Platform.runLater(() -> text.setWrappingWidth((Double) newValue - OTHER_CONSTRAINT_WIDTH)));
+
             return text;
         });
         this.getColumns().add(nameColumn);
